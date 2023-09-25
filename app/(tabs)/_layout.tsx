@@ -27,6 +27,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "빌리지",
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
@@ -34,6 +35,7 @@ export default function TabLayout() {
         name="two"
         options={{
           title: "진저호텔",
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="hotel" color={color} />,
         }}
       />
@@ -41,6 +43,7 @@ export default function TabLayout() {
         name="three"
         options={{
           title: "MY",
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />

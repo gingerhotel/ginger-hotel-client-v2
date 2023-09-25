@@ -17,3 +17,14 @@ export default {
     tabIconSelected: tintColorDark,
   },
 };
+
+export const COLORS = {
+  red: "#AF2010",
+  green: "#005452",
+  white: "#FFFFFF",
+  black: "#000000",
+  beige: "#FCF4E9",
+  gray: "#D9D9D9",
+  disable_red: "#CE9183",
+};
+
