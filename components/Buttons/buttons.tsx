@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderRadius: 2,
     borderWidth: 1.5,
+    textAlign: "center",
   },
 });
 
