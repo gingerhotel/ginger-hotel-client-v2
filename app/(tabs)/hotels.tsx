@@ -10,6 +10,7 @@ import Buttons from "../../components/Buttons/buttons";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function TabTwoScreen({ navigation }: any) {
+  console.log(navigation);
   return (
     <ScrollView>
       <Header />
@@ -25,7 +26,7 @@ export default function TabTwoScreen({ navigation }: any) {
         )}
         <Buttons
           navigation={navigation}
-          url={"login"}
+          url={"mailbox"}
           title="호텔 편지함"
           color="red"
         />

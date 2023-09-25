@@ -15,6 +15,7 @@ export default function TabOneScreen() {
     <>
       <Header />
       <View style={styles.container}>
+        <MonoText>빌리지 페이지 입니다.</MonoText>
         {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
       </View>
     </>
