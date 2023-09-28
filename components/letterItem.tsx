@@ -1,8 +1,8 @@
 import { Link } from "expo-router";
 import React from "react";
 import { Text, Pressable, StyleSheet, View } from "react-native";
-import { COLORS } from "../../constants/Colors";
-import { MonoText } from "../StyledText";
+import { COLORS } from "../constants/Colors";
+import { MonoText } from "./StyledText";
 
 type Props = {
   from: string;

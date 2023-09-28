@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import { MonoText } from "../../components/StyledText";
 import React from "react";
 import { WithLocalSvg } from "react-native-svg";
-import Buttons from "../../components/Buttons/buttons";
+import Buttons from "../../components/buttons";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function TabTwoScreen({ navigation }: any) {

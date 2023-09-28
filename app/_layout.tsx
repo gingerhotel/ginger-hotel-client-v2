@@ -27,6 +27,7 @@ export default function App() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       <Stack.Screen name="mailbox" options={{ headerShown: false }} />
+      <Stack.Screen name="gingercard" options={{ headerShown: false }} />
     </Stack>
   );
 }
