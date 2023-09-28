@@ -1,8 +1,8 @@
 import { Link } from "expo-router";
 import React from "react";
 import { Text, Pressable, StyleSheet, View } from "react-native";
-import { COLORS } from "../../constants/Colors";
-import { MonoText } from "../StyledText";
+import { COLORS } from "../constants/Colors";
+import { MonoText } from "./StyledText";
 
 type Props = {
   from: string;
@@ -17,6 +17,8 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
         <MonoText style={styles.from_wrapper}>
           <MonoText style={styles.bold}>From.</MonoText> 로온로온
         </MonoText>
+        {"\n"}
+        {"\n"}
         <MonoText style={styles.contents}>
           작년 겨울에 진저호텔 덕분에 따뜻한 겨울을 보낸 유저입니다! 이번
           sef2023에 진저호텔 팀이 연사로 참여한다고 해서 너무 궁금했어요.

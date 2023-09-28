@@ -1,5 +1,11 @@
 import React, { useCallback } from "react";
-import { Text, View, StyleSheet, useColorScheme } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  useColorScheme,
+  SafeAreaView,
+} from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import {
@@ -27,6 +33,7 @@ export default function App() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       <Stack.Screen name="mailbox" options={{ headerShown: false }} />
+      <Stack.Screen name="gingercard" options={{ headerShown: false }} />
     </Stack>
   );
 }

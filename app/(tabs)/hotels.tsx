@@ -1,4 +1,10 @@
-import { Image, Platform, ScrollView, StyleSheet } from "react-native";
+import {
+  Image,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
@@ -6,11 +12,10 @@ import Header from "../../components/Header";
 import { MonoText } from "../../components/StyledText";
 import React from "react";
 import { WithLocalSvg } from "react-native-svg";
-import Buttons from "../../components/Buttons/buttons";
+import Buttons from "../../components/buttons";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function TabTwoScreen({ navigation }: any) {
-  console.log(navigation);
   return (
     <ScrollView>
       <Header />

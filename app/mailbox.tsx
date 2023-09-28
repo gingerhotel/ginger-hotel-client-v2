@@ -1,25 +1,21 @@
 import { StyleSheet, Image } from "react-native";
-import Buttons from "../components/Buttons/buttons";
+import Buttons from "../components/buttons";
 
 import EditScreenInfo from "../components/EditScreenInfo";
 import { MonoText } from "../components/StyledText";
 import { Text, View } from "../components/Themed";
-import LetterItem from "../components/LetterItem/letterItem";
+import LetterItem from "../components/letterItem";
 import { ScrollView } from "react-native-gesture-handler";
-
-const letter = require("../assets/images/mailbox.png");
+import MailHeader from "../components/mailHeader";
 
 export default function MailBox() {
   return (
     <View style={styles.container}>
-      <View style={styles.mailbox_header}>
-        <Image source={letter} style={styles.letter_img} />
-        <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
-      </View>
+      <MailHeader />
+      <Buttons url={"gingercard"} title="진저맨 카드" color="green" />
 
       <ScrollView>
         <View style={styles.mailbox_items}>
-          <Buttons url={"mailbox"} title="진저맨 카드" color="green" />
           <LetterItem from={""} contents={""} is_active={false} />
           <LetterItem from={""} contents={""} is_active={false} />
           <LetterItem from={""} contents={""} is_active={false} />

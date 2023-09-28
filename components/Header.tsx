@@ -1,21 +1,23 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { MonoText } from "./StyledText";
 let icon = require("../assets/icon/i_favorite.png");
 
 const Header = () => {
   return (
-    <View style={{ backgroundColor: "white" }}>
-      <View style={styles.wrapper}>
-        <View style={styles.item}></View>
-        <View style={styles.item}>
-          <MonoText style={styles.text}>도착한 편지</MonoText>
-        </View>
-        <View style={styles.item}>
-          <Image style={styles.icon} source={icon} />
+    <SafeAreaView style={{ backgroundColor: "white" }}>
+      <View style={{ backgroundColor: "white" }}>
+        <View style={styles.wrapper}>
+          <View style={styles.item}></View>
+          <View style={styles.item}>
+            <MonoText style={styles.text}>도착한 편지</MonoText>
+          </View>
+          <View style={styles.item}>
+            <Image style={styles.icon} source={icon} />
+          </View>
         </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
