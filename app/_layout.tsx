@@ -8,6 +8,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
+import MailBox from "./mailbox";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -22,13 +23,10 @@ export default function App() {
   // const colorScheme = useColorScheme();
 
   return (
-    // <ThemeProvider>
-    // <View onLayout={onLayoutRootView}>
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+      <Stack.Screen name="mailbox" options={{ headerShown: false }} />
     </Stack>
-    // </View>
-    // </ThemeProvider>
   );
 }

@@ -32,7 +32,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="hotels"
         options={{
           title: "진저호텔",
           headerShown: false,
@@ -40,7 +40,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="three"
+        name="my"
         options={{
           title: "MY",
           headerShown: false,

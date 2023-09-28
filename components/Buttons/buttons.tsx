@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import React from "react";
 import { Text, Pressable, StyleSheet, View } from "react-native";
 import { COLORS } from "../../constants/Colors";
@@ -14,13 +15,13 @@ type Props = {
 const Buttons = ({ title, color, is_disable, navigation, url }: Props) => {
   return (
     <View style={cstyles(COLORS[color], color).cover}>
-      <Pressable
-        onPress={() => navigation.navigate(url)}
+      <Link
+        href={`/${url}`}
         style={[styles.button, cstyles(COLORS[color], color).background]}
         disabled={is_disable}
       >
         <MonoText style={cstyles(COLORS[color], color).text}>{title}</MonoText>
-      </Pressable>
+      </Link>
     </View>
   );
 };
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     borderStyle: "dashed",
     borderRadius: 2,
     borderWidth: 1.5,
+    textAlign: "center",
   },
 });
 
