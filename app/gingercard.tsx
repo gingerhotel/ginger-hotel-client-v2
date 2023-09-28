@@ -20,11 +20,12 @@ export default function GingerCard() {
         <View style={styles.card_wrapper}>
           <MonoText style={styles.ginger_name}>벨보이 진저맨</MonoText>
           <MonoText style={styles.ginger_desc}>
-            진저호텔에 온 걸 환영한다! 크리스마스에 진저호텔이라... 탁월한 선택!
+            진저호텔에 온 걸 환영한다! {"\n"}
+            크리스마스에 진저호텔이라... {"\n"}탁월한 선택!
           </MonoText>
           <View style={styles.mailbox_items}>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg width={280} asset={gingerman} />
+              <WithLocalSvg width={150} asset={gingerman} />
             ) : (
               <Image source={gingerman} style={styles.ginger_img} />
             )}
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     maxWidth: 180,
     textAlign: "center",
     lineHeight: 22,
+    marginTop: 10,
   },
   card_wrapper: {
     borderStyle: "solid",
