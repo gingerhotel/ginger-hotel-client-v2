@@ -1,15 +1,24 @@
 import React from "react";
-import { Text, Pressable, StyleSheet, View, Image } from "react-native";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  Image,
+  SafeAreaView,
+} from "react-native";
 import { MonoText } from "./StyledText";
 
 const letter = require("../assets/images/mailbox.png");
 
 const MailHeader = () => {
   return (
-    <View style={styles.mailbox_header}>
-      <Image source={letter} style={styles.letter_img} />
-      <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
-    </View>
+    <SafeAreaView style={{ backgroundColor: "white", width: "100%" }}>
+      <View style={styles.mailbox_header}>
+        <Image source={letter} style={styles.letter_img} />
+        <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
+      </View>
+    </SafeAreaView>
   );
 };
 

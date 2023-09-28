@@ -1,5 +1,11 @@
 import React, { useCallback } from "react";
-import { Text, View, StyleSheet, useColorScheme } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  useColorScheme,
+  SafeAreaView,
+} from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import {
