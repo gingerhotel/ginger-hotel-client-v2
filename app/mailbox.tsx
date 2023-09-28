@@ -11,12 +11,13 @@ const letter = require("../assets/images/mailbox.png");
 
 export default function MailBox() {
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={styles.mailbox_header}>
-          <Image source={letter} style={styles.letter_img} />
-          <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
-        </View>
+    <View style={styles.container}>
+      <View style={styles.mailbox_header}>
+        <Image source={letter} style={styles.letter_img} />
+        <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
+      </View>
+
+      <ScrollView>
         <View style={styles.mailbox_items}>
           <Buttons url={"mailbox"} title="진저맨 카드" color="green" />
           <LetterItem from={""} contents={""} is_active={false} />
@@ -25,8 +26,8 @@ export default function MailBox() {
           <LetterItem from={""} contents={""} is_active={false} />
           <LetterItem from={""} contents={""} is_active={false} />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mailbox_header: {
-    marginTop: 50,
+    marginTop: 30,
     width: "100%",
     height: 145,
     backgroundColor: "#D9D9D9",
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   },
   mailbox_items: {
     backgroundColor: "white",
-    height: "70%",
+    // height: "70%",
     padding: 15,
     display: "flex",
     alignItems: "center",
