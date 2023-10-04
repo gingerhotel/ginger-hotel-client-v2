@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
 import Buttons from "../components/buttons";
 import LetterItem from "../components/letterItem";
 import MailHeader from "../components/mailHeader";
-import React, { useState } from "react";
 import { BottomSheet } from "react-native-btr";
 import BottomModal from "../components/BottomModal";
 
