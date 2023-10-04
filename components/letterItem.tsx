@@ -14,7 +14,7 @@ import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
 import BottomModal from "./BottomModal";
 import { MonoText } from "./StyledText";
-const iconMore = require("../assets/icon/i_more_vert.png");
+const iconMore = require("../assets/icon/i_more_vert.svg");
 
 type Props = {
   from: string;
@@ -41,9 +41,15 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
           <MonoText>
             <MonoText style={styles.bold}>From.</MonoText> 로온로온
           </MonoText>
-          <TouchableHighlight onPress={toggleModal}>
-            <Image source={iconMore} style={styles.icon} />
-          </TouchableHighlight>
+          {Platform.OS === "ios" || Platform.OS === "android" ? (
+            <TouchableOpacity onPress={toggleModal}>
+              <WithLocalSvg asset={iconMore} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={toggleModal}>
+              <Image source={iconMore} style={styles.icon} />
+            </TouchableOpacity>
+          )}
         </View>
         {"\n"}
         {"\n"}
