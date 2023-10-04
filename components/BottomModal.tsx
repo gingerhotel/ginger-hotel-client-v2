@@ -3,11 +3,12 @@ import { View, StyleSheet } from "react-native";
 import { BottomSheet } from "react-native-btr";
 import { MonoText } from "./StyledText";
 
-const BottomModal = ({ height, visible, onClose }: any) => {
+const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
 
+  console.log(modalTextList);
   return (
     <BottomSheet
       visible={visible}
@@ -15,10 +16,9 @@ const BottomModal = ({ height, visible, onClose }: any) => {
       onBackdropPress={toggleBottomNavigationView}
     >
       <View style={styles(height).bottomNavigationView}>
-        <MonoText>답장하기</MonoText>
-        <MonoText>엿보기</MonoText>
-        <MonoText>사용자 차단</MonoText>
-        <MonoText>편지 삭제</MonoText>
+        {modalTextList.map((text: string) => (
+          <MonoText>{text}</MonoText>
+        ))}
       </View>
     </BottomSheet>
   );
