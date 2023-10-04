@@ -1,8 +1,18 @@
 import { Link } from "expo-router";
-import React from "react";
-import { Text, Pressable, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  Platform,
+  Image,
+} from "react-native";
+import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
+import BottomModal from "./BottomModal";
 import { MonoText } from "./StyledText";
+const iconMore = require("../assets/icon/i_more_vert.svg");
 
 type Props = {
   from: string;
@@ -11,6 +21,16 @@ type Props = {
 };
 
 const LetterItem = ({ from, contents, is_active }: Props) => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+
+  const toggleModal = () => {
+    setBottomSheetVisible(!bottomSheetVisible);
+  };
+
+  const closeModal = () => {
+    setBottomSheetVisible(false);
+  };
+
   return (
     <View style={styles.wrapper}>
       <MonoText style={styles.from_text}>
@@ -26,7 +46,22 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
           개발을 열심히 배우고 있어요. 저에게 새로움 꿈을 만들어 준 진저호텔에게
           감사해요! :)
         </MonoText>
+        {Platform.OS === "ios" || Platform.OS === "android" ? (
+          <Pressable style={styles.icon} onPress={toggleModal}>
+            <WithLocalSvg width={150} asset={iconMore} />
+          </Pressable>
+        ) : (
+          <Pressable onPress={toggleModal} style={styles.icon}>
+            <Image source={iconMore} />
+          </Pressable>
+        )}
       </MonoText>
+
+      <BottomModal
+        height={150}
+        visible={bottomSheetVisible}
+        onClose={closeModal}
+      />
     </View>
   );
 };
@@ -38,6 +73,7 @@ const styles = StyleSheet.create({
     borderColor: "#D9D9D9",
     borderRadius: 8,
     marginTop: 15,
+    position: "relative",
   },
   bold: {
     fontWeight: "bold",
@@ -55,6 +91,11 @@ const styles = StyleSheet.create({
   from_wrapper: {
     display: "flex",
     alignItems: "center",
+  },
+  icon: {
+    position: "absolute",
+    right: 0,
+    top: 0,
   },
 });
 
