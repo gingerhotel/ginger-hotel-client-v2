@@ -22,6 +22,7 @@ type Props = {
 
 const LetterItem = ({ from, contents, is_active }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
 
   const toggleModal = () => {
     setBottomSheetVisible(!bottomSheetVisible);
@@ -61,6 +62,7 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
         height={150}
         visible={bottomSheetVisible}
         onClose={closeModal}
+        modalTextList={modalTextList}
       />
     </View>
   );
