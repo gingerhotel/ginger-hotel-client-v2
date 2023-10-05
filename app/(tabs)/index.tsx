@@ -3,24 +3,32 @@ import { Image, StyleSheet } from "react-native";
 
 import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
-import SvgUri from "react-native-svg-uri"; // react-native-svg 패키지에서 가져옴
 import { MonoText } from "../../components/StyledText";
 import Header from "../../components/Header";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+
 
 let StartHotel = require("../../assets/images/StartHotel.svg");
 let icon = require("../../assets/images/img.png");
 
+const client = new ApolloClient({
+  uri: "http://localhost:3000/graphql",
+  cache: new InMemoryCache(),
+});
+
 export default function TabOneScreen() {
   return (
-    <>
+    <ApolloProvider client={client}>
       <Header />
       <View style={styles.container}>
-        <MonoText>빌리지 페이지 입니다.</MonoText>
-        {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
+      <MonoText>빌리지 페이지 입니다.</MonoText>
+      {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
       </View>
-    </>
+    </ApolloProvider>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
