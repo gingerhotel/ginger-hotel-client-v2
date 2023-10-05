@@ -1,21 +1,17 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
 
-import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
+import { StyleSheet } from "react-native";
+import { View } from "../../components/Themed";
 import { MonoText } from "../../components/StyledText";
 import Header from "../../components/Header";
+
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-
-let StartHotel = require("../../assets/images/StartHotel.svg");
-let icon = require("../../assets/images/img.png");
 
 const client = new ApolloClient({
   uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
 });
-
 export default function TabOneScreen() {
   return (
     <ApolloProvider client={client}>

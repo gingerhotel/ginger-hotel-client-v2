@@ -1,18 +1,16 @@
-import { StyleSheet, Image } from "react-native";
+import React from "react";
+import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
 import Buttons from "../components/buttons";
-
-import EditScreenInfo from "../components/EditScreenInfo";
-import { MonoText } from "../components/StyledText";
-import { Text, View } from "../components/Themed";
 import LetterItem from "../components/letterItem";
-import { ScrollView } from "react-native-gesture-handler";
 import MailHeader from "../components/mailHeader";
 
 export default function MailBox() {
   return (
     <View style={styles.container}>
       <MailHeader />
-      <Buttons url={"gingercard"} title="진저맨 카드" color="green" />
+      <View style={styles.btn_wrapper}>
+        <Buttons url={"gingercard"} title="진저맨 카드" color="green" />
+      </View>
 
       <ScrollView>
         <View style={styles.mailbox_items}>
@@ -60,5 +58,11 @@ const styles = StyleSheet.create({
   letter_img: {
     width: 150,
     height: 40,
+  },
+  btn_wrapper: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    backgroundColor: "white",
   },
 });

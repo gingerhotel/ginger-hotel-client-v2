@@ -1,8 +1,20 @@
 import { Link } from "expo-router";
-import React from "react";
-import { Text, Pressable, StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  Pressable,
+  StyleSheet,
+  View,
+  Platform,
+  Image,
+  TouchableOpacity,
+  TouchableHighlight,
+} from "react-native";
+import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
+import BottomModal from "./BottomModal";
 import { MonoText } from "./StyledText";
+const iconMore = require("../assets/icon/i_more_vert.svg");
 
 type Props = {
   from: string;
@@ -11,12 +23,34 @@ type Props = {
 };
 
 const LetterItem = ({ from, contents, is_active }: Props) => {
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
+
+  const toggleModal = () => {
+    setBottomSheetVisible(!bottomSheetVisible);
+  };
+
+  const closeModal = () => {
+    setBottomSheetVisible(false);
+  };
+
   return (
     <View style={styles.wrapper}>
       <MonoText style={styles.from_text}>
-        <MonoText style={styles.from_wrapper}>
-          <MonoText style={styles.bold}>From.</MonoText> 로온로온
-        </MonoText>
+        <View style={styles.from_wrapper}>
+          <MonoText>
+            <MonoText style={styles.bold}>From.</MonoText> 로온로온
+          </MonoText>
+          {Platform.OS === "ios" || Platform.OS === "android" ? (
+            <TouchableOpacity onPress={toggleModal}>
+              <WithLocalSvg asset={iconMore} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={toggleModal}>
+              <Image source={iconMore} style={styles.icon} />
+            </TouchableOpacity>
+          )}
+        </View>
         {"\n"}
         {"\n"}
         <MonoText style={styles.contents}>
@@ -27,6 +61,13 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
           감사해요! :)
         </MonoText>
       </MonoText>
+
+      <BottomModal
+        height={150}
+        visible={bottomSheetVisible}
+        onClose={closeModal}
+        modalTextList={modalTextList}
+      />
     </View>
   );
 };
@@ -38,6 +79,7 @@ const styles = StyleSheet.create({
     borderColor: "#D9D9D9",
     borderRadius: 8,
     marginTop: 15,
+    width: "100%",
   },
   bold: {
     fontWeight: "bold",
@@ -45,6 +87,8 @@ const styles = StyleSheet.create({
   from_text: {
     fontSize: 14,
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     flexDirection: "column",
   },
   contents: {
@@ -54,7 +98,14 @@ const styles = StyleSheet.create({
   },
   from_wrapper: {
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  icon: {
+    width: 20,
+    height: 20,
   },
 });
 
