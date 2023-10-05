@@ -7,6 +7,8 @@ import {
   View,
   Platform,
   Image,
+  TouchableOpacity,
+  TouchableHighlight,
 } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
@@ -35,9 +37,20 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
   return (
     <View style={styles.wrapper}>
       <MonoText style={styles.from_text}>
-        <MonoText style={styles.from_wrapper}>
-          <MonoText style={styles.bold}>From.</MonoText> 로온로온
-        </MonoText>
+        <View style={styles.from_wrapper}>
+          <MonoText>
+            <MonoText style={styles.bold}>From.</MonoText> 로온로온
+          </MonoText>
+          {Platform.OS === "ios" || Platform.OS === "android" ? (
+            <TouchableOpacity onPress={toggleModal}>
+              <WithLocalSvg asset={iconMore} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={toggleModal}>
+              <Image source={iconMore} style={styles.icon} />
+            </TouchableOpacity>
+          )}
+        </View>
         {"\n"}
         {"\n"}
         <MonoText style={styles.contents}>
@@ -47,15 +60,6 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
           개발을 열심히 배우고 있어요. 저에게 새로움 꿈을 만들어 준 진저호텔에게
           감사해요! :)
         </MonoText>
-        {Platform.OS === "ios" || Platform.OS === "android" ? (
-          <Pressable style={styles.icon} onPress={toggleModal}>
-            <WithLocalSvg width={150} asset={iconMore} />
-          </Pressable>
-        ) : (
-          <Pressable onPress={toggleModal} style={styles.icon}>
-            <Image source={iconMore} />
-          </Pressable>
-        )}
       </MonoText>
 
       <BottomModal
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
     borderColor: "#D9D9D9",
     borderRadius: 8,
     marginTop: 15,
-    position: "relative",
+    width: "100%",
   },
   bold: {
     fontWeight: "bold",
@@ -83,6 +87,8 @@ const styles = StyleSheet.create({
   from_text: {
     fontSize: 14,
     display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     flexDirection: "column",
   },
   contents: {
@@ -92,12 +98,14 @@ const styles = StyleSheet.create({
   },
   from_wrapper: {
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
   },
   icon: {
-    position: "absolute",
-    right: 0,
-    top: 0,
+    width: 20,
+    height: 20,
   },
 });
 

@@ -7,8 +7,6 @@ const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
-
-  console.log(modalTextList);
   return (
     <BottomSheet
       visible={visible}
