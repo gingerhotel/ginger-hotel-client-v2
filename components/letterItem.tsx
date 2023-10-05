@@ -13,8 +13,9 @@ import {
 import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
 import BottomModal from "./BottomModal";
+import CenterModal from "./CenterModal";
 import { MonoText } from "./StyledText";
-const iconMore = require("../assets/icon/i_more_vert.svg");
+const iconMore = require("../assets/icon/i_more_vert.png");
 
 type Props = {
   from: string;
@@ -24,6 +25,7 @@ type Props = {
 
 const LetterItem = ({ from, contents, is_active }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
 
   const toggleModal = () => {
@@ -41,15 +43,10 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
           <MonoText>
             <MonoText style={styles.bold}>From.</MonoText> 로온로온
           </MonoText>
-          {Platform.OS === "ios" || Platform.OS === "android" ? (
-            <TouchableOpacity onPress={toggleModal}>
-              <WithLocalSvg asset={iconMore} />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={toggleModal}>
-              <Image source={iconMore} style={styles.icon} />
-            </TouchableOpacity>
-          )}
+
+          <TouchableOpacity onPress={toggleModal}>
+            <Image source={iconMore} style={styles.icon} />
+          </TouchableOpacity>
         </View>
         {"\n"}
         {"\n"}

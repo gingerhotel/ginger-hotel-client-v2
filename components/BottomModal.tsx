@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { BottomSheet } from "react-native-btr";
+import CenterModal from "./CenterModal";
 import { MonoText } from "./StyledText";
 
 const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
+  const [centerModalVisible, setCenterModalVisible] = useState(false);
+
+  const closeCenterModal = () => {
+    setCenterModalVisible(false);
+  };
+
   return (
     <BottomSheet
       visible={visible}
@@ -15,9 +22,17 @@ const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
     >
       <View style={styles(height).bottomNavigationView}>
         {modalTextList.map((text: string) => (
-          <MonoText>{text}</MonoText>
+          <TouchableOpacity onPress={() => setCenterModalVisible(true)}>
+            <MonoText>{text}</MonoText>
+          </TouchableOpacity>
         ))}
       </View>
+
+      <CenterModal
+        height={180}
+        visible={centerModalVisible}
+        onClose={closeCenterModal}
+      />
     </BottomSheet>
   );
 };
