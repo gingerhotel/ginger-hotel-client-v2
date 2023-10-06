@@ -5,22 +5,25 @@ import { View } from "../../components/Themed";
 import { MonoText } from "../../components/StyledText";
 import Header from "../../components/Header";
 
+/*
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 
 const client = new ApolloClient({
   uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
-});
+});*/
 export default function TabOneScreen() {
   return (
-    <ApolloProvider client={client}>
+    // <ApolloProvider client={client}>
+      <>
       <Header />
       <View style={styles.container}>
       <MonoText>빌리지 페이지 입니다.</MonoText>
       {/* <EditScreenInfo path="app/(tabs)/index.tsx" /> */}
       </View>
-    </ApolloProvider>
+      </>
+    //</ApolloProvider>
   );
 }
 
