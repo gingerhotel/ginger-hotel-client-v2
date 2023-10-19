@@ -22,7 +22,10 @@ const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
     >
       <View style={styles(height).bottomNavigationView}>
         {modalTextList.map((text: string) => (
-          <TouchableOpacity onPress={() => setCenterModalVisible(true)}>
+          <TouchableOpacity
+            key={text}
+            onPress={() => setCenterModalVisible(true)}
+          >
             <MonoText>{text}</MonoText>
           </TouchableOpacity>
         ))}

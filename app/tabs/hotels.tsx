@@ -18,7 +18,7 @@ const SVG = require("../../assets/images/StartHotel.svg");
 export default function TabTwoScreen({ navigation }: any) {
   return (
     <ScrollView>
-      <Header />
+      <Header navigation={navigation} />
       <View style={styles.container}>
         <MonoText style={styles.hotel_name}>진저님의 진저호텔</MonoText>
         <MonoText style={styles.hotel_desc}>
