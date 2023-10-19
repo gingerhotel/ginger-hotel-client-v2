@@ -1,9 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
+import { Link } from "expo-router";
 import React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { MonoText } from "./StyledText";
 let icon = require("../assets/icon/i_favorite.png");
 
-const Header = () => {
+const Header = ({ navigation }: any) => {
+  console.log(navigation);
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={{ backgroundColor: "white" }}>
@@ -13,7 +22,9 @@ const Header = () => {
             <MonoText style={styles.text}>도착한 편지</MonoText>
           </View>
           <View style={styles.item}>
-            <Image style={styles.icon} source={icon} />
+            <TouchableOpacity onPress={() => navigation.navigate("push")}>
+              <Image style={styles.icon} source={icon} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
