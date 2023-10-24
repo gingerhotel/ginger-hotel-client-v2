@@ -17,6 +17,7 @@ import LetterCompleted from "../letterCompleted";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
@@ -36,6 +37,7 @@ const Navigation = () => {
           headerShown: false,
           tabBarInactiveTintColor: "gray",
         })}
+        initialRouteName="hotels"
       >
         <Tab.Screen
           options={{
