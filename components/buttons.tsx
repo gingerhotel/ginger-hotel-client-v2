@@ -47,7 +47,7 @@ const cstyles = (color_code: string, color: string) =>
       padding: 11,
       borderRadius: 10,
       marginTop: 14,
-      marginBottom: 14,
+      // marginBottom: 10,
       backgroundColor: color_code,
       borderWidth: color === "white" ? 1.5 : 0,
       borderColor: color === "white" ? COLORS.red : "none",
