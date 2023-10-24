@@ -10,7 +10,7 @@ import {
 import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
 
-export default function Letter() {
+export default function Letter({ navigation }: any) {
   return (
     <View style={styles.container}>
       <LetterHeader marginTop={100} isTitle={false} />
@@ -27,7 +27,12 @@ export default function Letter() {
             placeholder="닉네임을 입력하세요 (10자 이하)"
           />
           <Buttons url={"gingercard"} title="이미지 첨부" color="green" />
-          <Buttons url={"gingercard"} title="보내기" color="green" />
+          <Buttons
+            navigation={navigation}
+            url={"letter-completed"}
+            title="보내기"
+            color="green"
+          />
         </View>
       </ScrollView>
     </View>

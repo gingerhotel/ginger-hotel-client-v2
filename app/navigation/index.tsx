@@ -12,6 +12,7 @@ import ModalScreen from "../modal";
 import MailBox from "../mailbox";
 import { FontAwesome } from "@expo/vector-icons";
 import Letter from "../letter";
+import LetterCompleted from "../letterCompleted";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -53,7 +54,7 @@ const Navigation = () => {
               <TabBarIcon name="hotel" color={color} />
             ),
           }}
-          name="진저호텔"
+          name="hotels"
           component={TabTwoScreen}
         />
         <Tab.Screen
@@ -84,6 +85,7 @@ const Navigation = () => {
         <Stack.Screen name="modal" component={ModalScreen} />
         <Stack.Screen name="mailbox" component={MailBox} />
         <Stack.Screen name="letter" component={Letter} />
+        <Stack.Screen name="letter-completed" component={LetterCompleted} />
       </Stack.Navigator>
     </NavigationContainer>
   );
