@@ -4,7 +4,13 @@ import { BottomSheet } from "react-native-btr";
 import CenterModal from "./CenterModal";
 import { MonoText } from "./StyledText";
 
-const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
+const BottomModal = ({
+  height,
+  visible,
+  onClose,
+  modalTextList,
+  navigation,
+}: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
@@ -12,6 +18,20 @@ const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
 
   const closeCenterModal = () => {
     setCenterModalVisible(false);
+  };
+
+  const onClickModal = (text: string) => {
+    switch (text) {
+      case "답장하기":
+        navigation.navigate("answer");
+        onClose();
+        break;
+      case "엿보기":
+        setCenterModalVisible(true);
+        break;
+      default:
+        return;
+    }
   };
 
   return (
@@ -22,10 +42,7 @@ const BottomModal = ({ height, visible, onClose, modalTextList }: any) => {
     >
       <View style={styles(height).bottomNavigationView}>
         {modalTextList.map((text: string) => (
-          <TouchableOpacity
-            key={text}
-            onPress={() => setCenterModalVisible(true)}
-          >
+          <TouchableOpacity key={text} onPress={() => onClickModal(text)}>
             <MonoText>{text}</MonoText>
           </TouchableOpacity>
         ))}

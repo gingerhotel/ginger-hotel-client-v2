@@ -12,7 +12,6 @@ import { MonoText } from "./StyledText";
 let icon = require("../assets/icon/i_favorite.png");
 
 const Header = ({ navigation }: any) => {
-  console.log(navigation);
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={{ backgroundColor: "white" }}>

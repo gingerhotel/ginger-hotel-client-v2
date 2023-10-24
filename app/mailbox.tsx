@@ -19,11 +19,36 @@ export default function MailBox({ navigation }: any) {
 
       <ScrollView>
         <View style={styles.mailbox_items}>
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
         </View>
       </ScrollView>
     </>

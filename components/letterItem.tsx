@@ -21,9 +21,10 @@ type Props = {
   from: string;
   contents: string;
   is_active: boolean;
+  navigation: any;
 };
 
-const LetterItem = ({ from, contents, is_active }: Props) => {
+const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
@@ -64,6 +65,7 @@ const LetterItem = ({ from, contents, is_active }: Props) => {
         visible={bottomSheetVisible}
         onClose={closeModal}
         modalTextList={modalTextList}
+        navigation={navigation}
       />
     </View>
   );

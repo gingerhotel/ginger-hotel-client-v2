@@ -13,10 +13,10 @@ import MailBox from "../mailbox";
 import { FontAwesome } from "@expo/vector-icons";
 import Letter from "../letter";
 import LetterCompleted from "../letterCompleted";
+import Answer from "../answer";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -87,7 +87,8 @@ const Navigation = () => {
         <Stack.Screen name="modal" component={ModalScreen} />
         <Stack.Screen name="mailbox" component={MailBox} />
         <Stack.Screen name="letter" component={Letter} />
-        <Stack.Screen name="letter-completed" component={LetterCompleted} />
+        <Stack.Screen name="completed" component={LetterCompleted} />
+        <Stack.Screen name="answer" component={Answer} />
       </Stack.Navigator>
     </NavigationContainer>
   );
