@@ -7,7 +7,7 @@ import MailHeader from "../components/mailHeader";
 export default function MailBox() {
   return (
     <View style={styles.container}>
-      <MailHeader />
+      <MailHeader marginTop={50} />
       <View style={styles.btn_wrapper}>
         <Buttons url={"gingercard"} title="진저맨 카드" color="green" />
       </View>

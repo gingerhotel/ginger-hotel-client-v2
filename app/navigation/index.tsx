@@ -11,6 +11,7 @@ import Push from "../push";
 import ModalScreen from "../modal";
 import MailBox from "../mailbox";
 import { FontAwesome } from "@expo/vector-icons";
+import Letter from "../letter";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -82,6 +83,7 @@ const Navigation = () => {
         <Stack.Screen name="push" component={Push} />
         <Stack.Screen name="modal" component={ModalScreen} />
         <Stack.Screen name="mailbox" component={MailBox} />
+        <Stack.Screen name="letter" component={Letter} />
       </Stack.Navigator>
     </NavigationContainer>
   );

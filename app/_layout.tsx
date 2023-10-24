@@ -5,9 +5,14 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { NavigationContainer } from "@react-navigation/native";
 import mailbox from "./mailbox";
 import Navigation from "./navigation";
+import { StyleSheet, View } from "react-native";
 
 function App(): JSX.Element {
   return <Navigation />;
 }
+
+
+
+
 
 export default App;

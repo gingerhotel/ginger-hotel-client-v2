@@ -1,79 +1,66 @@
 import React from "react";
-import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
-import { MonoText } from "../components/StyledText";
+import {
+  StyleSheet,
+  Image,
+  Button,
+  ScrollView,
+  View,
+  TextInput,
+} from "react-native";
+import Buttons from "../components/buttons";
+import LetterHeader from "../components/letterHeader";
 
 export default function Letter() {
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>알림</MonoText>
-
-      <View style={styles.item_wrapper}>
-        <View style={styles.left}>Icon</View>
-        <View style={styles.right}>
-          <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
-          <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>
-          <MonoText style={styles.item_time}>오후 5시 20분 </MonoText>
+      <LetterHeader marginTop={100} isTitle={false} />
+      <ScrollView>
+        <View style={styles.mailbox_items}>
+          <TextInput
+            style={styles.letter}
+            multiline={true}
+            numberOfLines={20}
+            placeholder="전하고 싶은 말을 적어주세요!"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="닉네임을 입력하세요 (10자 이하)"
+          />
+          <Buttons url={"gingercard"} title="이미지 첨부" color="green" />
+          <Buttons url={"gingercard"} title="보내기" color="green" />
         </View>
-      </View>
-      <View style={styles.item_wrapper}>
-        <View style={styles.left}>Icon</View>
-        <View style={styles.right}>
-          <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
-          <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>
-          <MonoText style={styles.item_time}>오후 5시 20분 </MonoText>
-        </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
-    paddingTop: 33,
-    paddingLeft: 23,
-    paddingRight: 23,
-    backgroundColor: "white",
-  },
-
-  title: {
-    fontSize: 20,
-    fontWeight: "500",
-    marginBottom: 33,
-  },
-
-  item_wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    marginBottom: 13,
-    alignItems: "center",
-  },
-  left: {
-    width: 60,
-    height: 60,
-    borderRadius: 50,
-    backgroundColor: "gray",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#D9D9D9",
+    height: "100%",
   },
-  right: {
-    flexDirection: "column",
-    marginLeft: 13,
+  mailbox_items: {
+    backgroundColor: "#D9D9D9",
+    padding: 15,
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
   },
-  item_title: {
-    fontSize: 16,
-    fontWeight: "700",
-    lineHeight: 22,
+  letter: {
+    width: 300,
+    backgroundColor: "white",
+    padding: 10,
+    textAlign: "center",
   },
-  item_feature: {
-    fontSize: 10,
-    fontWeight: "700",
-    lineHeight: 22,
-  },
-  item_time: {
-    fontSize: 8,
-    color: "#D9D9D9",
+  input: {
+    width: 300,
+    backgroundColor: "white",
+    padding: 10,
+    marginTop: 20,
+    textAlign: "center",
+    marginBottom: 20,
   },
 });

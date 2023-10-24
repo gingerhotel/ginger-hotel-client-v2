@@ -37,6 +37,12 @@ export default function TabTwoScreen({ navigation }: any) {
         />
         <Buttons
           navigation={navigation}
+          url={"letter"}
+          title="편지 보내기"
+          color="green"
+        />
+        <Buttons
+          navigation={navigation}
           url={"login"}
           title="진저맨 앨범"
           color="green"
