@@ -16,23 +16,37 @@ type Props = {
   is_disable?: boolean;
   navigation?: any;
   url?: string;
+  callback?: any;
 };
 
-const Buttons = ({ title, color, is_disable, navigation, url }: Props) => {
-  return (
-    // <View >
+const Buttons = ({
+  title,
+  color,
+  is_disable,
+  navigation,
+  url,
+  callback,
+}: Props) => {
+  const handlePress = () => {
+    // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
+    if (url) {
+      navigation.navigate(url);
+    }
 
+    // 사용자 정의 콜백 함수 실행
+    if (callback) {
+      callback();
+    }
+  };
+
+  return (
     <TouchableOpacity
       disabled={is_disable}
       style={cstyles(COLORS[color], color).button}
-      onPress={() => navigation.navigate(url)}
+      onPress={handlePress}
     >
-      {/* <Link
-    > */}
       <MonoText style={cstyles(COLORS[color], color).text}>{title}</MonoText>
-      {/* </Link> */}
     </TouchableOpacity>
-    // </View>
   );
 };
 

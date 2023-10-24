@@ -6,7 +6,7 @@ import MailHeader from "../components/mailHeader";
 
 export default function MailBox({ navigation }: any) {
   return (
-    <View style={styles.container}>
+    <>
       <MailHeader marginTop={50} />
       <View style={styles.btn_wrapper}>
         <Buttons
@@ -19,14 +19,39 @@ export default function MailBox({ navigation }: any) {
 
       <ScrollView>
         <View style={styles.mailbox_items}>
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
-          <LetterItem from={""} contents={""} is_active={false} />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
+          <LetterItem
+            navigation={navigation}
+            from={""}
+            contents={""}
+            is_active={false}
+          />
         </View>
       </ScrollView>
-    </View>
+    </>
   );
 }
 
@@ -35,26 +60,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  mailbox_header: {
-    marginTop: 30,
-    width: "100%",
-    height: 145,
-    backgroundColor: "#D9D9D9",
-    borderTopEndRadius: 25,
-    borderTopLeftRadius: 25,
-    display: "flex",
-    flexDirection: "column",
-    padding: 30,
-    alignItems: "center",
+    height: "100%",
+    overflow: "hidden",
+    backgroundColor: "white",
   },
   mailbox_items: {
-    backgroundColor: "white",
-    // height: "70%",
     padding: 15,
     display: "flex",
     alignItems: "center",
-    // justifyContent: "center",
+    flexGrow: 1,
+    backgroundColor: "white",
+    height: "100%",
   },
   title: {
     fontSize: 25,

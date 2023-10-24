@@ -13,6 +13,9 @@ import MailBox from "../mailbox";
 import { FontAwesome } from "@expo/vector-icons";
 import Letter from "../letter";
 import LetterCompleted from "../letterCompleted";
+import Answer from "../answer";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "../../components/toast";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,6 +39,7 @@ const Navigation = () => {
           headerShown: false,
           tabBarInactiveTintColor: "gray",
         })}
+        initialRouteName="hotels"
       >
         <Tab.Screen
           options={{
@@ -70,24 +74,28 @@ const Navigation = () => {
     );
   };
 
-  // 아래 코드가 수정된 부분입니다.
   return (
-    <NavigationContainer
-      independent={true}
-      ref={navigationRef}
-      onReady={() => {
-        isReadyRef.current = true;
-      }}
-    >
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="test" component={renderTabNavigation} />
-        <Stack.Screen name="push" component={Push} />
-        <Stack.Screen name="modal" component={ModalScreen} />
-        <Stack.Screen name="mailbox" component={MailBox} />
-        <Stack.Screen name="letter" component={Letter} />
-        <Stack.Screen name="letter-completed" component={LetterCompleted} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+      <NavigationContainer
+        independent={true}
+        ref={navigationRef}
+        onReady={() => {
+          isReadyRef.current = true;
+        }}
+      >
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="test" component={renderTabNavigation} />
+          <Stack.Screen name="push" component={Push} />
+          <Stack.Screen name="modal" component={ModalScreen} />
+          <Stack.Screen name="mailbox" component={MailBox} />
+          <Stack.Screen name="letter" component={Letter} />
+          <Stack.Screen name="completed" component={LetterCompleted} />
+          <Stack.Screen name="answer" component={Answer} />
+        </Stack.Navigator>
+      </NavigationContainer>
+
+      <Toast config={toastConfig} />
+    </>
   );
 };
 

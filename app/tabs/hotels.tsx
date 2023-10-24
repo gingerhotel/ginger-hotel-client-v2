@@ -13,6 +13,7 @@ import { MonoText } from "../../components/StyledText";
 import React from "react";
 import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../../components/buttons";
+import Toast from "react-native-toast-message";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function TabTwoScreen({ navigation }: any) {
@@ -48,10 +49,15 @@ export default function TabTwoScreen({ navigation }: any) {
           color="green"
         />
         <Buttons
-          navigation={navigation}
-          url={"login"}
           title="호텔 링크 복사하기"
           color="white"
+          callback={() => {
+            Toast.show({
+              type: "basicToast",
+              text1: "링크가 복사되었습니다!",
+              position: "bottom",
+            });
+          }}
         />
       </View>
     </ScrollView>

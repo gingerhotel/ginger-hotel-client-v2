@@ -10,10 +10,10 @@ import {
 import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
 
-export default function Letter({ navigation }: any) {
+export default function Answer({ navigation }: any) {
   return (
     <View style={styles.container}>
-      <LetterHeader marginTop={100} isTitle={false} />
+      <LetterHeader isAnswer={true} marginTop={100} />
       <ScrollView>
         <View style={styles.mailbox_items}>
           <TextInput
@@ -21,10 +21,6 @@ export default function Letter({ navigation }: any) {
             multiline={true}
             numberOfLines={20}
             placeholder="전하고 싶은 말을 적어주세요!"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="닉네임을 입력하세요 (10자 이하)"
           />
           <Buttons url={"gingercard"} title="이미지 첨부" color="green" />
           <Buttons
