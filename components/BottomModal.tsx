@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { BottomSheet } from "react-native-btr";
-import CenterModal from "./CenterModal";
-import { MonoText } from "./StyledText";
+import CenterModal from "./centerModal";
+import { MonoText } from "./styledText";
 
 const BottomModal = ({
   height,
@@ -52,6 +52,9 @@ const BottomModal = ({
         height={180}
         visible={centerModalVisible}
         onClose={closeCenterModal}
+        title="엿보기가 부족해요!"
+        desc="엿보기 충전이 필요해요"
+        btn_text="충전하러 가기"
       />
     </BottomSheet>
   );

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { MonoText } from "./StyledText";
+import { MonoText } from "./styledText";
 let icon = require("../assets/icon/i_favorite.png");
 
 const Header = ({ navigation }: any) => {

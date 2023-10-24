@@ -7,7 +7,7 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import { MonoText } from "./StyledText";
+import { MonoText } from "./styledText";
 
 const letter = require("../assets/images/mailbox.png");
 

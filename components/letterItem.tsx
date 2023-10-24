@@ -1,20 +1,13 @@
-import { Link } from "expo-router";
 import React, { useState } from "react";
 import {
-  Text,
-  Pressable,
   StyleSheet,
   View,
-  Platform,
   Image,
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
-import { WithLocalSvg } from "react-native-svg";
-import { COLORS } from "../constants/Colors";
-import BottomModal from "./BottomModal";
-import CenterModal from "./CenterModal";
-import { MonoText } from "./StyledText";
+import BottomModal from "./bottomModal";
+import { MonoText } from "./styledText";
 const iconMore = require("../assets/icon/i_more_vert.png");
 
 type Props = {

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
-import { MonoText } from "../components/StyledText";
+import { MonoText } from "../components/styledText";
 
 export default function LetterCompleted() {
   const navigation: any = useNavigation();

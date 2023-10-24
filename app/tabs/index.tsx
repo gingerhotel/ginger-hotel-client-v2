@@ -2,8 +2,8 @@ import React from "react";
 
 import { StyleSheet } from "react-native";
 import { View } from "../../components/Themed";
-import { MonoText } from "../../components/StyledText";
-import Header from "../../components/Header";
+import { MonoText } from "../../components/styledText";
+import Header from "../../components/header";
 
 
 export default function TabOneScreen() {

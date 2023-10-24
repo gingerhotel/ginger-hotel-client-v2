@@ -1,9 +1,7 @@
 import { StyleSheet, Image, Platform } from "react-native";
 import Buttons from "../components/buttons";
-
-import EditScreenInfo from "../components/EditScreenInfo";
-import { MonoText } from "../components/StyledText";
-import { Text, View } from "../components/Themed";
+import { MonoText } from "../components/styledText";
+import { View } from "../components/Themed";
 import MailHeader from "../components/mailHeader";
 import { ScrollView } from "react-native-gesture-handler";
 import React from "react";

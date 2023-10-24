@@ -10,7 +10,7 @@ import {
 import Buttons from "../components/buttons";
 import LetterItem from "../components/letterItem";
 import MailHeader from "../components/mailHeader";
-import { MonoText } from "../components/StyledText";
+import { MonoText } from "../components/styledText";
 
 export default function Push() {
   return (
