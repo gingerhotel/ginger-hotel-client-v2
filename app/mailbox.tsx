@@ -4,12 +4,17 @@ import Buttons from "../components/buttons";
 import LetterItem from "../components/letterItem";
 import MailHeader from "../components/mailHeader";
 
-export default function MailBox() {
+export default function MailBox({ navigation }: any) {
   return (
     <View style={styles.container}>
       <MailHeader marginTop={50} />
       <View style={styles.btn_wrapper}>
-        <Buttons url={"gingercard"} title="진저맨 카드" color="green" />
+        <Buttons
+          navigation={navigation}
+          url={"gingercard"}
+          title="진저맨 카드"
+          color="green"
+        />
       </View>
 
       <ScrollView>

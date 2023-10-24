@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Button,
+  ScrollView,
+  View,
+  SafeAreaView,
+} from "react-native";
 import Buttons from "../components/buttons";
 import LetterItem from "../components/letterItem";
 import MailHeader from "../components/mailHeader";
@@ -8,10 +15,13 @@ import { MonoText } from "../components/StyledText";
 export default function Push() {
   return (
     <View style={styles.container}>
-      <MonoText style={styles.title}>알림</MonoText>
-
+      <SafeAreaView style={{ backgroundColor: "white" }}>
+        <MonoText style={styles.title}>알림</MonoText>
+      </SafeAreaView>
       <View style={styles.item_wrapper}>
-        <View style={styles.left}>Icon</View>
+        <View style={styles.left}>
+          <MonoText>Icon</MonoText>
+        </View>
         <View style={styles.right}>
           <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
           <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>
@@ -19,7 +29,9 @@ export default function Push() {
         </View>
       </View>
       <View style={styles.item_wrapper}>
-        <View style={styles.left}>Icon</View>
+        <View style={styles.left}>
+          <MonoText>Icon</MonoText>
+        </View>
         <View style={styles.right}>
           <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
           <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>

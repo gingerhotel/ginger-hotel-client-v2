@@ -17,8 +17,7 @@ const LetterHeader = ({ marginTop, isTitle = true }: any) => {
       <View style={[cstyles(marginTop).mailbox_header, styles.mailbox_header]}>
         <Image source={letter} style={styles.letter_img} />
         <MonoText style={styles.title}>
-          친구의 호텔에 <br />
-          편지를 보내주세요!
+          친구의 호텔에 편지를 보내주세요!
         </MonoText>
       </View>
     </SafeAreaView>
