@@ -12,9 +12,9 @@ import {
 } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import { COLORS } from "../constants/Colors";
-import BottomModal from "./BottomModal";
-import CenterModal from "./CenterModal";
-import { MonoText } from "./StyledText";
+import BottomModal from "./bottomModal";
+import CenterModal from "./centerModal";
+import { MonoText } from "./styledText";
 const iconMore = require("../assets/icon/i_more_vert.png");
 
 type Props = {

@@ -1,5 +1,6 @@
 import React from "react";
 import { BaseToast } from "react-native-toast-message";
+
 export const toastConfig = {
   basicToast: (props: any) => (
     <BaseToast

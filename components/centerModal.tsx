@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Modal, Pressable, Text } from "react-native";
 import { BottomSheet } from "react-native-btr";
-import { MonoText } from "./StyledText";
+import { MonoText } from "./styledText";
 
-const CenterModal = ({ height, visible, onClose, modalTextList }: any) => {
+const CenterModal = ({ height, visible, onClose }: any) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };

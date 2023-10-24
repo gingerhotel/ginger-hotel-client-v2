@@ -6,10 +6,9 @@ import {
   StyleSheet,
 } from "react-native";
 
-import EditScreenInfo from "../../components/EditScreenInfo";
 import { Text, View } from "../../components/Themed";
-import Header from "../../components/Header";
-import { MonoText } from "../../components/StyledText";
+import Header from "../../components/header";
+import { MonoText } from "../../components/styledText";
 import React from "react";
 import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../../components/buttons";
