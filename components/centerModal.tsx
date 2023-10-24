@@ -3,7 +3,23 @@ import { View, StyleSheet, Modal, Pressable, Text } from "react-native";
 import { BottomSheet } from "react-native-btr";
 import { MonoText } from "./styledText";
 
-const CenterModal = ({ height, visible, onClose }: any) => {
+type Props = {
+  onClose?: any;
+  visible?: boolean;
+  height?: number | any;
+  title: string;
+  desc: string;
+  btn_text: string;
+};
+
+const CenterModal = ({
+  height,
+  visible,
+  onClose,
+  title,
+  desc,
+  btn_text,
+}: Props) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
@@ -18,12 +34,8 @@ const CenterModal = ({ height, visible, onClose }: any) => {
     >
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
-          <MonoText style={styles(height).modal_title}>
-            엿보기가 부족해요!
-          </MonoText>
-          <MonoText style={styles(height).modal_desc}>
-            엿보기 충전이 필요해요
-          </MonoText>
+          <MonoText style={styles(height).modal_title}>{title}</MonoText>
+          <MonoText style={styles(height).modal_desc}>{desc}</MonoText>
 
           <View style={styles(height).button_wrapper}>
             <Pressable
@@ -36,9 +48,7 @@ const CenterModal = ({ height, visible, onClose }: any) => {
               style={[styles(height).button, styles(height).buttonOpen]}
               onPress={() => setModalVisible()}
             >
-              <MonoText style={styles(height).textStyle}>
-                충전하러 가기
-              </MonoText>
+              <MonoText style={styles(height).textStyle}>{btn_text}</MonoText>
             </Pressable>
           </View>
         </View>

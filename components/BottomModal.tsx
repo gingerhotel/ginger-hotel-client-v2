@@ -52,6 +52,9 @@ const BottomModal = ({
         height={180}
         visible={centerModalVisible}
         onClose={closeCenterModal}
+        title="엿보기가 부족해요!"
+        desc="엿보기 충전이 필요해요"
+        btn_text="충전하러 가기"
       />
     </BottomSheet>
   );
