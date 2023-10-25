@@ -17,21 +17,12 @@ export default function Login({ navigation }: any) {
       <ScrollView>
         <View style={styles.mailbox_items}>
           <TextInput
-            style={styles.letter}
-            multiline={true}
-            numberOfLines={20}
-            placeholder="id"
-          />
-          <TextInput
             style={styles.input}
             placeholder="pw"
           />
-          <Buttons
-            navigation={navigation}
-            url={"completed"}
-            title="login"
-            color="green"
-          />
+          <Buttons navigation={navigation} url={"completed"} title="카카오 로그인" color="white"/>
+          <Buttons navigation={navigation} url={"completed"} title="네이버 로그인" color="green"/>
+          <Buttons navigation={navigation} url={"completed"} title="구글" color="red"/>
         </View>
       </ScrollView>
     </View>
