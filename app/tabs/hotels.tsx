@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 
 import { Text, View } from "../../components/themed";
@@ -25,9 +26,13 @@ export default function TabTwoScreen({ navigation }: any) {
           진저의 호텔에 오신 여러분 환영합니다~!
         </MonoText>
         {Platform.OS === "ios" || Platform.OS === "android" ? (
-          <WithLocalSvg width={280} asset={SVG} />
+          <TouchableOpacity onPress={() => navigation.navigate("hotelcreate")}>
+            <WithLocalSvg width={300} height={500} asset={SVG} />
+          </TouchableOpacity>
         ) : (
-          <Image source={SVG} style={styles.hotel_img} />
+          <TouchableOpacity onPress={() => navigation.navigate("hotelcreate")}>
+            <Image source={SVG} style={styles.hotel_img} />
+          </TouchableOpacity>
         )}
         <Buttons
           navigation={navigation}

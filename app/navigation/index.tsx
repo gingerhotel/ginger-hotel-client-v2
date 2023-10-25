@@ -16,6 +16,10 @@ import LetterCompleted from "../letterCompleted";
 import Answer from "../answer";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../../components/toast";
+import CreateHotelName from "../createHotelName";
+import createHotelAgree from "../createHotelAgree";
+import createHotelSelect from "../createHotelSelect";
+import CreateHotel from "../create";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -91,6 +95,10 @@ const Navigation = () => {
           <Stack.Screen name="letter" component={Letter} />
           <Stack.Screen name="completed" component={LetterCompleted} />
           <Stack.Screen name="answer" component={Answer} />
+          <Stack.Screen name="hotelcreate" component={CreateHotel} />
+          <Stack.Screen name="hotelname" component={CreateHotelName} />
+          <Stack.Screen name="hotelselect" component={createHotelSelect} />
+          <Stack.Screen name="hotelagree" component={createHotelAgree} />
         </Stack.Navigator>
       </NavigationContainer>
 
