@@ -5,14 +5,19 @@ import { View } from "../components/themed";
 import MailHeader from "../components/mailHeader";
 import { ScrollView } from "react-native-gesture-handler";
 import React from "react";
-import { WithLocalSvg } from "react-native-svg";
+import { SvgImg } from "../components/svgImg";
 const gingerman = require("../assets/gingerman/g_bellboy.svg");
 
-export default function GingerCard() {
+export default function GingerCard({ navigation }: any) {
   return (
     <View style={styles.container}>
       <MailHeader />
-      <Buttons url={"mailbox"} title="도착한 편지" color="red" />
+      <Buttons
+        navigation={navigation}
+        url={"mailbox"}
+        title="도착한 편지"
+        color="red"
+      />
 
       <ScrollView>
         <View style={styles.card_wrapper}>
@@ -22,11 +27,7 @@ export default function GingerCard() {
             크리스마스에 진저호텔이라... {"\n"}탁월한 선택!
           </MonoText>
           <View style={styles.mailbox_items}>
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg width={150} asset={gingerman} />
-            ) : (
-              <Image source={gingerman} style={styles.ginger_img} />
-            )}
+            <SvgImg a_width={150} url={gingerman} width={150} />
           </View>
         </View>
       </ScrollView>

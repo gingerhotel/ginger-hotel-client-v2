@@ -1,19 +1,8 @@
 import * as React from "react";
-import {
-  View,
-  useWindowDimensions,
-  StyleSheet,
-  Image,
-  Platform,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
-import { WithLocalSvg } from "react-native-svg";
+import { View, StyleSheet } from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
-
-const SVG = require("../assets/images/StartHotel.svg");
 
 export default function createHotelSelect({ navigation }: any) {
   return (

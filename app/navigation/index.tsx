@@ -4,8 +4,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { isReadyRef, navigationRef } from "react-navigation-helpers";
-import TabOneScreen from "../tabs";
-import TabTwoScreen from "../tabs/hotels";
+import Village from "../tabs/village";
+import Hotel from "../tabs/hotels";
 import TabThreeScreen from "../tabs/my";
 import Push from "../push";
 import ModalScreen from "../modal";
@@ -20,6 +20,7 @@ import CreateHotelName from "../createHotelName";
 import createHotelAgree from "../createHotelAgree";
 import createHotelSelect from "../createHotelSelect";
 import CreateHotel from "../create";
+import GingerCard from "../gingercard";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -52,7 +53,7 @@ const Navigation = () => {
             tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           }}
           name="빌리지"
-          component={TabOneScreen}
+          component={Village}
         />
         <Tab.Screen
           options={{
@@ -63,7 +64,7 @@ const Navigation = () => {
             ),
           }}
           name="hotels"
-          component={TabTwoScreen}
+          component={Hotel}
         />
         <Tab.Screen
           options={{
@@ -95,6 +96,7 @@ const Navigation = () => {
           <Stack.Screen name="letter" component={Letter} />
           <Stack.Screen name="completed" component={LetterCompleted} />
           <Stack.Screen name="answer" component={Answer} />
+          <Stack.Screen name="gingercard" component={GingerCard} />
           <Stack.Screen name="hotelcreate" component={CreateHotel} />
           <Stack.Screen name="hotelname" component={CreateHotelName} />
           <Stack.Screen name="hotelselect" component={createHotelSelect} />
