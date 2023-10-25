@@ -9,8 +9,12 @@ import {
 } from "react-native";
 import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import { GoogleLogin } from '@react-oauth/google'
+
 
 export default function Login({ navigation }: any) {
+  let clientId ='983622613978-aj2js3e1qb9qq1jtdueu7ic47o8fgg2l.apps.googleusercontent.com';
   return (
     <View style={styles.container}>
       <LetterHeader marginTop={100} isTitle={false} />
@@ -22,7 +26,19 @@ export default function Login({ navigation }: any) {
           />
           <Buttons navigation={navigation} url={"completed"} title="카카오 로그인" color="white"/>
           <Buttons navigation={navigation} url={"completed"} title="네이버 로그인" color="green"/>
-          <Buttons navigation={navigation} url={"completed"} title="구글" color="red"/>
+          <GoogleOAuthProvider clientId={clientId}>
+                <GoogleLogin
+                    onSuccess={(res) => {
+                        console.log(res);
+                    }}
+                    onError={() => {
+                      console.log("Login Failed");
+                    }}  
+                />
+                {/* // Todo: Google Custom Design 
+                    link : https://velog.io/@miyoni/google-social-login
+                */}
+            </GoogleOAuthProvider>
         </View>
       </ScrollView>
     </View>
