@@ -4,8 +4,6 @@ import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
 
-const SVG = require("../assets/images/StartHotel.svg");
-
 export default function createHotelSelect({ navigation }: any) {
   return (
     <View style={styles.container}>

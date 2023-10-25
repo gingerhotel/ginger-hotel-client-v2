@@ -2,10 +2,24 @@ import * as React from "react";
 import { View, useWindowDimensions, StyleSheet, Text } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Header from "../../components/header";
+import { MonoText } from "../../components/styledText";
 
 const AllVillage = () => <View style={{ flex: 1, backgroundColor: "white" }} />;
 
-const MyVillage = () => <View style={{ flex: 1, backgroundColor: "white" }} />;
+const MyVillage = () => (
+  <View
+    style={{
+      backgroundColor: "white",
+      alignItems: "center",
+      height: "100%",
+    }}
+  >
+    <MonoText style={styles.info}>
+      상대방은 내 빌리지를 볼 수 없어요 {"\n"}
+      상대방은 내 빌리지에 추가된 사실을 알 수 없어요
+    </MonoText>
+  </View>
+);
 
 const renderScene = SceneMap({
   all: AllVillage,
@@ -47,4 +61,12 @@ export default function Village() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  info: {
+    padding: 20,
+    backgroundColor: "darkgray",
+    textAlign: "center",
+    alignItems: "center",
+    marginTop: 30,
+  },
+});
