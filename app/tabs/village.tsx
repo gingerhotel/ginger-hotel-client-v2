@@ -3,6 +3,7 @@ import { View, useWindowDimensions, StyleSheet, Text } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
+import VillageHeader from "../../components/villageHeader";
 
 const AllVillage = () => <View style={{ flex: 1, backgroundColor: "white" }} />;
 
@@ -49,7 +50,7 @@ export default function Village() {
 
   return (
     <>
-      <Header />
+      <VillageHeader />
       <TabView
         renderTabBar={renderTabBar}
         navigationState={{ index, routes }}
