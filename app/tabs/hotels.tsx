@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { Text, View } from "../../components/Themed";
+import { Text, View } from "../../components/themed";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
 import React from "react";

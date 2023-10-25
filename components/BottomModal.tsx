@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { BottomSheet } from "react-native-btr";
-import CenterModal from "./centerModal";
+import CenterModal from "./\bcenterModal";
 import { MonoText } from "./styledText";
 
 const BottomModal = ({
