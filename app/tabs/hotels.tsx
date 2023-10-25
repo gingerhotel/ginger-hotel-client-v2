@@ -58,6 +58,12 @@ export default function TabTwoScreen({ navigation }: any) {
             });
           }}
         />
+          <Buttons
+            navigation={navigation}
+            url={"login"}
+            title="로그인"
+            color="green"
+          />
       </View>
     </ScrollView>
   );

@@ -16,6 +16,7 @@ import LetterCompleted from "../letterCompleted";
 import Answer from "../answer";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../../components/toast";
+import Login from "../login";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -91,6 +92,7 @@ const Navigation = () => {
           <Stack.Screen name="letter" component={Letter} />
           <Stack.Screen name="completed" component={LetterCompleted} />
           <Stack.Screen name="answer" component={Answer} />
+          <Stack.Screen name="login" component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
 
