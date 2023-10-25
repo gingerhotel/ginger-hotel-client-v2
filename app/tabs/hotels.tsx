@@ -16,7 +16,7 @@ import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 const SVG = require("../../assets/images/StartHotel.svg");
 
-export default function TabTwoScreen({ navigation }: any) {
+export default function Hotel({ navigation }: any) {
   return (
     <ScrollView>
       <Header navigation={navigation} />
