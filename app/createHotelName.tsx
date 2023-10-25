@@ -6,6 +6,7 @@ import {
   Image,
   Platform,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../components/buttons";
@@ -14,12 +15,12 @@ import { MonoText } from "../components/styledText";
 
 const SVG = require("../assets/images/StartHotel.svg");
 
-export default function CreateHotel({ navigation }: any) {
+export default function CreateHotelName({ navigation }: any) {
   return (
     <View style={styles.container}>
-      <CreateHeader isActiveNumber={1} />
+      <CreateHeader isActiveNumber={2} />
       <View style={styles.edit_wrapper}>
-        <MonoText style={styles.title}>나만의 호텔을 꾸며주세요!</MonoText>
+        <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
 
         {Platform.OS === "ios" || Platform.OS === "android" ? (
           <WithLocalSvg width={300} height={500} asset={SVG} />
@@ -27,9 +28,18 @@ export default function CreateHotel({ navigation }: any) {
           <Image source={SVG} style={styles.hotel_img} />
         )}
 
+        <TextInput style={styles.input} placeholder="내 닉네임 (호텔 이름)" />
+
+        <TextInput
+          style={styles.letter}
+          multiline={true}
+          numberOfLines={5}
+          placeholder="호텔 소개"
+        />
+
         <Buttons
           navigation={navigation}
-          url={"hotelname"}
+          url={"hotelselect"}
           title="다음"
           color="red"
         />
@@ -57,5 +67,19 @@ const styles = StyleSheet.create({
     width: 300,
     height: 400,
     marginTop: 20,
+  },
+  letter: {
+    width: 300,
+    backgroundColor: "#c9c9c9",
+    padding: 10,
+    textAlign: "center",
+  },
+  input: {
+    width: 300,
+    backgroundColor: "#c9c9c9",
+    padding: 10,
+    marginTop: 20,
+    textAlign: "center",
+    marginBottom: 20,
   },
 });

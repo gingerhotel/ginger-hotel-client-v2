@@ -11,7 +11,7 @@ import {
 import { MonoText } from "./styledText";
 let icon = require("../assets/icon/i_favorite.png");
 
-const CreateHeader = ({ isActiveNumber = 1 }: any) => {
+const CreateHeader = ({ isActiveNumber }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white", width: "100%" }}>
       <View style={styles.wrapper}>
