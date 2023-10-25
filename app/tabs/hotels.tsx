@@ -11,9 +11,9 @@ import { Text, View } from "../../components/themed";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
 import React from "react";
-import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
+import { SvgImg } from "../../components/svgImg";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function Hotel({ navigation }: any) {
@@ -25,15 +25,14 @@ export default function Hotel({ navigation }: any) {
         <MonoText style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </MonoText>
-        {Platform.OS === "ios" || Platform.OS === "android" ? (
-          <TouchableOpacity onPress={() => navigation.navigate("hotelcreate")}>
-            <WithLocalSvg width={300} height={500} asset={SVG} />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => navigation.navigate("hotelcreate")}>
-            <Image source={SVG} style={styles.hotel_img} />
-          </TouchableOpacity>
-        )}
+        <SvgImg
+          onPress={() => navigation.navigate("hotelcreate")}
+          a_width={300}
+          a_height={500}
+          url={SVG}
+          width={300}
+          height={400}
+        />
         <Buttons
           navigation={navigation}
           url={"mailbox"}

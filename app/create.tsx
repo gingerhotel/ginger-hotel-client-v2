@@ -1,16 +1,9 @@
 import * as React from "react";
-import {
-  View,
-  useWindowDimensions,
-  StyleSheet,
-  Image,
-  Platform,
-  TouchableOpacity,
-} from "react-native";
-import { WithLocalSvg } from "react-native-svg";
+import { View, StyleSheet } from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
+import { SvgImg } from "../components/svgImg";
 
 const SVG = require("../assets/images/StartHotel.svg");
 
@@ -21,11 +14,13 @@ export default function CreateHotel({ navigation }: any) {
       <View style={styles.edit_wrapper}>
         <MonoText style={styles.title}>나만의 호텔을 꾸며주세요!</MonoText>
 
-        {Platform.OS === "ios" || Platform.OS === "android" ? (
-          <WithLocalSvg width={300} height={500} asset={SVG} />
-        ) : (
-          <Image source={SVG} style={styles.hotel_img} />
-        )}
+        <SvgImg
+          a_width={300}
+          a_height={500}
+          url={SVG}
+          width={300}
+          height={400}
+        />
 
         <Buttons
           navigation={navigation}
