@@ -1,46 +1,48 @@
 import React from "react";
-import {
-  StyleSheet,
-  Image,
-  Button,
-  ScrollView,
-  View,
-  TextInput,
-} from "react-native";
-import Buttons from "../components/buttons";
-import LetterHeader from "../components/letterHeader";
-import { GoogleOAuthProvider } from '@react-oauth/google'
-import { GoogleLogin } from '@react-oauth/google'
+import { StyleSheet, Image, View, Platform, Text } from "react-native";
+// import { MonoText } from "../components/styledText";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { WithLocalSvg } from "react-native-svg";
+import SocialButton from "../components/socialButton";
 
+const SVG = require("../assets/images/StartHotel.svg");
 
 export default function Login({ navigation }: any) {
-  let clientId ='983622613978-aj2js3e1qb9qq1jtdueu7ic47o8fgg2l.apps.googleusercontent.com';
+  let clientId =
+    "983622613978-aj2js3e1qb9qq1jtdueu7ic47o8fgg2l.apps.googleusercontent.com";
+
   return (
     <View style={styles.container}>
-      <LetterHeader marginTop={100} isTitle={false} />
-      <ScrollView>
-        <View style={styles.mailbox_items}>
-          <TextInput
-            style={styles.input}
-            placeholder="pw"
-          />
-          <Buttons navigation={navigation} url={"completed"} title="카카오 로그인" color="white"/>
-          <Buttons navigation={navigation} url={"completed"} title="네이버 로그인" color="green"/>
-          <GoogleOAuthProvider clientId={clientId}>
-                <GoogleLogin
-                    onSuccess={(res) => {
-                        console.log(res);
-                    }}
-                    onError={() => {
-                      console.log("Login Failed");
-                    }}  
-                />
-                {/* // Todo: Google Custom Design 
-                    link : https://velog.io/@miyoni/google-social-login
-                */}
-            </GoogleOAuthProvider>
-        </View>
-      </ScrollView>
+      <Text style={styles.desc}>진저호텔에서 보내는 25일간의 휴일</Text>
+      <Text style={styles.title}>진저호텔</Text>
+      {Platform.OS === "ios" || Platform.OS === "android" ? (
+        <WithLocalSvg width={280} asset={SVG} />
+      ) : (
+        <Image source={SVG} style={styles.hotel_img} />
+      )}
+
+      <View style={styles.social_btn_group}>
+        <SocialButton name={"apple"} />
+        <SocialButton name={"google"} />
+        <SocialButton name={"kakao"} />
+        <SocialButton name={"naver"} />
+      </View>
+      <GoogleOAuthProvider clientId={clientId}>
+        <GoogleLogin
+          width={1000}
+          type={"icon"}
+          shape="circle"
+          onSuccess={(res) => {
+            console.log(res);
+          }}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
+        {/* // Todo: Google Custom Design link :
+        https://velog.io/@miyoni/google-social-login */}
+      </GoogleOAuthProvider>
     </View>
   );
 }
@@ -48,30 +50,25 @@ export default function Login({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    height: "100%",
+    backgroundColor: "white",
     justifyContent: "center",
-    backgroundColor: "#D9D9D9",
-    height: "100%",
   },
-  mailbox_items: {
-    backgroundColor: "#D9D9D9",
-    padding: 15,
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-  },
-  letter: {
+  desc: { fontSize: 12, fontWeight: "400", color: "black" },
+  title: { fontSize: 60, fontWeight: "500", color: "black" },
+  hotel_img: {
     width: 300,
-    backgroundColor: "white",
-    padding: 10,
-    textAlign: "center",
-  },
-  input: {
-    width: 300,
-    backgroundColor: "white",
-    padding: 10,
+    height: 400,
     marginTop: 20,
-    textAlign: "center",
-    marginBottom: 20,
+  },
+  social_btn_group: {
+    flexDirection: "row",
+    width: 300,
+    justifyContent: "space-around",
+  },
+  social_btn: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
 });
