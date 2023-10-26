@@ -2,7 +2,7 @@ import { colors } from "./Colors";
 import "typeface-nanum-square-neo";
 
 export const typography = {
-  label: {
+  basic: {
     fontFamily: "NanumSquareNeo-Variable",
     color: colors.Black,
   },
