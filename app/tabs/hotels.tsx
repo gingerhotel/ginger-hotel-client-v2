@@ -62,6 +62,12 @@ export default function Hotel({ navigation }: any) {
             });
           }}
         />
+          <Buttons
+            navigation={navigation}
+            url={"login"}
+            title="로그인"
+            color="green"
+          />
       </View>
     </ScrollView>
   );

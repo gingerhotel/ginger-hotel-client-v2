@@ -21,6 +21,7 @@ import createHotelAgree from "../createHotelAgree";
 import createHotelSelect from "../createHotelSelect";
 import CreateHotel from "../create";
 import GingerCard from "../gingercard";
+import Login from "../login";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -101,6 +102,7 @@ const Navigation = () => {
           <Stack.Screen name="hotelname" component={CreateHotelName} />
           <Stack.Screen name="hotelselect" component={createHotelSelect} />
           <Stack.Screen name="hotelagree" component={createHotelAgree} />
+          <Stack.Screen name="login" component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
 
