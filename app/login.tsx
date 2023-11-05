@@ -50,7 +50,7 @@ export default function Login({ navigation }: any) {
               /* Need to RecoilRoot*/
               AsyncStorage.setItem('isLogin', "true");
               AsyncStorage.setItem('accessToken', response.data.accessToken);
-              
+              navigation.push('hotelcreate')
             }}
             onError={() => {
               console.log("Login Failed");
