@@ -43,7 +43,8 @@
     "react-native-tab-view": "^3.5.2",
     "react-native-toast-message": "^2.1.7",
     "react-native-web": "~0.19.6",
-    "react-navigation-helpers": "^2.3.1"
+    "react-navigation-helpers": "^2.3.1",
+    "typeface-nanum-square-neo": "^0.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

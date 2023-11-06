@@ -1,18 +1,16 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import hotels from "./tabs/hotels";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
-import mailbox from "./mailbox";
 import Navigation from "./navigation";
-import { StyleSheet, View } from "react-native";
+import { useFonts } from "expo-font";
 
 function App(): JSX.Element {
+  const [fontsLoaded] = useFonts({
+    "NanumSquareNeo-Variable": require("../assets/fonts/NanumSquareNeo-Variable.ttf"),
+  });
+  if (!fontsLoaded) {
+    return <></>;
+  }
+
   return <Navigation />;
 }
-
-
-
-
 
 export default App;

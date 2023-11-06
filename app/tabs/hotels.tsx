@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor : "black",
+    backgroundColor: "black",
     // justifyContent: "center",
   },
   hotel_img: {
@@ -98,10 +98,12 @@ const styles = StyleSheet.create({
     fontFamily: "Pretendard-Regular",
   },
   hotel_name: {
+    color: "white",
     marginTop: 35,
     fontSize: 25,
   },
   hotel_desc: {
+    color: "white",
     fontSize: 15,
     marginTop: 10,
   },
