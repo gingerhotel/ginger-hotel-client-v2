@@ -39,6 +39,7 @@ export const colors = {
   grey700: "#59595c",
   grey800: "#3d3d41",
   grey900: "#36363b",
+  greyblack: "#1E1F23",
   Black: "#1b1b20",
   green_1: "#e9efef",
   green_2: "#c9d8d8",

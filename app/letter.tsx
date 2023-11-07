@@ -9,11 +9,12 @@ import {
 } from "react-native";
 import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
+import { colors } from "../constants/Colors";
 
-export default function Letter({ navigation }: any) {
+function Letter({ navigation }: any) {
   return (
     <View style={styles.container}>
-      <LetterHeader marginTop={100} isTitle={false} />
+      {/* <LetterHeader marginTop={100} isTitle={false} /> */}
       <ScrollView>
         <View style={styles.mailbox_items}>
           <TextInput
@@ -39,15 +40,21 @@ export default function Letter({ navigation }: any) {
   );
 }
 
+Letter.navigationOptions = {
+  title: "타이틀1",
+};
+
+export default Letter;
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#D9D9D9",
+    backgroundColor: colors.greyblack,
     height: "100%",
   },
   mailbox_items: {
-    backgroundColor: "#D9D9D9",
+    backgroundColor: colors.greyblack,
     padding: 15,
     display: "flex",
     alignItems: "center",
