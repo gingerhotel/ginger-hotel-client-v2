@@ -2,6 +2,7 @@ import { useNavigation } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { colors } from "../constants/Colors";
+import { typography } from "../constants/Typo";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const arrow = require("../assets/icon/i_arrow_back.svg");
@@ -18,7 +19,7 @@ export default function Header({ title }: any) {
         width={30}
         height={30}
       />
-      <MonoText style={styles.title}>{title}</MonoText>
+      <Text style={[styles.title, typography.soyo]}>{title}</Text>
       <View style={styles.empty}></View>
     </View>
   );
