@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "black",
-    // justifyContent: "center",
   },
   hotel_img: {
     width: 300,

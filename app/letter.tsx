@@ -28,11 +28,20 @@ export default function Letter({ navigation }: any) {
             placeholder="닉네임을 입력하세요 (10자 이하)"
           />
         </View>
-        <Buttons url={"gingercard"} title="이미지 첨부" color="green" />
+      </View>
+      <View style={styles.footer}>
+        <Buttons
+          is_width={true}
+          url={"gingercard"}
+          title="이미지 첨부"
+          color="darkgray"
+        />
+        &nbsp;&nbsp;&nbsp;
         <Buttons
           navigation={navigation}
           url={"completed"}
           title="보내기"
+          is_width={true}
           color="green"
         />
       </View>
@@ -54,6 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
+    flex: 1,
   },
   nickname_input: {
     flexDirection: "row",
@@ -83,5 +93,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.grey200,
     outlineStyle: "none",
+  },
+  footer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    backgroundColor: colors.greyblack,
+    alignItems: "center",
+    paddingBottom: 60,
+    paddingLeft: 20,
+    paddingRight: 20,
+    border: "none",
+    marginTop: -3,
   },
 });

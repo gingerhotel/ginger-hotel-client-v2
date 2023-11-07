@@ -29,5 +29,6 @@ const styles = StyleSheet.create({
     color: colors.grey500,
     outlineStyle: "none",
     fontFamily: "NanumSquareNeo-Variable",
+    lineHeight: 18,
   },
 });

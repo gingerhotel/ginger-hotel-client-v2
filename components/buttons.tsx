@@ -17,6 +17,7 @@ type Props = {
   navigation?: any;
   url?: string;
   callback?: any;
+  is_width?: boolean;
 };
 
 const Buttons = ({
@@ -26,6 +27,7 @@ const Buttons = ({
   navigation,
   url,
   callback,
+  is_width,
 }: Props) => {
   const handlePress = () => {
     // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
@@ -42,7 +44,7 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(buttons_color[color], color).button}
+      style={cstyles(buttons_color[color], color, is_width).button}
       onPress={handlePress}
     >
       <MonoText style={cstyles(buttons_text[color], color).text}>
@@ -52,11 +54,12 @@ const Buttons = ({
   );
 };
 
-const cstyles = (color_code: string, color: string) =>
+const cstyles = (color_code: string, color: string, is_width?: boolean) =>
   StyleSheet.create({
     button: {
-      width: 281,
+      width: is_width ? "auto" : 281,
       display: "flex",
+      flex: 1,
       alignItems: "center",
       justifyContent: "center",
       textAlign: "center",
