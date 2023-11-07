@@ -18,7 +18,7 @@ export default function createHotelSelect({ navigation }: any) {
           navigation={navigation}
           url={"hotelagree"}
           title="다음"
-          color="red"
+          color="green"
         />
       </View>
     </View>

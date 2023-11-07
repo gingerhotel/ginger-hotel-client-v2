@@ -16,7 +16,7 @@ export default function GingerCard({ navigation }: any) {
         navigation={navigation}
         url={"mailbox"}
         title="도착한 편지"
-        color="red"
+        color="green"
       />
 
       <ScrollView>
