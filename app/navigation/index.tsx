@@ -1,7 +1,7 @@
 import React from "react";
-import { useColorScheme } from "react-native";
+import { Text, TouchableOpacity, useColorScheme, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { isReadyRef, navigationRef } from "react-navigation-helpers";
 import Village from "../tabs/village";
@@ -22,6 +22,10 @@ import createHotelSelect from "../createHotelSelect";
 import CreateHotel from "../create";
 import GingerCard from "../gingercard";
 import Login from "../login";
+import { colors } from "../../constants/Colors";
+import Header from "../../components/appHeader";
+import { SvgImg } from "../../components/svgImg";
+import { MonoText } from "../../components/styledText";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,6 +38,9 @@ function TabBarIcon(props: {
 }
 
 const Navigation = () => {
+  const arrow = require("../../assets/icon/i_arrow_back.svg");
+  const navigation = useNavigation();
+
   React.useEffect((): any => {
     return () => (isReadyRef.current = false);
   }, []);
@@ -89,12 +96,22 @@ const Navigation = () => {
           isReadyRef.current = true;
         }}
       >
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="test" component={renderTabNavigation} />
+        <Stack.Navigator>
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="test"
+            component={renderTabNavigation}
+          />
           <Stack.Screen name="push" component={Push} />
           <Stack.Screen name="modal" component={ModalScreen} />
           <Stack.Screen name="mailbox" component={MailBox} />
-          <Stack.Screen name="letter" component={Letter} />
+          <Stack.Screen
+            name="letter"
+            component={Letter}
+            options={{
+              header: () => <Header title="답장보내기" />,
+            }}
+          />
           <Stack.Screen name="completed" component={LetterCompleted} />
           <Stack.Screen name="answer" component={Answer} />
           <Stack.Screen name="gingercard" component={GingerCard} />
