@@ -112,14 +112,46 @@ const Navigation = () => {
               header: () => <Header title="답장보내기" />,
             }}
           />
-          <Stack.Screen name="completed" component={LetterCompleted} />
-          <Stack.Screen name="answer" component={Answer} />
-          <Stack.Screen name="gingercard" component={GingerCard} />
-          <Stack.Screen name="hotelcreate" component={CreateHotel} />
-          <Stack.Screen name="hotelname" component={CreateHotelName} />
-          <Stack.Screen name="hotelselect" component={createHotelSelect} />
-          <Stack.Screen name="hotelagree" component={createHotelAgree} />
-          <Stack.Screen name="login" component={Login} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="completed"
+            component={LetterCompleted}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="answer"
+            component={Answer}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="gingercard"
+            component={GingerCard}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="hotelcreate"
+            component={CreateHotel}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="hotelname"
+            component={CreateHotelName}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="hotelselect"
+            component={createHotelSelect}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="hotelagree"
+            component={createHotelAgree}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="login"
+            component={Login}
+          />
         </Stack.Navigator>
       </NavigationContainer>
 
