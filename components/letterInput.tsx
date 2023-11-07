@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     border: "4px solid #719898",
     borderRadius: 12,
     color: colors.grey500,
+    outlineStyle: "none",
     fontFamily: "NanumSquareNeo-Variable",
   },
 });
