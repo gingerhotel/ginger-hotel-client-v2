@@ -27,7 +27,7 @@ function Letter({ navigation }: any) {
             style={styles.input}
             placeholder="닉네임을 입력하세요 (10자 이하)"
           />
-          <Buttons url={"gingercard"} title="이미지 첨부" color="green" />
+          <Buttons url={"gingercard"} title="이미지 첨부" color="darkgray" />
           <Buttons
             navigation={navigation}
             url={"completed"}

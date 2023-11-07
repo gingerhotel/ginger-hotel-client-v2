@@ -7,12 +7,12 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { COLORS } from "../constants/Colors";
+import { buttons_color, buttons_text } from "../constants/Colors";
 import { MonoText } from "./styledText";
 
 type Props = {
   title: string;
-  color: "red" | "green" | "white" | "disable_red";
+  color: "green" | "darkgray" | "gray" | "neongreen";
   is_disable?: boolean;
   navigation?: any;
   url?: string;
@@ -42,10 +42,12 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(COLORS[color], color).button}
+      style={cstyles(buttons_color[color], color).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(COLORS[color], color).text}>{title}</MonoText>
+      <MonoText style={cstyles(buttons_text[color], color).text}>
+        {title}
+      </MonoText>
     </TouchableOpacity>
   );
 };
@@ -63,10 +65,9 @@ const cstyles = (color_code: string, color: string) =>
       marginTop: 14,
       backgroundColor: color_code,
       borderWidth: color === "white" ? 1.5 : 0,
-      borderColor: color === "white" ? COLORS.red : "none",
     },
     text: {
-      color: color === "white" ? COLORS.red : "white",
+      color: color_code,
       fontSize: 14,
     },
   });
