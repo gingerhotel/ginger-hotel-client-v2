@@ -67,7 +67,7 @@ const styles = (height: number) =>
     },
     modalView: {
       margin: 20,
-      backgroundColor: "white",
+      backgroundColor: "black",
       borderRadius: 10,
       width: "80%",
       height,
