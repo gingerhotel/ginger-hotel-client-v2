@@ -37,23 +37,23 @@ export default function Hotel({ navigation }: any) {
           navigation={navigation}
           url={"mailbox"}
           title="호텔 편지함"
-          color="red"
+          color="green"
         />
         <Buttons
           navigation={navigation}
           url={"letter"}
           title="편지 보내기"
-          color="green"
+          color="neongreen"
         />
         <Buttons
           navigation={navigation}
           url={"login"}
           title="진저맨 앨범"
-          color="green"
+          color="darkgray"
         />
         <Buttons
           title="호텔 링크 복사하기"
-          color="white"
+          color="gray"
           callback={() => {
             Toast.show({
               type: "basicToast",
@@ -62,12 +62,12 @@ export default function Hotel({ navigation }: any) {
             });
           }}
         />
-          <Buttons
-            navigation={navigation}
-            url={"login"}
-            title="로그인"
-            color="green"
-          />
+        <Buttons
+          navigation={navigation}
+          url={"login"}
+          title="로그인"
+          color="green"
+        />
       </View>
     </ScrollView>
   );

@@ -19,7 +19,7 @@ export default function createHotelAgree({ navigation }: any) {
           navigation={navigation}
           url={"hotels"}
           title="완료"
-          color="red"
+          color="green"
         />
       </View>
     </View>

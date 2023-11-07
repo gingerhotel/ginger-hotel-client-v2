@@ -18,15 +18,20 @@ export default {
   },
 };
 
-export const COLORS = {
-  red: "#AF2010",
-  green: "#005452",
-  white: "#FFFFFF",
-  black: "#000000",
-  beige: "#FCF4E9",
-  gray: "#D9D9D9",
-  disable_red: "#CE9183",
+export const buttons_color = {
+  green: "#2f9c89",
+  darkgray: "#4A4A4E",
+  gray: "#C6C6C7",
+  neongreen: "#A2D8CF",
 };
+
+export const buttons_text = {
+  green: "#FFFDF0",
+  darkgray: "#C6C6C7",
+  gray: "#6E6E73",
+  neongreen: "#25796B",
+};
+
 
 export const colors = {
   Whiteyello: "#FFFDF0",
@@ -41,16 +46,16 @@ export const colors = {
   grey900: "#36363b",
   greyblack: "#1E1F23",
   Black: "#1b1b20",
-  green_1: "#e9efef",
-  green_2: "#c9d8d8",
-  green_3: "#9eb8b9",
-  green_4: "#719898",
-  green_5: "#477979",
-  green_6: "#1e5b5c",
-  green_7: "#1a4d4e",
-  green_8: "#154141",
-  green_9: "#113434",
-  green_10: "#0d2929",
+  green50: "#ebf7f5",
+  green100: "#c0e5de",
+  green200: "#a2d8cf",
+  green300: "#77c7b9",
+  green400: "#5dbcab",
+  green500: "#34ab96",
+  green600: "#2f9c89",
+  green700: "#25796b",
+  green800: "#1d5e53",
+  green900: "#16483f",
   orange100: "#fff4f0",
   orange200: "#ffbda9",
   orange300: "#ff8e6a",

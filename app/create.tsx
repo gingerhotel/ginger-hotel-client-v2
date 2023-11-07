@@ -26,7 +26,7 @@ export default function CreateHotel({ navigation }: any) {
           navigation={navigation}
           url={"hotelname"}
           title="다음"
-          color="red"
+          color="green"
         />
       </View>
     </View>
