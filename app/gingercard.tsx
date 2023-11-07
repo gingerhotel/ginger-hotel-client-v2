@@ -6,6 +6,7 @@ import MailHeader from "../components/mailHeader";
 import { ScrollView } from "react-native-gesture-handler";
 import React from "react";
 import { SvgImg } from "../components/svgImg";
+import { colors } from "../constants/Colors";
 const gingerman = require("../assets/gingerman/g_bellboy.svg");
 
 export default function GingerCard({ navigation }: any) {
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   mailbox_items: {
-    backgroundColor: "white",
+    backgroundColor: colors.greyblack,
     padding: 15,
     display: "flex",
     alignItems: "center",

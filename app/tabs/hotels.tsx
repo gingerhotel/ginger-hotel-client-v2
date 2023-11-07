@@ -14,6 +14,7 @@ import React from "react";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
+import { colors } from "../../constants/Colors";
 const SVG = require("../../assets/images/StartHotel.svg");
 
 export default function Hotel({ navigation }: any) {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: colors.greyblack,
   },
   hotel_img: {
     width: 300,
@@ -92,9 +93,6 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: "80%",
-  },
-  text: {
-    fontFamily: "Pretendard-Regular",
   },
   hotel_name: {
     color: "white",
