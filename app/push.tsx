@@ -1,43 +1,235 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import {
   StyleSheet,
-  Image,
-  Button,
   ScrollView,
-  View,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
-import Buttons from "../components/buttons";
-import LetterItem from "../components/letterItem";
-import MailHeader from "../components/mailHeader";
 import { MonoText } from "../components/styledText";
+import { FontAwesome } from "@expo/vector-icons";
+import { View } from "../components/themed";
+import { useThemeColor } from "../components/themed";
+import NoticeItem from "../components/noticeItem";
+import { useNavigation } from "expo-router";
+import { COLORS } from "../constants/Colors";
+import CenterModal from "../components/centerModal";
+
+// CustomButton
+type TPushButtonsProps = {
+  title: string;
+  color: "red" | "green";
+  onPress?: () => void;
+};
+const cstyles = (color_code: string, color: string) =>
+  StyleSheet.create({
+    button: {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: 11,
+      borderRadius: 10,
+      marginTop: 14,
+      backgroundColor: color_code,
+      borderWidth: color === "white" ? 1.5 : 0,
+      borderColor: color === "white" ? COLORS.red : "none",
+    },
+    text: {
+      color: color === "white" ? COLORS.red : "white",
+      fontSize: 14,
+    },
+  });
+const PushButtons: React.FC<TPushButtonsProps> = ({
+  title,
+  color,
+  onPress,
+}) => {
+  return (
+    <TouchableOpacity
+      style={cstyles(COLORS[color], color).button}
+      onPress={onPress}
+    >
+      <MonoText style={cstyles(COLORS[color], color).text}>{title}</MonoText>
+    </TouchableOpacity>
+  );
+};
 
 export default function Push() {
+  const [pushDeleteMode, setPushDeleteMode] = useState(false);
+  const [deleteChecked, setDeleteChecked] = useState([
+    { id: 1, checked: false },
+    { id: 2, checked: false },
+    { id: 3, checked: false },
+    { id: 4, checked: false },
+    { id: 5, checked: false },
+    { id: 6, checked: false },
+  ]);
+  const updatedDeleteChecked = (id: number, checked: boolean) => {
+    const updatedDeleteChecked = deleteChecked.map((item) => {
+      if (item.id === id) {
+        return { ...item, checked: !item.checked };
+      }
+      return item;
+    });
+    setDeleteChecked(updatedDeleteChecked);
+  };
+
+  const resetDeleteChecked = () => {
+    const resetDeleteCheckedList = deleteChecked.map((item) => {
+      return { id: item.id, checked: false };
+    });
+    setDeleteChecked(resetDeleteCheckedList);
+  };
+
+  const deleteModeChange = () => {
+    setPushDeleteMode((prevDeleteMode) => !prevDeleteMode);
+    resetDeleteChecked();
+  };
+
+  // CenterModal
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  // 뒤로가기
+  const navigation = useNavigation();
+  const handleGoBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
+  //DarkMode, LightMode Color 설정
+  const backgroundColor = useThemeColor({}, "background");
+  const textColor = useThemeColor({}, "text");
+
   return (
     <View style={styles.container}>
-      <SafeAreaView style={{ backgroundColor: "white" }}>
-        <MonoText style={styles.title}>알림</MonoText>
+      <CenterModal
+        height={180}
+        visible={modalVisible}
+        onClose={closeModal}
+        title="선택한 알림을 삭제할까요?"
+        desc="한번 삭제한 알림은 복구할 수 없어요."
+        btn_text="삭제하기"
+      />
+      <SafeAreaView style={[styles.header, { backgroundColor }]}>
+        <View style={styles.header_left_child}>
+          {pushDeleteMode ? null : (
+            <TouchableOpacity onPress={handleGoBack}>
+              <FontAwesome name="arrow-left" size={28} color={textColor} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={styles.header_center_child}>
+          <MonoText style={styles.title}>알림</MonoText>
+        </View>
+        <View style={styles.header_right_child}>
+          {pushDeleteMode ? null : (
+            <TouchableOpacity onPress={deleteModeChange}>
+              <FontAwesome name="trash" size={28} color={textColor} />
+            </TouchableOpacity>
+          )}
+        </View>
       </SafeAreaView>
-      <View style={styles.item_wrapper}>
-        <View style={styles.left}>
-          <MonoText>Icon</MonoText>
-        </View>
-        <View style={styles.right}>
-          <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
-          <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>
-          <MonoText style={styles.item_time}>오후 5시 20분 </MonoText>
-        </View>
-      </View>
-      <View style={styles.item_wrapper}>
-        <View style={styles.left}>
-          <MonoText>Icon</MonoText>
-        </View>
-        <View style={styles.right}>
-          <MonoText style={styles.item_title}>두근두근! 새 편지 도착!</MonoText>
-          <MonoText style={styles.item_feature}>답장 읽기 ! </MonoText>
-          <MonoText style={styles.item_time}>오후 5시 20분 </MonoText>
-        </View>
-      </View>
+      <ScrollView>
+        <NoticeItem
+          id={deleteChecked[0].id}
+          iconName={"envelope"}
+          content={"두근두근! 새 편지 도착!"}
+          time={"오후 5시 20분 "}
+          isRead={false}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[0].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(1, deleteChecked[0].checked)
+          }
+        />
+        <NoticeItem
+          id={deleteChecked[1].id}
+          iconName={"envelope"}
+          content={"편지함에 답장이 도착했어요!"}
+          time={"오후 5시 20분 "}
+          isRead={false}
+          actionButton={true}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[1].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(2, deleteChecked[1].checked)
+          }
+        />
+        <NoticeItem
+          id={deleteChecked[2].id}
+          iconName={"search"}
+          content={"헤르미온느님께서 엿보기를 요청했어요!"}
+          time={"오후 5시 20분 "}
+          isRead={false}
+          actionButton={true}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[2].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(3, deleteChecked[2].checked)
+          }
+        />
+        <NoticeItem
+          id={deleteChecked[3].id}
+          iconName={"user-check"}
+          content={"000님께서 엿보기를 수락했어요!"}
+          time={"오후 5시 20분 "}
+          isRead={false}
+          actionButton={true}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[3].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(4, deleteChecked[3].checked)
+          }
+        />
+        <NoticeItem
+          id={deleteChecked[4].id}
+          iconName={"user-times"}
+          content={"000님께서 엿보기를 거절했어요!"}
+          time={"오후 5시 20분 "}
+          isRead={false}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[4].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(5, deleteChecked[4].checked)
+          }
+        />
+        <NoticeItem
+          id={deleteChecked[5].id}
+          iconName={"user-times"}
+          content={"000님께서 엿보기를 거절했어요!"}
+          time={"오후 5시 20분 "}
+          isRead={true}
+          deleteMode={pushDeleteMode}
+          deleteChecked={deleteChecked[5].checked}
+          updatedDeleteChecked={() =>
+            updatedDeleteChecked(6, deleteChecked[5].checked)
+          }
+        />
+      </ScrollView>
+      {pushDeleteMode ? (
+        <SafeAreaView style={styles.bottom}>
+          <View style={styles.cancel_button_wrapper}>
+            <PushButtons
+              title={"취소"}
+              color={"red"}
+              onPress={deleteModeChange}
+            />
+          </View>
+          <View style={styles.delete_button_wrapper}>
+            <PushButtons
+              title={"선택 항목 삭제하기"}
+              color={"green"}
+              onPress={openModal}
+            />
+          </View>
+        </SafeAreaView>
+      ) : null}
     </View>
   );
 }
@@ -49,46 +241,45 @@ const styles = StyleSheet.create({
     paddingTop: 33,
     paddingLeft: 23,
     paddingRight: 23,
-    backgroundColor: "white",
+    paddingBottom: 23,
   },
-
-  title: {
-    fontSize: 20,
-    fontWeight: "500",
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "white",
     marginBottom: 33,
   },
-
-  item_wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    marginBottom: 13,
-    alignItems: "center",
-  },
-  left: {
-    width: 60,
-    height: 60,
-    borderRadius: 50,
-    backgroundColor: "gray",
+  header_left_child: {
+    height: 30,
+    width: 50,
     alignItems: "center",
     justifyContent: "center",
   },
-  right: {
-    flexDirection: "column",
-    marginLeft: 13,
+  header_center_child: {
+    height: 30,
+    width: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  item_title: {
-    fontSize: 16,
-    fontWeight: "700",
-    lineHeight: 22,
+  header_right_child: {
+    height: 30,
+    width: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  item_feature: {
-    fontSize: 10,
-    fontWeight: "700",
-    lineHeight: 22,
+  title: {
+    fontSize: 23,
+    fontWeight: "600",
   },
-  item_time: {
-    fontSize: 8,
-    color: "#D9D9D9",
+  bottom: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  cancel_button_wrapper: {
+    flex: 1,
+  },
+  delete_button_wrapper: {
+    flex: 3,
   },
 });
