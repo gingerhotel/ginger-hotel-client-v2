@@ -36,7 +36,7 @@ export default function CreateHotel({ navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor : "rgba(30,31,35,1.00)",
     paddingTop: 60,
     flex: 1,
     justifyContent: "flex-start",
