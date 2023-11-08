@@ -128,9 +128,11 @@ const Navigation = () => {
             component={GingerCard}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelcreate"
             component={CreateHotel}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
             options={{ headerShown: false }}
