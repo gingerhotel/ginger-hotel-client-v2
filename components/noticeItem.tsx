@@ -3,7 +3,7 @@ import { View } from "./themed";
 import { useThemeColor } from "./themed";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { MonoText } from "./styledText";
-import { COLORS } from "../constants/Colors";
+import { colors } from "../constants/Colors";
 
 type TNoticeItem = {
   id: number;
@@ -32,7 +32,7 @@ const NoticeItem = ({
   const rightChildRender = () => {
     if (deleteMode && deleteChecked) {
       return (
-        <FontAwesome name="check-square-o" size={28} color={COLORS.green} />
+        <FontAwesome name="check-square-o" size={28} color={colors.green500} />
       );
     } else if (deleteMode && !deleteChecked) {
       return <FontAwesome name="square-o" size={28} color={textColor} />;
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     borderColor: "gray",
   },
   item_wrapper_delete_mode_checked: {
-    borderColor: COLORS.green,
+    borderColor: colors.green500,
   },
   left: {
     width: 60,
