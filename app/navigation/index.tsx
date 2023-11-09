@@ -102,7 +102,11 @@ const Navigation = () => {
             name="test"
             component={renderTabNavigation}
           />
-          <Stack.Screen name="push" component={Push} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="push"
+            component={Push}
+          />
           <Stack.Screen name="modal" component={ModalScreen} />
           <Stack.Screen name="mailbox" component={MailBox} />
           <Stack.Screen
