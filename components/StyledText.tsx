@@ -4,7 +4,7 @@ export function MonoText(props: TextProps) {
   return (
     <Text
       {...props}
-      style={[props.style, { fontFamily: "Pretendard-Regular" }]}
+      style={[props.style, { fontFamily: "Pretendard-Regular", color: "#fff" }]}
     />
   );
 }
