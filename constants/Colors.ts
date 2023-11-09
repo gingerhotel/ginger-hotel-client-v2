@@ -20,11 +20,12 @@ export default {
 
 export const COLORS = {
   red: "#AF2010",
-  green: "#005452",
+  green: "#2F9C89",
   white: "#FFFFFF",
   black: "#000000",
   beige: "#FCF4E9",
   gray: "#D9D9D9",
   disable_red: "#CE9183",
+  gray_700: "#4A4A4E"
 };
 
