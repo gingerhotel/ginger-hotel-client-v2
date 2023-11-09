@@ -12,11 +12,12 @@ import { MonoText } from "./styledText";
 
 type Props = {
   title: string;
-  color: "red" | "green" | "white" | "disable_red";
+  color: "red" | "green" | "white" | "disable_red" | "gray_700";
   is_disable?: boolean;
   navigation?: any;
   url?: string;
   callback?: any;
+  width?: any;
 };
 
 const Buttons = ({
@@ -26,6 +27,8 @@ const Buttons = ({
   navigation,
   url,
   callback,
+  width,
+
 }: Props) => {
   const handlePress = () => {
     // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
@@ -42,32 +45,31 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(COLORS[color], color).button}
+      style={cstyles(COLORS[color], color, width).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(COLORS[color], color).text}>{title}</MonoText>
+      <MonoText style={cstyles(COLORS[color], color, width).text}>{title}</MonoText>
     </TouchableOpacity>
   );
 };
 
-const cstyles = (color_code: string, color: string) =>
+const cstyles = (color_code: string, color: string, width: number) =>
   StyleSheet.create({
     button: {
-      width: 281,
+      width: width,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
       textAlign: "center",
-      padding: 11,
+      height: 52,
       borderRadius: 10,
-      marginTop: 14,
       backgroundColor: color_code,
       borderWidth: color === "white" ? 1.5 : 0,
       borderColor: color === "white" ? COLORS.red : "none",
     },
     text: {
       color: color === "white" ? COLORS.red : "white",
-      fontSize: 14,
+      fontSize: 16,
     },
   });
 
