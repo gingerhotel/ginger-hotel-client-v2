@@ -49,7 +49,7 @@ export default function Hotel({ navigation }: any) {
               width={288}
             />
             <TouchableOpacity>
-              <WithLocalSvg asset={IC_SVG} width={48} height={58} />
+              <SvgImg url={IC_SVG}/>
             </TouchableOpacity>
           </View>
           <View style={styles.hotel_today}>
