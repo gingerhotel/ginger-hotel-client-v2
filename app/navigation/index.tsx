@@ -30,7 +30,7 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={28} style={{ marginBottom: -3, color: '#FF8E6A' }} {...props} />;
 }
 
 const Navigation = () => {
@@ -44,6 +44,8 @@ const Navigation = () => {
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarInactiveTintColor: "gray",
+          tabBarStyle: { backgroundColor: '#000', borderTopWidth: 0, marginBottom: 0 },
+          tabBarActiveTintColor: '#fff'
         })}
         initialRouteName="hotels"
       >
