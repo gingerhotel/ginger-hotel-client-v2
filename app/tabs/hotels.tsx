@@ -15,6 +15,8 @@ import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
 import { WithLocalSvg } from "react-native-svg";
+import ProgressBar from "../../components/progressBar";
+import { ProgressBarView } from "../../style/progressBarStyled";
 const SVG = require("../../assets/images/StartHotel.svg");
 const IC_SVG = require("../../assets/icon/ic_ginger.svg");
 
@@ -23,9 +25,12 @@ export default function Hotel({ navigation }: any) {
     <ScrollView>
       <Header navigation={navigation} />
       <View style={styles.container}>
-        <MonoText style={styles.hotel_desc}>
-          도착한 편지
-        </MonoText>
+        <ProgressBarView>
+          <MonoText style={styles.hotel_desc}>
+            도착한 편지
+          </MonoText>
+          <ProgressBar />
+        </ProgressBarView>
         <MonoText style={styles.hotel_name}>진저님의 진저호텔</MonoText>
         <MonoText style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
@@ -43,7 +48,9 @@ export default function Hotel({ navigation }: any) {
               color="green"
               width={288}
             />
-            <WithLocalSvg asset={IC_SVG} width={48} height={58} />
+            <TouchableOpacity>
+              <WithLocalSvg asset={IC_SVG} width={48} height={58} />
+            </TouchableOpacity>
           </View>
           <View style={styles.hotel_today}>
             <Buttons
@@ -94,14 +101,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
   hotel_desc: {
-    fontSize: 15,
-    marginTop: 10,
+    display: 'flex',
+    fontSize: 17,
   },
   hotel_today_container: {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#000',
     gap: 15,
+    marginBottom: 30,
   },
   hotel_today: {
     flexDirection: 'row',
