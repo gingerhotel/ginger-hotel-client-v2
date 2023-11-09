@@ -11,49 +11,8 @@ import { View } from "../components/themed";
 import { useThemeColor } from "../components/themed";
 import NoticeItem from "../components/noticeItem";
 import { useNavigation } from "expo-router";
-import { colors } from "../constants/Colors";
 import CenterModal from "../components/centerModal";
-
-// CustomButton
-type TPushButtonsProps = {
-  title: string;
-  color: "grey100" | "green500";
-  onPress?: () => void;
-};
-const cstyles = (color_code: string, color: string) =>
-  StyleSheet.create({
-    button: {
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: 11,
-      borderRadius: 10,
-      marginTop: 14,
-      backgroundColor: color_code,
-      borderWidth: color === "white" ? 1.5 : 0,
-      borderColor: color === "white" ? colors.grey100 : "none",
-    },
-    text: {
-      color: color === "white" ? colors.grey100 : "white",
-      fontSize: 14,
-    },
-  });
-const PushButtons: React.FC<TPushButtonsProps> = ({
-  title,
-  color,
-  onPress,
-}) => {
-  return (
-    <TouchableOpacity
-      style={cstyles(colors[color], color).button}
-      onPress={onPress}
-    >
-      <MonoText style={cstyles(colors[color], color).text}>{title}</MonoText>
-    </TouchableOpacity>
-  );
-};
+import Buttons from "../components/buttons";
 
 export default function Push() {
   const [pushDeleteMode, setPushDeleteMode] = useState(false);
@@ -215,18 +174,15 @@ export default function Push() {
       {pushDeleteMode ? (
         <SafeAreaView style={styles.bottom}>
           <View style={styles.cancel_button_wrapper}>
-            <PushButtons
-              title={"취소"}
-              color={"grey100"}
-              onPress={deleteModeChange}
+            <Buttons
+              title="취소"
+              color="darkgray"
+              is_width
+              callback={deleteModeChange}
             />
           </View>
           <View style={styles.delete_button_wrapper}>
-            <PushButtons
-              title={"선택 항목 삭제하기"}
-              color={"green500"}
-              onPress={openModal}
-            />
+            <Buttons title="선택 항목 삭제하기" color="green" is_width />
           </View>
         </SafeAreaView>
       ) : null}
@@ -275,6 +231,7 @@ const styles = StyleSheet.create({
   bottom: {
     flexDirection: "row",
     gap: 10,
+    height: 70,
   },
   cancel_button_wrapper: {
     flex: 1,
