@@ -56,7 +56,7 @@ export default function Hotel({ navigation }: any) {
           <View style={styles.hotel_today}>
             <Buttons
               title="내 호텔 공유하기"
-              color="gray"
+              color="grey"
               width={350}
               callback={() => {
                 Toast.show({
