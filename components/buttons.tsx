@@ -9,7 +9,7 @@ import {
 } from "react-native";
 //import { buttons_color, buttons_text } from "../constants/Colors";
 import { MonoText } from "./styledText";
-import { COLORS } from "../constants/Colors";
+import { Common_Colors } from "../constants/Colors";
 
 type Props = {
   title: string;
@@ -48,10 +48,10 @@ const Buttons = ({
     <TouchableOpacity
       disabled={is_disable}
 
-      style={cstyles(COLORS[color], color, width).button}
+      style={cstyles(Common_Colors[color], color, width).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(COLORS[color], color, width).text}>{title}</MonoText>
+      <MonoText style={cstyles(Common_Colors[color], color, width).text}>{title}</MonoText>
     </TouchableOpacity>
   );
 };
@@ -72,7 +72,7 @@ const cstyles = (color_code: string, color: string, width: number) =>
     },
     text: {
       //color: color_code,
-      color: color === "white" ? COLORS.red : "white",
+      color: color === "white" ? Common_Colors.red : "white",
       fontSize: 16,
     },
   });
