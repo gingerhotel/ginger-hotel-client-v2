@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { MonoText } from "./styledText";
 import { WithLocalSvg } from "react-native-svg";
+import { SvgImg } from "./svgImg";
 let icon = require("../assets/icon/i_favorite.png");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
@@ -22,14 +23,14 @@ const Header = ({ navigation }: any) => {
         <View style={styles.wrapper}>
           <View style={styles.item}>
             <View style={styles.container_1}>
-              <WithLocalSvg asset={i_key} />
+              <SvgImg url={i_key} />
               <Text style={styles.text}>03</Text>
             </View>
             <View style={styles.container_2}>
-              <WithLocalSvg asset={i_glasses} />
+              <SvgImg url={i_glasses} />
               <Text style={styles.text}>03</Text>
               <TouchableOpacity>
-                <WithLocalSvg asset={i_plus} width={20} height={20} />
+                <SvgImg url={i_plus} />
               </TouchableOpacity>
             </View>
           </View>
