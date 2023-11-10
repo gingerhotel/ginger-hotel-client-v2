@@ -18,11 +18,16 @@ export default {
   },
 };
 
-export const buttons_color = {
-  green: "#2f9c89",
-  darkgray: "#4A4A4E",
-  gray: "#C6C6C7",
+export const COLORS = {
   neongreen: "#A2D8CF",
+  red: "#AF2010",
+  green: "#2F9C89",
+  white: "#FFFFFF",
+  black: "#000000",
+  beige: "#FCF4E9",
+  gray: "#D9D9D9",
+  disable_red: "#CE9183",
+  gray_700: "#4A4A4E"
 };
 
 export const buttons_text = {

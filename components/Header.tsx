@@ -5,22 +5,35 @@ import {
   Image,
   SafeAreaView,
   StyleSheet,
+  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { MonoText } from "./styledText";
+import { WithLocalSvg } from "react-native-svg";
 let icon = require("../assets/icon/i_favorite.png");
-
+let i_key = require("../assets/icon/i_key.svg");
+let i_glasses = require("../assets/icon/i_glasses.svg");
+let i_plus = require("../assets/icon/i_plus.svg");
 const Header = ({ navigation }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
-      <View style={{ backgroundColor: "white" }}>
+      <View style={{ backgroundColor: "#000" }}>
         <View style={styles.wrapper}>
-          <View style={styles.item}></View>
           <View style={styles.item}>
-            <MonoText style={styles.text}>도착한 편지</MonoText>
+            <View style={styles.container_1}>
+              <WithLocalSvg asset={i_key} />
+              <Text style={styles.text}>03</Text>
+            </View>
+            <View style={styles.container_2}>
+              <WithLocalSvg asset={i_glasses} />
+              <Text style={styles.text}>03</Text>
+              <TouchableOpacity>
+                <WithLocalSvg asset={i_plus} width={20} height={20} />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.item}>
+          <View>
             <TouchableOpacity onPress={() => navigation.navigate("push")}>
               <Image style={styles.icon} source={icon} />
             </TouchableOpacity>
@@ -32,6 +45,29 @@ const Header = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
+  container_1: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'gray',
+    borderRadius: 25,
+    paddingRight: 30,
+    height: 28,
+    width: 70,
+  },
+  container_2: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'gray',
+    borderRadius: 25,
+    paddingRight: 25,
+    gap: 10,
+    height: 28,
+    width: 100,
+  },
   wrapper: {
     display: "flex",
     flexDirection: "row",
@@ -40,14 +76,16 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     marginTop: 30,
-    backgroundColor: "white",
+    backgroundColor: "#000",
+    marginLeft: 20,
   },
   item: {
-    width: "100%",
     fontFamily: "Pretendard-Regular",
-    flex: 1,
     display: "flex",
     alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 20,
   },
   text: {
     fontSize: 15,
