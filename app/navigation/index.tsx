@@ -156,7 +156,7 @@ const Navigation = () => {
             component={createHotelAgree}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
             name="login"
             component={Login}
           />
