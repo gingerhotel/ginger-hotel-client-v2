@@ -18,6 +18,7 @@ export default {
   },
 };
 
+  /* Todo : Need to refactor */
 export const Common_Colors = {
   neongreen: "#A2D8CF",
   red: "#AF2010",
@@ -39,6 +40,7 @@ export const buttons_text = {
 };
 
 
+  /* Todo : Need to refactor */
 export const colors = {
   Whiteyello: "#FFFDF0",
   grey100: "#f6f6f6",

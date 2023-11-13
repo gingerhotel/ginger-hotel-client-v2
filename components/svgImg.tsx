@@ -5,6 +5,7 @@ import { WithLocalSvg } from "react-native-svg";
 type Props = {
   onPress?: any;
   url: string | any;
+  /* Todo : Need to size refactor */
   // a_width: number; // 앱 가로
   // a_height?: number; // 앱 세로
   // width: number;
