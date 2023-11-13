@@ -67,6 +67,15 @@ export default function Hotel({ navigation }: any) {
               }}
             />
           </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              navigation={navigation}
+              url={"login"}
+              title="임시 로그인 버튼"
+              color="green"
+              width={350}
+            />
+          </View>
         </View>
       </View>
     </ScrollView>
