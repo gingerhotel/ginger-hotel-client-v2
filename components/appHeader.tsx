@@ -25,8 +25,10 @@ export default function Header({ title }: any) {
           width={30}
           height={30}
         />
-        <Text style={[styles.title, typography.soyo]}>{title}</Text>
-        <View style={styles.empty}></View>
+        <View>
+          <Text style={[styles.title, typography.soyo]}>{title}</Text>
+          <View style={styles.empty}></View>
+        </View>
       </View>
     </SafeAreaView>
   );
