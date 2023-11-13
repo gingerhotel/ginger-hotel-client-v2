@@ -76,6 +76,15 @@ export default function Hotel({ navigation }: any) {
               width={350}
             />
           </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              navigation={navigation}
+              url={"letter"}
+              title="편지보내기"
+              color="green"
+              width={350}
+            />
+          </View>
         </View>
       </View>
     </ScrollView>

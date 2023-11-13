@@ -115,6 +115,13 @@ const Navigation = () => {
             name="letter"
             component={Letter}
             options={{
+              header: () => <Header title="편지보내기" />,
+            }}
+          />
+          <Stack.Screen
+            name="reply"
+            component={Letter}
+            options={{
               header: () => <Header title="답장보내기" />,
             }}
           />

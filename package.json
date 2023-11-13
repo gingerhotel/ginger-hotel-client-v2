@@ -33,6 +33,7 @@
     "jwt-decode": "^3.1.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.48.2",
     "react-native": "0.72.6",
     "react-native-btr": "^2.2.0",
     "react-native-eject": "^0.2.0",
@@ -46,8 +47,8 @@
     "react-native-web": "~0.19.6",
     "react-navigation": "^5.0.0",
     "react-navigation-helpers": "^2.3.1",
-    "typeface-nanum-square-neo": "^0.0.6",
-    "styled-components": "^6.1.1"
+    "styled-components": "^6.1.1",
+    "typeface-nanum-square-neo": "^0.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
