@@ -35,7 +35,7 @@ const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
       <MonoText style={styles.from_text}>
         <View style={styles.from_wrapper}>
           <MonoText>
-            <MonoText style={styles.bold}>From.</MonoText> 로온로온
+            <MonoText style={styles.bold}>From.</MonoText> {from}
           </MonoText>
 
           <TouchableOpacity onPress={toggleModal}>
@@ -45,11 +45,7 @@ const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
         {"\n"}
         {"\n"}
         <MonoText style={styles.contents}>
-          작년 겨울에 진저호텔 덕분에 따뜻한 겨울을 보낸 유저입니다! 이번
-          sef2023에 진저호텔 팀이 연사로 참여한다고 해서 너무 궁금했어요.
-          진저호텔 덕분에 저도 IT 서비스 개발에 관심이 생겨서 동아리도 가입하고
-          개발을 열심히 배우고 있어요. 저에게 새로움 꿈을 만들어 준 진저호텔에게
-          감사해요! :)
+          {contents}
         </MonoText>
       </MonoText>
 

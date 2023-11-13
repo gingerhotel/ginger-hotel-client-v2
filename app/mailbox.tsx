@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
 import Buttons from "../components/buttons";
 import LetterItem from "../components/letterItem";
 import MailHeader from "../components/mailHeader";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function MailBox({ navigation }: any) {
+  const [letters, setLetters] = useState<any[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  
+  useEffect(() => {
+    AsyncStorage.getItem(
+      'accessToken', //String 타입
+      (err, result) => {
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${result}`;
+    });
+
+    const loadLetters = async () => {
+      const result = await axios.get(`http://127.0.0.1:8080/letters/hotel/2?hotelId=2&date=2023-11-13`);
+      return result.data.letters;
+    }
+    loadLetters().then(result => setLetters(result)).then(() => setIsLoaded(true));
+  }, []);
   return (
     <>
       <MailHeader marginTop={50} />
@@ -18,38 +39,23 @@ export default function MailBox({ navigation }: any) {
       </View>
 
       <ScrollView>
+
+      {
+      isLoaded &&      
+      letters.map((letter)=> (
         <View style={styles.mailbox_items}>
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-        </View>
+
+        <LetterItem
+          navigation={navigation}
+          from={letter.senderNickname}
+          contents={letter.content}
+          is_active={false}
+        />
+      </View>
+        )
+      )
+
+      }
       </ScrollView>
     </>
   );
