@@ -62,4 +62,7 @@ export const typography = {
     fontWeight: 800,
     fontFamily: "NanumSquareNeo-Variable",
   },
+  number2_bold: {
+    fontFamily: "Quicksand-Regular",
+  },
 };
