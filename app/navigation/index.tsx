@@ -1,5 +1,11 @@
 import React from "react";
-import { Text, TouchableOpacity, useColorScheme, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -26,6 +32,7 @@ import { colors } from "../../constants/Colors";
 import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
+import { typography } from "../../constants/Typo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -96,7 +103,17 @@ const Navigation = () => {
           isReadyRef.current = true;
         }}
       >
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerTitleAlign: "center",
+            headerStyle: {
+              backgroundColor: "#1E1F23",
+              borderBottomWidth: 0,
+            },
+            headerTitleStyle: { color: "white" },
+            headerTintColor: "#ffffff",
+          }}
+        >
           <Stack.Screen
             options={{ headerShown: false }}
             name="test"
@@ -108,7 +125,28 @@ const Navigation = () => {
             component={Push}
           />
           <Stack.Screen name="modal" component={ModalScreen} />
-          <Stack.Screen name="mailbox" component={MailBox} />
+          <Stack.Screen
+            name="mailbox"
+            component={MailBox}
+            options={{
+              headerTitle: () => (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    gap: 10,
+                    alignItems: "center",
+                  }}
+                >
+                  <Text style={[styles.headerText, typography.soyo]}>
+                    내 호텔 편지함
+                  </Text>
+                  <Text style={[styles.headerText2, typography.number2_bold]}>
+                    64
+                  </Text>
+                </View>
+              ),
+            }}
+          />
           <Stack.Screen
             name="letter"
             component={Letter}
@@ -167,3 +205,16 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+const styles = StyleSheet.create({
+  headerText: {
+    fontSize: 20,
+    color: colors.Whiteyello,
+  },
+  headerText2: {
+    fontSize: 24,
+    color: colors.green500,
+    fontWeight: "600",
+    paddingTop: 4,
+  },
+});
