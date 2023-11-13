@@ -20,7 +20,7 @@ type Props = {
   navigation: any;
 };
 
-const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
+const ReplyItem = ({ from, contents, is_active, navigation }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    backgroundColor: colors.Whiteyello,
+    backgroundColor: colors.grey900,
   },
   flex_col: {
     display: "flex",
@@ -96,14 +96,14 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   subTitle: {
-    color: colors.grey700,
+    color: colors.green300,
     fontSize: 8,
     fontFamily: typography.basic.fontFamily,
     fontWeight: "800",
   },
   Title: {
     fontWeight: "700",
-    color: colors.green700,
+    color: colors.Whiteyello,
     fontSize: 16,
     fontFamily: typography.soyo.fontFamily,
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     lineHeight: 18,
     marginTop: 14,
-    color: colors.grey900,
+    color: colors.Whiteyello,
   },
   from_wrapper: {
     width: 277,
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LetterItem;
+export default ReplyItem;
