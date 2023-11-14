@@ -3,37 +3,73 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import Buttons from "../components/buttons";
 import Chip from "../components/chip";
 import CreateHeader from "../components/createHeader";
+import Input from "../components/input";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
+import { Image } from "react-native";
+const icon = require("../assets/icon/i_check_user.png");
 
 export default function createHotelSelect({ navigation }: any) {
   const sex_chip = ["선택안함", "여성", "남성"];
   const [activeChip, setChip] = React.useState("선택안함");
 
   return (
-    <View style={styles.container}>
+    <>
       <CreateHeader isActiveNumber={3} />
-      <View style={styles.edit_wrapper}>
-        <MonoText style={styles.title}>선택 정보를 입력해주세요</MonoText>
+      <View style={styles.container}>
+        <View style={styles.edit_wrapper}>
+          <MonoText style={styles.title}>선택 정보를 입력해주세요</MonoText>
 
-        <MonoText style={styles.input_title}>성별</MonoText>
-        <View style={styles.chip_wrapper}>
-          {sex_chip?.map((text, index) => (
-            <TouchableOpacity key={index} onPress={() => setChip(text)}>
-              <Chip text={text} active={activeChip} />
-            </TouchableOpacity>
-          ))}
+          <MonoText style={styles.input_title}>성별</MonoText>
+          <View style={styles.chip_wrapper}>
+            {sex_chip?.map((text, index) => (
+              <TouchableOpacity key={index} onPress={() => setChip(text)}>
+                <Chip text={text} active={activeChip} />
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          <MonoText style={styles.input_title}>생년월일</MonoText>
+          <MonoText style={styles.input_label}>
+            생년월일을 형식에 맞게 입력해주세요.
+          </MonoText>
+
+          <Chip text={"선택안함"} active={activeChip} />
+          <View style={styles.input_wrapper}>
+            <Input placeholder="YYYY" width={120} />
+            <View style={{ marginLeft: 8 }}></View>
+            <Input placeholder="MM" width={120} />
+            <View style={{ marginLeft: 8 }}></View>
+            <Input placeholder="DD" width={120} />
+          </View>
+
+          <MonoText style={styles.input_title}>친구코드 입력</MonoText>
+          <MonoText style={styles.input_label}>
+            나를 초대해 준 친구가 있나요? {"\n"}
+            {"\n"}
+            친구 코드를 적으면 나와 친구 모두 창문 열쇠를 1개씩 받을 수 있어요!
+          </MonoText>
+
+          <View style={styles.input_wrapper_2}>
+            <Input
+              width={"90%"}
+              placeholder="친구 코드 7자리를 입력해주세요 (ex. 14B78H1)"
+            />
+            <View style={styles.icon}>
+              <Image style={{ width: 27, height: 27 }} source={icon} />
+            </View>
+          </View>
+        </View>
+        <View style={styles.btn_wrapper}>
+          <Buttons
+            navigation={navigation}
+            url={"hotelagree"}
+            title="다음으로"
+            color="green"
+          />
         </View>
       </View>
-      <View style={styles.btn_wrapper}>
-        <Buttons
-          navigation={navigation}
-          url={"hotelagree"}
-          title="다음으로"
-          color="green"
-        />
-      </View>
-    </View>
+    </>
   );
 }
 
@@ -55,11 +91,15 @@ const styles = StyleSheet.create({
   },
   input_title: {
     marginTop: 40,
-    marginBottom: 16,
+    marginBottom: 14,
     color: colors.Whiteyello,
     fontSize: 16,
   },
-
+  input_label: {
+    fontSize: 11,
+    color: colors.grey600,
+    marginBottom: 20,
+  },
   btn_wrapper: {
     flexDirection: "column",
     alignItems: "center",
@@ -77,5 +117,33 @@ const styles = StyleSheet.create({
   chip_wrapper: {
     display: "flex",
     flexDirection: "row",
+  },
+  input_wrapper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 12,
+    alignItems: "center",
+  },
+
+  input_wrapper_2: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    marginTop: 12,
+    alignItems: "center",
+    paddingRight: 20,
+  },
+
+  icon: {
+    width: 44,
+    height: 44,
+    borderRadius: 6,
+    backgroundColor: colors.green600,
+    marginLeft: 8,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -7,10 +7,11 @@ export default function Input({
   placeholder,
   onChange,
   multiline = 0,
+  width = 0,
 }: any) {
   return (
     <TextInput
-      style={styles.input}
+      style={[styles.input, { width: width ? width : null }]}
       placeholder={placeholder}
       value={value}
       onChangeText={onChange}
