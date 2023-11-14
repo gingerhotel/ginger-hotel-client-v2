@@ -76,8 +76,8 @@ const Navigation = () => {
         />
         <Tab.Screen
           options={{
-            title: "MY",
-            headerShown: false,
+            title: "마이페이지",
+            headerShown: true,
             tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
           }}
           name="MY"
