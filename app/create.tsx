@@ -6,47 +6,47 @@ import CreateHeader from "../components/createHeader";
 
 const Hotel1 = require("../assets/images/Hotel1.svg");
 import { Image } from "react-native";
+import { buttons_text, colors } from "../constants/Colors";
+import { MonoText } from "../components/styledText";
+import CreateHotelColorItem from "../components/createHotelColor";
 
 export default function CreateHotel({ navigation }: any) {
   const [structColor, setStructColor] = useState("#F5C8B8");
   const [wallColor, setWallColor] = useState("#AF2010");
+  const [activeTitle, setTitle] = useState("벽면");
 
-  const structColors = [
-    "#F5C8B8",
-    "#30475E",
-    "#FFB9B9",
-    "#B4CDE6",
-    "#A4688F",
-    "#FFD372",
-  ];
   const wallColors = [
-    "#AF2010",
-    "#FFB9B9",
-    "#FFD372",
-    "#829460",
-    "#0E5E6F",
-    "#005452",
-    "#B4CDE6",
-    "#30475E",
-    "#A4688F",
-    "#393E46",
+    "#CF332C",
+    "#FD883F",
+    "#FDB13F",
+    "#C7DA82",
+    "#63C5A0",
+    "#65BBD0",
+    "#254D81",
+    "#8A61AC",
+    "#FBDFC0",
+    "#3D3D41",
   ];
+
+  const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
 
   return (
     <View style={styles.container}>
       <CreateHeader isActiveNumber={1} />
       <View>
-        <Image
-          source={Hotel1}
-          style={{
-            position: "relative",
-            width: 391,
-            height: 420,
-            marginTop: 20,
-            zIndex: 3,
-          }}
-        />
-        <View style={{ position: "absolute", top: 30, left: 37, zIndex: 1 }}>
+        <View style={styles.img_wrapper}>
+          <Image
+            source={Hotel1}
+            style={{
+              position: "relative",
+              width: 391,
+              height: 420,
+              marginTop: 20,
+              zIndex: 3,
+            }}
+          />
+        </View>
+        <View style={{ position: "absolute", top: 66, left: 48, zIndex: 1 }}>
           <svg
             width="322"
             height="365"
@@ -63,7 +63,7 @@ export default function CreateHotel({ navigation }: any) {
             />
           </svg>
         </View>
-        <View style={{ position: "absolute", top: 30, left: 37, zIndex: 2 }}>
+        <View style={{ position: "absolute", top: 66, left: 48, zIndex: 2 }}>
           <svg
             width="322"
             height="366"
@@ -81,25 +81,53 @@ export default function CreateHotel({ navigation }: any) {
           </svg>
         </View>
       </View>
-      <Button
-        title="뼈대 색변경"
-        onPress={() => {
-          setStructColor("#FFD372");
-        }}
-      />
-      <Button
-        title="벽 색변경"
-        onPress={() => {
-          setWallColor("#15C8B8");
-        }}
-      />
 
-      <Buttons
-        navigation={navigation}
-        url={"hotelname"}
-        title="다음"
-        color="green"
-      />
+      <View style={styles.deco_wrapper}>
+        <View style={styles.title_wrapper}>
+          {titleList?.map((title) => (
+            <TouchableOpacity key={title} onPress={() => setTitle(title)}>
+              <MonoText
+                style={[
+                  styles.title,
+                  title === activeTitle && styles.title_active,
+                ]}
+              >
+                {title}
+              </MonoText>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <View style={styles.color_wrapper}>
+          {(activeTitle === "벽면" || activeTitle === "뼈대") &&
+            wallColors?.map((color, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() =>
+                  activeTitle === "벽면"
+                    ? setStructColor(color)
+                    : setWallColor(color)
+                }
+              >
+                <CreateHotelColorItem
+                  key={index}
+                  color={color}
+                  index={index}
+                  active={activeTitle === "벽면" ? structColor : wallColor}
+                ></CreateHotelColorItem>
+              </TouchableOpacity>
+            ))}
+        </View>
+      </View>
+
+      <View style={styles.btn_wrapper}>
+        <Buttons
+          navigation={navigation}
+          url={"hotelname"}
+          title="다음으로"
+          color="green"
+          width={350}
+        />
+      </View>
     </View>
   );
 }
@@ -111,9 +139,54 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
-  edit_wrapper: {},
+  img_wrapper: {
+    borderWidth: 0.3,
+    borderColor: colors.grey500,
+    zIndex: 3,
+    marginTop: 26,
+    padding: 10,
+    borderRadius: 12,
+  },
   title: {
-    textAlign: "center",
-    fontSize: 20,
+    fontSize: 16,
+    color: buttons_text.gray,
+  },
+  title_active: {
+    color: buttons_text.green,
+    borderBottomColor: buttons_text.green,
+    borderBottomWidth: 1,
+  },
+  btn_wrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    height: 52,
+    position: "absolute",
+    bottom: 30,
+    left: 0,
+    width: "100%",
+    padding: 10,
+  },
+  deco_wrapper: {
+    width: "100%",
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 30,
+  },
+  title_wrapper: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    alignItems: "center",
+  },
+  color_wrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginTop: 20,
   },
 });
