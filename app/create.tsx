@@ -127,6 +127,9 @@ export default function CreateHotel({ navigation }: any) {
           color="green"
           width={350}
         />
+        <MonoText style={styles.hotel_info}>
+          ※호텔 색상은 나중에도 수정할 수 있어요!
+        </MonoText>
       </View>
     </View>
   );
@@ -157,11 +160,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   btn_wrapper: {
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    height: 52,
+    height: 90,
     position: "absolute",
     bottom: 30,
     left: 0,
@@ -188,5 +191,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "space-between",
     marginTop: 20,
+  },
+  hotel_info: {
+    color: colors.grey500,
+    fontSize: 10,
   },
 });
