@@ -6,9 +6,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import mailbox from "./mailbox";
 import Navigation from "./navigation";
 import { StyleSheet, View } from "react-native";
+import { RecoilRoot } from "recoil";
 
 function App(): JSX.Element {
-  return <Navigation />;
+  return (
+    <RecoilRoot>
+      <Navigation />
+    </RecoilRoot>
+  );
 }
 
 
