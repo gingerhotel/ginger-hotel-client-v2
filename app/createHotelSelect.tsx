@@ -75,7 +75,6 @@ export default function createHotelSelect({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    // alignItems: "center",
     backgroundColor: "rgba(30,31,35,1.00)",
     flex: 1,
     justifyContent: "flex-start",
