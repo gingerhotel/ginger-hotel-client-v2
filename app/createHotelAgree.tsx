@@ -3,10 +3,20 @@ import { View, StyleSheet } from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SVG = require("../assets/images/StartHotel.svg");
 
 export default function createHotelAgree({ navigation }: any) {
+  AsyncStorage.getItem(
+    'accessToken', //String 타입
+    (err, result) => {
+    axios.defaults.headers.common[
+      'Authorization'
+    ] = `Bearer ${result}`;
+  });
+  
   return (
     <View style={styles.container}>
       <CreateHeader isActiveNumber={3} />
@@ -20,6 +30,21 @@ export default function createHotelAgree({ navigation }: any) {
           url={"hotels"}
           title="완료"
           color="green"
+          callback={async()=>{
+            const response = await axios.post(
+              'http://127.0.0.1:8080/auth/hotel',
+              {
+                "structColor": "#0E5E6F",
+                "bodyColor": "#AF2010",
+                "nickname": "헤르미온느",
+                "description": "제 호텔에 오신걸 환영합니다.",
+                "gender": "MAN",
+                "birthDate": "1998-06-13",
+                "code": "asadasd"
+              }
+              )
+
+          }}
         />
       </View>
     </View>

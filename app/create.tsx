@@ -15,18 +15,14 @@ export default function CreateHotel({ navigation }: any) {
         <MonoText style={styles.title}>나만의 호텔을 꾸며주세요!</MonoText>
 
         <SvgImg
-          a_width={300}
-          a_height={500}
           url={SVG}
-          width={300}
-          height={400}
         />
 
         <Buttons
           navigation={navigation}
           url={"hotelname"}
           title="다음"
-          color="green"
+          color="red"
         />
       </View>
     </View>
