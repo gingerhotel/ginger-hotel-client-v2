@@ -4,4 +4,4 @@ for git test
 
 branch test
 
-name change
+theme name change
