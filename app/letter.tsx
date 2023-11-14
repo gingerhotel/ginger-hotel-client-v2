@@ -10,8 +10,6 @@ import axios from "axios";
 export default function Letter({ navigation }: any) {
   const [letterText, setLetterText] = useState("");
 
-
-
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
     register("letters");

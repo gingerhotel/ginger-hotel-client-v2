@@ -148,19 +148,25 @@ const Navigation = () => {
             }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelname"
             component={CreateHotelName}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelselect"
             component={createHotelSelect}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelagree"
             component={createHotelAgree}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
             options={{ headerShown: true }}
