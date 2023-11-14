@@ -94,12 +94,12 @@ export default function CreateHotel({ navigation }: any) {
         }}
       />
 
-      {/* <Buttons
+      <Buttons
         navigation={navigation}
         url={"hotelname"}
         title="다음"
         color="green"
-      /> */}
+      />
     </View>
   );
 }
