@@ -39,16 +39,16 @@ export default function CreateHotel({ navigation }: any) {
             source={Hotel1}
             style={{
               position: "relative",
-              width: 391,
+              width: 371,
               height: 420,
               marginTop: 20,
               zIndex: 3,
             }}
           />
         </View>
-        <View style={{ position: "absolute", top: 66, left: 48, zIndex: 1 }}>
+        <View style={{ position: "absolute", top: 69, left: 43, zIndex: 1 }}>
           <svg
-            width="322"
+            width="310"
             height="365"
             viewBox="0 0 322 365"
             fill="none"
@@ -63,9 +63,9 @@ export default function CreateHotel({ navigation }: any) {
             />
           </svg>
         </View>
-        <View style={{ position: "absolute", top: 66, left: 48, zIndex: 2 }}>
+        <View style={{ position: "absolute", top: 69, left: 43, zIndex: 2 }}>
           <svg
-            width="322"
+            width="310"
             height="366"
             viewBox="0 0 322 366"
             fill="none"
@@ -125,7 +125,6 @@ export default function CreateHotel({ navigation }: any) {
           url={"hotelname"}
           title="다음으로"
           color="green"
-          width={350}
         />
         <MonoText style={styles.hotel_info}>
           ※호텔 색상은 나중에도 수정할 수 있어요!
@@ -170,6 +169,8 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   deco_wrapper: {
     width: "100%",

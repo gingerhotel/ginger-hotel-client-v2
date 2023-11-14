@@ -29,7 +29,6 @@ const Buttons = ({
   navigation,
   url,
   callback,
-  is_width,
   width,
 }: Props) => {
   const handlePress = () => {
@@ -47,11 +46,12 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-
       style={cstyles(Common_Colors[color], color, width).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(Common_Colors[color], color, width).text}>{title}</MonoText>
+      <MonoText style={cstyles(Common_Colors[color], color, width).text}>
+        {title}
+      </MonoText>
     </TouchableOpacity>
   );
 };
@@ -59,7 +59,7 @@ const Buttons = ({
 const cstyles = (color_code: string, color: string, width: number) =>
   StyleSheet.create({
     button: {
-      width: width,
+      width: width ? width : "100%",
       display: "flex",
       flex: 1,
       alignItems: "center",
