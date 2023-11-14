@@ -89,13 +89,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   letter: {
-    // width: 300,
     backgroundColor: "#c9c9c9",
     padding: 10,
     textAlign: "center",
   },
   input: {
-    // width: 300,
     backgroundColor: "#c9c9c9",
     padding: 10,
     marginTop: 20,
