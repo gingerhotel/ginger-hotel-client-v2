@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { View, StyleSheet, TouchableOpacity, Button } from "react-native";
 import Buttons from "../components/buttons";
@@ -123,6 +123,7 @@ export default function CreateHotel({ navigation }: any) {
         <Buttons
           navigation={navigation}
           url={"hotelname"}
+          props={{ structColor, bodyColor: wallColor }}
           title="다음으로"
           color="green"
         />

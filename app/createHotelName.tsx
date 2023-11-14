@@ -8,8 +8,13 @@ import { colors } from "../constants/Colors";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 import { Image } from "react-native";
 import Input from "../components/input";
+import { useState } from "react";
 
-export default function CreateHotelName({ navigation }: any) {
+export default function CreateHotelName({ route, navigation }: any) {
+  const hotel_color = route.params;
+  const [nickname, setNickname] = useState("");
+  const [description, setDescription] = useState("");
+
   return (
     <>
       <View style={styles.container}>
@@ -32,10 +37,14 @@ export default function CreateHotelName({ navigation }: any) {
             />
           </View>
 
-          <Input placeholder="내 닉네임" />
+          <Input
+            onChange={(text: string) => setNickname(text)}
+            placeholder="내 닉네임"
+          />
           <View style={{ marginTop: 8 }}></View>
           <Input
             multiline={5}
+            onChange={(text: string) => setDescription(text)}
             placeholder="내 호텔을 소개해주세요(최대 NN글자)"
           />
         </View>
@@ -44,6 +53,7 @@ export default function CreateHotelName({ navigation }: any) {
           <Buttons
             navigation={navigation}
             url={"hotelselect"}
+            props={{ ...hotel_color, nickname, description }}
             title="다음으로"
             color="green"
           />

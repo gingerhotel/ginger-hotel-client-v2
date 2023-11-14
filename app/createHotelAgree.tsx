@@ -9,7 +9,8 @@ import { colors } from "../constants/Colors";
 import { useState } from "react";
 import CheckBox from "../components/chekbox";
 
-export default function createHotelAgree({ navigation }: any) {
+export default function createHotelAgree({ route, navigation }: any) {
+  const props = route.params;
   const [isChecked, setChecked] = useState<any>({
     all: false,
     age: false,
@@ -76,17 +77,10 @@ export default function createHotelAgree({ navigation }: any) {
             color="green"
             callback={async () => {
               const response = await axios.post(
-                "http://127.0.0.1:8080/auth/hotel",
-                {
-                  structColor: "#0E5E6F",
-                  bodyColor: "#AF2010",
-                  nickname: "헤르미온느",
-                  description: "제 호텔에 오신걸 환영합니다.",
-                  gender: "MAN",
-                  birthDate: "1998-06-13",
-                  code: "asadasd",
-                }
+                "http://localhost:8080/auth/hotel",
+                props
               );
+              console.log(response);
             }}
           />
         </View>

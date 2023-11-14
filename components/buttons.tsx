@@ -13,13 +13,22 @@ import { Common_Colors } from "../constants/Colors";
 
 type Props = {
   title: string;
-  color: "red" | "darkgray" | "grey" | "green" | "white" | "disable_red" | "gray_700" | "neongreen";
+  color:
+    | "red"
+    | "darkgray"
+    | "grey"
+    | "green"
+    | "white"
+    | "disable_red"
+    | "gray_700"
+    | "neongreen";
   is_disable?: boolean;
   navigation?: any;
   url?: string;
   callback?: any;
   is_width?: boolean;
   width?: any;
+  props?: any;
 };
 
 const Buttons = ({
@@ -30,11 +39,12 @@ const Buttons = ({
   url,
   callback,
   width,
+  props,
 }: Props) => {
   const handlePress = () => {
     // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
     if (url) {
-      navigation.navigate(url);
+      navigation.navigate(url, props);
     }
 
     // 사용자 정의 콜백 함수 실행

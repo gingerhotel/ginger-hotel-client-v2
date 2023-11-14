@@ -7,11 +7,19 @@ import Input from "../components/input";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { Image } from "react-native";
+import { useState } from "react";
 const icon = require("../assets/icon/i_check_user.png");
 
-export default function createHotelSelect({ navigation }: any) {
+export default function createHotelSelect({ route, navigation }: any) {
+  const props = route.params;
+
+  const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
   const [activeChip, setChip] = React.useState("선택안함");
+  const [code, setCode] = useState("");
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
 
   return (
     <>
@@ -36,11 +44,23 @@ export default function createHotelSelect({ navigation }: any) {
 
           <Chip text={"선택안함"} active={activeChip} />
           <View style={styles.input_wrapper}>
-            <Input placeholder="YYYY" width={120} />
+            <Input
+              placeholder="YYYY"
+              width={120}
+              onChange={(text: string) => setYear(text)}
+            />
             <View style={{ marginLeft: 8 }}></View>
-            <Input placeholder="MM" width={120} />
+            <Input
+              placeholder="MM"
+              width={120}
+              onChange={(text: string) => setMonth(text)}
+            />
             <View style={{ marginLeft: 8 }}></View>
-            <Input placeholder="DD" width={120} />
+            <Input
+              placeholder="DD"
+              width={120}
+              onChange={(text: string) => setDay(text)}
+            />
           </View>
 
           <MonoText style={styles.input_title}>친구코드 입력</MonoText>
@@ -52,6 +72,7 @@ export default function createHotelSelect({ navigation }: any) {
 
           <View style={styles.input_wrapper_2}>
             <Input
+              onChange={(text: string) => setCode(text)}
               width={"90%"}
               placeholder="친구 코드 7자리를 입력해주세요 (ex. 14B78H1)"
             />
@@ -66,6 +87,12 @@ export default function createHotelSelect({ navigation }: any) {
             url={"hotelagree"}
             title="다음으로"
             color="green"
+            props={{
+              ...props,
+              gender: sex_english[activeChip],
+              code,
+              birthDate: `${year}-${month}-${day}`,
+            }}
           />
         </View>
       </View>
