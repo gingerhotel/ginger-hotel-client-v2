@@ -21,25 +21,32 @@ import {
   MailTitleView
 } from "../style/mailBoxStyled";
 import { useNavigation } from "expo-router";
+import { useRecoilState } from "recoil";
+import { letterSwitchState } from "../atom/letterAtom";
 
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
-  const [textColor, setTextColor] = useState("#fff");
-  const [borderColor, setBorderColor] = useState("#34AB96");
-  const [checkNew, setCheckNew] = useState(true);
-  const [checkRe, setCheckRe] = useState(true);
+  const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState)
   const onLetterChange = (type: string) => {
     if (type === '1') {
-      if (!checkRe) {
-        setCheckNew(true)
-        setCheckRe(true)
+      if (!letterCheck.new) {
+        setLetterCheck(
+          {
+            new: true,
+            reply: false
+          }
+        )
         return
       }
     }
     if (type === '2') {
-      if (checkNew) {
-        setCheckRe(false)
-        setCheckNew(false)
+      if (!letterCheck.reply) {
+        setLetterCheck(
+          {
+            new: false,
+            reply: true
+          }
+        )
       }
     }
   }
@@ -56,13 +63,13 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
       <MailChoseContainer>
         <MailInfoView>
           <TouchableOpacity onPress={() => onLetterChange('1')}>
-            <MailChoseView b_color={checkNew ? "#34AB96" : "#000"} >
-              <MailChoseText f_color={checkNew ? "#fff" : "#6E6E73"}>새로운 편지 2</MailChoseText>
+            <MailChoseView b_color={letterCheck.new ? "#34AB96" : "#000"} >
+              <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 2</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onLetterChange('2')}>
-            <MailChoseView b_color={checkRe ? "#000" : "#34AB96"}>
-              <MailChoseText f_color={checkRe ? "#6E6E73" : "#fff"}>답장 2</MailChoseText>
+            <MailChoseView b_color={!letterCheck.reply ? "#000" : "#34AB96"}>
+              <MailChoseText f_color={!letterCheck.reply ? "#6E6E73" : "#fff"}>답장 2</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
         </MailInfoView>
