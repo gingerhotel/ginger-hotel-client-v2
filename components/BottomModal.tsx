@@ -7,6 +7,7 @@ import CenterModal from "./centerModal";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const icon = require("../assets/icon/i_history_edu.svg");
+const iconGlassesQuestionMark = require("../assets/icon/i_history_edu_big.svg");
 
 const BottomModal = ({
   height,
@@ -70,13 +71,26 @@ const BottomModal = ({
       </View>
 
       <CenterModal
-        height={180}
+        height={350}
+        visible={centerModalVisible}
+        onClose={closeCenterModal}
+        title="엿보기를 요청하시겠어요?"
+        desc="요청이 수락되면 발신인의 정체를 알 수 있지만
+        상대방이 요청을 거절하더라도 엿보기는 소모돼요"
+        sub="남은 엿보기 : 3개"
+        btn_text="요청하기"
+        img={iconGlassesQuestionMark}
+      />
+
+      {/* <CenterModal
+        height={200}
         visible={centerModalVisible}
         onClose={closeCenterModal}
         title="엿보기가 부족해요!"
-        desc="엿보기 충전이 필요해요"
-        btn_text="충전하러 가기"
-      />
+        desc="상대방의 정체를 알기 위해선
+        엿보기 충전이 필요해요"
+        btn_text="요청하기"
+      /> */}
     </BottomSheet>
   );
 };

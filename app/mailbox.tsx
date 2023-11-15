@@ -7,7 +7,6 @@ import MailHeader from "../components/mailHeader";
 export default function MailBox({ navigation }: any) {
   return (
     <View style={styles.container}>
-
       <MailHeader marginTop={50} navigation={navigation} />
       <ScrollView>
         <View style={styles.mailbox_items}>
