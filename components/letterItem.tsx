@@ -31,15 +31,22 @@ type Props = {
 const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
-  const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
+  const modalTextList = ["답장하기", "엿보기", "편지 삭제", "사용자 차단"];
 
   const toggleModal = () => {
+    console.log("Chekckkkk");
     setBottomSheetVisible(!bottomSheetVisible);
   };
 
   const closeModal = () => {
     setBottomSheetVisible(false);
   };
+
+  <BottomModal
+    height={150}
+    visible={bottomSheetVisible}
+    onClose={closeModal}
+  />;
 
   return (
     <LetterOuterContainer>
@@ -58,12 +65,20 @@ const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
             </TouchableOpacity>
           </LetterInnerTitieView>
           <LetterInnerTextBox>
-            메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
-            23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
-            편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+            메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘
+            챙기면서 23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용
+            테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+            편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
           </LetterInnerTextBox>
         </LetterInnerInfoView>
       </LetterInnerContainer>
+      <BottomModal
+        modalTextList={modalTextList}
+        height={200}
+        visible={bottomSheetVisible}
+        onClose={closeModal}
+        navigation={navigation}
+      />
     </LetterOuterContainer>
   );
 };

@@ -9,7 +9,6 @@ export const typography = {
   },
   display1_basic: {
     fontSize: 28,
-    fontWeight: 700,
     fontFamily: "SOYOMaple-Regular",
   },
   display2_unique: {

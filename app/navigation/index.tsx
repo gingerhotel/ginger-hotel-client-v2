@@ -121,7 +121,11 @@ const Navigation = () => {
             component={Push}
           />
           <Stack.Screen name="modal" component={ModalScreen} />
-          <Stack.Screen name="mailbox" component={MailBox} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="mailbox"
+            component={MailBox}
+          />
           <Stack.Screen
             name="letter"
             component={Letter}
@@ -190,7 +194,6 @@ const Navigation = () => {
             }}
             name="feekCharge"
             component={FeekCharge}
-            
           />
         </Stack.Navigator>
       </NavigationContainer>

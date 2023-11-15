@@ -1,32 +1,30 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Modal, Pressable, Text } from "react-native";
+import { View, StyleSheet, Modal, Pressable, Text, Image } from "react-native";
 import { colors } from "../constants/Colors";
+import { typography } from "../constants/Typo";
 import { MonoText } from "./styledText";
-import { SvgImg } from "./svgImg";
-
 type Props = {
   onClose?: any;
   visible?: boolean;
   height?: number | any;
-  title: string;
+  name: string;
   desc: string;
-  btn_text: string;
-  img?: string;
-  sub?: string;
+  img: string | any;
+  navigation?: any;
 };
 
-const CenterModal = ({
+const GingerModal = ({
   height,
   visible,
   onClose,
-  title,
-  desc,
-  btn_text,
+  name,
   img,
-  sub,
+  desc,
+  navigation,
 }: Props) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
+    navigation.navigate("mailbox");
   };
   return (
     <Modal
@@ -39,24 +37,34 @@ const CenterModal = ({
     >
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
-          {img && <SvgImg url={img} width={120} height={120} />}
+          <MonoText style={styles(height).modal_title}>
+            오늘의 진저 투숙객
+          </MonoText>
+          <Text style={[styles(height).modal_desc, typography.display1_basic]}>
+            {name}
+          </Text>
 
-          <MonoText style={styles(height).modal_title}>{title}</MonoText>
-          <MonoText style={styles(height).modal_desc}>{desc}</MonoText>
-          {sub && <MonoText style={styles(height).modal_sub}>{sub}</MonoText>}
+          {img && <Image source={img} style={{ width: 250, height: 270 }} />}
+
+          <View
+            style={{
+              height: 1,
+              width: "100%",
+              backgroundColor: colors.grey700,
+            }}
+          ></View>
+          <MonoText style={{ fontSize: 12, color: colors.grey500 }}>
+            {desc}
+          </MonoText>
 
           <View style={styles(height).button_wrapper}>
-            <Pressable
-              style={[styles(height).button, styles(height).buttonClose]}
-              onPress={() => setModalVisible()}
-            >
-              <MonoText style={styles(height).textStyle}>취소</MonoText>
-            </Pressable>
             <Pressable
               style={[styles(height).button, styles(height).buttonOpen]}
               onPress={() => setModalVisible()}
             >
-              <MonoText style={styles(height).textStyle}>{btn_text}</MonoText>
+              <MonoText style={styles(height).textStyle}>
+                오늘의 편지 보러가기
+              </MonoText>
             </Pressable>
           </View>
         </View>
@@ -94,23 +102,17 @@ const styles = (height: number) =>
       shadowRadius: 4,
       elevation: 5,
     },
-
     button: {
       borderRadius: 10,
       padding: 13,
       paddingLeft: 10,
       paddingRight: 10,
       elevation: 2,
-      width: "50%",
+      width: "100%",
     },
     buttonOpen: {
       backgroundColor: colors.green600,
       color: colors.Whiteyello,
-    },
-    buttonClose: {
-      marginRight: 10,
-      backgroundColor: colors.grey700,
-      color: colors.grey400,
     },
     textStyle: {
       color: "white",
@@ -119,7 +121,7 @@ const styles = (height: number) =>
       flex: 1,
     },
     modal_title: {
-      marginBottom: 15,
+      marginBottom: 6,
       fontSize: 16,
       textAlign: "center",
       color: colors.Whiteyello,
@@ -127,14 +129,10 @@ const styles = (height: number) =>
     modal_desc: {
       fontSize: 12,
       marginBottom: 20,
-      color: colors.grey500,
+      color: colors.Whiteyello,
       textAlign: "center",
       lineHeight: 21,
-    },
-    modal_sub: {
-      fontSize: 14,
-      marginBottom: 20,
-      color: colors.Whiteyello,
+      fontWeight: "700",
     },
     button_wrapper: {
       width: "100%",
@@ -144,4 +142,4 @@ const styles = (height: number) =>
     },
   });
 
-export default CenterModal;
+export default GingerModal;
