@@ -1,9 +1,20 @@
 import { useState } from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Platform,
+  Image,
+} from "react-native";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
+import { WithLocalSvg } from "react-native-svg";
 
-export default function TabThreeScreen() {
+const keySvg = require("../../assets/icon/i_key.svg");
+const glassesSvg = require("../../assets/icon/i_glasses.svg");
+
+export default function TabThreeScreen({ navigation }: any) {
   const [userInfo, setUserInfo] = useState({
     name: "민지",
     userCode: "25163",
@@ -115,11 +126,16 @@ export default function TabThreeScreen() {
                 {userInfo.keyCount}개
               </Text>
             </View>
-            <FontAwesome name={"key"} color={colors.Whiteyello} size={50} />
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={keySvg} />
+            ) : (
+              <Image source={keySvg} style={styles.icon_style} />
+            )}
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
+            onPress={() => navigation.navigate("feekCharge")}
           >
             <View>
               <Text
@@ -142,7 +158,11 @@ export default function TabThreeScreen() {
                 {userInfo.peekCount}개
               </Text>
             </View>
-            <FontAwesome name={"search"} color={colors.Whiteyello} size={30} />
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={glassesSvg} />
+            ) : (
+              <Image source={glassesSvg} style={styles.icon_style} />
+            )}
           </TouchableOpacity>
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
@@ -303,6 +323,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+  },
+  icon_style: {
+    width: 70,
   },
 
   btn_group: {
