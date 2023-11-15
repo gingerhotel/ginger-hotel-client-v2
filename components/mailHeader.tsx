@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   Pressable,
@@ -6,20 +6,70 @@ import {
   View,
   Image,
   SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import { MonoText } from "./styledText";
+import { SvgImg } from "./svgImg";
+import {
+  MailBoxView,
+  MailChoseContainer,
+  MailChoseText,
+  MailChoseView,
+  MailInfoView,
+  MailNumberText,
+  MailTitleText,
+  MailTitleView
+} from "../style/mailBoxStyled";
+import { useNavigation } from "expo-router";
 
-const letter = require("../assets/images/mailbox.png");
-
-const MailHeader = ({ marginTop, isTitle = true }: any) => {
+const arrow = require("../assets/icon/i_left_arrow.svg")
+const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
+  const [textColor, setTextColor] = useState("#fff");
+  const [borderColor, setBorderColor] = useState("#34AB96");
+  const [checkNew, setCheckNew] = useState(true);
+  const [checkRe, setCheckRe] = useState(true);
+  const onLetterChange = (type: string) => {
+    if (type === '1') {
+      if (!checkRe) {
+        setCheckNew(true)
+        setCheckRe(true)
+        return
+      }
+    }
+    if (type === '2') {
+      if (checkNew) {
+        setCheckRe(false)
+        setCheckNew(false)
+      }
+    }
+  }
   return (
-    <SafeAreaView style={{ backgroundColor: "white", width: "100%" }}>
-      <View style={[cstyles(marginTop).mailbox_header, styles.mailbox_header]}>
-        <Image source={letter} style={styles.letter_img} />
-        {isTitle && (
-          <MonoText style={styles.title}>민지의 호텔 편지함</MonoText>
-        )}
-      </View>
+    <SafeAreaView style={{ width: "100%" }}>
+      <MailBoxView>
+        <SvgImg url={arrow} onPress={() => navigation.goBack()}></SvgImg>
+        <MailTitleView>
+          <MailTitleText>오늘의 편지함</MailTitleText>
+          <MailNumberText>64</MailNumberText>
+        </MailTitleView>
+        <View />
+      </MailBoxView>
+      <MailChoseContainer>
+        <MailInfoView>
+          <TouchableOpacity onPress={() => onLetterChange('1')}>
+            <MailChoseView b_color={checkNew ? "#34AB96" : "#000"} >
+              <MailChoseText f_color={checkNew ? "#fff" : "#6E6E73"}>새로운 편지 2</MailChoseText>
+            </MailChoseView>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => onLetterChange('2')}>
+            <MailChoseView b_color={checkRe ? "#000" : "#34AB96"}>
+              <MailChoseText f_color={checkRe ? "#6E6E73" : "#fff"}>답장 2</MailChoseText>
+            </MailChoseView>
+          </TouchableOpacity>
+        </MailInfoView>
+        <MailChoseView b_color="#000">
+          <MailChoseText f_color="#fff">2023.12.04</MailChoseText>
+        </MailChoseView>
+      </MailChoseContainer>
     </SafeAreaView>
   );
 };
@@ -34,7 +84,6 @@ const styles = StyleSheet.create({
   mailbox_header: {
     width: "100%",
     height: 145,
-    backgroundColor: "#D9D9D9",
     borderTopEndRadius: 25,
     borderTopLeftRadius: 25,
     display: "flex",

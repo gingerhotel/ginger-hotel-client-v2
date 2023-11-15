@@ -48,7 +48,8 @@
     "react-navigation": "^5.0.0",
     "react-navigation-helpers": "^2.3.1",
     "styled-components": "^6.1.1",
-    "typeface-nanum-square-neo": "^0.0.6"
+    "typeface-nanum-square-neo": "^0.0.6",
+    "recoil": "^0.7.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
