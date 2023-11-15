@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { BottomSheet } from "react-native-btr";
+import { Image } from "react-native-svg";
+import { colors } from "../constants/Colors";
 import CenterModal from "./centerModal";
 import { MonoText } from "./styledText";
+import { SvgImg } from "./svgImg";
+const icon = require("../assets/icon/i_history_edu.svg");
 
 const BottomModal = ({
   height,
@@ -43,7 +47,24 @@ const BottomModal = ({
       <View style={styles(height).bottomNavigationView}>
         {modalTextList.map((text: string) => (
           <TouchableOpacity key={text} onPress={() => onClickModal(text)}>
-            <MonoText>{text}</MonoText>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <SvgImg url={icon} />
+              <MonoText
+                style={{
+                  color: colors.Whiteyello,
+                  fontSize: 16,
+                  marginLeft: 5,
+                }}
+              >
+                {text}
+              </MonoText>
+            </View>
           </TouchableOpacity>
         ))}
       </View>
@@ -63,7 +84,7 @@ const BottomModal = ({
 const styles = (height: number) =>
   StyleSheet.create({
     bottomNavigationView: {
-      backgroundColor: "#fff",
+      backgroundColor: colors.grey800,
       width: "100%",
       height,
       borderTopLeftRadius: 20,
@@ -71,9 +92,9 @@ const styles = (height: number) =>
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      paddingTop: 20,
-      paddingBottom: 20,
-      paddingLeft: 24,
+      paddingTop: 40,
+      paddingBottom: 15,
+      paddingLeft: 23,
       alignItems: "flex-start",
     },
   });
