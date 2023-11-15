@@ -57,7 +57,7 @@ export default function Letter({ navigation }: any) {
           title="이미지 첨부"
           color="darkgray"
         />
-        &nbsp;&nbsp;&nbsp;
+        <MonoText>{'   '}</MonoText>
         <Buttons
           navigation={navigation}
           url={"completed"}
