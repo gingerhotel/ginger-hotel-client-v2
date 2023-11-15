@@ -8,11 +8,22 @@ import {
 } from "react-native";
 import BottomModal from "./bottomModal";
 import { MonoText } from "./styledText";
+import {
+  LetterInnerContainer,
+  LetterInnerInfoView,
+  LetterInnerSendText,
+  LetterInnerTextBox,
+  LetterInnerTitieTextView,
+  LetterInnerTitieView,
+  LetterInnerUserText,
+  LetterOuterContainer
+} from "../style/letterItemStyled";
+import { SvgImg } from "./svgImg";
 const iconMore = require("../assets/icon/i_more_vert.png");
+const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
 type Props = {
-  from: string;
-  contents: string;
+  from: string; contents: string;
   is_active: boolean;
   navigation: any;
 };
@@ -31,36 +42,29 @@ const LetterItem = ({ from, contents, is_active, navigation }: Props) => {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <MonoText style={styles.from_text}>
-        <View style={styles.from_wrapper}>
-          <MonoText>
-            <MonoText style={styles.bold}>From.</MonoText> 로온로온
-          </MonoText>
-
-          <TouchableOpacity onPress={toggleModal}>
-            <Image source={iconMore} style={styles.icon} />
-          </TouchableOpacity>
-        </View>
-        {"\n"}
-        {"\n"}
-        <MonoText style={styles.contents}>
-          작년 겨울에 진저호텔 덕분에 따뜻한 겨울을 보낸 유저입니다! 이번
-          sef2023에 진저호텔 팀이 연사로 참여한다고 해서 너무 궁금했어요.
-          진저호텔 덕분에 저도 IT 서비스 개발에 관심이 생겨서 동아리도 가입하고
-          개발을 열심히 배우고 있어요. 저에게 새로움 꿈을 만들어 준 진저호텔에게
-          감사해요! :)
-        </MonoText>
-      </MonoText>
-
-      <BottomModal
-        height={150}
-        visible={bottomSheetVisible}
-        onClose={closeModal}
-        modalTextList={modalTextList}
-        navigation={navigation}
-      />
-    </View>
+    <LetterOuterContainer>
+      <LetterInnerContainer>
+        <LetterInnerInfoView>
+          <LetterInnerTitieView>
+            <TouchableOpacity onPress={toggleModal}>
+              <SvgImg url={iconGlassesQuestionMark} />
+            </TouchableOpacity>
+            <LetterInnerTitieTextView>
+              <LetterInnerSendText>보내는 이</LetterInnerSendText>
+              <LetterInnerUserText>로운로운</LetterInnerUserText>
+            </LetterInnerTitieTextView>
+            <TouchableOpacity onPress={toggleModal}>
+              <Image source={iconMore} style={styles.icon} />
+            </TouchableOpacity>
+          </LetterInnerTitieView>
+          <LetterInnerTextBox>
+            메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
+            23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
+            편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+          </LetterInnerTextBox>
+        </LetterInnerInfoView>
+      </LetterInnerContainer>
+    </LetterOuterContainer>
   );
 };
 
