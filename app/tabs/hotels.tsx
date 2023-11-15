@@ -10,35 +10,38 @@ import {
 import { Text, View } from "../../components/themed";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
-import React from "react";
+import React, { useState } from "react";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
 import { WithLocalSvg } from "react-native-svg";
 import ProgressBar from "../../components/progressBar";
 import { ProgressBarView } from "../../style/progressBarStyled";
+import GingerModal from "../../components/gingerModal";
 const SVG = require("../../assets/images/StartHotel.svg");
 const IC_SVG = require("../../assets/icon/ic_ginger.svg");
+const ginger = require("../../assets/gingerman/g_bellboy.png");
 
 export default function Hotel({ navigation }: any) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <ScrollView>
       <Header navigation={navigation} />
       <View style={styles.container}>
         <ProgressBarView>
-          <MonoText style={styles.hotel_desc}>
-            도착한 편지
-          </MonoText>
+          <MonoText style={styles.hotel_desc}>도착한 편지</MonoText>
           <ProgressBar />
         </ProgressBarView>
         <MonoText style={styles.hotel_name}>진저님의 진저호텔</MonoText>
         <MonoText style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </MonoText>
-        <SvgImg
-          onPress={() => navigation.navigate("hotelcreate")}
-          url={SVG}
-        />
+        <SvgImg onPress={() => navigation.navigate("hotelcreate")} url={SVG} />
 
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
@@ -50,7 +53,7 @@ export default function Hotel({ navigation }: any) {
               width={288}
             />
             <TouchableOpacity>
-              <SvgImg url={IC_SVG}/>
+              <SvgImg onPress={() => setModalVisible(true)} url={IC_SVG} />
             </TouchableOpacity>
           </View>
           <View style={styles.hotel_today}>
@@ -87,6 +90,16 @@ export default function Hotel({ navigation }: any) {
           </View>
         </View>
       </View>
+
+      <GingerModal
+        height={530}
+        visible={modalVisible}
+        onClose={closeModal}
+        name="벨보이 진저맨"
+        desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
+        img={ginger}
+        navigation={navigation}
+      />
     </ScrollView>
   );
 }
