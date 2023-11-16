@@ -6,17 +6,8 @@ import MailHeader from "../components/mailHeader";
 
 export default function MailBox({ navigation }: any) {
   return (
-    <>
-      <MailHeader marginTop={50} />
-      <View style={styles.btn_wrapper}>
-        <Buttons
-          navigation={navigation}
-          url={"gingercard"}
-          title="진저맨 카드"
-          color="green"
-        />
-      </View>
-
+    <View style={styles.container}>
+      <MailHeader marginTop={50} navigation={navigation} />
       <ScrollView>
         <View style={styles.mailbox_items}>
           <LetterItem
@@ -51,7 +42,7 @@ export default function MailBox({ navigation }: any) {
           />
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 }
 
@@ -61,16 +52,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: "100%",
-    overflow: "hidden",
-    backgroundColor: "white",
+    backgroundColor: "#000",
   },
   mailbox_items: {
     padding: 15,
     display: "flex",
     alignItems: "center",
     flexGrow: 1,
-    backgroundColor: "white",
     height: "100%",
+    gap: 20,
   },
   title: {
     fontSize: 25,
@@ -84,6 +74,5 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     width: "100%",
-    backgroundColor: "white",
   },
 });

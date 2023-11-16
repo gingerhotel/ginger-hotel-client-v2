@@ -26,6 +26,7 @@ import { colors } from "../../constants/Colors";
 import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
+import FeekCharge from "../feekCharge";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -34,7 +35,13 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <FontAwesome
+      size={28}
+      style={{ marginBottom: -3, color: "#FF8E6A" }}
+      {...props}
+    />
+  );
 }
 
 const Navigation = () => {
@@ -51,6 +58,12 @@ const Navigation = () => {
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarInactiveTintColor: "gray",
+          tabBarStyle: {
+            backgroundColor: "#000",
+            borderTopWidth: 0,
+            marginBottom: 0,
+          },
+          tabBarActiveTintColor: "#fff",
         })}
         initialRouteName="hotels"
       >
@@ -76,8 +89,8 @@ const Navigation = () => {
         />
         <Tab.Screen
           options={{
-            title: "MY",
-            headerShown: false,
+            title: "마이페이지",
+            headerShown: true,
             tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
           }}
           name="MY"
@@ -108,9 +121,20 @@ const Navigation = () => {
             component={Push}
           />
           <Stack.Screen name="modal" component={ModalScreen} />
-          <Stack.Screen name="mailbox" component={MailBox} />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name="mailbox"
+            component={MailBox}
+          />
           <Stack.Screen
             name="letter"
+            component={Letter}
+            options={{
+              header: () => <Header title="편지보내기" />,
+            }}
+          />
+          <Stack.Screen
+            name="reply"
             component={Letter}
             options={{
               header: () => <Header title="답장보내기" />,
@@ -139,24 +163,37 @@ const Navigation = () => {
             }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelname"
             component={CreateHotelName}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelselect"
             component={createHotelSelect}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
             name="hotelagree"
             component={createHotelAgree}
+            options={{
+              header: () => <Header title="내 호텔 만들기" />,
+            }}
           />
           <Stack.Screen
-            options={{ headerShown: false }}
+            options={{ headerShown: true }}
             name="login"
             component={Login}
+          />
+          <Stack.Screen
+            options={{
+              header: () => <Header title="엿보기 충전하기" />,
+            }}
+            name="feekCharge"
+            component={FeekCharge}
           />
         </Stack.Navigator>
       </NavigationContainer>

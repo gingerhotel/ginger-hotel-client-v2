@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "./navigation";
 import { useFonts } from "expo-font";
+import { RecoilRoot } from "recoil";
 
 function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
@@ -11,7 +12,11 @@ function App(): JSX.Element {
     return <></>;
   }
 
-  return <Navigation />;
+  return (
+    <RecoilRoot>
+      <Navigation />
+    </RecoilRoot>
+  );
 }
 
 export default App;

@@ -18,11 +18,18 @@ export default {
   },
 };
 
-export const buttons_color = {
-  green: "#2f9c89",
-  darkgray: "#4A4A4E",
-  gray: "#C6C6C7",
+  /* Todo : Need to refactor */
+export const Common_Colors = {
   neongreen: "#A2D8CF",
+  red: "#AF2010",
+  green: "#2F9C89",
+  white: "#FFFFFF",
+  black: "#000000",
+  beige: "#FCF4E9",
+  grey: "#D9D9D9",
+  disable_red: "#CE9183",
+  gray_700: "#4A4A4E",
+  darkgray: "#C6C6C7",
 };
 
 export const buttons_text = {
@@ -33,6 +40,7 @@ export const buttons_text = {
 };
 
 
+  /* Todo : Need to refactor */
 export const colors = {
   Whiteyello: "#FFFDF0",
   grey100: "#f6f6f6",

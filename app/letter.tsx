@@ -1,15 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { StyleSheet, View, TextInput } from "react-native";
 import Buttons from "../components/buttons";
 import LetterInput from "../components/letterInput";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
+import axios from "axios";
 
 export default function Letter({ navigation }: any) {
   const [letterText, setLetterText] = useState("");
 
-  const handleInputChange = (text: string) => {
-    setLetterText(text);
+  const { register, handleSubmit, setValue } = useForm();
+  useEffect(() => {
+    register("letters");
+    register("nickname");
+  }, [register]);
+
+  const writeLetter = async (data:any) => {
+    const response = await axios.post(
+      'http://127.0.0.1:8080/letters/hotel/1',
+      {
+        senderNickname: data.letters,
+        content: data.nickname,
+      }
+    );
   };
 
   return (
@@ -19,14 +33,21 @@ export default function Letter({ navigation }: any) {
           따뜻한 편지를 보내 준 친구에게 마음을 전해요{" "}
         </MonoText>
 
-        <LetterInput value={letterText} onChange={handleInputChange} />
+        <TextInput
+          style={styles.letter}
+          multiline={true}
+          numberOfLines={20}
+          placeholder="전하고 싶은 말을 적어주세요!"
+          onChangeText={(text) => setValue("letters", text)}
+        />
         <View style={styles.nickname_input}>
           <MonoText style={styles.input_text}>받는 이</MonoText>
           <TextInput
-            blurOnSubmit={true}
-            style={styles.input}
-            placeholder="닉네임을 입력하세요 (10자 이하)"
-          />
+          blurOnSubmit={true}
+          style={styles.input}
+          placeholder="닉네임을 입력하세요 (10자 이하)"
+          onChangeText={(text) => setValue("nickname", text)}
+         />
         </View>
       </View>
       <View style={styles.footer}>
@@ -36,13 +57,23 @@ export default function Letter({ navigation }: any) {
           title="이미지 첨부"
           color="darkgray"
         />
-        &nbsp;&nbsp;&nbsp;
+        <MonoText>{'   '}</MonoText>
         <Buttons
           navigation={navigation}
           url={"completed"}
           title="보내기"
           is_width={true}
           color="green"
+          callback={handleSubmit(writeLetter)}
+          // callback={async () => {
+          //   const response = await axios.post(
+          //     'http://127.0.0.1:8080//letters/hotel/1',
+          //     {
+          //       senderNickname: "민수쓰",
+          //       content: "콜링아이",
+          //     }
+          //     );
+          // }}
         />
       </View>
     </View>
@@ -106,5 +137,20 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     border: "none",
     marginTop: -3,
+  },
+  letter: {
+    width: 300,
+    backgroundColor: colors.grey900,
+    paddingTop: 22,
+    paddingBottom: 22,
+    paddingLeft: 18,
+    paddingRight: 18,
+    textAlign: "left",
+    border: "4px solid #719898",
+    borderRadius: 12,
+    color: colors.grey500,
+    outlineStyle: "none",
+    fontFamily: "NanumSquareNeo-Variable",
+    lineHeight: 18,
   },
 });
