@@ -24,12 +24,7 @@ export function SvgImg(props: Props) {
         </TouchableOpacity>
       ) : (
         <TouchableOpacity onPress={props.onPress}>
-          <Image
-            style={props.style}
-            source={props.url}
-            width={props.width}
-            height={props.height}
-          />
+          <Image style={props.style} source={props.url} />
         </TouchableOpacity>
       )}
     </>

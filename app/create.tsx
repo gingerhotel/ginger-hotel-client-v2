@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Button,
   ScrollView,
+  Platform,
 } from "react-native";
-import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 
 const Hotel1 = require("../assets/images/Hotel1.svg");
-import { Image } from "react-native";
 import { buttons_text, colors } from "../constants/Colors";
 import { MonoText } from "../components/styledText";
 import CreateHotelColorItem from "../components/createHotelColor";
 
 import Svg, { Path } from "react-native-svg";
 import { SvgImg } from "../components/svgImg";
+import Buttons from "../components/buttons";
 
 export default function CreateHotel({ navigation }: any) {
   const [structColor, setStructColor] = useState("#F5C8B8");
@@ -39,6 +38,9 @@ export default function CreateHotel({ navigation }: any) {
 
   const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
 
+  const web = { top: 60, left: 53 };
+  const app = { top: 85, left: 10 };
+
   return (
     <View style={styles.container}>
       <CreateHeader isActiveNumber={1} />
@@ -51,14 +53,33 @@ export default function CreateHotel({ navigation }: any) {
               width={350}
               height={420}
               style={{
+                width: 400,
                 position: "relative",
                 marginTop: 20,
                 zIndex: 3,
               }}
             />
           </View>
-          <View style={{ position: "absolute", top: 75, left: 48, zIndex: 1 }}>
-            <Svg width="290" height="350" viewBox="0 0 322 365" fill="none">
+          <View
+            style={[
+              { position: "absolute", zIndex: 1 },
+              Platform.OS === "ios" || Platform.OS === "android" ? app : web,
+            ]}
+          >
+            <Svg
+              width={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? "370"
+                  : "100%"
+              }
+              height={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? "330"
+                  : "375"
+              }
+              viewBox="0 0 322 365"
+              fill="none"
+            >
               <Path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -67,8 +88,26 @@ export default function CreateHotel({ navigation }: any) {
               />
             </Svg>
           </View>
-          <View style={{ position: "absolute", top: 75, left: 48, zIndex: 2 }}>
-            <Svg width="290" height="350" viewBox="0 0 322 367" fill="none">
+          <View
+            style={[
+              { position: "absolute", zIndex: 2 },
+              Platform.OS === "ios" || Platform.OS === "android" ? app : web,
+            ]}
+          >
+            <Svg
+              width={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? "370"
+                  : "100%"
+              }
+              height={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? "330"
+                  : "375"
+              }
+              viewBox="0 0 322 367"
+              fill="none"
+            >
               <Path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -132,18 +171,18 @@ export default function CreateHotel({ navigation }: any) {
           </View>
         </View>
 
-        {/* <View style={styles.btn_wrapper}>
-        <Buttons
-          navigation={navigation}
-          url={"hotelname"}
-          props={{ structColor, bodyColor: wallColor }}
-          title="다음으로"
-          color="green"
-        />
-        <MonoText style={styles.hotel_info}>
-          ※호텔 색상은 나중에도 수정할 수 있어요!
-        </MonoText>
-      </View> */}
+        <View style={styles.btn_wrapper}>
+          <Buttons
+            navigation={navigation}
+            url={"hotelname"}
+            props={{ structColor, bodyColor: wallColor }}
+            title="다음으로"
+            color="green"
+          />
+          <MonoText style={styles.hotel_info}>
+            ※호텔 색상은 나중에도 수정할 수 있어요!
+          </MonoText>
+        </View>
       </ScrollView>
     </View>
   );
@@ -164,7 +203,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 12,
     marginLeft: 5,
-    width: 360,
+    width: "98%",
   },
   title: {
     fontSize: 16,
@@ -181,13 +220,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     height: 90,
-    position: "absolute",
-    bottom: 30,
-    left: 0,
     width: "100%",
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 20,
   },
   deco_wrapper: {
     width: "100%",
