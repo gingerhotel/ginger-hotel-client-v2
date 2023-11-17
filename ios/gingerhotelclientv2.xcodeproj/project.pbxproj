@@ -344,6 +344,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = gingerhotelclientv2/gingerhotelclientv2.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 488V38ADWK;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -380,6 +381,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = gingerhotelclientv2/gingerhotelclientv2.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 488V38ADWK;
 				INFOPLIST_FILE = gingerhotelclientv2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
