@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
   },
   letter: {
     width: 300,
+    height: 400,
     backgroundColor: colors.grey900,
     paddingTop: 22,
     paddingBottom: 22,

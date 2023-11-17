@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import Buttons from "../components/buttons";
 import Chip from "../components/chip";
 import CreateHeader from "../components/createHeader";
@@ -24,7 +24,8 @@ export default function createHotelSelect({ route, navigation }: any) {
   return (
     <>
       <CreateHeader isActiveNumber={3} />
-      <View style={styles.container}>
+
+      <ScrollView style={styles.container}>
         <View style={styles.edit_wrapper}>
           <MonoText style={styles.title}>선택 정보를 입력해주세요</MonoText>
 
@@ -95,7 +96,7 @@ export default function createHotelSelect({ route, navigation }: any) {
             }}
           />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
@@ -104,7 +105,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgba(30,31,35,1.00)",
     flex: 1,
-    justifyContent: "flex-start",
     paddingLeft: 20,
   },
   edit_wrapper: {
@@ -132,9 +132,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     height: 70,
-    position: "absolute",
-    bottom: 30,
-    left: 0,
     width: "100%",
     padding: 10,
     paddingLeft: 20,
@@ -161,7 +158,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingRight: 20,
   },
-
   icon: {
     width: 44,
     height: 44,

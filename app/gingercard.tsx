@@ -28,7 +28,7 @@ export default function GingerCard({ navigation }: any) {
             크리스마스에 진저호텔이라... {"\n"}탁월한 선택!
           </MonoText>
           <View style={styles.mailbox_items}>
-            <SvgImg a_width={150} url={gingerman} width={150} />
+            <SvgImg url={gingerman} width={150} />
           </View>
         </View>
       </ScrollView>

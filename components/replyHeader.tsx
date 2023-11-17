@@ -29,17 +29,22 @@ const ReplyHeader = ({ marginTop, isTitle = true, navigation }: any) => {
         // navigation.goBack()
     }
     return (
-        <SafeAreaView style={{ width: "100%" }}>
-            <MailBoxView>
-                <SvgImg url={arrow} onPress={() => replyGoBackHandler()}></SvgImg>
-                <MailTitleView>
-                    <MailTitleText>답장 모아보기</MailTitleText>
-                </MailTitleView>
-                <TouchableOpacity >
-                    <SvgImg url={iconGlassesQuestionMark} />
-                </TouchableOpacity>
-            </MailBoxView>
-        </SafeAreaView>
+      <SafeAreaView style={{ width: "100%" }}>
+        <MailBoxView>
+          <SvgImg
+            width={30}
+            height={30}
+            url={arrow}
+            onPress={() => replyGoBackHandler()}
+          ></SvgImg>
+          <MailTitleView>
+            <MailTitleText>답장 모아보기</MailTitleText>
+          </MailTitleView>
+          <TouchableOpacity>
+            <SvgImg width={30} height={30} url={iconGlassesQuestionMark} />
+          </TouchableOpacity>
+        </MailBoxView>
+      </SafeAreaView>
     );
 };
 
