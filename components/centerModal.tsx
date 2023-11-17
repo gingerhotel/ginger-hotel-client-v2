@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Modal, Pressable, Text } from "react-native";
-import { BottomSheet } from "react-native-btr";
+import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
+import { SvgImg } from "./svgImg";
 
 type Props = {
   onClose?: any;
@@ -10,6 +11,8 @@ type Props = {
   title: string;
   desc: string;
   btn_text: string;
+  img?: string;
+  sub?: string;
 };
 
 const CenterModal = ({
@@ -19,6 +22,8 @@ const CenterModal = ({
   title,
   desc,
   btn_text,
+  img,
+  sub,
 }: Props) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
@@ -34,8 +39,11 @@ const CenterModal = ({
     >
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
+          {img && <SvgImg url={img} width={120} height={120} />}
+
           <MonoText style={styles(height).modal_title}>{title}</MonoText>
           <MonoText style={styles(height).modal_desc}>{desc}</MonoText>
+          {sub && <MonoText style={styles(height).modal_sub}>{sub}</MonoText>}
 
           <View style={styles(height).button_wrapper}>
             <Pressable
@@ -67,15 +75,16 @@ const styles = (height: number) =>
     },
     modalView: {
       margin: 20,
-      backgroundColor: "white",
+      backgroundColor: colors.grey900,
       borderRadius: 10,
       width: "80%",
+      padding: 28,
       height,
       display: "flex",
-      justifyContent: "center",
+      justifyContent: "space-between",
       alignItems: "center",
       borderWidth: 1,
-      borderColor: "#000",
+      borderColor: colors.grey900,
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
@@ -88,31 +97,44 @@ const styles = (height: number) =>
 
     button: {
       borderRadius: 10,
-      padding: 8,
+      padding: 13,
       paddingLeft: 10,
       paddingRight: 10,
       elevation: 2,
+      width: "50%",
     },
     buttonOpen: {
-      backgroundColor: "#F194FF",
+      backgroundColor: colors.green600,
+      color: colors.Whiteyello,
     },
     buttonClose: {
       marginRight: 10,
-      backgroundColor: "#5A66FF",
+      backgroundColor: colors.grey700,
+      color: colors.grey400,
     },
     textStyle: {
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
+      flex: 1,
     },
     modal_title: {
       marginBottom: 15,
-      fontSize: 20,
+      fontSize: 16,
       textAlign: "center",
+      color: colors.Whiteyello,
     },
     modal_desc: {
-      fontSize: 13,
+      fontSize: 12,
       marginBottom: 20,
+      color: colors.grey500,
+      textAlign: "center",
+      lineHeight: 21,
+    },
+    modal_sub: {
+      fontSize: 14,
+      marginBottom: 20,
+      color: colors.Whiteyello,
     },
     button_wrapper: {
       width: "100%",

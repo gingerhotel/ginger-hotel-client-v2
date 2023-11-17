@@ -28,7 +28,7 @@ type Props = {
   navigation: any;
 };
 
-const NewLetterItem = () => {
+export const NewLetterItem = ({ from, contents, is_active, navigation }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
@@ -43,22 +43,21 @@ const NewLetterItem = () => {
 
   return (
     <LetterOuterContainer>
-      <LetterInnerContainer b_color="#FFFDF0">
+      <LetterInnerContainer>
         <LetterInnerInfoView>
           <LetterInnerTitieView>
             <TouchableOpacity onPress={toggleModal}>
               <SvgImg url={iconGlassesQuestionMark} />
             </TouchableOpacity>
             <LetterInnerTitieTextView>
-              <LetterInnerSendText f_color="#4A4A4E">보내는 이</LetterInnerSendText>
-              <LetterInnerUserText f_color="#25796B">로운로운</LetterInnerUserText>
+              <LetterInnerSendText>보내는 이</LetterInnerSendText>
+              <LetterInnerUserText>로운로운</LetterInnerUserText>
             </LetterInnerTitieTextView>
-            <TouchableOpacity onPress={toggleModal} style={{ position: 'absolute', left: 312 }}>
+            <TouchableOpacity onPress={toggleModal}>
               <Image source={iconMore} style={styles.icon} />
             </TouchableOpacity>
-            <View />
           </LetterInnerTitieView>
-          <LetterInnerTextBox f_color="#000">
+          <LetterInnerTextBox>
             메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
             23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
             편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용

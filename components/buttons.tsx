@@ -7,17 +7,28 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import { COLORS } from "../constants/Colors";
+//import { buttons_color, buttons_text } from "../constants/Colors";
 import { MonoText } from "./styledText";
+import { Common_Colors } from "../constants/Colors";
 
 type Props = {
   title: string;
-  color: "red" | "green" | "white" | "disable_red" | "gray_700";
+  color:
+    | "red"
+    | "darkgray"
+    | "grey"
+    | "green"
+    | "white"
+    | "disable_red"
+    | "gray_700"
+    | "neongreen";
   is_disable?: boolean;
   navigation?: any;
   url?: string;
   callback?: any;
+  is_width?: boolean;
   width?: any;
+  props?: any;
 };
 
 const Buttons = ({
@@ -28,12 +39,12 @@ const Buttons = ({
   url,
   callback,
   width,
-
+  props,
 }: Props) => {
   const handlePress = () => {
     // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
     if (url) {
-      navigation.navigate(url);
+      navigation.navigate(url, props);
     }
 
     // 사용자 정의 콜백 함수 실행
@@ -45,10 +56,12 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(COLORS[color], color, width).button}
+      style={cstyles(Common_Colors[color], color, width).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(COLORS[color], color, width).text}>{title}</MonoText>
+      <MonoText style={cstyles(Common_Colors[color], color, width).text}>
+        {title}
+      </MonoText>
     </TouchableOpacity>
   );
 };
@@ -56,8 +69,9 @@ const Buttons = ({
 const cstyles = (color_code: string, color: string, width: number) =>
   StyleSheet.create({
     button: {
-      width: width,
+      width: width ? width : "100%",
       display: "flex",
+      flex: 1,
       alignItems: "center",
       justifyContent: "center",
       textAlign: "center",
@@ -65,10 +79,10 @@ const cstyles = (color_code: string, color: string, width: number) =>
       borderRadius: 10,
       backgroundColor: color_code,
       borderWidth: color === "white" ? 1.5 : 0,
-      borderColor: color === "white" ? COLORS.red : "none",
     },
     text: {
-      color: color === "white" ? COLORS.red : "white",
+      //color: color_code,
+      color: color === "white" ? Common_Colors.red : "white",
       fontSize: 16,
     },
   });

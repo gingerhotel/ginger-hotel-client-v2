@@ -8,9 +8,9 @@ const VillageHeader = () => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={styles.wrapper}>
-        <SvgImg url={badge} width={25} height={25} a_width={25} />
+        <SvgImg url={badge}  />
         &nbsp;&nbsp;&nbsp;
-        <SvgImg url={person} width={25} height={25} a_width={25} />
+        <SvgImg url={person} />
       </View>
     </SafeAreaView>
   );
