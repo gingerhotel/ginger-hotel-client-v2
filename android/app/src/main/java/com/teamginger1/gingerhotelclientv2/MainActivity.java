@@ -1,4 +1,4 @@
-package com.teamginger1.gingerhotelclientv2;
+package com.teamginger2.gingerhotelclientv2;
 
 import android.os.Build;
 import android.os.Bundle;
