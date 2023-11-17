@@ -27,6 +27,7 @@ import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
+import MembershipSetting from "../membershipSetting";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -190,10 +191,17 @@ const Navigation = () => {
           />
           <Stack.Screen
             options={{
-              header: () => <Header title="엿보기 충전하기" />,
+              headerShown: false,
             }}
             name="feekCharge"
             component={FeekCharge}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="membershipSetting"
+            component={MembershipSetting}
           />
         </Stack.Navigator>
       </NavigationContainer>

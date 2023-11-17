@@ -183,7 +183,10 @@ export default function TabThreeScreen({ navigation }: any) {
               호텔수정
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ alignItems: "center" }}>
+          <TouchableOpacity
+            style={{ alignItems: "center" }}
+            onPress={() => navigation.navigate("membershipSetting")}
+          >
             <FontAwesome name="star" color={colors.Whiteyello} size={20} />
             <Text
               style={{
