@@ -9,12 +9,12 @@ export const LetterOuterContainer = styled.View`
 `
 
 // Styled component with linear gradient
-export const LetterInnerContainer = styled.View<{ b_color: string }>`
-    border-radius: 12px;
-    border-width: 4px;
-    border-color: #005142;
-    background-color: ${(props) => props.b_color};
-    border-style: dotted;
+export const LetterInnerContainer = styled.View<{ b_color?: string }>`
+  border-radius: 12px;
+  border-width: 4px;
+  border-color: #005142;
+  background-color: ${(props) => props.b_color};
+  border-style: dotted;
 `;
 export const LetterInnerInfoView = styled.View`
     display: flex;
@@ -42,20 +42,20 @@ export const LetterInnerTitieTextView = styled.View`
     gap: 5px;
 `
 
-export const LetterInnerSendText = styled.Text<{ f_color: string }>`
-    font-size: 12px;
-    color: ${(props) => props.f_color};
-`
-export const LetterInnerUserText = styled.Text<{ f_color: string }>`
-    /* color: #25796B; */
-    color: ${(props) => props.f_color};
-    font-size: 16px;
-    font-weight: bold;
-`
-export const LetterInnerTextBox = styled.Text<{ f_color: string }>`
-    padding: 20px;
-    color: ${(porps) => porps.f_color};
-`
+export const LetterInnerSendText = styled.Text<{ f_color?: string }>`
+  font-size: 12px;
+  color: ${(props) => props.f_color};
+`;
+export const LetterInnerUserText = styled.Text<{ f_color?: string }>`
+  /* color: #25796B; */
+  color: ${(props) => props.f_color};
+  font-size: 16px;
+  font-weight: bold;
+`;
+export const LetterInnerTextBox = styled.Text<{ f_color?: string }>`
+  padding: 20px;
+  color: ${(porps) => porps.f_color};
+`;
 export const LetterReplyButtonView = styled.View`
     display: flex;
     align-items: center;

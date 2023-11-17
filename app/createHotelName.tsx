@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, TextInput } from "react-native";
+import { View, StyleSheet, TextInput, ScrollView } from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
@@ -9,6 +9,7 @@ const Hotel1 = require("../assets/images/Hotel1.svg");
 import { Image } from "react-native";
 import Input from "../components/input";
 import { useState } from "react";
+import { SvgImg } from "../components/svgImg";
 
 export default function CreateHotelName({ route, navigation }: any) {
   const hotel_color = route.params;
@@ -17,16 +18,18 @@ export default function CreateHotelName({ route, navigation }: any) {
 
   return (
     <>
-      <View style={styles.container}>
-        <CreateHeader isActiveNumber={2} />
+      <CreateHeader isActiveNumber={2} />
+      <ScrollView style={styles.container}>
         <View style={styles.edit_wrapper}>
           <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
           <MonoText style={styles.desc}>
             호텔 이름은 나중에도 수정할 수 있어요!
           </MonoText>
           <View style={styles.img_wrapper}>
-            <Image
-              source={Hotel1}
+            <SvgImg
+              url={Hotel1}
+              width={330}
+              height={400}
               style={{
                 position: "relative",
                 width: 371,
@@ -36,7 +39,6 @@ export default function CreateHotelName({ route, navigation }: any) {
               }}
             />
           </View>
-
           <Input
             onChange={(text: string) => setNickname(text)}
             placeholder="내 닉네임"
@@ -58,17 +60,15 @@ export default function CreateHotelName({ route, navigation }: any) {
             color="green"
           />
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     backgroundColor: "rgba(30,31,35,1.00)",
-    flex: 1,
-    justifyContent: "flex-start",
+    padding: 10,
   },
   img_wrapper: {
     borderWidth: 0.3,
@@ -116,9 +116,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     height: 70,
-    position: "absolute",
-    bottom: 30,
-    left: 0,
     width: "100%",
     padding: 10,
     paddingLeft: 20,

@@ -5,30 +5,26 @@ import { WithLocalSvg } from "react-native-svg";
 type Props = {
   onPress?: any;
   url: string | any;
-  /* Todo : Need to size refactor */
-  // a_width: number; // 앱 가로
-  // a_height?: number; // 앱 세로
-  //width?: number;
-  //height?: number;
+  width?: number;
+  height?: number;
+  style?: any;
 };
 
-export function SvgImg({
-  onPress,
-  url,
-  // a_width,
-  // a_height,
-  //width,
-  //height,
-}: Props) {
+export function SvgImg(props: Props) {
   return (
     <>
       {Platform.OS === "ios" || Platform.OS === "android" ? (
-        <TouchableOpacity onPress={onPress}>
-          <WithLocalSvg asset={url} /*width={width} height={height}*/ />
+        <TouchableOpacity onPress={props.onPress}>
+          <WithLocalSvg
+            style={props.style}
+            asset={props.url}
+            width={props.width}
+            height={props.height}
+          />
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity onPress={onPress}>
-          <Image source={url} /*width={width} height={height} *//>
+        <TouchableOpacity onPress={props.onPress}>
+          <Image style={props.style} source={props.url} />
         </TouchableOpacity>
       )}
     </>

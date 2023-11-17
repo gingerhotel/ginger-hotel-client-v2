@@ -22,8 +22,8 @@ export default function Header({ title }: any) {
           //a_width={30}
           //a_height={30}
           url={arrow}
-          //width={30}
-          //height={30}
+          width={30}
+          height={30}
         />
         <Text style={[styles.title, typography.soyo]}>{title}</Text>
         <View style={styles.empty}></View>

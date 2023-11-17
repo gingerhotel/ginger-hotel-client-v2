@@ -13,18 +13,24 @@ export default function MailBox({ navigation }: any) {
   const replyGo = useRecoilValue(replyBoxSwitchState)
   return (
     <View style={styles.container}>
-      {replyGo ?
-        (
-          <ReplyHeader marginTop={50} navigation={navigation} />
-        ) :
-        (
-          <MailHeader marginTop={50} navigation={navigation} />
-        )
-      }
+      {replyGo ? (
+        <ReplyHeader marginTop={50} navigation={navigation} />
+      ) : (
+        <MailHeader marginTop={50} navigation={navigation} />
+      )}
 
       <ScrollView>
         <View style={styles.mailbox_items}>
-          {letterRender.new ? (<NewLetterItem />) : (<ReplyLetterItem />)}
+          {/* {letterRender.new ? (
+            <NewLetterItem
+              from={""}
+              contents={""}
+              is_active={false}
+              navigation={undefined}
+            />
+          ) : (
+            <ReplyLetterItem />
+          )} */}
         </View>
       </ScrollView>
     </View>

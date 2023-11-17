@@ -25,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.teamginger1.gingerhotelclientv2"
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +43,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "a19001d4-805b-451d-b7fa-6e358eaab138"
+        "projectId": "e16a2982-aa5b-4f0c-9a72-fff4651a9c44"
       }
     }
   }
