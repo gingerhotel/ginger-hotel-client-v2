@@ -10,3 +10,7 @@ export const letterSwitchState = atom<letterSwitchType>({
         reply: false
     }
 })
+export const replyBoxSwitchState = atom<boolean>({
+    key: 'replyBoxSwitchState',
+    default: false
+})
