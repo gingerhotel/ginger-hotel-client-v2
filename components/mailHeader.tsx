@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Text,
-  Pressable,
-  StyleSheet,
   View,
-  Image,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
@@ -20,7 +16,6 @@ import {
   MailTitleText,
   MailTitleView
 } from "../style/mailBoxStyled";
-import { useNavigation } from "expo-router";
 import { useRecoilState } from "recoil";
 import { letterSwitchState } from "../atom/letterAtom";
 
@@ -80,32 +75,5 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
     </SafeAreaView>
   );
 };
-const cstyles = (marginTop: number) =>
-  StyleSheet.create({
-    mailbox_header: {
-      marginTop,
-    },
-  });
-
-const styles = StyleSheet.create({
-  mailbox_header: {
-    width: "100%",
-    height: 145,
-    borderTopEndRadius: 25,
-    borderTopLeftRadius: 25,
-    display: "flex",
-    flexDirection: "column",
-    padding: 30,
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 25,
-    marginTop: 20,
-  },
-  letter_img: {
-    width: 150,
-    height: 40,
-  },
-});
 
 export default MailHeader;
