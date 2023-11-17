@@ -21,6 +21,8 @@ import {
     LetterReplyButtonView
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
+import { useSetRecoilState } from "recoil";
+import { replyBoxSwitchState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
@@ -32,7 +34,7 @@ type Props = {
 
 const ReplyLetterItem = () => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-
+    const setReplyGo = useSetRecoilState(replyBoxSwitchState)
     const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
 
     const toggleModal = () => {
@@ -42,7 +44,9 @@ const ReplyLetterItem = () => {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
-
+    const replyBoxHandler = () => {
+        setReplyGo(true)
+    }
     return (
         <LetterOuterContainer>
             <LetterInnerContainer b_color="#36363B">
@@ -65,7 +69,7 @@ const ReplyLetterItem = () => {
                         23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
                         편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
                     </LetterInnerTextBox>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => replyBoxHandler()}>
                         <LetterReplyButtonView>
                             <LetterReplyButtonText>
                                 답장 모아보기
