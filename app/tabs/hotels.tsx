@@ -77,7 +77,7 @@ export default function Hotel({ navigation }: any) {
               width={350}
               callback={() => {
                 Toast.show({
-                  type: "tomatoToast",
+                  type: "iconToast",
                   text1: "링크가 복사되었습니다!",
                   position: "bottom",
                   props: { icon },
