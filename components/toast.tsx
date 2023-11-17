@@ -8,8 +8,9 @@ export const toastConfig = {
       style={{
         backgroundColor: "#5A66FF",
         borderLeftColor: "#5A66FF",
-        height: "40px",
         textAlign: "center",
+        padding: 2,
+        height: 40,
       }}
       text1Style={{
         fontSize: 15,

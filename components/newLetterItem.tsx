@@ -47,20 +47,26 @@ export const NewLetterItem = ({ from, contents, is_active, navigation }: Props) 
         <LetterInnerInfoView>
           <LetterInnerTitieView>
             <TouchableOpacity onPress={toggleModal}>
-              <SvgImg url={iconGlassesQuestionMark} />
+              <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
             </TouchableOpacity>
             <LetterInnerTitieTextView>
               <LetterInnerSendText>보내는 이</LetterInnerSendText>
               <LetterInnerUserText>로운로운</LetterInnerUserText>
             </LetterInnerTitieTextView>
             <TouchableOpacity onPress={toggleModal}>
-              <Image source={iconMore} style={styles.icon} />
+              <SvgImg
+                url={iconMore}
+                style={styles.icon}
+                width={30}
+                height={30}
+              />
             </TouchableOpacity>
           </LetterInnerTitieView>
           <LetterInnerTextBox>
-            메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
-            23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
-            편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+            메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘
+            챙기면서 23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용
+            테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+            편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
           </LetterInnerTextBox>
         </LetterInnerInfoView>
       </LetterInnerContainer>

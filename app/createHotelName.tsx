@@ -18,49 +18,47 @@ export default function CreateHotelName({ route, navigation }: any) {
 
   return (
     <>
-      <ScrollView style={{ flex: 1 }}>
-        <CreateHeader isActiveNumber={2} />
-        <View style={styles.container}>
-          <View style={styles.edit_wrapper}>
-            <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
-            <MonoText style={styles.desc}>
-              호텔 이름은 나중에도 수정할 수 있어요!
-            </MonoText>
-            <View style={styles.img_wrapper}>
-              <SvgImg
-                url={Hotel1}
-                width={330}
-                height={400}
-                style={{
-                  position: "relative",
-                  width: 371,
-                  height: 420,
-                  marginTop: 20,
-                  zIndex: 3,
-                }}
-              />
-            </View>
-            <Input
-              onChange={(text: string) => setNickname(text)}
-              placeholder="내 닉네임"
-            />
-            <View style={{ marginTop: 8 }}></View>
-            <Input
-              multiline={5}
-              onChange={(text: string) => setDescription(text)}
-              placeholder="내 호텔을 소개해주세요(최대 NN글자)"
+      <CreateHeader isActiveNumber={2} />
+      <ScrollView style={styles.container}>
+        <View style={styles.edit_wrapper}>
+          <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
+          <MonoText style={styles.desc}>
+            호텔 이름은 나중에도 수정할 수 있어요!
+          </MonoText>
+          <View style={styles.img_wrapper}>
+            <SvgImg
+              url={Hotel1}
+              width={330}
+              height={400}
+              style={{
+                position: "relative",
+                width: 371,
+                height: 420,
+                marginTop: 20,
+                zIndex: 3,
+              }}
             />
           </View>
+          <Input
+            onChange={(text: string) => setNickname(text)}
+            placeholder="내 닉네임"
+          />
+          <View style={{ marginTop: 8 }}></View>
+          <Input
+            multiline={5}
+            onChange={(text: string) => setDescription(text)}
+            placeholder="내 호텔을 소개해주세요(최대 NN글자)"
+          />
+        </View>
 
-          <View style={styles.btn_wrapper}>
-            <Buttons
-              navigation={navigation}
-              url={"hotelselect"}
-              props={{ ...hotel_color, nickname, description }}
-              title="다음으로"
-              color="green"
-            />
-          </View>
+        <View style={styles.btn_wrapper}>
+          <Buttons
+            navigation={navigation}
+            url={"hotelselect"}
+            props={{ ...hotel_color, nickname, description }}
+            title="다음으로"
+            color="green"
+          />
         </View>
       </ScrollView>
     </>
@@ -69,8 +67,8 @@ export default function CreateHotelName({ route, navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     backgroundColor: "rgba(30,31,35,1.00)",
+    padding: 10,
   },
   img_wrapper: {
     borderWidth: 0.3,

@@ -21,11 +21,11 @@ const Header = ({ navigation }: any) => {
         <View style={styles.wrapper}>
           <View style={styles.item}>
             <View style={styles.container_1}>
-              <SvgImg url={i_key} />
+              <SvgImg width={40} height={40} url={i_key} />
               <Text style={styles.text}>03</Text>
             </View>
             <View style={styles.container_2}>
-              <SvgImg url={i_glasses} />
+              <SvgImg width={40} height={40} url={i_glasses} />
               <Text style={styles.text}>03</Text>
               <TouchableOpacity>
                 <SvgImg url={i_plus} />
