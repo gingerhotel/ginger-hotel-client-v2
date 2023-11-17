@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -10,18 +10,78 @@ import {
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
 import { WithLocalSvg } from "react-native-svg";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses.svg");
 
+interface User {
+  nickname: string;
+  code: string;
+  membership: string;
+  gender: "MAN" | "WOMAN" | null;
+  birthDate: string | null;
+  keyCount: number;
+  feekCount: number;
+}
+
+interface Hotel {
+  id: number;
+  nickname: string;
+  description: string;
+  structColor: string;
+  bodyColot: string; // 오타 수정: bodyColor로 변경
+}
+
+interface UserApiResponse {
+  success: boolean;
+  user: User;
+  hotel: Hotel;
+}
+
 export default function TabThreeScreen({ navigation }: any) {
-  const [userInfo, setUserInfo] = useState({
-    name: "민지",
-    userCode: "25163",
-    membership: "DELUXE",
-    keyCount: 2,
-    peekCount: 0,
+  const [userInfo, setUserInfo] = useState<User>({
+    nickname: "",
+    code: "",
+    membership: "",
+    gender: null,
+    birthDate: null,
+    keyCount: 0,
+    feekCount: 0,
   });
+
+  useEffect(() => {
+    const handleUserData = async () => {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      console.log(accessToken);
+      axios
+        .get<UserApiResponse>("http://127.0.0.1:8082/members/my", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          const { user } = response.data;
+          setUserInfo({
+            nickname: user.nickname,
+            code: user.code,
+            membership: user.membership,
+            gender: user.gender,
+            birthDate: user.birthDate,
+            keyCount: user.keyCount,
+            feekCount: user.feekCount,
+          });
+
+          console.log(response.data);
+          console.log("?");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    handleUserData();
+  }, []);
 
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
@@ -32,7 +92,7 @@ export default function TabThreeScreen({ navigation }: any) {
               style={{ flexDirection: "row", alignItems: "center" }}
             >
               <Text style={[styles.name, { color: colors.Whiteyello }]}>
-                {userInfo.name}
+                {userInfo.nickname}
               </Text>
               <FontAwesome
                 name={"chevron-right"}
@@ -94,7 +154,7 @@ export default function TabThreeScreen({ navigation }: any) {
                       fontFamily: "NanumSquareNeo-Variable",
                     }}
                   >
-                    {userInfo.userCode}
+                    {userInfo.code}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -155,7 +215,7 @@ export default function TabThreeScreen({ navigation }: any) {
                   fontFamily: "NanumSquareNeo-Variable",
                 }}
               >
-                {userInfo.peekCount}개
+                {userInfo.feekCount}개
               </Text>
             </View>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
