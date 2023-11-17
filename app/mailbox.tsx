@@ -1,45 +1,30 @@
 import React from "react";
 import { StyleSheet, Image, Button, ScrollView, View } from "react-native";
 import Buttons from "../components/buttons";
-import LetterItem from "../components/letterItem";
+import NewLetterItem from "../components/newLetterItem";
 import MailHeader from "../components/mailHeader";
+import ReplyLetterItem from "../components/replyLetterItem";
+import { useRecoilValue } from "recoil";
+import { letterSwitchState, replyBoxSwitchState } from "../atom/letterAtom";
+import ReplyHeader from "../components/replyHeader";
 
 export default function MailBox({ navigation }: any) {
+  const letterRender = useRecoilValue(letterSwitchState)
+  const replyGo = useRecoilValue(replyBoxSwitchState)
   return (
     <View style={styles.container}>
-      <MailHeader marginTop={50} navigation={navigation} />
+      {replyGo ?
+        (
+          <ReplyHeader marginTop={50} navigation={navigation} />
+        ) :
+        (
+          <MailHeader marginTop={50} navigation={navigation} />
+        )
+      }
+
       <ScrollView>
         <View style={styles.mailbox_items}>
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
-          <LetterItem
-            navigation={navigation}
-            from={""}
-            contents={""}
-            is_active={false}
-          />
+          {letterRender.new ? (<NewLetterItem />) : (<ReplyLetterItem />)}
         </View>
       </ScrollView>
     </View>

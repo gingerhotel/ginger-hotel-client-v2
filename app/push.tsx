@@ -5,6 +5,9 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
+import Buttons from "../components/buttons";
+import LetterItem from "../components/newLetterItem";
+import MailHeader from "../components/mailHeader";
 import { MonoText } from "../components/styledText";
 import { FontAwesome } from "@expo/vector-icons";
 import { View } from "../components/themed";
@@ -12,7 +15,6 @@ import { useThemeColor } from "../components/themed";
 import NoticeItem from "../components/noticeItem";
 import { useNavigation } from "expo-router";
 import CenterModal from "../components/centerModal";
-import Buttons from "../components/buttons";
 
 export default function Push() {
   const [pushDeleteMode, setPushDeleteMode] = useState(false);
