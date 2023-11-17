@@ -41,7 +41,12 @@ export default function Hotel({ navigation }: any) {
         <MonoText style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </MonoText>
-        <SvgImg onPress={() => navigation.navigate("hotelcreate")} url={SVG} />
+        <SvgImg
+          width={400}
+          height={400}
+          onPress={() => navigation.navigate("hotelcreate")}
+          url={SVG}
+        />
 
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
@@ -53,7 +58,12 @@ export default function Hotel({ navigation }: any) {
               width={288}
             />
             <TouchableOpacity>
-              <SvgImg onPress={() => setModalVisible(true)} url={IC_SVG} />
+              <SvgImg
+                width={40}
+                height={40}
+                onPress={() => setModalVisible(true)}
+                url={IC_SVG}
+              />
             </TouchableOpacity>
           </View>
           <View style={styles.hotel_today}>
