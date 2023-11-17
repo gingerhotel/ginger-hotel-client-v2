@@ -5,17 +5,26 @@ import NewLetterItem from "../components/newLetterItem";
 import MailHeader from "../components/mailHeader";
 import ReplyLetterItem from "../components/replyLetterItem";
 import { useRecoilValue } from "recoil";
-import { letterSwitchState } from "../atom/letterAtom";
+import { letterSwitchState, replyBoxSwitchState } from "../atom/letterAtom";
+import ReplyHeader from "../components/replyHeader";
 
 export default function MailBox({ navigation }: any) {
   const letterRender = useRecoilValue(letterSwitchState)
+  const replyGo = useRecoilValue(replyBoxSwitchState)
   return (
     <View style={styles.container}>
-      <MailHeader marginTop={50} navigation={navigation} />
+      {replyGo ?
+        (
+          <ReplyHeader marginTop={50} navigation={navigation} />
+        ) :
+        (
+          <MailHeader marginTop={50} navigation={navigation} />
+        )
+      }
+
       <ScrollView>
         <View style={styles.mailbox_items}>
           {letterRender.new ? (<NewLetterItem />) : (<ReplyLetterItem />)}
-
         </View>
       </ScrollView>
     </View>
