@@ -21,6 +21,7 @@ import GingerModal from "../../components/gingerModal";
 const SVG = require("../../assets/images/StartHotel.svg");
 const IC_SVG = require("../../assets/icon/ic_ginger.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
+import Share, {Social} from 'react-native-share';
 
 export default function Hotel({ navigation }: any) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -77,6 +78,10 @@ export default function Hotel({ navigation }: any) {
                   text1: "링크가 복사되었습니다!",
                   position: "bottom",
                 });
+                Share.shareSingle({
+                  url: 'instagram://camera', 
+                  social: Social.Instagram
+              });
               }}
             />
           </View>
