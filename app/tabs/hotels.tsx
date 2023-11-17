@@ -23,6 +23,8 @@ const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
 const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
+const icon: any = require("../../assets/icon/i_check.svg");
+
 
 export default function Hotel({ navigation }: any) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -75,9 +77,10 @@ export default function Hotel({ navigation }: any) {
               width={350}
               callback={() => {
                 Toast.show({
-                  type: "basicToast",
+                  type: "tomatoToast",
                   text1: "링크가 복사되었습니다!",
                   position: "bottom",
+                  props: { icon },
                 });
               }}
               icon={share}
