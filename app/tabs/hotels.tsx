@@ -18,6 +18,7 @@ import { WithLocalSvg } from "react-native-svg";
 import ProgressBar from "../../components/progressBar";
 import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
+import Admob from "../../components/advertisement/adMob";
 const SVG = require("../../assets/images/StartHotel.svg");
 const IC_SVG = require("../../assets/icon/ic_ginger.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
@@ -99,6 +100,7 @@ export default function Hotel({ navigation }: any) {
             />
           </View>
         </View>
+        <Admob/>
       </View>
 
       <GingerModal
