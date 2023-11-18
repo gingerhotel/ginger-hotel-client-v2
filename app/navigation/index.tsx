@@ -27,7 +27,7 @@ import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
-
+import "../lang/i18n" // 다국어 파일
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
