@@ -78,9 +78,15 @@ export default function Hotel({ navigation }: any) {
                   text1: "링크가 복사되었습니다!",
                   position: "bottom",
                 });
-                Share.shareSingle({
-                  url: 'instagram://camera', 
-                  social: Social.Instagram
+                
+              Share.shareSingle({
+                social: Social.InstagramStories,
+                appId: "440384258310203",
+                // backgroundImage: "배경으로 지정할 이미지의 URL",
+                // backgroundVideo: "배경으로 지정할 동영상의 URL",
+                // stickerImage: "sticker 형식으로(작게) 공유할 이미지의 URL", 
+                backgroundBottomColor: " #837DF4",
+                backgroundTopColor: "#906df4",
               });
               }}
             />
