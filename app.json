@@ -4,7 +4,7 @@
   "expo": {
     "name": "gingerhotel-client-v2",
     "slug": "ginger-hotel-client-v2",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -19,14 +19,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.teamginger1.gingerhotelclientv2"
+      "bundleIdentifier": "com.teamginger2.gingerhotelclientv2"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.teamginger1.gingerhotelclientv2"
+      "package": "com.teamginger2.gingerhotelclientv2"
     },
     "web": {
       "bundler": "metro",
