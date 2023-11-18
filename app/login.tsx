@@ -15,7 +15,7 @@ const SVG = require("../assets/images/StartHotel.svg");
 
 export default function Login({ navigation }: any) {
   let clientId =
-    "983622613978-aj2js3e1qb9qq1jtdueu7ic47o8fgg2l.apps.googleusercontent.com";
+    "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com";
 
   return (
       <View style={styles.container}>

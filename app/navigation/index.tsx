@@ -27,6 +27,7 @@ import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
+import testPage from "../testPage";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -194,6 +195,13 @@ const Navigation = () => {
             }}
             name="feekCharge"
             component={FeekCharge}
+          />
+          <Stack.Screen
+            name="testPage"
+            component={testPage}
+            options={{
+              header: () => <Header title="테스트페이지" />,
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

@@ -99,6 +99,15 @@ export default function Hotel({ navigation }: any) {
               width={350}
             />
           </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              navigation={navigation}
+              url={"testPage"}
+              title="testPage"
+              color="green"
+              width={350}
+            />
+          </View>
         </View>
         <Admob/>
       </View>
