@@ -13,8 +13,12 @@ import { WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { useTranslation } from "react-i18next";
+
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses.svg");
+
+const { t, i18n } = useTranslation()
 
 interface User {
   nickname: string;
@@ -118,7 +122,7 @@ export default function TabThreeScreen({ navigation }: any) {
                     fontFamily: "NanumSquareNeo-Variable",
                   }}
                 >
-                  내 멤버쉽
+                  {t('My Membership')}
                 </Text>
                 <Text
                   style={{
@@ -145,7 +149,7 @@ export default function TabThreeScreen({ navigation }: any) {
                       fontFamily: "NanumSquareNeo-Variable",
                     }}
                   >
-                    내 코드 <FontAwesome5 name="copy" />
+                    {t('My Code')} <FontAwesome5 name="copy" />
                   </Text>
                   <Text
                     style={{
