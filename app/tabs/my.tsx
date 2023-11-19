@@ -12,6 +12,8 @@ import { colors } from "../../constants/Colors";
 import { WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { hotelIdState } from "../../atom/letterAtom";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses.svg");
@@ -50,19 +52,21 @@ export default function TabThreeScreen({ navigation }: any) {
     keyCount: 0,
     feekCount: 0,
   });
-
+  const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken");
       console.log(accessToken);
       axios
-        .get<UserApiResponse>("http://127.0.0.1:8082/members/my", {
+        .get<UserApiResponse>("http://127.0.0.1:8080/members/my", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
           const { user } = response.data;
+          const { hotel } = response.data;
+          setHotelId(hotel.id);
           setUserInfo({
             nickname: user.nickname,
             code: user.code,
