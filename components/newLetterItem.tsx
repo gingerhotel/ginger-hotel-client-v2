@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -19,6 +19,10 @@ import {
   LetterOuterContainer
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
+import { useQuery } from "react-query";
+import { newLetterData } from "../api/letterApi";
+import { useRecoilValue } from "recoil";
+import { hotelIdState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert.png");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
@@ -30,9 +34,24 @@ type Props = {
 
 export const NewLetterItem = ({ from, contents, is_active, navigation }: Props) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const hotelId = useRecoilValue(hotelIdState);
+  const [currentDate, setCurrentDate] = useState('');
 
+  useEffect(() => {
+    // 현재 날짜를 가져오는 함수
+    const getCurrentDate = () => {
+      const dateObject = new Date();
+      const year = dateObject.getFullYear();
+      const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고, 두 자리로 만듭니다.
+      const day = String(dateObject.getDate()).padStart(2, '0'); // 날짜도 두 자리로 만듭니다.
+      return `${year}-${month}-${day}`;
+    };
+
+    // 컴포넌트가 마운트될 때 현재 날짜를 가져와 상태 업데이트
+    setCurrentDate(getCurrentDate());
+  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+  const { data, isLoading } = useQuery(['newLetters', { hotelId, currentDate }], () => newLetterData({ hotelId, currentDate }));
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
-
   const toggleModal = () => {
     setBottomSheetVisible(!bottomSheetVisible);
   };
