@@ -44,7 +44,10 @@
       },
       "eas": {
         "projectId": "7d6387ca-94a7-4358-962e-66d464ab5be6"
-      }
+      },
+      "plugins" : [{
+        "username" : "gingertest1"
+      }]
     },
     "runtimeVersion": "1.0.1",
     "updates": {

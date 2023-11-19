@@ -16,6 +16,8 @@ import NoticeItem from "../components/noticeItem";
 import { useNavigation } from "expo-router";
 import CenterModal from "../components/centerModal";
 
+import * as Updates from 'expo-updates';
+
 export default function Push() {
   const [pushDeleteMode, setPushDeleteMode] = useState(false);
   const [deleteChecked, setDeleteChecked] = useState([
@@ -26,6 +28,21 @@ export default function Push() {
     { id: 5, checked: false },
     { id: 6, checked: false },
   ]);
+
+  async function onFetchUpdateAsync() {
+    try {
+      const update = await Updates.checkForUpdateAsync();
+
+      if (update.isAvailable) {
+        await Updates.fetchUpdateAsync();
+        await Updates.reloadAsync();
+      }
+    } catch (error) {
+      // You can also add an alert() to see the error message in case of an error when fetching updates.
+      //alert(`Error fetching latest Expo update: ${error}`);
+    }
+  }
+  
   const updatedDeleteChecked = (id: number, checked: boolean) => {
     const updatedDeleteChecked = deleteChecked.map((item) => {
       if (item.id === id) {
@@ -184,7 +201,7 @@ export default function Push() {
             />
           </View>
           <View style={styles.delete_button_wrapper}>
-            <Buttons title="선택 항목 삭제하기" color="green" is_width />
+            <Buttons title="선택 항목 삭제하기" color="green" is_width callback={onFetchUpdateAsync}/>
           </View>
         </SafeAreaView>
       ) : null}
