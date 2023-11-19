@@ -7,9 +7,9 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-//import { buttons_color, buttons_text } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { Common_Colors } from "../constants/Colors";
+import { SvgImg } from "./svgImg";
 
 type Props = {
   title: string;
@@ -29,6 +29,7 @@ type Props = {
   is_width?: boolean;
   width?: any;
   props?: any;
+  icon?: string;
 };
 
 const Buttons = ({
@@ -40,14 +41,13 @@ const Buttons = ({
   callback,
   width,
   props,
+  icon,
 }: Props) => {
   const handlePress = () => {
-    // 이동하고자 하는 내비게이션 화면 이름이 지정되어 있을 때 내비게이션 이동
     if (url) {
       navigation.navigate(url, props);
     }
 
-    // 사용자 정의 콜백 함수 실행
     if (callback) {
       callback();
     }
@@ -59,9 +59,19 @@ const Buttons = ({
       style={cstyles(Common_Colors[color], color, width).button}
       onPress={handlePress}
     >
-      <MonoText style={cstyles(Common_Colors[color], color, width).text}>
-        {title}
-      </MonoText>
+      <View style={styles.item}>
+        {icon ? (
+          <SvgImg
+            width={24}
+            height={24}
+            url={icon}
+            style={{ marginRight: 8 }}
+          />
+        ) : null}
+        <MonoText style={cstyles(Common_Colors[color], color, width).text}>
+          {title}
+        </MonoText>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -76,15 +86,23 @@ const cstyles = (color_code: string, color: string, width: number) =>
       justifyContent: "center",
       textAlign: "center",
       height: 52,
-      borderRadius: 10,
+      borderRadius: 6,
       backgroundColor: color_code,
       borderWidth: color === "white" ? 1.5 : 0,
     },
     text: {
-      //color: color_code,
       color: color === "white" ? Common_Colors.red : "white",
       fontSize: 16,
+      paddingTop: 3,
     },
   });
+
+const styles = StyleSheet.create({
+  item: {
+    display: "flex",
+    flexDirection: "row",
+    rowGap: 8,
+  },
+});
 
 export default Buttons;
