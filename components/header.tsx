@@ -10,7 +10,9 @@ import {
 import { MonoText } from "./styledText";
 import { WithLocalSvg } from "react-native-svg";
 import { SvgImg } from "./svgImg";
-let icon = require("../assets/icon/i_favorite.png");
+import { colors } from "../constants/Colors";
+let icon = require("../assets/icon/ic_alert_no.svg");
+let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
@@ -32,10 +34,19 @@ const Header = ({ navigation }: any) => {
               </TouchableOpacity>
             </View>
           </View>
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate("push")}>
-              <Image style={styles.icon} source={icon} />
-            </TouchableOpacity>
+          <View style={styles.item2}>
+            <SvgImg
+              width={30}
+              height={30}
+              onPress={() => navigation.navigate("push")}
+              url={i_info}
+            />
+            <SvgImg
+              width={30}
+              height={30}
+              onPress={() => navigation.navigate("push")}
+              url={icon}
+            />
           </View>
         </View>
       </View>
@@ -49,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "gray",
+    backgroundColor: colors.grey700,
     borderRadius: 25,
     paddingRight: 30,
     height: 28,
@@ -60,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "gray",
+    backgroundColor: colors.grey700,
     borderRadius: 25,
     paddingRight: 25,
     gap: 10,
@@ -77,6 +88,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     backgroundColor: "#000",
     marginLeft: 20,
+    paddingRight: 40,
   },
   item: {
     fontFamily: "Pretendard-Regular",
@@ -86,8 +98,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
+  item2: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 4,
+  },
   text: {
     fontSize: 15,
+    color: colors.Whiteyello,
   },
   icon: {
     width: 30,

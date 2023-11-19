@@ -14,13 +14,15 @@ import React, { useState } from "react";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
-import { WithLocalSvg } from "react-native-svg";
 import ProgressBar from "../../components/progressBar";
 import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
+import { colors } from "../../constants/Colors";
+import { typography } from "../../constants/Typo";
 const SVG = require("../../assets/images/StartHotel.svg");
-const IC_SVG = require("../../assets/icon/ic_ginger.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
+const album = require("../../assets/icon/i_album.svg");
+const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 
 export default function Hotel({ navigation }: any) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -34,13 +36,13 @@ export default function Hotel({ navigation }: any) {
       <Header navigation={navigation} />
       <View style={styles.container}>
         <ProgressBarView>
-          <MonoText style={styles.hotel_desc}>도착한 편지</MonoText>
+          <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
           <ProgressBar />
         </ProgressBarView>
-        <MonoText style={styles.hotel_name}>진저님의 진저호텔</MonoText>
-        <MonoText style={styles.hotel_desc}>
+        <Text style={styles.hotel_name}>진저님의 진저호텔</Text>
+        <Text style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
-        </MonoText>
+        </Text>
         <SvgImg
           width={400}
           height={400}
@@ -62,14 +64,14 @@ export default function Hotel({ navigation }: any) {
                 width={40}
                 height={40}
                 onPress={() => setModalVisible(true)}
-                url={IC_SVG}
+                url={album}
               />
             </TouchableOpacity>
           </View>
           <View style={styles.hotel_today}>
             <Buttons
               title="내 호텔 공유하기"
-              color="grey"
+              color="gray_700"
               width={350}
               callback={() => {
                 Toast.show({
@@ -78,6 +80,7 @@ export default function Hotel({ navigation }: any) {
                   position: "bottom",
                 });
               }}
+              icon={share}
             />
           </View>
           <View style={styles.hotel_today}>
@@ -136,26 +139,36 @@ const styles = StyleSheet.create({
   },
   hotel_name: {
     color: "white",
-    marginTop: 35,
-    fontSize: 25,
+    marginTop: 14,
+    fontSize: typography.display1_basic.fontSize,
+    fontFamily: typography.display1_basic.fontFamily,
+    fontWeight: "700",
   },
   hotel_desc: {
-    display: 'flex',
-    fontSize: 17,
+    display: "flex",
+    fontSize: 16,
+    color: colors.Whiteyello,
+    marginTop: 8,
+  },
+  hotel_desc2: {
+    display: "flex",
+    fontSize: 14,
+    color: colors.grey500,
   },
   hotel_today_container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
-    gap: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#000",
+    gap: 12,
     marginBottom: 30,
+    marginTop: 12,
   },
   hotel_today: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#000',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#000",
     gap: 10,
-    height: 52
-  }
+    height: 52,
+  },
 });
