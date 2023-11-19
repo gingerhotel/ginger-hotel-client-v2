@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-type letterSwitchType = {
+interface letterSwitchType {
     new: boolean,
     reply: boolean
 }
@@ -13,4 +13,12 @@ export const letterSwitchState = atom<letterSwitchType>({
 export const replyBoxSwitchState = atom<boolean>({
     key: 'replyBoxSwitchState',
     default: false
+})
+export const hotelIdState = atom<number>({
+    key: 'hotelIdState',
+    default: 0
+})
+export const currentDateState = atom<string>({
+    key: 'currentDateState',
+    default: ""
 })
