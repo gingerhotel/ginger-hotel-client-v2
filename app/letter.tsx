@@ -6,6 +6,7 @@ import LetterInput from "../components/letterInput";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Letter({ navigation }: any) {
   const [letterText, setLetterText] = useState("");
@@ -15,8 +16,9 @@ export default function Letter({ navigation }: any) {
     register("letters");
     register("nickname");
   }, [register]);
-
-  const writeLetter = async (data:any) => {
+  const writeLetter = async (data: any) => {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     const response = await axios.post(
       'http://127.0.0.1:8080/letters/hotel/1',
       {
@@ -43,11 +45,11 @@ export default function Letter({ navigation }: any) {
         <View style={styles.nickname_input}>
           <MonoText style={styles.input_text}>받는 이</MonoText>
           <TextInput
-          blurOnSubmit={true}
-          style={styles.input}
-          placeholder="닉네임을 입력하세요 (10자 이하)"
-          onChangeText={(text) => setValue("nickname", text)}
-         />
+            blurOnSubmit={true}
+            style={styles.input}
+            placeholder="닉네임을 입력하세요 (10자 이하)"
+            onChangeText={(text) => setValue("nickname", text)}
+          />
         </View>
       </View>
       <View style={styles.footer}>
@@ -65,15 +67,15 @@ export default function Letter({ navigation }: any) {
           is_width={true}
           color="green"
           callback={handleSubmit(writeLetter)}
-          // callback={async () => {
-          //   const response = await axios.post(
-          //     'http://127.0.0.1:8080//letters/hotel/1',
-          //     {
-          //       senderNickname: "민수쓰",
-          //       content: "콜링아이",
-          //     }
-          //     );
-          // }}
+        // callback={async () => {
+        //   const response = await axios.post(
+        //     'http://127.0.0.1:8080//letters/hotel/1',
+        //     {
+        //       senderNickname: "민수쓰",
+        //       content: "콜링아이",
+        //     }
+        //     );
+        // }}
         />
       </View>
     </View>
