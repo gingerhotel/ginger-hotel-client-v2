@@ -2,6 +2,8 @@ import React from "react";
 import Navigation from "./navigation";
 import { useFonts } from "expo-font";
 import { RecoilRoot } from "recoil";
+import { QueryClient, QueryClientProvider } from "react-query"
+const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   const [fontsLoaded] = useFonts({
@@ -13,9 +15,11 @@ function App(): JSX.Element {
   }
 
   return (
-    <RecoilRoot>
-      <Navigation />
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <Navigation />
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 
