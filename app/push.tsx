@@ -163,7 +163,7 @@ export default function Push() {
         <NoticeItem
           id={deleteChecked[5].id}
           iconName={"user-times"}
-          content={"product님께서 엿보기를 거절했어요!"}
+          content={"preview님께서 엿보기를 거절했어요!"}
           time={"오후 5시 20분 "}
           isRead={true}
           deleteMode={pushDeleteMode}
