@@ -5,14 +5,10 @@ import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { MonoText } from "./styledText";
 import { colors } from "../constants/Colors";
 
-const CreateHotelColorItem = ({ color, active, index }: any) => {
+const CreateHotelColorItem = ({ color, active }: any) => {
   return (
     <View
-      style={[
-        cstyles(color).color,
-        index === 4 || index === 9 ? { marginRight: 0 } : { marginRight: 15 },
-        active === color && cstyles(color).active,
-      ]}
+      style={[cstyles(color).color, active === color && cstyles(color).active]}
     ></View>
   );
 };
@@ -22,7 +18,7 @@ const cstyles = (color: string) =>
     color: {
       width: 55,
       height: 55,
-      borderRadius: 12,
+      borderRadius: 55,
       backgroundColor: color,
       marginTop: 16,
     },
