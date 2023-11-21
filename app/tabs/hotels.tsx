@@ -10,7 +10,7 @@ import {
 import { Text, View } from "../../components/themed";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
@@ -19,15 +19,102 @@ import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { UserApiResponse } from "../../Type/myType";
+import axios from "axios";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { UserState } from "../../atom/myDataAtom";
+import { MainDataState } from "../../atom/mainDataAtom";
+import { HotelData } from "../../Type/mainType";
 const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
 const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 const icon: any = require("../../assets/icon/i_check.svg");
 
-
 export default function Hotel({ navigation }: any) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [hotelInfo, setHotelInfo] = useRecoilState<HotelData | undefined>(
+    MainDataState
+  );
+
+  useEffect(() => {
+    AsyncStorage.getItem("isLogin")
+      .then(() => {
+        const handleUserData = async () => {
+          const accessToken = await AsyncStorage.getItem("accessToken");
+          console.log(accessToken);
+          const userData = await AsyncStorage.getItem("userData");
+
+          if (userData) {
+            const parsedUserData = JSON.parse(userData);
+            console.log(userData);
+            const hotelId = parsedUserData?.hotel?.id;
+            console.log(hotelId);
+
+            if (hotelId) {
+              axios
+                .get<HotelData>(`http://127.0.0.1:8082/hotel/${hotelId}`, {
+                  headers: accessToken
+                    ? { Authorization: `Bearer ${accessToken}` }
+                    : undefined,
+                })
+                .then(({ data }) => {
+                  const {
+                    success,
+                    todayReceivedLetterCount,
+                    feekCount,
+                    keyCount,
+                    hotel,
+                    hotelWindows,
+                    isLoginMember,
+                    isOwner,
+                    isFriend,
+                    isBlocked,
+                  } = data;
+
+                  setHotelInfo((prevHotelInfo) => {
+                    const updatedHotelInfo = {
+                      ...prevHotelInfo,
+                      success: true,
+                      todayReceivedLetterCount: 0,
+                      feekCount: 0,
+                      keyCount: 0,
+                      hotel: {
+                        nickname: "",
+                        description: "",
+                        structColor: "",
+                        bodyColor: "",
+                      },
+                      hotelWindows: {},
+                      isLoginMember: false,
+                      isOwner: false,
+                      isFriend: false,
+                      isBlocked: false,
+                    };
+
+                    AsyncStorage.setItem(
+                      "hotelData",
+                      JSON.stringify(updatedHotelInfo)
+                    );
+                    return updatedHotelInfo;
+                  });
+                })
+                .catch((error) => {
+                  console.error(error);
+                });
+            } else {
+              console.error("Hotel ID not found in userData");
+            }
+          } else {
+            console.error("User data not found");
+          }
+        };
+
+        handleUserData();
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -41,10 +128,10 @@ export default function Hotel({ navigation }: any) {
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
           <ProgressBar />
         </ProgressBarView>
-        <Text style={styles.hotel_name}>진저님의 진저호텔</Text>
-        <Text style={styles.hotel_desc}>
-          진저의 호텔에 오신 여러분 환영합니다~!
+        <Text style={styles.hotel_name}>
+          {hotelInfo?.hotel.nickname}님의 진저호텔
         </Text>
+        <Text style={styles.hotel_desc}>{hotelInfo?.hotel.description}</Text>
         <SvgImg
           width={400}
           height={400}
