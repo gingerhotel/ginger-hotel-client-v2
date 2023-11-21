@@ -8,6 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { colors } from "../constants/Colors";
 import { useState } from "react";
 import CheckBox from "../components/chekbox";
+import { useQueryClient, useMutation } from "react-query";
+import { newHotel } from "../api/hotelApi";
 
 export default function createHotelAgree({ route, navigation }: any) {
   const props = route.params;
@@ -28,13 +30,28 @@ export default function createHotelAgree({ route, navigation }: any) {
     isChecked[type] = !isChecked[type];
     setChecked({ ...isChecked });
   };
+  const queryClient = useQueryClient();
 
-  AsyncStorage.getItem(
-    "accessToken", //String 타입
-    (err, result) => {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${result}`;
+  const mutation = useMutation(
+    // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
+    newHotel,
+    {
+      onSuccess: (data) => {
+        // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        console.log("Mutation successful! Response:", data);
+      },
     }
   );
+
+  const handleFormSubmit = async () => {
+    try {
+      // 뮤테이션 실행
+      await mutation.mutateAsync(props);
+      console.log("Mutation successful!");
+    } catch (error) {
+      console.error("Mutation failed:", error);
+    }
+  };
 
   return (
     <>
@@ -75,13 +92,7 @@ export default function createHotelAgree({ route, navigation }: any) {
             url={"hotels"}
             title="완료"
             color="green"
-            callback={async () => {
-              const response = await axios.post(
-                "http://localhost:8080/auth/hotel",
-                props
-              );
-              console.log(response);
-            }}
+            callback={() => handleFormSubmit}
           />
         </View>
       </View>
