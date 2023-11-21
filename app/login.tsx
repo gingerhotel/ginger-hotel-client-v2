@@ -2,7 +2,7 @@ import * as React from "react";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet, Image, View, Platform, Text, Button } from "react-native";
+import { StyleSheet, Image, View, Platform, Text, Button, Alert } from "react-native";
 // import { MonoText } from "../components/styledText";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
@@ -64,6 +64,7 @@ export default function Login({ navigation }: any) {
       const user = await getLocalUser();
       console.log("user", user);
       if (!user) {
+        Alert.alert(response?.type+"");
         if (response?.type === "success") {
           // setToken(response.authentication.accessToken);
           //getUserInfo(response.authentication.accessToken);
