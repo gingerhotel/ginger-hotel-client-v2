@@ -63,8 +63,8 @@ export default function Hotel({ navigation }: any) {
               <SvgImg
                 width={40}
                 height={40}
-                onPress={() => setModalVisible(true)}
                 url={album}
+                onPress={() => navigation.navigate("gingerAlbum")}
               />
             </TouchableOpacity>
           </View>

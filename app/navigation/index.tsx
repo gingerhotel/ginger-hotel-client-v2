@@ -27,6 +27,7 @@ import Header from "../../components/appHeader";
 import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
+import GingerAlbum from "../gingerAlbum";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -187,6 +188,13 @@ const Navigation = () => {
             options={{ headerShown: true }}
             name="login"
             component={Login}
+          />
+          <Stack.Screen
+            options={{
+              header: () => <Header title="진저맨 앨범" />,
+            }}
+            name="gingerAlbum"
+            component={GingerAlbum}
           />
           <Stack.Screen
             options={{
