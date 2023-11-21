@@ -12,3 +12,14 @@ export interface TodayLetters {
     feekStatus: string,
     feekComment: null | string
 }
+
+export interface NewHotel {
+  structColor: string;
+  bodyColor: string;
+  nickname: string;
+  description: string;
+  gender: "MAN | WOMAN";
+  birthDate: string;
+  code: string;
+}
+
