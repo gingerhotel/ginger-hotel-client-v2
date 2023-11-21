@@ -7,7 +7,7 @@
     "version": "2.2.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "com.teamginger.gingerhoteltest2",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -19,7 +19,13 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.teamginger1.gingerhotelclientv2"
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": ["com.googleusercontent.apps.251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr"]
+          }
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
