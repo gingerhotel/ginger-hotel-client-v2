@@ -4,8 +4,11 @@ export const LetterOuterContainer = styled.View`
     border-radius: 18px;
     border-width: 2px;
     border-color: #25796B;
-    width:384px;
+    
+    max-width:384px;
+    max-width:384px;
     padding: 7px;
+    margin-bottom: 15px;
 `
 
 // Styled component with linear gradient
