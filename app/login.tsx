@@ -38,9 +38,29 @@ export default function Login({ navigation }: any) {
     handleEffect();
   }, [response]);
 
-  const handleLoginTest = async (data: FieldValues) => {
+  const handleLoginProd = async (data: FieldValues) => {
+    //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
     axios
-      .post("http://localhost:8080/auth/test", {
+      .post(`https://gingerhotel-server.site/auth/test`, {
+        socialId: data.socialId,
+        vendor: "NAVER",
+      })
+      .then((res) => {
+        console.log(res);
+        AsyncStorage.setItem('isLogin', "true");
+        AsyncStorage.setItem('accessToken', res.data.accessToken);
+        navigation.push('hotelcreate')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  };
+
+  const handleLoginTest = async (data: FieldValues) => {
+    //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
+    axios
+      .post(`http://localhost:8080/auth/test`, {
         socialId: data.socialId,
         vendor: "NAVER",
       })
@@ -168,7 +188,8 @@ export default function Login({ navigation }: any) {
         placeholder="login test"
         onChangeText={(text) => setValue("socialId", text)}
       />
-      <Button title="Login Test" onPress={handleSubmit(handleLoginTest)} />
+      <Button title="운영로그인 테스트" onPress={handleSubmit(handleLoginProd)} />
+      <Button title="로컬로그인 테스트" onPress={handleSubmit(handleLoginTest)} />
 
       <Text>{JSON.stringify(userInfo, null, 2)}</Text>
     </View>
