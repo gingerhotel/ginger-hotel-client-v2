@@ -1,0 +1,22 @@
+import axios from "axios";
+import { UserApiResponse } from "./interface";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MEMBER_URL } from "./url";
+
+export const myDate = async () => {
+  const accessToken = await AsyncStorage.getItem("accessToken");
+
+  return await axios
+    .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      return (response.data)
+
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}

@@ -14,33 +14,11 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
+import { User } from "../../api/interface";
+import { myDate } from "../../api/myApi";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses.svg");
-
-interface User {
-  nickname: string;
-  code: string;
-  membership: string;
-  gender: "MAN" | "WOMAN" | null;
-  birthDate: string | null;
-  keyCount: number;
-  feekCount: number;
-}
-
-interface Hotel {
-  id: number;
-  nickname: string;
-  description: string;
-  structColor: string;
-  bodyColot: string; // 오타 수정: bodyColor로 변경
-}
-
-interface UserApiResponse {
-  success: boolean;
-  user: User;
-  hotel: Hotel;
-}
 
 export default function TabThreeScreen({ navigation }: any) {
   const [userInfo, setUserInfo] = useState<User>({
@@ -52,37 +30,21 @@ export default function TabThreeScreen({ navigation }: any) {
     keyCount: 0,
     feekCount: 0,
   });
-  const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
-      const accessToken = await AsyncStorage.getItem("accessToken");
-      console.log(accessToken);
-      axios
-        .get<UserApiResponse>("http://127.0.0.1:8080/members/my", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then((response) => {
-          const { user } = response.data;
-          const { hotel } = response.data;
-          setHotelId(hotel.id);
-          setUserInfo({
-            nickname: user.nickname,
-            code: user.code,
-            membership: user.membership,
-            gender: user.gender,
-            birthDate: user.birthDate,
-            keyCount: user.keyCount,
-            feekCount: user.feekCount,
-          });
+      const { user }: any = await myDate();
 
-          console.log(response.data);
-          console.log("?");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      setUserInfo({
+        nickname: user.nickname,
+        code: user.code,
+        membership: user.membership,
+        gender: user.gender,
+        birthDate: user.birthDate,
+        keyCount: user.keyCount,
+        feekCount: user.feekCount,
+      });
+
+      console.log("?");
     };
     handleUserData();
   }, []);
