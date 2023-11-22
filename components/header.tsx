@@ -38,7 +38,7 @@ const Header = ({ navigation }: any) => {
             <SvgImg
               width={30}
               height={30}
-              onPress={() => navigation.navigate("push")}
+              onPress={() => navigation.navigate("guidePage")}
               url={i_info}
             />
             <SvgImg

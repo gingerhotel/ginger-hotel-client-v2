@@ -28,6 +28,7 @@ import { SvgImg } from "../../components/svgImg";
 import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
 import GingerAlbum from "../gingerAlbum";
+import GuidePage from "../guidePage";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -202,6 +203,13 @@ const Navigation = () => {
             }}
             name="feekCharge"
             component={FeekCharge}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="guidePage"
+            component={GuidePage}
           />
         </Stack.Navigator>
       </NavigationContainer>
