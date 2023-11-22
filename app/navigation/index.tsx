@@ -22,10 +22,7 @@ import createHotelSelect from "../createHotelSelect";
 import CreateHotel from "../create";
 import GingerCard from "../gingercard";
 import Login from "../login";
-import { colors } from "../../constants/Colors";
 import Header from "../../components/appHeader";
-import { SvgImg } from "../../components/svgImg";
-import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
 import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
@@ -100,14 +97,6 @@ const Navigation = () => {
           }}
           name="MY"
           component={TabThreeScreen}
-        />
-        <Tab.Screen
-          options={{
-            title: "마이페이지",
-            headerShown: false,
-          }}
-          name="testt"
-          component={Test}
         />
       </Tab.Navigator>
     );
