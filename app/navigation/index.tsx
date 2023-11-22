@@ -31,6 +31,7 @@ import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
 import InstaShared from "../instaShared";
 import { createURL } from "expo-linking";
+import Test from "../pushtest";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -99,6 +100,14 @@ const Navigation = () => {
           }}
           name="MY"
           component={TabThreeScreen}
+        />
+        <Tab.Screen
+          options={{
+            title: "마이페이지",
+            headerShown: false,
+          }}
+          name="testt"
+          component={Test}
         />
       </Tab.Navigator>
     );
@@ -200,13 +209,6 @@ const Navigation = () => {
             options={{ headerShown: true }}
             name="login"
             component={Login}
-          />
-          <Stack.Screen
-            options={{
-              header: () => <Header title="진저맨 앨범" />,
-            }}
-            name="gingerAlbum"
-            component={GingerAlbum}
           />
           <Stack.Screen
             options={{

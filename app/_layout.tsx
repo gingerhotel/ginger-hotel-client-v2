@@ -4,11 +4,8 @@ import Navigation from "./navigation";
 import { useFonts } from "expo-font";
 import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "react-query"
+import * as Updates from "expo-updates";
 const queryClient = new QueryClient();
-
-import * as Updates from 'expo-updates';
-
-
 
 function App(): JSX.Element {
   useEffect(() => {

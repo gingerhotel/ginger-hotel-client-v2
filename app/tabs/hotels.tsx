@@ -31,7 +31,6 @@ const icon: any = require("../../assets/icon/i_check.svg");
 export default function Hotel({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const [modalVisible, setModalVisible] = useState(false);
-
   const closeModal = () => {
     setModalVisible(false);
   };

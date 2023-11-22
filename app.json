@@ -33,7 +33,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.teamginger1.gingerhotelclientv2"
+      "package": "com.teamginger1.gingerhotelclientv2",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",

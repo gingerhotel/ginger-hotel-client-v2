@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "251638133705",
+    "project_id": "gingerhotel2023",
+    "storage_bucket": "gingerhotel2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251638133705:android:b2886d37a78ebfc3cbee18",
+        "android_client_info": {
+          "package_name": "com.ginger.gingerhotel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPaQRE_xmZNMi0Ku_EqZOhG8PltX0Lv_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.teamginger.gingerhoteltest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

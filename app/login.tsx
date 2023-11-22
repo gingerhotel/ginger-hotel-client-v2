@@ -1,15 +1,25 @@
-import * as React from "react";
-import * as WebBrowser from "expo-web-browser";
+import { useState, useEffect, useRef } from "react";
 import * as Google from "expo-auth-session/providers/google";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StyleSheet, Image, View, Platform, Text, Button, Alert, TextInput } from "react-native";
 // import { MonoText } from "../components/styledText";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
+import {
+  StyleSheet,
+  Image,
+  View,
+  Platform,
+  Text,
+  Button,
+  Alert,
+} from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import SocialButton from "../components/socialButton";
+import * as Notifications from "expo-notifications";
+import { registerForPushNotificationsAsync } from "../utils/push-setting";
 
-import axios from 'axios';
+const SVG = require("../assets/images/StartHotel.svg");
 
 import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
@@ -17,24 +27,39 @@ import { FieldValues, useForm } from "react-hook-form";
 
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
-
-const SVG = require("../assets/images/StartHotel.svg");
-const [userInfo, setUserInfo] = React.useState(null);
+// 푸시 기본 정보
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function Login({ navigation }: any) {
+  // expoPushToken 디바이스 정보를 디비에 저장해야한다.
+  const [expoPushToken, setExpoPushToken] = useState<any>("");
+  const [notification, setNotification] = useState<any>(false);
+  const notificationListener: any = useRef();
+  const responseListener: any = useRef();
+  const [userInfo, setUserInfo] = useState<any>(null); // 이 부분만 남김
   const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId: "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
-    iosClientId: "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+    webClientId:
+      "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+    iosClientId:
+      "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
   });
 
   const [token, setToken] = React.useState("");
   const { setValue, register, control, handleSubmit } = useForm();
+  const [token, setToken] = useState("");
 
   React.useEffect(() => {
     register("socialId");
   }, [register]);
 
   React.useEffect(() => {
+  useEffect(() => {
     handleEffect();
   }, [response]);
 
@@ -117,6 +142,86 @@ export default function Login({ navigation }: any) {
       await AsyncStorage.removeItem("@user");
       setUserInfo(null);
     };
+  useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token)
+    );
+
+    notificationListener.current =
+      Notifications.addNotificationReceivedListener((notification) => {
+        setNotification(notification);
+      });
+
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response);
+      });
+
+    return () => {
+      Notifications.removeNotificationSubscription(
+        notificationListener.current
+      );
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  // Google 로그인 처리하는 함수
+  const handleSignInWithGoogle = async () => {
+    const user = await AsyncStorage.getItem("@user");
+    if (!user) {
+      if (response?.type === "success") {
+        // 인증 요청에 대한 응답이 성공이면, 토큰을 이용하여 유저 정보를 가져옴.
+        // await getUserInfo(response.authentication?.accessToken);
+      }
+    } else {
+      // 유저 정보가 이미 있으면, 유저 정보를 가져옴.
+      setUserInfo(JSON.parse(user));
+    }
+  };
+
+  const getUserInfo = async (token: string) => {
+    if (!token) return;
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const user = await response.json();
+      await AsyncStorage.setItem("@user", JSON.stringify(user));
+      setUserInfo(user);
+    } catch (error) {
+      // Add your own error handler here
+    }
+  };
+
+  async function handleEffect() {
+    const user = await getLocalUser();
+    console.log("user", user);
+    if (!user) {
+      Alert.alert(response?.type + "");
+      if (response?.type === "success") {
+        // setToken(response.authentication.accessToken);
+        //getUserInfo(response.authentication.accessToken);
+      }
+    } else {
+      setUserInfo(user);
+      console.log("loaded locally");
+    }
+  }
+
+  const getLocalUser = async () => {
+    const data = await AsyncStorage.getItem("@user");
+    if (!data) return null;
+    return JSON.parse(data);
+  };
+
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("@user");
+    setUserInfo(null);
+  };
 
   return (
     <View style={styles.container}>
