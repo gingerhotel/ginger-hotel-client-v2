@@ -30,6 +30,7 @@ import FeekCharge from "../feekCharge";
 import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
 import InstaShared from "../instaShared";
+import { createURL } from "expo-linking";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -111,11 +112,20 @@ const Navigation = () => {
         onReady={() => {
           isReadyRef.current = true;
         }}
+        linking={{
+          prefixes: [createURL("/")],
+          config: {
+            screens: {
+              Hotel: 'hotel/:id',
+              //Letter: 'letter',
+            },
+          },
+        }}
       >
         <Stack.Navigator>
           <Stack.Screen
             options={{ headerShown: false }}
-            name="test"
+            name="main"
             component={renderTabNavigation}
           />
           <Stack.Screen
