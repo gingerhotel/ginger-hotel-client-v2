@@ -1,7 +1,4 @@
 import {
-  Image,
-  Platform,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -10,7 +7,7 @@ import {
 import { Text, View } from "../../components/themed";
 import Header from "../../components/header";
 import { MonoText } from "../../components/styledText";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Buttons from "../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../components/svgImg";
@@ -19,18 +16,35 @@ import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
+import { myDate } from "../../api/myApi";
+import { useSetRecoilState } from "recoil";
+import { hotelIdState } from "../../atom/letterAtom";
+import { newLetterData } from "../../api/letterApi";
+
 const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
 const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 
 export default function Hotel({ navigation }: any) {
-  const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const setHotelId = useSetRecoilState<number>(hotelIdState);
+  const [open, setOpen] = useState(true);
+  console.log()
   const closeModal = () => {
     setModalVisible(false);
   };
 
+  useEffect(() => {
+    const handleUserData = async () => {
+      const { hotel }: any = await myDate();
+      setHotelId(hotel?.id);
+      if (await newLetterData({ hotelId: hotel?.id })) {
+        setOpen(false);
+      }
+    };
+    handleUserData();
+  }, []);
   return (
     <ScrollView>
       <Header navigation={navigation} />
@@ -58,6 +72,7 @@ export default function Hotel({ navigation }: any) {
               title="오늘의 편지함 보기"
               color="green"
               width={288}
+              is_disable={open}
             />
             <TouchableOpacity>
               <SvgImg
