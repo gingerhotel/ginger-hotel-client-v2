@@ -28,4 +28,19 @@ export interface NewLetter {
   senderNickname: string; // requird
   image: string;
 }
+export interface User {
+  nickname: string;
+  code: string;
+  membership: string;
+  gender: "MAN | WOMAN | null";
+  birthDate: "1998-06-13 | null";
+  keyCount: number;
+  feekCount: number;
+}
 
+
+export interface My {
+  success: string;
+  user: User;
+  hotel: NewHotel;
+}

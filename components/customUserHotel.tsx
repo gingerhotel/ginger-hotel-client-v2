@@ -5,7 +5,12 @@ import { colors } from "../constants/Colors";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 
-export default function CustomUserHotel({ wallColor, structColor }: any) {
+export default function CustomUserHotel({
+  wallColor,
+  structColor,
+  onPress,
+  is_border,
+}: any) {
   const web = { top: 49, left: 47 };
   const app = { top: 64, left: -1 };
 
@@ -123,8 +128,17 @@ export default function CustomUserHotel({ wallColor, structColor }: any) {
 
   return (
     <>
-      <View style={styles.img_wrapper}>
+      <View
+        style={[
+          styles.img_wrapper,
+          is_border && {
+            borderWidth: 0.3,
+            borderColor: colors.grey500,
+          },
+        ]}
+      >
         <SvgImg
+          onPress={onPress && onPress}
           url={Hotel1}
           width={340}
           height={400}
@@ -223,8 +237,6 @@ export default function CustomUserHotel({ wallColor, structColor }: any) {
 
 const styles = StyleSheet.create({
   img_wrapper: {
-    borderWidth: 0.3,
-    borderColor: colors.grey500,
     zIndex: 3,
     marginTop: 10,
     padding: 10,

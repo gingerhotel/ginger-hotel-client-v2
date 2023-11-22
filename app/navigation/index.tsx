@@ -63,7 +63,7 @@ const Navigation = () => {
           headerShown: false,
           tabBarInactiveTintColor: "gray",
           tabBarStyle: {
-            backgroundColor: "#000",
+            backgroundColor: colors.greyblack,
             borderTopWidth: 0,
             marginBottom: 0,
           },

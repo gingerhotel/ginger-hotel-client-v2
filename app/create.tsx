@@ -34,7 +34,11 @@ export default function CreateHotel({ navigation }: any) {
       <CreateHeader isActiveNumber={1} />
       <ScrollView style={styles.container}>
         <View>
-          <CustomUserHotel wallColor={wallColor} structColor={structColor} />
+          <CustomUserHotel
+            is_border={true}
+            wallColor={wallColor}
+            structColor={structColor}
+          />
         </View>
         <View style={styles.deco_wrapper}>
           <View style={styles.title_wrapper}>

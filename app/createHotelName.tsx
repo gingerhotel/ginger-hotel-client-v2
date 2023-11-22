@@ -27,6 +27,7 @@ export default function CreateHotelName({ route, navigation }: any) {
 
         <View>
           <CustomUserHotel
+            is_border={true}
             wallColor={hotel_color?.bodyColor}
             structColor={hotel_color?.structColor}
           />
