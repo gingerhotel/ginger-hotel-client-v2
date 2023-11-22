@@ -21,7 +21,7 @@ import {
   LetterOuterContainer
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
-const iconMore = require("../assets/icon/i_more_vert.png");
+const iconMore = require("../assets/icon/i_more_vert.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
 type Props = {
@@ -53,16 +53,14 @@ export const NewLetterItem = ({ letters }: any) => {
                   <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
                 </TouchableOpacity>
                 <LetterInnerTitieTextView>
-                  <LetterInnerSendText>보내는 이</LetterInnerSendText>
-                  <LetterInnerUserText>{item.content}</LetterInnerUserText>
+                  <LetterInnerSendText f_color="#000">보내는 이</LetterInnerSendText>
+                  <LetterInnerUserText f_color="#25796B">{item.content}</LetterInnerUserText>
                 </LetterInnerTitieTextView>
-                <TouchableOpacity onPress={toggleModal}>
-                  <SvgImg
-                    url={iconMore}
-                    style={styles.icon}
+                <View />
+                <TouchableOpacity onPress={toggleModal} style={{ position: 'absolute', left: 312 }}>
+                  <SvgImg url={iconMore}
                     width={30}
-                    height={30}
-                  />
+                    height={30} />
                 </TouchableOpacity>
               </LetterInnerTitieView>
               <LetterInnerTextBox>
