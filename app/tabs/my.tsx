@@ -140,7 +140,11 @@ export default function TabThreeScreen({ navigation }: any) {
                   { backgroundColor: colors.grey900 },
                 ]}
               ></View>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("instaShared");
+                }}
+              >
                 <View>
                   <Text
                     style={{

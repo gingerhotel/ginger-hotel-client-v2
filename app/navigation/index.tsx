@@ -29,6 +29,7 @@ import { MonoText } from "../../components/styledText";
 import FeekCharge from "../feekCharge";
 import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
+import InstaShared from "../instaShared";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -210,6 +211,13 @@ const Navigation = () => {
             }}
             name="guidePage"
             component={GuidePage}
+          />
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="instaShared"
+            component={InstaShared}
           />
         </Stack.Navigator>
       </NavigationContainer>
