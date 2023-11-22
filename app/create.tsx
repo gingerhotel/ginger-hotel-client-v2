@@ -32,62 +32,64 @@ export default function CreateHotel({ navigation }: any) {
   return (
     <>
       <CreateHeader isActiveNumber={1} />
-      <ScrollView style={styles.container}>
-        <View>
-          <CustomUserHotel
-            is_border={true}
-            wallColor={wallColor}
-            structColor={structColor}
-          />
-        </View>
-        <View style={styles.deco_wrapper}>
-          <View style={styles.title_wrapper}>
-            {titleList?.map((title) => (
-              <TouchableOpacity key={title} onPress={() => setTitle(title)}>
-                <MonoText
-                  style={[
-                    styles.title,
-                    title === activeTitle && styles.title_active,
-                  ]}
-                >
-                  {title}
-                </MonoText>
-              </TouchableOpacity>
-            ))}
+      <ScrollView>
+        <View style={styles.container}>
+          <View>
+            <CustomUserHotel
+              is_border={true}
+              wallColor={wallColor}
+              structColor={structColor}
+            />
           </View>
-          <View style={styles.color_wrapper}>
-            {(activeTitle === "벽면" || activeTitle === "뼈대") &&
-              selectColors?.map((color, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() =>
-                    activeTitle === "벽면"
-                      ? setWallColor(color)
-                      : setStructColor(color)
-                  }
-                >
-                  <CreateHotelColorItem
-                    key={index}
-                    color={color}
-                    index={index}
-                    active={activeTitle === "벽면" ? wallColor : structColor}
-                  ></CreateHotelColorItem>
+          <View style={styles.deco_wrapper}>
+            <View style={styles.title_wrapper}>
+              {titleList?.map((title) => (
+                <TouchableOpacity key={title} onPress={() => setTitle(title)}>
+                  <MonoText
+                    style={[
+                      styles.title,
+                      title === activeTitle && styles.title_active,
+                    ]}
+                  >
+                    {title}
+                  </MonoText>
                 </TouchableOpacity>
               ))}
+            </View>
+            <View style={styles.color_wrapper}>
+              {(activeTitle === "벽면" || activeTitle === "뼈대") &&
+                selectColors?.map((color, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() =>
+                      activeTitle === "벽면"
+                        ? setWallColor(color)
+                        : setStructColor(color)
+                    }
+                  >
+                    <CreateHotelColorItem
+                      key={index}
+                      color={color}
+                      index={index}
+                      active={activeTitle === "벽면" ? wallColor : structColor}
+                    ></CreateHotelColorItem>
+                  </TouchableOpacity>
+                ))}
+            </View>
           </View>
-        </View>
 
-        <View style={styles.btn_wrapper}>
-          <Buttons
-            navigation={navigation}
-            url={"hotelname"}
-            props={{ structColor, bodyColor: wallColor }}
-            title="다음으로"
-            color="green"
-          />
-          <MonoText style={styles.hotel_info}>
-            ※호텔 색상은 나중에도 수정할 수 있어요!
-          </MonoText>
+          <View style={styles.btn_wrapper}>
+            <Buttons
+              navigation={navigation}
+              url={"hotelname"}
+              props={{ structColor, bodyColor: wallColor }}
+              title="다음으로"
+              color="green"
+            />
+            <MonoText style={styles.hotel_info}>
+              ※호텔 색상은 나중에도 수정할 수 있어요!
+            </MonoText>
+          </View>
         </View>
       </ScrollView>
     </>
@@ -99,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(30,31,35,1.00)",
     flex: 1,
     padding: 10,
+    alignItems: "center",
   },
   img_wrapper: {
     borderWidth: 0.3,

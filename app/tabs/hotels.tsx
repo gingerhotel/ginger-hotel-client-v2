@@ -134,7 +134,7 @@ export default function Hotel({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "center",
     backgroundColor: colors.greyblack,
   },
