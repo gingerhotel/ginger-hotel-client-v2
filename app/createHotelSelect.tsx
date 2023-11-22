@@ -1,5 +1,11 @@
 import * as React from "react";
-import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+  Platform,
+} from "react-native";
 import Buttons from "../components/buttons";
 import Chip from "../components/chip";
 import CreateHeader from "../components/createHeader";
@@ -21,6 +27,11 @@ export default function createHotelSelect({ route, navigation }: any) {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
 
+  const input_size = {
+    web: 120,
+    app: 100,
+  };
+
   return (
     <>
       <CreateHeader isActiveNumber={3} />
@@ -33,7 +44,7 @@ export default function createHotelSelect({ route, navigation }: any) {
           <View style={styles.chip_wrapper}>
             {sex_chip?.map((text, index) => (
               <TouchableOpacity key={index} onPress={() => setChip(text)}>
-                <Chip text={text} active={activeChip} />
+                <Chip text={text} active={activeChip} width={80} />
               </TouchableOpacity>
             ))}
           </View>
@@ -43,23 +54,35 @@ export default function createHotelSelect({ route, navigation }: any) {
             생년월일을 형식에 맞게 입력해주세요.
           </MonoText>
 
-          <Chip text={"선택안함"} active={activeChip} />
+          <Chip text={"선택안함"} />
           <View style={styles.input_wrapper}>
             <Input
               placeholder="YYYY"
-              width={120}
+              width={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? input_size.app
+                  : input_size.web
+              }
               onChange={(text: string) => setYear(text)}
             />
             <View style={{ marginLeft: 8 }}></View>
             <Input
               placeholder="MM"
-              width={120}
+              width={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? input_size.app
+                  : input_size.web
+              }
               onChange={(text: string) => setMonth(text)}
             />
             <View style={{ marginLeft: 8 }}></View>
             <Input
               placeholder="DD"
-              width={120}
+              width={
+                Platform.OS === "ios" || Platform.OS === "android"
+                  ? input_size.app
+                  : input_size.web
+              }
               onChange={(text: string) => setDay(text)}
             />
           </View>
@@ -106,6 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(30,31,35,1.00)",
     flex: 1,
     paddingLeft: 20,
+    paddingRight: 20,
   },
   edit_wrapper: {
     marginTop: 40,
@@ -133,9 +157,9 @@ const styles = StyleSheet.create({
     gap: 10,
     height: 70,
     width: "100%",
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 30,
   },
   chip_wrapper: {
     display: "flex",

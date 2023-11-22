@@ -4,12 +4,10 @@ import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-
-const Hotel1 = require("../assets/images/Hotel1.svg");
-import { Image } from "react-native";
 import Input from "../components/input";
 import { useState } from "react";
 import { SvgImg } from "../components/svgImg";
+import CustomUserHotel from "../components/customUserHotel";
 
 export default function CreateHotelName({ route, navigation }: any) {
   const hotel_color = route.params;
@@ -25,20 +23,17 @@ export default function CreateHotelName({ route, navigation }: any) {
           <MonoText style={styles.desc}>
             호텔 이름은 나중에도 수정할 수 있어요!
           </MonoText>
-          <View style={styles.img_wrapper}>
-            <SvgImg
-              url={Hotel1}
-              width={330}
-              height={400}
-              style={{
-                position: "relative",
-                width: 371,
-                height: 420,
-                marginTop: 20,
-                zIndex: 3,
-              }}
-            />
-          </View>
+        </View>
+
+        <View>
+          <CustomUserHotel
+            is_border={true}
+            wallColor={hotel_color?.bodyColor}
+            structColor={hotel_color?.structColor}
+          />
+        </View>
+
+        <View style={{ padding: 3, paddingTop: 10 }}>
           <Input
             onChange={(text: string) => setNickname(text)}
             placeholder="내 닉네임"
@@ -50,7 +45,6 @@ export default function CreateHotelName({ route, navigation }: any) {
             placeholder="내 호텔을 소개해주세요(최대 NN글자)"
           />
         </View>
-
         <View style={styles.btn_wrapper}>
           <Buttons
             navigation={navigation}
@@ -80,7 +74,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   edit_wrapper: {
-    marginTop: 40,
+    marginTop: 30,
+    marginLeft: 7,
   },
   title: {
     textAlign: "left",
@@ -120,5 +115,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 20,
+    marginBottom: 28,
   },
 });

@@ -14,18 +14,29 @@ export function SvgImg(props: Props) {
   return (
     <>
       {Platform.OS === "ios" || Platform.OS === "android" ? (
-        <TouchableOpacity onPress={props.onPress}>
+        typeof props.onPress === "function" ? (
+          <TouchableOpacity onPress={props.onPress}>
+            <WithLocalSvg
+              style={props.style}
+              asset={props.url}
+              width={props.width}
+              height={props.height}
+            />
+          </TouchableOpacity>
+        ) : (
           <WithLocalSvg
             style={props.style}
             asset={props.url}
             width={props.width}
             height={props.height}
           />
-        </TouchableOpacity>
-      ) : (
+        )
+      ) : typeof props.onPress === "function" ? (
         <TouchableOpacity onPress={props.onPress}>
           <Image style={props.style} source={props.url} />
         </TouchableOpacity>
+      ) : (
+        <Image style={props.style} source={props.url} />
       )}
     </>
   );

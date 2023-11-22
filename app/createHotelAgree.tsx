@@ -44,6 +44,7 @@ export default function createHotelAgree({ route, navigation }: any) {
   );
 
   const handleFormSubmit = async () => {
+    console.log("chekc");
     try {
       // 뮤테이션 실행
       await mutation.mutateAsync(props);
@@ -92,7 +93,7 @@ export default function createHotelAgree({ route, navigation }: any) {
             url={"hotels"}
             title="완료"
             color="green"
-            callback={() => handleFormSubmit()}
+            callback={handleFormSubmit}
           />
         </View>
       </View>
@@ -127,8 +128,8 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
   },
   hr: {
     height: 1,

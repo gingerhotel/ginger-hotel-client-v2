@@ -19,7 +19,7 @@ let i_plus = require("../assets/icon/i_plus.svg");
 const Header = ({ navigation }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
-      <View style={{ backgroundColor: "#000" }}>
+      <View style={{ backgroundColor: colors.greyblack }}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
             <View style={styles.container_1}>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     marginTop: 30,
-    backgroundColor: "#000",
+    backgroundColor: colors.greyblack,
     marginLeft: 20,
     paddingRight: 40,
   },

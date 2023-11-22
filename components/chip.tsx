@@ -3,9 +3,11 @@ import { StyleSheet, TextInput, View } from "react-native";
 import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 
-export default function Chip({ text, active }: any) {
+export default function Chip({ text, active, width }: any) {
   return (
-    <View style={[styles.chip, text === active && styles.active]}>
+    <View
+      style={[styles.chip, text === active && styles.active, { width: width }]}
+    >
       <MonoText style={text !== active ? styles.active_text : styles.text}>
         {text}
       </MonoText>
@@ -15,7 +17,6 @@ export default function Chip({ text, active }: any) {
 
 const styles = StyleSheet.create({
   chip: {
-    width: 110,
     paddingTop: 12,
     paddingBottom: 12,
     borderRadius: 45,

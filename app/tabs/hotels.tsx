@@ -19,14 +19,17 @@ import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
+import { useQuery } from "react-query";
+import { myInfo } from "../../api/myApi";
+import CustomUserHotel from "../../components/customUserHotel";
 const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
 const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 const icon: any = require("../../assets/icon/i_check.svg");
 
-
 export default function Hotel({ navigation }: any) {
+  // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const [modalVisible, setModalVisible] = useState(false);
 
   const closeModal = () => {
@@ -45,12 +48,21 @@ export default function Hotel({ navigation }: any) {
         <Text style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </Text>
-        <SvgImg
+        {/* <SvgImg
           width={400}
           height={400}
           onPress={() => navigation.navigate("hotelcreate")}
           url={SVG}
-        />
+        /> */}
+
+        <View style={{ backgroundColor: colors.greyblack }}>
+          <CustomUserHotel
+            wallColor={"#CF332C"}
+            structColor={"#FFB950"}
+            is_border={false}
+            onPress={() => navigation.navigate("hotelcreate")}
+          />
+        </View>
 
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: colors.greyblack,
   },
   hotel_img: {
     width: 300,
