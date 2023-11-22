@@ -4,7 +4,7 @@ export const LetterOuterContainer = styled.View`
     border-radius: 18px;
     border-width: 2px;
     border-color: #25796B;
-    width:100%;
+    width:384px;
     padding: 7px;
 `
 

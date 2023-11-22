@@ -61,6 +61,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: "600",
     fontFamily: "Quicksand-Variable",
-    textShadow: "0px 2px 2px rgba(60, 32, 32, 0.25)",
+    shadow: {
+      offset: { width: 0, height: 2 },
+      radius: 2,
+      color: "rgba(60, 32, 32, 0.25)",
+    },
   },
 });

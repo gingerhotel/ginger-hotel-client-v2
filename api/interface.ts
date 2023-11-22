@@ -23,3 +23,9 @@ export interface NewHotel {
   code: string;
 }
 
+export interface NewLetter {
+  content: string; // requird
+  senderNickname: string; // requird
+  image: string;
+}
+

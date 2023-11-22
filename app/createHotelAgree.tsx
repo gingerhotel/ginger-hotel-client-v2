@@ -92,7 +92,7 @@ export default function createHotelAgree({ route, navigation }: any) {
             url={"hotels"}
             title="완료"
             color="green"
-            callback={() => handleFormSubmit}
+            callback={() => handleFormSubmit()}
           />
         </View>
       </View>
