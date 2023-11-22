@@ -25,7 +25,7 @@ export default function Letter({ navigation }: any) {
     }
   );
 
-  const handleFormSubmit = async (data : any) => {
+  const letterSubmit = async (data : any) => {
     try {
       const letterData = {
         content: data.letters,
@@ -77,7 +77,7 @@ export default function Letter({ navigation }: any) {
           title="보내기"
           is_width={true}
           color="green"
-          callback={handleSubmit(handleFormSubmit)}
+          callback={handleSubmit(letterSubmit)}
         />
       </View>
     </View>
