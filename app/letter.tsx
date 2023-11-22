@@ -2,30 +2,41 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, View, TextInput } from "react-native";
 import Buttons from "../components/buttons";
-import LetterInput from "../components/letterInput";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useMutation } from "react-query";
+import { newLetter } from "../api/hotelApi";
 
 export default function Letter({ navigation }: any) {
-  const [letterText, setLetterText] = useState("");
-
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
     register("letters");
     register("nickname");
   }, [register]);
-  const writeLetter = async (data: any) => {
-    const accessToken = await AsyncStorage.getItem("accessToken");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    const response = await axios.post(
-      'http://127.0.0.1:8080/letters/hotel/1',
-      {
-        senderNickname: data.nickname,
+
+  const mutation = useMutation(
+    // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
+    newLetter,
+    {
+      onSuccess: (data) => {
+        // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        // console.log("Mutation successful! Response:", data);
+      },
+    }
+  );
+
+  const handleFormSubmit = async (data : any) => {
+    try {
+      const letterData = {
         content: data.letters,
-      }
-    );
+        senderNickname: data.nickname,
+        image: ""
+      };
+      // 뮤테이션 실행
+      await mutation.mutateAsync(letterData);
+    } catch (error) {
+      console.error("Mutation failed:", error);
+    }
   };
 
   return (
@@ -66,16 +77,7 @@ export default function Letter({ navigation }: any) {
           title="보내기"
           is_width={true}
           color="green"
-          callback={handleSubmit(writeLetter)}
-        // callback={async () => {
-        //   const response = await axios.post(
-        //     'http://127.0.0.1:8080//letters/hotel/1',
-        //     {
-        //       senderNickname: "민수쓰",
-        //       content: "콜링아이",
-        //     }
-        //     );
-        // }}
+          callback={handleSubmit(handleFormSubmit)}
         />
       </View>
     </View>
