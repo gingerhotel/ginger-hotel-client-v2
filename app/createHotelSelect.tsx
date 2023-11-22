@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(30,31,35,1.00)",
     flex: 1,
     paddingLeft: 20,
+    paddingRight: 20,
   },
   edit_wrapper: {
     marginTop: 40,
@@ -133,9 +134,9 @@ const styles = StyleSheet.create({
     gap: 10,
     height: 70,
     width: "100%",
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 30,
   },
   chip_wrapper: {
     display: "flex",

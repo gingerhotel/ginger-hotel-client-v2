@@ -127,8 +127,8 @@ const styles = StyleSheet.create({
     left: 0,
     width: "100%",
     padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    // paddingLeft: 20,
+    // paddingRight: 20,
   },
   hr: {
     height: 1,
