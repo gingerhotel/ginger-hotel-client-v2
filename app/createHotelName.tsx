@@ -13,7 +13,6 @@ export default function CreateHotelName({ route, navigation }: any) {
   const hotel_color = route.params;
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
-  console.log(hotel_color);
 
   return (
     <>
