@@ -23,7 +23,7 @@ import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
 import { myInfo } from "../../../api/myApi";
 import CustomUserHotel from "../../../components/customUserHotel";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams } from "expo-router";
 const SVG = require("../../../assets/images/StartHotel.svg");
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
@@ -79,6 +79,7 @@ export default function Hotel({ navigation }: any) {
                 title="오늘의 편지함 보기"
                 color="green"
                 width={288}
+                url="mailbox"
               />
             </View>
           </Link>
@@ -109,15 +110,16 @@ export default function Hotel({ navigation }: any) {
               icon={share}
             />
           </View>
-          <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"login"}
-              title="임시 로그인 버튼"
-              color="green"
-              width={350}
-            />
-          </View>
+
+            <Link href="/letter" asChild>
+              <View style={styles.hotel_today}>
+                <Buttons
+                  title="임시 로그인 버튼"
+                  color="green"
+                  width={350}
+                  />
+              </View>
+            </Link>
           <Link href="/login" asChild>
             <Button title="open login modal" />
           </Link>
@@ -125,6 +127,7 @@ export default function Hotel({ navigation }: any) {
             <View style={styles.hotel_today}>
               <Buttons
                 title="편지 보내기"
+                url="login"
                 color="green"
                 width={350}
               />
