@@ -7,11 +7,11 @@ declare module "expo-router" {
   export * from 'expo-router/build';
 
   // prettier-ignore
-  type StaticRoutes = `/(tabs)/_layout` | `/_layout` | `/(tabs)/hotel/_layout` | `/hotel/_layout` | `/answer` | `/create` | `/createHotelAgree` | `/createHotelName` | `/createHotelSelect` | `/feekCharge` | `/gingercard` | `/letter` | `/letterCompleted` | `/login` | `/mailbox` | `/modal` | `/navigation/` | `/push` | `/tabs/hotels` | `/tabs/my` | `/tabs/village` | `/gingerAlbum` | `/guidePage` | `/` | `/instaShared` | `/(tabs)/hotels` | `/hotels` | `/(tabs)/my` | `/my` | `/(tabs)/village` | `/village`;
+  type StaticRoutes = `/` | `/(tabs)/_layout` | `/_layout` | `/(tabs)/my` | `/my` | `/(tabs)/village` | `/village` | `/.DS_Store` | `/answer` | `/create` | `/createHotelAgree` | `/createHotelName` | `/createHotelSelect` | `/feekCharge` | `/gingerAlbum` | `/gingercard` | `/guidePage` | `/instaShared` | `/letter` | `/letterCompleted` | `/login` | `/mailbox` | `/modal` | `/push`;
   // prettier-ignore
-  type DynamicRoutes<T extends string> = `/${CatchAllRoutePart<T>}` | `/(tabs)/hotel/${SingleRoutePart<T>}` | `/hotel/${SingleRoutePart<T>}`;
+  type DynamicRoutes<T extends string> = `/(tabs)/hotel/${SingleRoutePart<T>}` | `/hotel/${SingleRoutePart<T>}` | `/${CatchAllRoutePart<T>}`;
   // prettier-ignore
-  type DynamicRouteTemplate = `/[...missing]` | `/(tabs)/hotel/[id]`;
+  type DynamicRouteTemplate = `/(tabs)/hotel/[id]` | `/[...missing]`;
 
   type RelativePathString = `./${string}` | `../${string}` | '..';
   type AbsoluteRoute = DynamicRouteTemplate | StaticRoutes;

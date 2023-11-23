@@ -21,23 +21,38 @@ import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
 import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-import { myInfo } from "../../../api/myApi";
+//import { myInfo } from "../../../api/myApi";
 import CustomUserHotel from "../../../components/customUserHotel";
 import { Link, router, useLocalSearchParams } from "expo-router";
 const SVG = require("../../../assets/images/StartHotel.svg");
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
-const icon: any = require("../../../assets/icon/i_check.svg");
+const icon: any = require("../../../assets/icon/i_check.png");
+
+import { myDate } from "../../../api/myApi";
+import { useSetRecoilState } from "recoil";
+import { hotelIdState } from "../../../atom/letterAtom";
+import { newLetterData } from "../../../api/letterApi";
+
 
 export default function Hotel({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const {id} = useLocalSearchParams();
-  const [modalVisible, setModalVisible] = useState(false);
-
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const setHotelId = useSetRecoilState<number>(hotelIdState);
+  const [open, setOpen] = useState(true);
+  
   useEffect(() => {
-    console.log(`id is ${id} `);
-  } ,[]);
+    const handleUserData = async () => {
+      const { hotel }: any = await myDate();
+      setHotelId(hotel?.id);
+      if (await newLetterData({ hotelId: hotel?.id })) {
+        setOpen(false);
+      }
+    };
+    handleUserData();
+  }, []);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -80,6 +95,7 @@ export default function Hotel({ navigation }: any) {
                 color="green"
                 width={288}
                 url="mailbox"
+                is_disable={open}
               />
             </View>
           </Link>
@@ -199,6 +215,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
+
     gap: 10,
     height: 52,
   },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -18,10 +18,15 @@ import {
 } from "../style/mailBoxStyled";
 import { useRecoilState } from "recoil";
 import { letterSwitchState } from "../atom/letterAtom";
+import { getCurrentDateDot } from "../data/data";
 
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
-  const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState)
+  const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
+  const [date, setDate] = useState<string>("");
+  useEffect(() => {
+    setDate(getCurrentDateDot())
+  }, [])
   const onLetterChange = (type: string) => {
     if (type === '1') {
       if (!letterCheck.new) {
@@ -69,7 +74,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
           </TouchableOpacity>
         </MailInfoView>
         <MailChoseView b_color="#000">
-          <MailChoseText f_color="#fff">2023.12.04</MailChoseText>
+          <MailChoseText f_color="#fff">{date}</MailChoseText>
         </MailChoseView>
       </MailChoseContainer>
     </SafeAreaView>
