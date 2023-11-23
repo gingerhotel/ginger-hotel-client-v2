@@ -369,7 +369,11 @@ export default function TabThreeScreen({ navigation }: any) {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("csCenter");
+            }}
+          >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               고객센터
             </Text>

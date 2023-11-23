@@ -31,6 +31,7 @@ import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
 import InstaShared from "../instaShared";
 import { createURL } from "expo-linking";
+import CsCenter from "../csCenter";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -228,6 +229,13 @@ const Navigation = () => {
             }}
             name="instaShared"
             component={InstaShared}
+          />
+          <Stack.Screen
+            options={{
+              header: () => <Header title="고객센터" />,
+            }}
+            name="csCenter"
+            component={CsCenter}
           />
         </Stack.Navigator>
       </NavigationContainer>
