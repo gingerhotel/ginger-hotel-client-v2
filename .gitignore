@@ -99,3 +99,4 @@ ios/Podfile.lock
 expo-env.d.ts
 # @end expo-cli
 dist
+.expo/types/router.d.ts
