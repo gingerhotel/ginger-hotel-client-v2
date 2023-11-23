@@ -9,7 +9,7 @@ export default function _layout() {
           headerShown: false,
           tabBarLabel: '빌리지'
         }}/>
-        <Tabs.Screen name="hotels" options={{
+        <Tabs.Screen name="hotel" options={{
           headerShown: false,
           tabBarLabel: "진저호텔"
         }}/>

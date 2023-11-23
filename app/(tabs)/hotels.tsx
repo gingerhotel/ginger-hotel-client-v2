@@ -1,4 +1,5 @@
 import {
+  Button,
   Image,
   Platform,
   SafeAreaView,
@@ -22,6 +23,7 @@ import { typography } from "../../constants/Typo";
 import { useQuery } from "react-query";
 import { myInfo } from "../../api/myApi";
 import CustomUserHotel from "../../components/customUserHotel";
+import { Link } from "expo-router";
 const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
@@ -54,25 +56,28 @@ export default function Hotel({ navigation }: any) {
           onPress={() => navigation.navigate("hotelcreate")}
           url={SVG}
         /> */}
-
-        <View style={{ backgroundColor: colors.greyblack }}>
-          <CustomUserHotel
-            wallColor={"#CF332C"}
-            structColor={"#FFB950"}
-            is_border={false}
-            onPress={() => navigation.navigate("hotelcreate")}
-          />
-        </View>
+        <Link href="/create" asChild>
+          <View style={{ backgroundColor: colors.greyblack }}>
+            <CustomUserHotel
+              wallColor={"#CF332C"}
+              structColor={"#FFB950"}
+              is_border={false}
+            />
+          </View>
+        </Link>
 
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"mailbox"}
-              title="오늘의 편지함 보기"
-              color="green"
-              width={288}
-            />
+          <Link href="/mailbox" asChild>
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="오늘의 편지함 보기"
+                color="green"
+                width={288}
+              />
+            </View>
+          </Link>
+          <Link href="/gingerAlbum" asChild>
             <TouchableOpacity>
               <SvgImg
                 width={40}
@@ -81,6 +86,7 @@ export default function Hotel({ navigation }: any) {
                 onPress={() => navigation.navigate("gingerAlbum")}
               />
             </TouchableOpacity>
+            </Link>
           </View>
           <View style={styles.hotel_today}>
             <Buttons
@@ -107,15 +113,18 @@ export default function Hotel({ navigation }: any) {
               width={350}
             />
           </View>
-          <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"letter"}
-              title="편지보내기"
-              color="green"
-              width={350}
-            />
-          </View>
+          <Link href="/login" asChild>
+            <Button title="open login modal" />
+          </Link>
+          <Link href="/letter" asChild>
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="편지 보내기"
+                color="green"
+                width={350}
+              />
+            </View>
+          </Link>
         </View>
       </View>
 
@@ -126,7 +135,6 @@ export default function Hotel({ navigation }: any) {
         name="벨보이 진저맨"
         desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
         img={ginger}
-        navigation={navigation}
       />
     </ScrollView>
   );

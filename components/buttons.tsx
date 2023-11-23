@@ -36,7 +36,6 @@ const Buttons = ({
   title,
   color,
   is_disable,
-  navigation,
   url,
   callback,
   width,
@@ -44,9 +43,9 @@ const Buttons = ({
   icon,
 }: Props) => {
   const handlePress = () => {
-    if (url) {
-      navigation.navigate(url, props);
-    }
+    // if (url) {
+    //   navigation.navigate(url, props);
+    // }
 
     if (callback) {
       callback();
