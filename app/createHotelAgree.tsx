@@ -10,9 +10,10 @@ import { useState } from "react";
 import CheckBox from "../components/chekbox";
 import { useQueryClient, useMutation } from "react-query";
 import { newHotel } from "../api/hotelApi";
+import { useLocalSearchParams } from "expo-router";
 
 export default function createHotelAgree({ route, navigation }: any) {
-  const props = route.params;
+  const props: any = useLocalSearchParams();
   const [isChecked, setChecked] = useState<any>({
     all: false,
     age: false,
@@ -89,7 +90,7 @@ export default function createHotelAgree({ route, navigation }: any) {
         <View style={styles.btn_wrapper}>
           <Buttons
             is_disable={!isChecked.personal || !isChecked.age || !isChecked.use}
-            url={"hotels"}
+            url={"/hotel/15"}
             title="완료"
             color="green"
             callback={handleFormSubmit}

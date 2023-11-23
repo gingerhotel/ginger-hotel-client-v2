@@ -6,13 +6,14 @@ import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import Input from "../components/input";
 import { useState } from "react";
-import { SvgImg } from "../components/svgImg";
 import CustomUserHotel from "../components/customUserHotel";
+import { useLocalSearchParams } from "expo-router";
 
-export default function CreateHotelName({ route, navigation }: any) {
-  const hotel_color = route.params;
+export default function CreateHotelName() {
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
+  const params = useLocalSearchParams();
+  const { bodyColor, structColor } = params;
 
   return (
     <>
@@ -29,8 +30,8 @@ export default function CreateHotelName({ route, navigation }: any) {
           <View>
             <CustomUserHotel
               is_border={true}
-              wallColor={hotel_color?.bodyColor}
-              structColor={hotel_color?.structColor}
+              wallColor={bodyColor}
+              structColor={structColor}
             />
           </View>
 
@@ -56,9 +57,8 @@ export default function CreateHotelName({ route, navigation }: any) {
           <View style={styles.btn_wrapper}>
             <Buttons
               is_disable={!nickname || !description}
-              navigation={navigation}
-              url={"hotelselect"}
-              props={{ ...hotel_color, nickname, description }}
+              url={"createHotelSelect"}
+              props={{ bodyColor, structColor, nickname, description }}
               title="다음으로"
               color="green"
             />

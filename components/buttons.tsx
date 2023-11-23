@@ -43,7 +43,7 @@ const Buttons = ({
 }: Props) => {
   const handlePress = () => {
     if (url) {
-      router.push(`/${url}`);
+      router.push({ pathname: `/${url}`, params: props });
     }
 
     if (callback) {
