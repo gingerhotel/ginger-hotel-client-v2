@@ -7,7 +7,7 @@ const splash = require("../assets/gingerman/splash.png");
 export default function Page() {
   useEffect(() => {
       setTimeout(() => {
-        router.replace("/hotels");
+        router.replace("/hotel/15");
       }, 2000)
   }, []);
   return (
