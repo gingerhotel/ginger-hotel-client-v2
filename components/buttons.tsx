@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { MonoText } from "./styledText";
-import { Common_Colors } from "../constants/Colors";
+import { colors, Common_Colors } from "../constants/Colors";
 import { SvgImg } from "./svgImg";
 
 type Props = {
@@ -54,7 +54,10 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(Common_Colors[color], color, width).button}
+      style={[
+        cstyles(Common_Colors[color], color, width).button,
+        is_disable && styles.disabled,
+      ]}
       onPress={handlePress}
     >
       <View style={styles.item}>
@@ -100,6 +103,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     rowGap: 8,
+  },
+  disabled: {
+    backgroundColor: colors.grey700,
+    color: colors.grey600,
   },
 });
 

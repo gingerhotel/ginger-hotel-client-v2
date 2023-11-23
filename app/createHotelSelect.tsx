@@ -22,6 +22,7 @@ export default function createHotelSelect({ route, navigation }: any) {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
   const [activeChip, setChip] = React.useState("선택안함");
+  const [activeBirth, setBirth] = React.useState("선택안함");
   const [code, setCode] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
@@ -54,7 +55,7 @@ export default function createHotelSelect({ route, navigation }: any) {
             생년월일을 형식에 맞게 입력해주세요.
           </MonoText>
 
-          <Chip text={"선택안함"} />
+          <Chip text={"선택안함"} active={activeBirth} />
           <View style={styles.input_wrapper}>
             <Input
               placeholder="YYYY"
