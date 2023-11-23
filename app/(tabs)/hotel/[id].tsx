@@ -15,7 +15,6 @@ import React, { useEffect, useState } from "react";
 import Buttons from "../../../components/buttons";
 import Toast from "react-native-toast-message";
 import { SvgImg } from "../../../components/svgImg";
-import ProgressBar from "../../../components/progressBar";
 import { ProgressBarView } from "../../../style/progressBarStyled";
 import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
@@ -34,22 +33,27 @@ import { myDate } from "../../../api/myApi";
 import { useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../../atom/letterAtom";
 import { newLetterData } from "../../../api/letterApi";
+import { getHotel } from "../../../api/hotelApi";
+import { Hotel } from "../../../api/interface";
+import ProgressBar from "../../../components/progressBar";
 
 
-export default function Hotel({ navigation }: any) {
+export default function HotelComp({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const {id} = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [hotel, setHotel] = useState<Hotel>();
   const setHotelId = useSetRecoilState<number>(hotelIdState);
   const [open, setOpen] = useState(true);
   
   useEffect(() => {
     const handleUserData = async () => {
-      const { hotel }: any = await myDate();
-      setHotelId(hotel?.id);
-      if (await newLetterData({ hotelId: hotel?.id })) {
-        setOpen(false);
-      }
+      const { hotel }: any = await getHotel(id as string);
+      setHotel(hotel);
+      //setHotelId(hotel?.id);
+      // if (await newLetterData({ hotelId: hotel?.id })) {
+      //   setOpen(false);
+      // }
     };
     handleUserData();
   }, []);
@@ -64,9 +68,9 @@ export default function Hotel({ navigation }: any) {
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
-          <ProgressBar />
+          <ProgressBar/>
         </ProgressBarView>
-        <Text style={styles.hotel_name}>진저님의 진저호텔</Text>
+        <Text style={styles.hotel_name}>{hotel?.nickname}님의 진저호텔</Text>
         <Text style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </Text>
