@@ -14,14 +14,15 @@ import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { Image } from "react-native";
 import { useState } from "react";
+import { useLocalSearchParams } from "expo-router";
 const icon = require("../assets/icon/i_check_user.png");
 
-export default function createHotelSelect({ route, navigation }: any) {
-  const props = route.params;
-
+export default function createHotelSelect() {
+  const props = useLocalSearchParams();
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
   const [activeChip, setChip] = React.useState("선택안함");
+  const [activeBirth, setBirth] = React.useState("선택안함");
   const [code, setCode] = useState("");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
@@ -54,7 +55,7 @@ export default function createHotelSelect({ route, navigation }: any) {
             생년월일을 형식에 맞게 입력해주세요.
           </MonoText>
 
-          <Chip text={"선택안함"} />
+          <Chip text={"선택안함"} active={activeBirth} />
           <View style={styles.input_wrapper}>
             <Input
               placeholder="YYYY"
@@ -107,8 +108,7 @@ export default function createHotelSelect({ route, navigation }: any) {
         </View>
         <View style={styles.btn_wrapper}>
           <Buttons
-            navigation={navigation}
-            url={"hotelagree"}
+            url={"createHotelAgree"}
             title="다음으로"
             color="green"
             props={{

@@ -117,8 +117,7 @@ export default function CreateHotel({ navigation }: any) {
 
           <View style={styles.btn_wrapper}>
             <Buttons
-              //navigation={navigation}
-              url={"hotelname"}
+              url="createHotelName"
               props={{ structColor, bodyColor: wallColor }}
               title="다음으로"
               color="green"
