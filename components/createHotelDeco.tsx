@@ -17,7 +17,8 @@ const CreateHotelDeco = ({ url, active }: any) => {
         width={100}
         height={100}
         style={{
-          width: "100%",
+          width: 90,
+          height: 90,
           zIndex: 4,
         }}
       />

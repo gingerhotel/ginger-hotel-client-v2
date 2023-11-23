@@ -80,7 +80,7 @@ export default function CreateHotel({ navigation }: any) {
                 ))}
             </View>
             <View style={styles.color_wrapper}>
-              {activeTitle === "건물장식" &&
+              {(activeTitle === "건물장식" || activeTitle === "마당장식") &&
                 buildingList?.map((url, index) => (
                   <TouchableOpacity
                     key={index}

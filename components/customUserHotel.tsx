@@ -5,7 +5,9 @@ import { colors } from "../constants/Colors";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
+const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/building1.svg");
+const window = require("../assets/images/window_empty.svg");
 
 export default function CustomUserHotel({
   wallColor,
@@ -261,7 +263,7 @@ export default function CustomUserHotel({
       )}
       <View
         style={{
-          zIndex: 4,
+          zIndex: 6,
           position: "absolute",
         }}
       >
@@ -277,6 +279,50 @@ export default function CustomUserHotel({
             zIndex: 4,
             top: 0,
             left: 13,
+            position: "absolute",
+          }}
+        />
+      </View>
+      <View
+        style={{
+          zIndex: 0,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          onPress={onPress && onPress}
+          url={backBg}
+          width={340}
+          height={416}
+          style={{
+            width: 390,
+            height: 544,
+            marginTop: 20,
+            zIndex: 4,
+            top: -30,
+            left: 13,
+            position: "absolute",
+          }}
+        />
+      </View>
+      <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          onPress={onPress && onPress}
+          url={window}
+          width={340}
+          height={416}
+          style={{
+            width: 260,
+            height: 312,
+            marginTop: 20,
+            zIndex: 5,
+            top: 50,
+            left: 76,
             position: "absolute",
           }}
         />
