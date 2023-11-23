@@ -1,10 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import * as Google from "expo-auth-session/providers/google";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet, Image, View, Platform, Text, Button, Alert, TextInput } from "react-native";
-// import { MonoText } from "../components/styledText";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
 import {
   StyleSheet,
   Image,
@@ -13,6 +9,7 @@ import {
   Text,
   Button,
   Alert,
+  TextInput,
 } from "react-native";
 import { WithLocalSvg } from "react-native-svg";
 import SocialButton from "../components/socialButton";
@@ -24,7 +21,8 @@ const SVG = require("../assets/images/StartHotel.svg");
 import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
-
+import axios from "axios";
+import { ScrollView } from "react-native-gesture-handler";
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
 // 푸시 기본 정보
@@ -50,15 +48,13 @@ export default function Login({ navigation }: any) {
       "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
   });
 
-  const [token, setToken] = React.useState("");
-  const { setValue, register, control, handleSubmit } = useForm();
   const [token, setToken] = useState("");
+  const { setValue, register, control, handleSubmit } = useForm();
 
-  React.useEffect(() => {
+  useEffect(() => {
     register("socialId");
   }, [register]);
 
-  React.useEffect(() => {
   useEffect(() => {
     handleEffect();
   }, [response]);
@@ -72,14 +68,13 @@ export default function Login({ navigation }: any) {
       })
       .then((res) => {
         console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        navigation.push('hotelcreate')
+        AsyncStorage.setItem("isLogin", "true");
+        AsyncStorage.setItem("accessToken", res.data.accessToken);
+        navigation.push("hotelcreate");
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 
   const handleLoginTest = async (data: FieldValues) => {
@@ -91,38 +86,37 @@ export default function Login({ navigation }: any) {
       })
       .then((res) => {
         console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        navigation.push('hotelcreate')
+        AsyncStorage.setItem("isLogin", "true");
+        AsyncStorage.setItem("accessToken", res.data.accessToken);
+        navigation.push("hotelcreate");
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
 
+  async function sendPushNotification(expoPushToken: any) {
+    const message = {
+      to: expoPushToken,
+      sound: "default",
+      title: "푸시 테스트 타이틀",
+      body: "푸시 바디입니다",
+      data: { someData: "goes here" },
+    };
 
-  async function handleEffect() {
-    //const user = await getLocalUser();
-    //console.log("user", user);
-    //if (!user) {
-      if (response?.type === "success") {
-        // setToken(response.authentication.accessToken);
-       // getUserInfo(response.authentication.accessToken);
-       console.log("succ");
-      }
-    // } else {
-    //   setUserInfo(user);
-    //   console.log("loaded locally");
-    // }
+    await fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Accept-encoding": "gzip, deflate",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
   }
 
-    const loginWithGoogle = () => {
-      //const a:string = response.authentication?.accessToken;
-    }
-
-    // Google 로그인 처리하는 함수
-    /*const handleSignInWithGoogle = async () => {
+  // Google 로그인 처리하는 함수
+  /*const handleSignInWithGoogle = async () => {
       const user = await AsyncStorage.getItem("accessToken");
       if (!user) {
         if (response?.type === "success") {
@@ -137,11 +131,6 @@ export default function Login({ navigation }: any) {
         setUserInfo(JSON.parse(user));
       }
     };*/
-  
-    const handleLogout = async () => {
-      await AsyncStorage.removeItem("@user");
-      setUserInfo(null);
-    };
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
       setExpoPushToken(token)
@@ -224,62 +213,60 @@ export default function Login({ navigation }: any) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.desc}>진저호텔에서 보내는 25일간의 휴일</Text>
-      <Text style={styles.title}>진저호텔</Text>
-      {Platform.OS === "ios" || Platform.OS === "android" ? (
-        <WithLocalSvg width={280} asset={SVG} />
-      ) : (
-        <Image source={SVG} style={styles.hotel_img} />
-      )}
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.desc}>진저호텔에서 보내는 25일간의 휴일</Text>
+        <Text style={styles.title}>진저호텔</Text>
+        {Platform.OS === "ios" || Platform.OS === "android" ? (
+          <WithLocalSvg width={280} asset={SVG} />
+        ) : (
+          <Image source={SVG} style={styles.hotel_img} />
+        )}
 
-      <View style={styles.social_btn_group}>
-        <SocialButton name={"apple"} />
-        <SocialButton name={"google"} />
-        <SocialButton name={"kakao"} />
-        <SocialButton name={"naver"} />
-      </View>
+        <View style={styles.social_btn_group}>
+          <SocialButton name={"apple"} />
+          <SocialButton name={"google"} />
+          <SocialButton name={"kakao"} />
+          <SocialButton name={"naver"} />
+        </View>
 
+        <AppleAuthentication.AppleAuthenticationButton
+          buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+          cornerRadius={5}
+          style={{
+            width: 40,
+            height: 40,
+            borderColor: "#000",
+          }}
+          onPress={async () => {
+            try {
+              const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                  AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                  AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+              });
 
+              const response = await axios.post(
+                "http://127.0.0.1:8080/auth/apple",
+                {
+                  token: credential.identityToken,
+                }
+              );
 
-      <AppleAuthentication.AppleAuthenticationButton
-        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-        cornerRadius={5}
-        style={{
-          width:40,
-          height:40,
-          borderColor : "#000",
-        }}
-        onPress={async () => {
-          try {
-            const credential = await AppleAuthentication.signInAsync({
-              requestedScopes: [
-                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                AppleAuthentication.AppleAuthenticationScope.EMAIL,
-              ],
-            });
-            
-            const response = await axios.post(
-              'http://127.0.0.1:8080/auth/apple',
-              {
-                token: credential.identityToken,
-              }
-            );
-
-            AsyncStorage.setItem('isLogin', "true");
-            AsyncStorage.setItem('accessToken', response.data.accessToken);
-            navigation.push('hotelcreate')
-
-          } catch (e) {
-            /*if (e.code === 'ERR_REQUEST_CANCELED') {
+              AsyncStorage.setItem("isLogin", "true");
+              AsyncStorage.setItem("accessToken", response.data.accessToken);
+              navigation.push("hotelcreate");
+            } catch (e) {
+              /*if (e.code === 'ERR_REQUEST_CANCELED') {
               // handle that the user canceled the sign-in flow
             } else {
               // handle other errors
             }*/
-          }
-        }}
-      />
+            }
+          }}
+        />
         <Button
           title="Sign in with Google"
           disabled={!request}
@@ -287,17 +274,31 @@ export default function Login({ navigation }: any) {
             promptAsync();
           }}
         />
-      <Button title="logout" onPress={() => handleLogout()} />
+        <Button title="logout" onPress={() => handleLogout()} />
 
-      <TextInput
-        placeholder="login test"
-        onChangeText={(text) => setValue("socialId", text)}
-      />
-      <Button title="운영로그인 테스트" onPress={handleSubmit(handleLoginProd)} />
-      <Button title="로컬로그인 테스트" onPress={handleSubmit(handleLoginTest)} />
+        <TextInput
+          placeholder="login test"
+          onChangeText={(text) => setValue("socialId", text)}
+        />
+        <Button
+          title="운영로그인 테스트"
+          onPress={handleSubmit(handleLoginProd)}
+        />
+        <Button
+          title="로컬로그인 테스트"
+          onPress={handleSubmit(handleLoginTest)}
+        />
 
-      <Text>{JSON.stringify(userInfo, null, 2)}</Text>
-    </View>
+        <Button
+          title="푸시 테스트"
+          onPress={async () => {
+            await sendPushNotification(expoPushToken);
+          }}
+        />
+
+        <Text>{JSON.stringify(userInfo, null, 2)}</Text>
+      </View>
+    </ScrollView>
   );
 }
 

@@ -28,7 +28,7 @@ import GingerAlbum from "../gingerAlbum";
 import GuidePage from "../guidePage";
 import InstaShared from "../instaShared";
 import { createURL } from "expo-linking";
-import Test from "../pushtest";
+import { colors } from "../../constants/Colors";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
