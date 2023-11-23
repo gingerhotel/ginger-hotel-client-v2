@@ -4,12 +4,15 @@ import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
+const frontBg = require("../assets/images/frontBg.svg");
+const building1 = require("../assets/decorations/building1.svg");
 
 export default function CustomUserHotel({
   wallColor,
   structColor,
   onPress,
   is_border,
+  is_front_bg,
 }: any) {
   const web = { top: 49, left: 47 };
   const app = { top: 64, left: 5 };
@@ -230,6 +233,53 @@ export default function CustomUserHotel({
             fill={structColors[structColor].color2}
           />
         </Svg>
+      </View>
+
+      {is_front_bg && (
+        <View
+          style={{
+            zIndex: 4,
+            position: "absolute",
+          }}
+        >
+          <SvgImg
+            onPress={onPress && onPress}
+            url={frontBg}
+            width={340}
+            height={416}
+            style={{
+              width: 380,
+              height: 460,
+              marginTop: 20,
+              zIndex: 4,
+              top: -20,
+              left: 10,
+              position: "absolute",
+            }}
+          />
+        </View>
+      )}
+      <View
+        style={{
+          zIndex: 4,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          onPress={onPress && onPress}
+          url={building1}
+          width={340}
+          height={416}
+          style={{
+            width: 380,
+            height: 460,
+            marginTop: 20,
+            zIndex: 4,
+            top: 0,
+            left: 13,
+            position: "absolute",
+          }}
+        />
       </View>
     </>
   );

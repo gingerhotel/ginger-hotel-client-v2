@@ -60,6 +60,7 @@ export default function Hotel({ navigation }: any) {
             wallColor={"#CF332C"}
             structColor={"#FFB950"}
             is_border={false}
+            is_front_bg={true}
             onPress={() => navigation.navigate("hotelcreate")}
           />
         </View>
