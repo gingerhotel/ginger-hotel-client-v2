@@ -1,4 +1,5 @@
 import {
+  Button,
   Image,
   Platform,
   SafeAreaView,
@@ -7,30 +8,51 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { Text, View } from "../../components/themed";
-import Header from "../../components/header";
-import { MonoText } from "../../components/styledText";
-import React, { useState } from "react";
-import Buttons from "../../components/buttons";
+import { Text, View } from "../../../components/themed";
+import Header from "../../../components/header";
+import { MonoText } from "../../../components/styledText";
+import React, { useEffect, useState } from "react";
+import Buttons from "../../../components/buttons";
 import Toast from "react-native-toast-message";
-import { SvgImg } from "../../components/svgImg";
-import ProgressBar from "../../components/progressBar";
-import { ProgressBarView } from "../../style/progressBarStyled";
-import GingerModal from "../../components/gingerModal";
-import { colors } from "../../constants/Colors";
-import { typography } from "../../constants/Typo";
+import { SvgImg } from "../../../components/svgImg";
+import ProgressBar from "../../../components/progressBar";
+import { ProgressBarView } from "../../../style/progressBarStyled";
+import GingerModal from "../../../components/gingerModal";
+import { colors } from "../../../constants/Colors";
+import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-import { myInfo } from "../../api/myApi";
-import CustomUserHotel from "../../components/customUserHotel";
-const SVG = require("../../assets/images/StartHotel.svg");
-const ginger = require("../../assets/gingerman/g_bellboy.png");
-const album = require("../../assets/icon/i_album.svg");
-const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
-const icon: any = require("../../assets/icon/i_check.svg");
+//import { myInfo } from "../../../api/myApi";
+import CustomUserHotel from "../../../components/customUserHotel";
+import { Link, router, useLocalSearchParams } from "expo-router";
+const SVG = require("../../../assets/images/StartHotel.svg");
+const ginger = require("../../../assets/gingerman/g_bellboy.png");
+const album = require("../../../assets/icon/i_album.svg");
+const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
+const icon: any = require("../../../assets/icon/i_check.png");
+
+import { myDate } from "../../../api/myApi";
+import { useSetRecoilState } from "recoil";
+import { hotelIdState } from "../../../atom/letterAtom";
+import { newLetterData } from "../../../api/letterApi";
+
 
 export default function Hotel({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
-  const [modalVisible, setModalVisible] = useState(false);
+  const {id} = useLocalSearchParams();
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const setHotelId = useSetRecoilState<number>(hotelIdState);
+  const [open, setOpen] = useState(true);
+  
+  useEffect(() => {
+    const handleUserData = async () => {
+      const { hotel }: any = await myDate();
+      setHotelId(hotel?.id);
+      if (await newLetterData({ hotelId: hotel?.id })) {
+        setOpen(false);
+      }
+    };
+    handleUserData();
+  }, []);
 
   const closeModal = () => {
     setModalVisible(false);
@@ -48,38 +70,32 @@ export default function Hotel({ navigation }: any) {
         <Text style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </Text>
-        {/* <SvgImg
-          width={400}
-          height={400}
-          onPress={() => navigation.navigate("hotelcreate")}
-          url={SVG}
-        /> */}
 
-        <View style={{ backgroundColor: colors.greyblack }}>
-          <CustomUserHotel
-            wallColor={"#CF332C"}
-            structColor={"#FFB950"}
-            is_border={false}
-            is_front_bg={true}
-            onPress={() => navigation.navigate("hotelcreate")}
-          />
-        </View>
-
+        <Link href={"/create"}>
+          <View style={{ backgroundColor: colors.greyblack }}>
+            <CustomUserHotel
+              wallColor={"#CF332C"}
+              structColor={"#FFB950"}
+              is_border={false}
+              is_front_bg={true}
+            />
+          </View>
+        </Link>
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"mailbox"}
-              title="오늘의 편지함 보기"
-              color="green"
-              width={288}
-            />
+              <Buttons
+                title="오늘의 편지함 보기"
+                color="green"
+                width={288}
+                url="mailbox"
+                is_disable={open}
+              />
             <TouchableOpacity>
               <SvgImg
                 width={40}
                 height={40}
                 url={album}
-                onPress={() => navigation.navigate("gingerAlbum")}
+                onPress={() => router.push("/gingerAlbum")}
               />
             </TouchableOpacity>
           </View>
@@ -99,24 +115,24 @@ export default function Hotel({ navigation }: any) {
               icon={share}
             />
           </View>
-          <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"login"}
-              title="임시 로그인 버튼"
-              color="green"
-              width={350}
-            />
-          </View>
-          <View style={styles.hotel_today}>
-            <Buttons
-              navigation={navigation}
-              url={"letter"}
-              title="편지보내기"
-              color="green"
-              width={350}
-            />
-          </View>
+
+              <View style={styles.hotel_today}>
+                <Buttons
+                  title="임시 로그인 버튼"
+                  color="green"
+                  width={350}
+                  url="login"
+                  />
+              </View>
+
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="편지 보내기"
+                url="letter"
+                color="green"
+                width={350}
+              />
+            </View>
         </View>
       </View>
 
@@ -127,7 +143,6 @@ export default function Hotel({ navigation }: any) {
         name="벨보이 진저맨"
         desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
         img={ginger}
-        navigation={navigation}
       />
     </ScrollView>
   );
@@ -184,6 +199,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
+
     gap: 10,
     height: 52,
   },

@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import React from "react";
 import {
   Text,
@@ -23,7 +23,6 @@ type Props = {
     | "gray_700"
     | "neongreen";
   is_disable?: boolean;
-  navigation?: any;
   url?: string;
   callback?: any;
   is_width?: boolean;
@@ -36,7 +35,6 @@ const Buttons = ({
   title,
   color,
   is_disable,
-  navigation,
   url,
   callback,
   width,
@@ -45,7 +43,7 @@ const Buttons = ({
 }: Props) => {
   const handlePress = () => {
     if (url) {
-      navigation.navigate(url, props);
+      router.push(`/${url}`);
     }
 
     if (callback) {
