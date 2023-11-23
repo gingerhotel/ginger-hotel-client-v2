@@ -12,7 +12,7 @@ export default function CustomUserHotel({
   is_border,
 }: any) {
   const web = { top: 49, left: 47 };
-  const app = { top: 64, left: -1 };
+  const app = { top: 64, left: 5 };
 
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
