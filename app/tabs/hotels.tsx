@@ -16,6 +16,7 @@ import { ProgressBarView } from "../../style/progressBarStyled";
 import GingerModal from "../../components/gingerModal";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
+import { useQuery } from "react-query";
 import { myDate } from "../../api/myApi";
 import { useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
@@ -25,8 +26,11 @@ const SVG = require("../../assets/images/StartHotel.svg");
 const ginger = require("../../assets/gingerman/g_bellboy.png");
 const album = require("../../assets/icon/i_album.svg");
 const share = require("../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
+const icon: any = require("../../assets/icon/i_check.svg");
 
 export default function Hotel({ navigation }: any) {
+  // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
+
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const setHotelId = useSetRecoilState<number>(hotelIdState);
   const [open, setOpen] = useState(true);
@@ -63,6 +67,15 @@ export default function Hotel({ navigation }: any) {
           onPress={() => navigation.navigate("hotelcreate")}
           url={SVG}
         />
+        {/* 
+        <View style={{ backgroundColor: colors.greyblack }}>
+          <CustomUserHotel
+            wallColor={"#CF332C"}
+            structColor={"#FFB950"}
+            is_border={false}
+            onPress={() => navigation.navigate("hotelcreate")}
+          />
+        </View> */}
 
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
@@ -78,8 +91,8 @@ export default function Hotel({ navigation }: any) {
               <SvgImg
                 width={40}
                 height={40}
-                onPress={() => setModalVisible(true)}
                 url={album}
+                onPress={() => navigation.navigate("gingerAlbum")}
               />
             </TouchableOpacity>
           </View>
@@ -90,9 +103,10 @@ export default function Hotel({ navigation }: any) {
               width={350}
               callback={() => {
                 Toast.show({
-                  type: "basicToast",
+                  type: "iconToast",
                   text1: "링크가 복사되었습니다!",
                   position: "bottom",
+                  props: { icon },
                 });
               }}
               icon={share}
@@ -134,9 +148,9 @@ export default function Hotel({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "center",
-    backgroundColor: "black",
+    backgroundColor: colors.greyblack,
   },
   hotel_img: {
     width: 300,
@@ -173,7 +187,7 @@ const styles = StyleSheet.create({
   hotel_today_container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000",
+    backgroundColor: colors.greyblack,
     gap: 12,
     marginBottom: 30,
     marginTop: 12,
@@ -182,7 +196,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#000",
+    backgroundColor: colors.greyblack,
     gap: 10,
     height: 52,
   },

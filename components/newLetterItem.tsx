@@ -53,14 +53,16 @@ export const NewLetterItem = ({ letters }: any) => {
                   <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
                 </TouchableOpacity>
                 <LetterInnerTitieTextView>
-                  <LetterInnerSendText f_color="#000">보내는 이</LetterInnerSendText>
-                  <LetterInnerUserText f_color="#25796B">{item.content}</LetterInnerUserText>
+                  <LetterInnerSendText>보내는 이</LetterInnerSendText>
+                  <LetterInnerUserText>{item.content}</LetterInnerUserText>
                 </LetterInnerTitieTextView>
-                <View />
-                <TouchableOpacity onPress={toggleModal} style={{ position: 'absolute', left: 312 }}>
-                  <SvgImg url={iconMore}
+                <TouchableOpacity onPress={toggleModal}>
+                  <SvgImg
+                    url={iconMore}
+                    style={styles.icon}
                     width={30}
-                    height={30} />
+                    height={30}
+                  />
                 </TouchableOpacity>
               </LetterInnerTitieView>
               <LetterInnerTextBox>

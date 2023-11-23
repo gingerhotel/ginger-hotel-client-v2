@@ -1,37 +1,62 @@
 export interface TodayLetterProps {
-    hotelId: number,
-    date: string
+  hotelId: number,
+  date: string
 }
 export interface TodayLetters {
-    id: number,
-    createdAt: string,
-    senderNickname: string,
-    content: string,
-    isBlocked: boolean,
-    imageUrl: string,
-    feekStatus: string,
-    feekComment: null | string
+  id: number,
+  createdAt: string,
+  senderNickname: string,
+  content: string,
+  isBlocked: boolean,
+  imageUrl: string,
+  feekStatus: string,
+  feekComment: null | string
 }
 
+export interface NewHotel {
+  structColor: string;
+  bodyColor: string;
+  nickname: string;
+  description: string;
+  gender: "MAN | WOMAN";
+  birthDate: string;
+  code: string;
+}
+
+export interface NewLetter {
+  content: string; // requird
+  senderNickname: string; // requird
+  image: string;
+}
+// export interface User {
+// nickname: string;
+// code: string;
+// membership: string;
+// gender: "MAN | WOMAN | null";
+// birthDate: "1998-06-13 | null";
+// keyCount: number;
+// feekCount: number;
+// }
+
 export interface User {
-    nickname: string;
-    code: string;
-    membership: string;
-    gender: "MAN" | "WOMAN" | null;
-    birthDate: string | null;
-    keyCount: number;
-    feekCount: number;
+  nickname: string;
+  code: string;
+  membership: string;
+  gender: "MAN" | "WOMAN" | null;
+  birthDate: string | null;
+  keyCount: number;
+  feekCount: number;
 }
 
 export interface Hotel {
-    id: number;
-    nickname: string;
-    description: string;
-    structColor: string;
-    bodyColot: string; // 오타 수정: bodyColor로 변경
+  id: number;
+  nickname: string;
+  description: string;
+  structColor: string;
+  bodyColot: string; // 오타 수정: bodyColor로 변경
 }
 export interface UserApiResponse {
-    success: boolean;
-    user: User;
-    hotel: Hotel;
+  success: boolean;
+  user: User;
+  hotel: Hotel;
 }
