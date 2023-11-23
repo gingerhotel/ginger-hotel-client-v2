@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_URL, LETTERS_URL } from "./url";
+import { AUTH_URL, HOTEL_URL } from "./url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NewHotel, NewLetter } from "./interface";
 
@@ -19,15 +19,16 @@ export const newHotel = async (props: NewHotel) => {
   }
 };
 
-// Need to be separated later.
-export const newLetter = async (props: NewLetter) => {
+export const getHotel = async (code: string) => {
   try {
     axiosConfig();
-    const hotelOwner:Number = 0;
-    const response = await axios.post(`${LETTERS_URL}/${1}`, props);
+    const response = await axios.get(`${HOTEL_URL}/${code}`);
+    console.log(response.data.success);
     return response.data;
   } catch (e) {
     console.error(e);
     throw e;
   }
 };
+
+
