@@ -82,7 +82,7 @@ export default function CreateHotel({ navigation }: any) {
                   </TouchableOpacity>
                 ))}
             </View>
-            <View style={styles.color_wrapper}>
+            <View style={styles.building_wrapper}>
               {(activeTitle === "건물장식" ||
                 activeTitle === "마당장식" ||
                 activeTitle === "뒷배경") &&
@@ -100,7 +100,7 @@ export default function CreateHotel({ navigation }: any) {
                   </TouchableOpacity>
                 ))}
             </View>
-            <View style={styles.color_wrapper}>
+            <View style={styles.building_wrapper}>
               {activeTitle === "창문" &&
                 windowList?.map((name, index) => (
                   <TouchableOpacity key={index} onPress={() => setWindow(name)}>
@@ -194,6 +194,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     marginTop: 20,
     gap: 10,
+  },
+  building_wrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginTop: 0,
+    gap: 3,
   },
   hotel_info: {
     color: colors.grey500,

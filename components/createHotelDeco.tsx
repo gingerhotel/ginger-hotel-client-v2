@@ -14,11 +14,11 @@ const CreateHotelDeco = ({ url, active }: any) => {
     <View style={[styles.color, active === url && styles.active]}>
       <SvgImg
         url={image}
-        width={100}
-        height={100}
+        width={85}
+        height={85}
         style={{
-          width: 90,
-          height: 90,
+          width: 85,
+          height: 85,
           zIndex: 4,
         }}
       />
@@ -28,8 +28,8 @@ const CreateHotelDeco = ({ url, active }: any) => {
 
 const styles = StyleSheet.create({
   color: {
-    width: 110,
-    height: 108,
+    width: 100,
+    height: 98,
     borderRadius: 12,
     backgroundColor: colors.grey900,
     marginTop: 16,

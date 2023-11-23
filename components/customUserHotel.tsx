@@ -1,13 +1,14 @@
 import React from "react";
-import { Platform, StyleSheet, TextInput, View } from "react-native";
+import { Image, Platform, StyleSheet, TextInput, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
+import { PngImg } from "./pngImg";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
 const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/building1.svg");
-const window = require("../assets/images/window_empty.svg");
+const window: any = require("../assets/images/window.png");
 
 export default function CustomUserHotel({
   wallColor,
@@ -18,6 +19,27 @@ export default function CustomUserHotel({
 }: any) {
   const web = { top: 49, left: 47 };
   const app = { top: 64, left: 5 };
+
+  const widow_style = {
+    app: {
+      width: 220,
+      height: 267,
+      marginTop: 20,
+      zIndex: 5,
+      top: 67,
+      left: 76,
+      position: "absolute",
+    },
+    web: {
+      width: 260,
+      height: 312,
+      marginTop: 20,
+      zIndex: 5,
+      top: 50,
+      left: 76,
+      position: "absolute",
+    },
+  };
 
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
@@ -311,20 +333,14 @@ export default function CustomUserHotel({
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           onPress={onPress && onPress}
           url={window}
-          width={340}
-          height={416}
-          style={{
-            width: 260,
-            height: 312,
-            marginTop: 20,
-            zIndex: 5,
-            top: 50,
-            left: 76,
-            position: "absolute",
-          }}
+          style={[
+            Platform.OS === "ios" || Platform.OS === "android"
+              ? widow_style.app
+              : widow_style.web,
+          ]}
         />
       </View>
     </>

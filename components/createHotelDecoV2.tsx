@@ -28,8 +28,8 @@ const createHotelDecoV2 = ({ url, active }: any) => {
 
 const styles = StyleSheet.create({
   color: {
-    width: 171,
-    height: 108,
+    width: 151,
+    height: 88,
     borderRadius: 12,
     backgroundColor: colors.grey900,
     marginTop: 16,
