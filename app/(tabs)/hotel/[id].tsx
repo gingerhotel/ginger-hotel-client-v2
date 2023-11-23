@@ -48,8 +48,9 @@ export default function HotelComp({ navigation }: any) {
   
   useEffect(() => {
     const handleUserData = async () => {
-      const { hotel }: any = await getHotel(id as string);
+      const { hotel, todayReceivedLetterCount }: any = await getHotel(id as string);
       setHotel(hotel);
+      console.log(todayReceivedLetterCount)
       //setHotelId(hotel?.id);
       // if (await newLetterData({ hotelId: hotel?.id })) {
       //   setOpen(false);

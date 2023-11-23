@@ -5,7 +5,7 @@ import Buttons from "../components/buttons";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { useMutation } from "react-query";
-import { newLetter } from "../api/hotelApi";
+import { newLetter } from "../api/letterApi";
 
 export default function Letter({ navigation }: any) {
   const { register, handleSubmit, setValue } = useForm();
@@ -72,8 +72,7 @@ export default function Letter({ navigation }: any) {
         />
         <MonoText>{'   '}</MonoText>
         <Buttons
-          navigation={navigation}
-          url={"completed"}
+          url={"letterCompleted"}
           title="보내기"
           is_width={true}
           color="green"
