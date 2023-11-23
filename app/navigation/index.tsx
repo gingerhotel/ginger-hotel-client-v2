@@ -94,7 +94,7 @@ const Navigation = () => {
         <Tab.Screen
           options={{
             title: "마이페이지",
-            headerShown: true,
+            headerShown: false,
             tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
           }}
           name="MY"
@@ -116,7 +116,7 @@ const Navigation = () => {
           prefixes: [createURL("/")],
           config: {
             screens: {
-              Hotel: 'hotel/:id',
+              Hotel: "hotel/:id",
               //Letter: 'letter',
             },
           },

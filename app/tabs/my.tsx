@@ -16,7 +16,12 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
 
 const keySvg = require("../../assets/icon/i_key.svg");
-const glassesSvg = require("../../assets/icon/i_glasses.svg");
+const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
+const pencilSvg = require("../../assets/icon/i_pencil.svg");
+const membershipSvg = require("../../assets/icon/i_membership.svg");
+const questionCircleSvg = require("../../assets/icon/i_question_circle.svg");
+const brushSvg = require("../../assets/icon/i_brush.svg");
+const copySvg = require("../../assets/icon/i_copy.svg");
 
 interface User {
   nickname: string;
@@ -89,6 +94,9 @@ export default function TabThreeScreen({ navigation }: any) {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
+      <View style={styles.header}>
+        <Text style={styles.header_text}>마이페이지</Text>
+      </View>
       <View style={styles.profileContainer}>
         <View style={styles.user_info_box}>
           <View style={styles.name_box}>
@@ -98,28 +106,37 @@ export default function TabThreeScreen({ navigation }: any) {
               <Text style={[styles.name, { color: colors.Whiteyello }]}>
                 {userInfo.nickname}
               </Text>
-              <FontAwesome
-                name={"chevron-right"}
-                size={20}
-                color={colors.Whiteyello}
-              />
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={pencilSvg} />
+              ) : (
+                <Image source={pencilSvg} />
+              )}
             </TouchableOpacity>
           </View>
           <View style={styles.user_info}>
             <View
               style={{
                 flexDirection: "row",
-                width: "80%",
                 alignItems: "center",
                 justifyContent: "center",
+                height: 45,
+                width: 150,
               }}
             >
-              <View>
+              <View
+                style={{
+                  height: 45,
+                  justifyContent: "space-between",
+                  marginTop: 5,
+                }}
+              >
                 <Text
                   style={{
                     color: colors.grey100,
                     fontWeight: "400",
                     fontFamily: "NanumSquareNeo-Variable",
+                    marginBottom: 5,
+                    height: 20,
                   }}
                 >
                   내 멤버쉽
@@ -129,6 +146,7 @@ export default function TabThreeScreen({ navigation }: any) {
                     color: colors.green600,
                     fontWeight: "700",
                     fontFamily: "NanumSquareNeo-Variable",
+                    height: 20,
                   }}
                 >
                   {userInfo.membership}
@@ -145,21 +163,48 @@ export default function TabThreeScreen({ navigation }: any) {
                   navigation.navigate("instaShared");
                 }}
               >
-                <View>
-                  <Text
+                <View
+                  style={{
+                    height: 40,
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <View
                     style={{
-                      color: colors.grey100,
-                      fontWeight: "400",
-                      fontFamily: "NanumSquareNeo-Variable",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "row",
+                      height: 20,
+                      marginBottom: 5,
                     }}
                   >
-                    내 코드 <FontAwesome5 name="copy" />
-                  </Text>
+                    <Text
+                      style={{
+                        color: colors.grey100,
+                        fontWeight: "400",
+                        fontFamily: "NanumSquareNeo-Variable",
+                        height: 20,
+                      }}
+                    >
+                      내 코드{" "}
+                    </Text>
+                    {Platform.OS === "ios" || Platform.OS === "android" ? (
+                      <WithLocalSvg
+                        asset={copySvg}
+                        width={15}
+                        height={15}
+                        style={{ marginBottom: 5 }}
+                      />
+                    ) : (
+                      <Image source={copySvg} style={{ marginBottom: 5 }} />
+                    )}
+                  </View>
                   <Text
                     style={{
                       color: colors.green600,
                       fontWeight: "700",
                       fontFamily: "NanumSquareNeo-Variable",
+                      height: 20,
                     }}
                   >
                     {userInfo.code}
@@ -195,9 +240,9 @@ export default function TabThreeScreen({ navigation }: any) {
               </Text>
             </View>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={keySvg} />
+              <WithLocalSvg asset={keySvg} width={70} height={70} />
             ) : (
-              <Image source={keySvg} style={styles.icon_style} />
+              <Image source={keySvg} style={{ height: 70, width: 70 }} />
             )}
           </TouchableOpacity>
 
@@ -227,19 +272,21 @@ export default function TabThreeScreen({ navigation }: any) {
               </Text>
             </View>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={glassesSvg} />
+              <WithLocalSvg asset={glassesSvg} width={50} height={50} />
             ) : (
               <Image source={glassesSvg} style={styles.icon_style} />
             )}
           </TouchableOpacity>
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
-          <TouchableOpacity style={{ alignItems: "center" }}>
-            <FontAwesome
-              name="paint-brush"
-              color={colors.Whiteyello}
-              size={20}
-            />
+          <TouchableOpacity
+            style={{ alignItems: "center", width: 55, height: 55 }}
+          >
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={brushSvg} />
+            ) : (
+              <Image source={brushSvg} />
+            )}
             <Text
               style={{
                 color: colors.Whiteyello,
@@ -251,8 +298,20 @@ export default function TabThreeScreen({ navigation }: any) {
               호텔수정
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ alignItems: "center" }}>
-            <FontAwesome name="star" color={colors.Whiteyello} size={20} />
+          <View
+            style={[
+              styles.separtator_vertical_for_btn,
+              { backgroundColor: colors.grey800 },
+            ]}
+          ></View>
+          <TouchableOpacity
+            style={{ alignItems: "center", width: 55, height: 55 }}
+          >
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={membershipSvg} />
+            ) : (
+              <Image source={membershipSvg} />
+            )}
             <Text
               style={{
                 color: colors.Whiteyello,
@@ -264,12 +323,20 @@ export default function TabThreeScreen({ navigation }: any) {
               멤버쉽
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ alignItems: "center" }}>
-            <FontAwesome
-              name="question-circle-o"
-              color={colors.Whiteyello}
-              size={20}
-            />
+          <View
+            style={[
+              styles.separtator_vertical_for_btn,
+              { backgroundColor: colors.grey800 },
+            ]}
+          ></View>
+          <TouchableOpacity
+            style={{ alignItems: "center", width: 55, height: 55 }}
+          >
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={questionCircleSvg} />
+            ) : (
+              <Image source={questionCircleSvg} />
+            )}
             <Text
               style={{
                 color: colors.Whiteyello,
@@ -350,9 +417,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 5,
   },
+  header: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 44,
+    marginTop: 33,
+  },
+  header_text: {
+    fontFamily: "SOYOMaple-Regular",
+    fontSize: 18,
+    color: colors.Whiteyello,
+    width: 86,
+  },
+
   profileContainer: {
     backgroundColor: "transparent",
-    flex: 5.5,
+    flex: 5,
     justifyContent: "space-around",
   },
 
@@ -361,7 +441,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   user_info: {
-    flexDirection: "row-reverse",
     width: "50%",
     alignItems: "center",
   },
@@ -375,14 +454,19 @@ const styles = StyleSheet.create({
     fontFamily: "SOYOMaple-Regular",
   },
   separator_vertical: {
-    height: 35,
+    height: "100%",
     width: 2,
     marginHorizontal: 10,
+  },
+  separtator_vertical_for_btn: {
+    height: "100%",
+    width: 2,
   },
 
   key_peek_container: {
     flexDirection: "row",
     justifyContent: "space-between",
+    height: 75,
   },
   key_peek_box: {
     width: "48%",
@@ -393,7 +477,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   icon_style: {
-    width: 70,
+    width: 50,
+    height: 50,
   },
 
   btn_group: {
@@ -402,6 +487,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 15,
     width: "100%",
+    height: 75,
   },
 
   ad_banner: {
@@ -415,7 +501,7 @@ const styles = StyleSheet.create({
 
   linksContainer: {
     backgroundColor: "transparent",
-    flex: 3.5,
+    flex: 4,
     justifyContent: "space-around",
   },
   links_text: {
