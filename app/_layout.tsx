@@ -1,50 +1,31 @@
-import React, { useEffect } from "react";
+import { View, Text, Button } from 'react-native'
+import React, { useEffect, useCallback, useState } from 'react'
+import { Stack, useRouter } from 'expo-router'
+import * as Font from 'expo-font';
 
-import Navigation from "./navigation";
-import { useFonts } from "expo-font";
-import { RecoilRoot } from "recoil";
-import { QueryClient, QueryClientProvider } from "react-query"
-const queryClient = new QueryClient();
-
-import * as Updates from 'expo-updates';
-
-
-
-function App(): JSX.Element {
-  useEffect(() => {
-    onFetchUpdateAsync();
-  }, []);
-
-  const [fontsLoaded] = useFonts({
-    "NanumSquareNeo-Variable": require("../assets/fonts/NanumSquareNeo-Variable.ttf"),
-    "SOYOMaple-Regular": require("../assets/fonts/SOYO-Maple-Regular.ttf"),
-    "Quicksand-Variable": require("../assets/fonts/Quicksand-VariableFont_wght.ttf"),
-  });
-  if (!fontsLoaded) {
-    return <></>;
-  }
-
-  async function onFetchUpdateAsync() {
-    try {
-      const update = await Updates.checkForUpdateAsync();
-
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
-      }
-    } catch (error) {
-      // You can also add an alert() to see the error message in case of an error when fetching updates.
-      //alert(`Error fetching latest Expo update: ${error}`);
-    }
-  }
-
+export default function _layout() {
+    const router = useRouter();
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <Navigation />
-      </RecoilRoot>
-    </QueryClientProvider>
-  );
-}
+   <Stack
+    screenOptions={{
+        // headerStyle: {
+        //     backgroundColor: 'black'
+        // },
+        // headerTintColor: 'white'
+    }}
+   >
+        <Stack.Screen name="index" options={{
+            title: 'Home',
+            headerShown: false,
+        }} />
+        <Stack.Screen name="(tabs)" options={{
+            headerShown: false
+        }} />
+        <Stack.Screen name="[missing]" options={{
+            title: '404'
+        }} />
+   </Stack>
+  )
 
-export default App;
+  
+}
