@@ -89,7 +89,7 @@ export default function createHotelAgree({ route, navigation }: any) {
 
         <View style={styles.btn_wrapper}>
           <Buttons
-            navigation={navigation}
+            //navigation={navigation}
             url={"hotels"}
             title="완료"
             color="green"

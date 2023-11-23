@@ -7,12 +7,12 @@ const splash = require("../assets/gingerman/splash.png");
 export default function Page() {
   useEffect(() => {
       setTimeout(() => {
-        router.replace("/hotel/15");
+        router.push("/hotel/15");
       }, 2000)
   }, []);
   return (
     <View style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
-      <Image source={splash} />
+      <Image source={splash} /> {/*// need click event*/}
     </View>
   )
 }

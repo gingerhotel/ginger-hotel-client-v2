@@ -30,16 +30,6 @@ export default function _layout() {
                             title: '404'
                         }} />
 
-                        <Stack.Screen name="letter" options={{
-                            title: 'letter',
-                            headerShown: true,
-                        }} />
-
-                        <Stack.Screen name="login" options={{
-                            title: 'Login Modal',
-                            headerShown: true,
-                        }} />
-
                 </Stack>
         </RecoilRoot>
     </QueryClientProvider>

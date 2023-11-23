@@ -70,13 +70,8 @@ export default function Hotel({ navigation }: any) {
         <Text style={styles.hotel_desc}>
           진저의 호텔에 오신 여러분 환영합니다~!
         </Text>
-        {/* <SvgImg
-          width={400}
-          height={400}
-          onPress={() => navigation.navigate("hotelcreate")}
-          url={SVG}
-        /> */}
-        <Link href="/create" asChild>
+
+        <Link href={"/create"}>
           <View style={{ backgroundColor: colors.greyblack }}>
             <CustomUserHotel
               wallColor={"#CF332C"}
@@ -85,11 +80,8 @@ export default function Hotel({ navigation }: any) {
             />
           </View>
         </Link>
-
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
-          <Link href="/mailbox" asChild>
-            <View style={styles.hotel_today}>
               <Buttons
                 title="오늘의 편지함 보기"
                 color="green"
@@ -97,18 +89,14 @@ export default function Hotel({ navigation }: any) {
                 url="mailbox"
                 is_disable={open}
               />
-            </View>
-          </Link>
-          <Link href="/gingerAlbum" asChild>
             <TouchableOpacity>
               <SvgImg
                 width={40}
                 height={40}
                 url={album}
-                onPress={() => navigation.navigate("gingerAlbum")}
+                onPress={() => router.push("/gingerAlbum")}
               />
             </TouchableOpacity>
-            </Link>
           </View>
           <View style={styles.hotel_today}>
             <Buttons
@@ -127,28 +115,23 @@ export default function Hotel({ navigation }: any) {
             />
           </View>
 
-            <Link href="/letter" asChild>
               <View style={styles.hotel_today}>
                 <Buttons
                   title="임시 로그인 버튼"
                   color="green"
                   width={350}
+                  url="login"
                   />
               </View>
-            </Link>
-          <Link href="/login" asChild>
-            <Button title="open login modal" />
-          </Link>
-          <Link href="/letter" asChild>
+
             <View style={styles.hotel_today}>
               <Buttons
                 title="편지 보내기"
-                url="login"
+                url="letter"
                 color="green"
                 width={350}
               />
             </View>
-          </Link>
         </View>
       </View>
 
