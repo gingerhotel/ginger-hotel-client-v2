@@ -11,7 +11,7 @@ export default function CustomUserHotel({
   onPress,
   is_border,
 }: any) {
-  const web = { top: 49, left: 47 };
+  const web = { top: 49, left: 46 };
   const app = { top: 64, left: 5 };
 
   type TColorsFill = {
