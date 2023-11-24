@@ -2,11 +2,9 @@ import axios from "axios";
 import { AUTH_URL, HOTEL_URL } from "./url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NewHotel, NewLetter } from "./interface";
+import { axiosConfig } from "./commonApi";
 
-const axiosConfig = async () => {
-  const accessToken = await AsyncStorage.getItem("accessToken");
-  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-}
+
 
 export const newHotel = async (props: NewHotel) => {
   try {
