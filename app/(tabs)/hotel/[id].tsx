@@ -43,6 +43,7 @@ export default function HotelComp({ navigation }: any) {
   const {id} = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
+  const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
   const setHotelId = useSetRecoilState<number>(hotelIdState);
   const [open, setOpen] = useState(true);
   
@@ -50,7 +51,7 @@ export default function HotelComp({ navigation }: any) {
     const handleUserData = async () => {
       const { hotel, todayReceivedLetterCount }: any = await getHotel(id as string);
       setHotel(hotel);
-      console.log(todayReceivedLetterCount)
+      setTodayLetterCnt(todayReceivedLetterCount)
       //setHotelId(hotel?.id);
       // if (await newLetterData({ hotelId: hotel?.id })) {
       //   setOpen(false);
@@ -69,6 +70,7 @@ export default function HotelComp({ navigation }: any) {
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
+          <MonoText style={styles.hotel_desc2}>{todayLetterCnt?.toString()/* 객체 처리 필요 */}</MonoText>
           <ProgressBar/>
         </ProgressBarView>
         <Text style={styles.hotel_name}>{hotel?.nickname}님의 진저호텔</Text>
