@@ -1,51 +1,54 @@
-import * as React from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-} from "react-native";
-import Buttons from "../components/buttons";
+import { View, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import Chip from "../components/chip";
-import CreateHeader from "../components/createHeader";
 import Input from "../components/input";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-import { Image } from "react-native";
 import { useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
-import Header from "../components/appHeader";
-const icon = require("../assets/icon/i_check_user.png");
+import Buttons from "../components/buttons";
+import CenterModal from "../components/centerModal";
+import { router } from "expo-router";
 
-export default function createHotelSelect() {
-  const props = useLocalSearchParams();
+const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
-  const [activeChip, setChip] = React.useState("선택안함");
-  const [activeBirth, setBirth] = React.useState("선택안함");
-  const [code, setCode] = useState("");
+  const [activeChip, setChip] = useState("선택안함");
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
-  const navigation = useNavigation();
-  React.useEffect(() => {
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);
+  const [userEmail, setUserEmail] = useState("happyginger@naver.com");
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const input_size = {
-    web: 110,
+    web: 120,
     app: 100,
   };
 
   return (
     <>
-      <Header title="호텔 만들기" />
-      <CreateHeader isActiveNumber={3} />
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
+        <CenterModal
+          height={180}
+          visible={modalVisible}
+          onClose={closeModal}
+          title="선택한 알림을 삭제할까요?"
+          desc="한번 삭제한 알림은 복구할 수 없어요."
+          btn_text="삭제하기"
+        />
         <View style={styles.edit_wrapper}>
-          <MonoText style={styles.title}>선택 정보를 입력해주세요</MonoText>
-
+          <MonoText style={styles.title}>내 계정 정보</MonoText>
+          <View style={styles.email_wrapper}>
+            <MonoText style={styles.email_text}>{userEmail}</MonoText>
+            <TouchableOpacity>
+              <MonoText style={styles.logout_text}>로그아웃</MonoText>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.separator_horizontal}></View>
           <MonoText style={styles.input_title}>성별</MonoText>
           <View style={styles.chip_wrapper}>
             {sex_chip?.map((text, index) => (
@@ -60,7 +63,6 @@ export default function createHotelSelect() {
             생년월일을 형식에 맞게 입력해주세요.
           </MonoText>
 
-          <Chip text={"선택안함"} active={activeBirth} />
           <View style={styles.input_wrapper}>
             <Input
               placeholder="YYYY"
@@ -92,49 +94,38 @@ export default function createHotelSelect() {
               onChange={(text: string) => setDay(text)}
             />
           </View>
-
-          <MonoText style={styles.input_title}>친구코드 입력</MonoText>
-          <MonoText style={styles.input_label}>
-            나를 초대해 준 친구가 있나요? {"\n"}
-            {"\n"}
-            친구 코드를 적으면 나와 친구 모두 창문 열쇠를 1개씩 받을 수 있어요!
-          </MonoText>
-
-          <View style={styles.input_wrapper_2}>
-            <Input
-              onChange={(text: string) => setCode(text)}
-              width={"90%"}
-              placeholder="친구 코드 7자리를 입력해주세요 (ex. 14B78H1)"
-            />
-            <View style={styles.icon}>
-              <Image style={{ width: 27, height: 27 }} source={icon} />
-            </View>
-          </View>
+          <TouchableOpacity
+            accessible={true}
+            accessibilityLabel="회원탈퇴 버튼"
+            onPress={() => {
+              router.push("/deleteAccountOne");
+            }}
+          >
+            <MonoText style={styles.input_title}>회원탈퇴</MonoText>
+          </TouchableOpacity>
         </View>
         <View style={styles.btn_wrapper}>
           <Buttons
-            url={"createHotelAgree"}
-            title="다음으로"
+            title="수정하기"
             color="green"
-            props={{
-              ...props,
-              gender: sex_english[activeChip],
-              code,
-              birthDate: `${year}-${month}-${day}`,
+            callback={() => {
+              openModal();
             }}
           />
         </View>
-      </ScrollView>
+      </View>
     </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(30,31,35,1.00)",
-    flex: 1,
+    backgroundColor: colors.greyblack,
+    width: "100%",
+    height: "100%",
     paddingLeft: 20,
     paddingRight: 20,
+    justifyContent: "space-between",
   },
   edit_wrapper: {
     marginTop: 40,
@@ -144,6 +135,26 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.Whiteyello,
   },
+  email_wrapper: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  email_text: {
+    color: colors.grey400,
+  },
+  logout_text: {
+    color: colors.green500,
+    fontWeight: "600",
+  },
+  separator_horizontal: {
+    width: "100%",
+    backgroundColor: colors.grey900,
+    height: 1,
+    marginTop: 10,
+  },
+
   input_title: {
     marginTop: 40,
     marginBottom: 14,
@@ -159,12 +170,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    gap: 10,
-    height: 70,
+    height: 52,
     width: "100%",
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginTop: 30,
+    marginBottom: 30,
   },
   chip_wrapper: {
     display: "flex",
@@ -174,27 +182,8 @@ const styles = StyleSheet.create({
     width: "100%",
     display: "flex",
     flexDirection: "row",
-    marginTop: 12,
     alignItems: "center",
-  },
-
-  input_wrapper_2: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    marginTop: 12,
-    alignItems: "center",
-    paddingRight: 20,
-  },
-  icon: {
-    width: 44,
-    height: 44,
-    borderRadius: 6,
-    backgroundColor: colors.green600,
-    marginLeft: 8,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
+
+export default ChangeUserInfo;

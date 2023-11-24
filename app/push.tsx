@@ -6,17 +6,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Buttons from "../components/buttons";
-import LetterItem from "../components/newLetterItem";
-import MailHeader from "../components/mailHeader";
 import { MonoText } from "../components/styledText";
 import { FontAwesome } from "@expo/vector-icons";
 import { View } from "../components/themed";
 import { useThemeColor } from "../components/themed";
 import NoticeItem from "../components/noticeItem";
-import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 import CenterModal from "../components/centerModal";
 
-import * as Updates from 'expo-updates';
+import * as Updates from "expo-updates";
 
 export default function Push() {
   const [pushDeleteMode, setPushDeleteMode] = useState(false);
@@ -42,7 +40,7 @@ export default function Push() {
       //alert(`Error fetching latest Expo update: ${error}`);
     }
   }
-  
+
   const updatedDeleteChecked = (id: number, checked: boolean) => {
     const updatedDeleteChecked = deleteChecked.map((item) => {
       if (item.id === id) {
@@ -75,10 +73,9 @@ export default function Push() {
   };
 
   // 뒤로가기
-  const navigation = useNavigation();
-  const handleGoBack = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+  const handleGoBack = () => {
+    router.back();
+  };
 
   //DarkMode, LightMode Color 설정
   const backgroundColor = useThemeColor({}, "background");
@@ -201,7 +198,12 @@ export default function Push() {
             />
           </View>
           <View style={styles.delete_button_wrapper}>
-            <Buttons title="선택 항목 삭제하기" color="green" is_width callback={onFetchUpdateAsync}/>
+            <Buttons
+              title="선택 항목 삭제하기"
+              color="green"
+              is_width
+              callback={onFetchUpdateAsync}
+            />
           </View>
         </SafeAreaView>
       ) : null}

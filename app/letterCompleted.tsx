@@ -42,7 +42,7 @@ export default function LetterCompleted() {
         />
         &nbsp;&nbsp;&nbsp;
         <Buttons
-          navigation={navigation}
+          //navigation={navigation}
           url={"hotels"}
           title="진저호텔 홈으로"
           is_width={true}

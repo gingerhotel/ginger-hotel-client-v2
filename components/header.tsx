@@ -11,15 +11,18 @@ import { MonoText } from "./styledText";
 import { WithLocalSvg } from "react-native-svg";
 import { SvgImg } from "./svgImg";
 import { colors } from "../constants/Colors";
+
+import { router } from "expo-router";
+
 let icon = require("../assets/icon/ic_alert_no.svg");
 let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
-const Header = ({ navigation }: any) => {
+const Header = () => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
-      <View style={{ backgroundColor: "#000" }}>
+      <View style={{ backgroundColor: colors.greyblack }}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
             <View style={styles.container_1}>
@@ -38,13 +41,13 @@ const Header = ({ navigation }: any) => {
             <SvgImg
               width={30}
               height={30}
-              onPress={() => navigation.navigate("guidePage")}
+              onPress={() => router.push("/guidePage")}
               url={i_info}
             />
             <SvgImg
               width={30}
               height={30}
-              onPress={() => navigation.navigate("push")}
+              onPress={() => router.push("/push")}
               url={icon}
             />
           </View>
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     marginTop: 30,
-    backgroundColor: "#000",
+    backgroundColor: colors.greyblack,
     marginLeft: 20,
     paddingRight: 40,
   },

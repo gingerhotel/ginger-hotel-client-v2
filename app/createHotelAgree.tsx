@@ -10,9 +10,17 @@ import { useState } from "react";
 import CheckBox from "../components/chekbox";
 import { useQueryClient, useMutation } from "react-query";
 import { newHotel } from "../api/hotelApi";
+import Header from "../components/appHeader";
+import { useNavigation } from "expo-router/src/useNavigation";
+import { router, useLocalSearchParams } from "expo-router";
 
-export default function createHotelAgree({ route, navigation }: any) {
-  const props = route.params;
+export default function createHotelAgree() {
+  const props: any = useLocalSearchParams();
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const [isChecked, setChecked] = useState<any>({
     all: false,
     age: false,
@@ -30,16 +38,19 @@ export default function createHotelAgree({ route, navigation }: any) {
     isChecked[type] = !isChecked[type];
     setChecked({ ...isChecked });
   };
-  const queryClient = useQueryClient();
 
   const mutation = useMutation(
     // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     newHotel,
     {
       onSuccess: (data) => {
+        router.push(`/hotel/${data.hotelId}`)
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
         console.log("Mutation successful! Response:", data);
       },
+      onError: (data) => {
+        console.log(data);
+      }
     }
   );
 
@@ -55,6 +66,7 @@ export default function createHotelAgree({ route, navigation }: any) {
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={4} />
       <View style={styles.container}>
         <View style={styles.edit_wrapper}>
@@ -88,11 +100,11 @@ export default function createHotelAgree({ route, navigation }: any) {
 
         <View style={styles.btn_wrapper}>
           <Buttons
-            navigation={navigation}
-            url={"hotels"}
+            is_disable={!isChecked.personal || !isChecked.age || !isChecked.use}
+            // url={"/hotel/15"}
             title="완료"
             color="green"
-            callback={() => handleFormSubmit()}
+            callback={handleFormSubmit}
           />
         </View>
       </View>
@@ -122,13 +134,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 10,
     height: 70,
-    position: "absolute",
-    bottom: 30,
-    left: 0,
     width: "100%",
     padding: 10,
-    paddingLeft: 20,
+    paddingLeft: 10,
     paddingRight: 20,
+    marginTop: 20,
+    marginBottom: 28,
   },
   hr: {
     height: 1,

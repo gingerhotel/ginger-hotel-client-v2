@@ -53,7 +53,7 @@ const ReplyLetterItem = () => {
                 <LetterInnerInfoView>
                     <LetterInnerTitieView>
                         <TouchableOpacity onPress={toggleModal}>
-                            <SvgImg url={iconGlassesQuestionMark} />
+                            <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
                         </TouchableOpacity>
                         <LetterInnerTitieTextView>
                             <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
@@ -61,7 +61,10 @@ const ReplyLetterItem = () => {
                         </LetterInnerTitieTextView>
                         <View />
                         <TouchableOpacity onPress={toggleModal} style={{ position: 'absolute', left: 312 }}>
-                            <SvgImg url={iconMore} />
+                            <SvgImg
+                                url={iconMore}
+                                width={30}
+                                height={30} />
                         </TouchableOpacity>
                     </LetterInnerTitieView>
                     <LetterInnerTextBox f_color="#fff">

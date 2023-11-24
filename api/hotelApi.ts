@@ -1,12 +1,10 @@
 import axios from "axios";
-import { AUTH_URL, LETTERS_URL } from "./url";
+import { AUTH_URL, HOTEL_URL } from "./url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NewHotel, NewLetter } from "./interface";
+import { axiosConfig } from "./commonApi";
 
-const axiosConfig = async () => {
-  const accessToken = await AsyncStorage.getItem("accessToken");
-  axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-}
+
 
 export const newHotel = async (props: NewHotel) => {
   try {
@@ -19,15 +17,15 @@ export const newHotel = async (props: NewHotel) => {
   }
 };
 
-// Need to be separated later.
-export const newLetter = async (props: NewLetter) => {
+export const getHotel = async (id: string) => {
   try {
     axiosConfig();
-    const hotelOwner:Number = 0;
-    const response = await axios.post(`${LETTERS_URL}/${1}`, props);
+    const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
   } catch (e) {
     console.error(e);
     throw e;
   }
 };
+
+

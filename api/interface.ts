@@ -23,9 +23,54 @@ export interface NewHotel {
   code: string;
 }
 
+
 export interface NewLetter {
   content: string; // requird
   senderNickname: string; // requird
   image: string;
 }
+// export interface User {
+//   nickname: string;
+//   code: string;
+//   membership: string;
+//   gender: "MAN | WOMAN | null";
+//   birthDate: "1998-06-13 | null";
+//   keyCount: number;
+//   feekCount: number;
+// }
 
+
+export interface Auth {
+  email: string;
+  sub: string; // Subject, uid
+}
+
+export interface My {
+  success: string;
+  user: User;
+  hotel: NewHotel;
+}
+
+export interface User {
+  nickname: string;
+  code: string;
+  membership: string;
+  gender: "MAN" | "WOMAN" | null;
+  birthDate: string | null;
+  keyCount: number;
+  feekCount: number;
+}
+
+
+export interface Hotel {
+  id: number;
+  nickname: string;
+  description: string;
+  structColor: string;
+  bodyColot: string; // 오타 수정: bodyColor로 변경
+}
+export interface UserApiResponse {
+  success: boolean;
+  user: User;
+  hotel: Hotel;
+}

@@ -14,10 +14,11 @@ import axios from 'axios';
 import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
+import { router } from "expo-router";
 
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
-
+WebBrowser.maybeCompleteAuthSession();
 const SVG = require("../assets/images/StartHotel.svg");
 const [userInfo, setUserInfo] = React.useState(null);
 
@@ -34,10 +35,6 @@ export default function Login({ navigation }: any) {
     register("socialId");
   }, [register]);
 
-  React.useEffect(() => {
-    handleEffect();
-  }, [response]);
-
   const handleLoginProd = async (data: FieldValues) => {
     //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
     axios
@@ -49,7 +46,7 @@ export default function Login({ navigation }: any) {
         console.log(res);
         AsyncStorage.setItem('isLogin', "true");
         AsyncStorage.setItem('accessToken', res.data.accessToken);
-        navigation.push('hotelcreate')
+        router.push('/hotelcreate')
       })
       .catch((err) => {
         console.log(err);
@@ -68,7 +65,7 @@ export default function Login({ navigation }: any) {
         console.log(res);
         AsyncStorage.setItem('isLogin', "true");
         AsyncStorage.setItem('accessToken', res.data.accessToken);
-        navigation.push('hotelcreate')
+        router.push('/create')
       })
       .catch((err) => {
         console.log(err);
@@ -77,46 +74,64 @@ export default function Login({ navigation }: any) {
   };
 
 
+  React.useEffect(() => {
+    handleEffect();
+  }, [response, token]);
+
   async function handleEffect() {
+    const user = false;
     //const user = await getLocalUser();
-    //console.log("user", user);
-    //if (!user) {
+    console.log("user", user);
+    if (!user) {
       if (response?.type === "success") {
         // setToken(response.authentication.accessToken);
-       // getUserInfo(response.authentication.accessToken);
-       console.log("succ");
+        getUserInfo(response.authentication?.accessToken as string);
       }
-    // } else {
-    //   setUserInfo(user);
-    //   console.log("loaded locally");
-    // }
+    } else {
+      setUserInfo(user);
+      console.log("loaded locally");
+    }
   }
 
-    const loginWithGoogle = () => {
-      //const a:string = response.authentication?.accessToken;
-    }
+  const getLocalUser = async () => {
+    const data = await AsyncStorage.getItem("@user");
+    if (!data) return null;
+    return JSON.parse(data);
+  };
 
-    // Google 로그인 처리하는 함수
-    /*const handleSignInWithGoogle = async () => {
-      const user = await AsyncStorage.getItem("accessToken");
-      if (!user) {
-        if (response?.type === "success") {
-          // 인증 요청에 대한 응답이 성공이면, 토큰을 이용하여 유저 정보를 가져옴.
-          // await getUserInfo(response.authentication?.accessToken);
-          AsyncStorage.setItem('isLogin', "true");
-          AsyncStorage.setItem('accessToken', response.data.accessToken);
-          navigation.push('hotelcreate')
+  const getUserInfo = async (token:string) => {
+    if (!token) return;
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
         }
-      } else {
-        // 유저 정보가 이미 있으면, 유저 정보를 가져옴.
-        setUserInfo(JSON.parse(user));
-      }
-    };*/
-  
-    const handleLogout = async () => {
-      await AsyncStorage.removeItem("@user");
-      setUserInfo(null);
-    };
+      );
+
+      const user = await response.json();
+      console.log(user);
+      axios.post(`http://localhost:8080/auth/google`, {
+        email: user.email,
+        sub: user.id,
+      })
+      .then((res) => {
+        console.log(res);
+        AsyncStorage.setItem('isLogin', "true");
+        AsyncStorage.setItem('accessToken', res.data.accessToken);
+        console.log(res.data.accessToken);
+        router.push('/create')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      //await AsyncStorage.setItem("@user", JSON.stringify(user));
+      //setUserInfo(user);
+    } catch (error) {
+      // Add your own error handler here
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -164,7 +179,7 @@ export default function Login({ navigation }: any) {
 
             AsyncStorage.setItem('isLogin', "true");
             AsyncStorage.setItem('accessToken', response.data.accessToken);
-            navigation.push('hotelcreate')
+            router.push('/hotelcreate')
 
           } catch (e) {
             /*if (e.code === 'ERR_REQUEST_CANCELED') {
@@ -175,6 +190,7 @@ export default function Login({ navigation }: any) {
           }
         }}
       />
+      {!userInfo ? (
         <Button
           title="Sign in with Google"
           disabled={!request}
@@ -182,7 +198,19 @@ export default function Login({ navigation }: any) {
             promptAsync();
           }}
         />
-      <Button title="logout" onPress={() => handleLogout()} />
+      ) : (
+        <View style={styles.card}>
+          
+          {/* <Text style={styles.text}>Email: {userInfo.email}</Text>
+          <Text style={styles.text}>
+            Verified: {userInfo.verified_email ? "yes" : "no"}
+          </Text>
+          <Text style={styles.text}>Name: {userInfo.name}</Text> */}
+          {/* <Text style={styles.text}>{JSON.stringify(userInfo, null, 2)}</Text> */}
+        </View>
+      )}
+
+      {/* <Button title="logout" onPress={() => handleLogout()} /> */}
 
       <TextInput
         placeholder="login test"
@@ -216,6 +244,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   social_btn: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  card: {
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 15,
+  },
+  image: {
     width: 100,
     height: 100,
     borderRadius: 50,

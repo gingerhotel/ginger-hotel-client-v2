@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import React from "react";
 import {
   Text,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { MonoText } from "./styledText";
-import { Common_Colors } from "../constants/Colors";
+import { colors, Common_Colors } from "../constants/Colors";
 import { SvgImg } from "./svgImg";
 
 type Props = {
@@ -23,7 +23,6 @@ type Props = {
     | "gray_700"
     | "neongreen";
   is_disable?: boolean;
-  navigation?: any;
   url?: string;
   callback?: any;
   is_width?: boolean;
@@ -36,7 +35,6 @@ const Buttons = ({
   title,
   color,
   is_disable,
-  navigation,
   url,
   callback,
   width,
@@ -45,7 +43,7 @@ const Buttons = ({
 }: Props) => {
   const handlePress = () => {
     if (url) {
-      navigation.navigate(url, props);
+      router.push({ pathname: `/${url}`, params: props });
     }
 
     if (callback) {
@@ -56,7 +54,10 @@ const Buttons = ({
   return (
     <TouchableOpacity
       disabled={is_disable}
-      style={cstyles(Common_Colors[color], color, width).button}
+      style={[
+        cstyles(Common_Colors[color], color, width).button,
+        is_disable && styles.disabled,
+      ]}
       onPress={handlePress}
     >
       <View style={styles.item}>
@@ -102,6 +103,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     rowGap: 8,
+  },
+  disabled: {
+    backgroundColor: colors.grey400,
+    color: colors.grey600,
   },
 });
 

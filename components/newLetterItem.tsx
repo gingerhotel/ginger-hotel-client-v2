@@ -21,7 +21,7 @@ import {
   LetterOuterContainer
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
-const iconMore = require("../assets/icon/i_more_vert.png");
+const iconMore = require("../assets/icon/i_more_vert.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
 type Props = {

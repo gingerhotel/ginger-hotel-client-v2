@@ -10,23 +10,23 @@ type Props = {
   style?: any;
 };
 
-export function SvgImg(props: Props) {
+export function PngImg(props: Props) {
   return (
     <>
       {Platform.OS === "ios" || Platform.OS === "android" ? (
         typeof props.onPress === "function" ? (
           <TouchableOpacity onPress={props.onPress}>
-            <WithLocalSvg
+            <Image
               style={props.style}
-              asset={props.url}
+              source={props.url}
               width={props.width}
               height={props.height}
             />
           </TouchableOpacity>
         ) : (
-          <WithLocalSvg
+          <Image
             style={props.style}
-            asset={props.url}
+            source={props.url}
             width={props.width}
             height={props.height}
           />

@@ -4,61 +4,72 @@ import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-
-const Hotel1 = require("../assets/images/Hotel1.svg");
-import { Image } from "react-native";
 import Input from "../components/input";
 import { useState } from "react";
-import { SvgImg } from "../components/svgImg";
+import CustomUserHotel from "../components/customUserHotel";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
-export default function CreateHotelName({ route, navigation }: any) {
-  const hotel_color = route.params;
+export default function CreateHotelName() {
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
+  const params = useLocalSearchParams();
+  const { bodyColor, structColor } = params;
+  const navigation = useNavigation();
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={2} />
-      <ScrollView style={styles.container}>
-        <View style={styles.edit_wrapper}>
-          <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
-          <MonoText style={styles.desc}>
-            호텔 이름은 나중에도 수정할 수 있어요!
-          </MonoText>
-          <View style={styles.img_wrapper}>
-            <SvgImg
-              url={Hotel1}
-              width={330}
-              height={400}
-              style={{
-                position: "relative",
-                width: 371,
-                height: 420,
-                marginTop: 20,
-                zIndex: 3,
-              }}
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.edit_wrapper}>
+            <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
+            <MonoText style={styles.desc}>
+              호텔 이름은 나중에도 수정할 수 있어요!
+            </MonoText>
+          </View>
+
+          <View>
+            <CustomUserHotel
+              is_border={true}
+              wallColor={bodyColor}
+              structColor={structColor}
             />
           </View>
-          <Input
-            onChange={(text: string) => setNickname(text)}
-            placeholder="내 닉네임"
-          />
-          <View style={{ marginTop: 8 }}></View>
-          <Input
-            multiline={5}
-            onChange={(text: string) => setDescription(text)}
-            placeholder="내 호텔을 소개해주세요(최대 NN글자)"
-          />
-        </View>
 
-        <View style={styles.btn_wrapper}>
-          <Buttons
-            navigation={navigation}
-            url={"hotelselect"}
-            props={{ ...hotel_color, nickname, description }}
-            title="다음으로"
-            color="green"
-          />
+          <View
+            style={{
+              padding: 3,
+              paddingTop: 10,
+              justifyContent: "flex-start",
+              width: "100%",
+            }}
+          >
+            <Input
+              onChange={(text: string) => setNickname(text)}
+              placeholder="내 닉네임"
+            />
+            <View style={{ marginTop: 8 }}></View>
+            <Input
+              multiline={5}
+              onChange={(text: string) => setDescription(text)}
+              placeholder="내 호텔을 소개해주세요(최대 NN글자)"
+            />
+          </View>
+          <View style={styles.btn_wrapper}>
+            <Buttons
+              is_disable={!nickname || !description}
+              url={"createHotelSelect"}
+              props={{ bodyColor, structColor, nickname, description }}
+              title="다음으로"
+              color="green"
+            />
+          </View>
         </View>
       </ScrollView>
     </>
@@ -69,6 +80,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "rgba(30,31,35,1.00)",
     padding: 10,
+    flex: 1,
+    alignItems: "center",
   },
   img_wrapper: {
     borderWidth: 0.3,
@@ -80,7 +93,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   edit_wrapper: {
-    marginTop: 40,
+    marginTop: 30,
+    marginLeft: 7,
+    justifyContent: "flex-start",
+    width: "100%",
   },
   title: {
     textAlign: "left",
@@ -120,5 +136,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 20,
+    marginBottom: 28,
   },
 });
