@@ -50,34 +50,17 @@ export default function HotelComp() {
   const [open, setOpen] = useState(true);
   const navigation = useNavigation();
 
-  useEffect(() => {
-    navigation.setOptions({ headerShown: false });
-  }, [navigation]);
+      useEffect(() => {
+        navigation.setOptions({ headerShown: false });
+      }, [navigation]);
+      
+      const closeLoginModal = () => {
+        setLoginModalVisible(false);
+      };
+      const closeModal = () => {
+        setModalVisible(false);
+      };
 
-  useEffect(() => {
-    const handleUserData = async () => {
-      const { hotel, todayReceivedLetterCount }: any = await getHotel(
-        id as string
-      );
-      setHotel(hotel);
-      setTodayLetterCnt(todayReceivedLetterCount);
-      //setHotelId(hotel?.id);
-      // if (await newLetterData({ hotelId: hotel?.id })) {
-      //   setOpen(false);
-      // }
-    };
-    handleUserData();
-  }, []);
-
-  const closeLoginModal = () => {
-    setLoginModalVisible(false);
-  };
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  return (
-    <ScrollView>
       const { data, isLoading } = useQuery('loadHotel', async () => await getHotel(id as string));
       return (
         <ScrollView>
@@ -143,15 +126,6 @@ export default function HotelComp() {
             />
           </View>
 
-
-            <View style={styles.hotel_today}>
-              <Buttons
-                title="임시 로그인 버튼"
-                color="green"
-                width={350}
-                url="login"
-                />
-            </View>
 
             <View style={styles.hotel_today}>
               <Buttons
