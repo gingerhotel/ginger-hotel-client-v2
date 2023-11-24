@@ -101,21 +101,9 @@ export default function TabThreeScreen() {
       <View style={styles.profileContainer}>
         <View style={styles.user_info_box}>
           <View style={styles.name_box}>
-            <TouchableOpacity
-              style={{ flexDirection: "row", alignItems: "center" }}
-              onPress={() => {
-                router.push("/changeUserInfo");
-              }}
-            >
-              <Text style={[styles.name, { color: colors.Whiteyello }]}>
-                {userInfo.nickname}
-              </Text>
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={pencilSvg} />
-              ) : (
-                <Image source={pencilSvg} />
-              )}
-            </TouchableOpacity>
+            <Text style={[styles.name, { color: colors.Whiteyello }]}>
+              {userInfo.nickname}
+            </Text>
           </View>
           <View style={styles.user_info}>
             <View
@@ -284,7 +272,12 @@ export default function TabThreeScreen() {
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
           <TouchableOpacity
-            style={{ alignItems: "center", width: 55, height: 55 }}
+            style={{
+              alignItems: "center",
+              width: 70,
+              height: 55,
+              justifyContent: "center",
+            }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
               <WithLocalSvg asset={brushSvg} />
@@ -309,22 +302,32 @@ export default function TabThreeScreen() {
             ]}
           ></View>
           <TouchableOpacity
-            style={{ alignItems: "center", width: 55, height: 55 }}
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 70,
+              height: 55,
+            }}
+            onPress={() => {
+              router.push("/changeUserInfo");
+            }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={membershipSvg} />
+              <WithLocalSvg asset={pencilSvg} width={25} height={25} />
             ) : (
-              <Image source={membershipSvg} />
+              <Image source={pencilSvg} style={{ width: 27, height: 27 }} />
             )}
             <Text
               style={{
                 color: colors.Whiteyello,
                 fontWeight: "400",
-                marginTop: 10,
+                marginTop:
+                  Platform.OS === "ios" || Platform.OS === "android" ? 10 : 10,
+
                 fontFamily: "NanumSquareNeo-Variable",
               }}
             >
-              멤버쉽
+              내정보수정
             </Text>
           </TouchableOpacity>
           <View
@@ -334,7 +337,12 @@ export default function TabThreeScreen() {
             ]}
           ></View>
           <TouchableOpacity
-            style={{ alignItems: "center", width: 55, height: 55 }}
+            style={{
+              alignItems: "center",
+              width: 70,
+              height: 55,
+              justifyContent: "center",
+            }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
               <WithLocalSvg asset={questionCircleSvg} />
@@ -493,6 +501,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     flexDirection: "row",
     justifyContent: "space-around",
+    alignItems: "center",
     padding: 15,
     width: "100%",
     height: 75,
