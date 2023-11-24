@@ -176,10 +176,10 @@ export default function HotelComp() {
         img={ginger}
       />
       <LoginModal
-        height={530}
+        height={230}
         visible={loginModalVisible}
         onClose={closeLoginModal}
-        name="로그인"
+        name="로그인(디자인작업중)"
         desc="하세요 "
         img={ginger}
       />
