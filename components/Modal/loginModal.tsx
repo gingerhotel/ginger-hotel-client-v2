@@ -8,6 +8,8 @@ import { router } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SocialButton from "../socialButton";
+import axios from "axios";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -41,16 +43,13 @@ const LoginModal = ({
   }, [response, token]);
 
   async function handleEffect() {
-    const user = await getLocalUser();
+    const user = false;
+    //const user = await getLocalUser();
     console.log("user", user);
     if (!user) {
       if (response?.type === "success") {
         // setToken(response.authentication.accessToken);
-        //getUserInfo(response.authentication.accessToken);
-        console.log(response.authentication?.accessToken)
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', response.authentication?.accessToken as string);
-        router.push("/create");
+        getUserInfo(response.authentication?.accessToken as string);
       }
     } else {
       setUserInfo(user);
@@ -62,6 +61,39 @@ const LoginModal = ({
     const data = await AsyncStorage.getItem("@user");
     if (!data) return null;
     return JSON.parse(data);
+  };
+
+  const getUserInfo = async (token:string) => {
+    if (!token) return;
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const user = await response.json();
+      console.log(user);
+      axios.post(`http://localhost:8080/auth/google`, {
+        email: user.email,
+        sub: user.id,
+      })
+      .then((res) => {
+        console.log(res);
+        AsyncStorage.setItem('isLogin', "true");
+        AsyncStorage.setItem('accessToken', res.data.accessToken);
+        console.log(res.data.accessToken);
+        router.push('/create')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      //await AsyncStorage.setItem("@user", JSON.stringify(user));
+      //setUserInfo(user);
+    } catch (error) {
+      // Add your own error handler here
+    }
   };
 
   const setModalVisible = () => {
@@ -88,8 +120,6 @@ const LoginModal = ({
             {name}
           </Text>
 
-          {img && <Image source={img} style={{ width: 100, height: 100 }} />}
-          {img && <Image source={img} style={{ width: 100, height: 100 }} />}
 
           <View
             style={{
@@ -98,9 +128,6 @@ const LoginModal = ({
               backgroundColor: colors.grey700,
             }}
           ></View>
-          <MonoText style={{ fontSize: 12, color: colors.grey500 }}>
-            {desc}
-          </MonoText>
             
           <View style={styles(height).button_wrapper}>
             <Pressable
@@ -118,7 +145,7 @@ const LoginModal = ({
               onPress={() => close()}
             >
               <MonoText style={styles(height).textStyle}>
-                X버튼
+                취소
               </MonoText>
             </Pressable>
           </View>
@@ -194,6 +221,11 @@ const styles = (height: number) =>
       display: "flex",
       justifyContent: "center",
       flexDirection: "row",
+    },
+    social_btn_group: {
+      flexDirection: "row",
+      width: 300,
+      justifyContent: "space-around",
     },
   });
 

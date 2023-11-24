@@ -79,16 +79,13 @@ export default function Login({ navigation }: any) {
   }, [response, token]);
 
   async function handleEffect() {
-    const user = await getLocalUser();
+    const user = false;
+    //const user = await getLocalUser();
     console.log("user", user);
     if (!user) {
       if (response?.type === "success") {
         // setToken(response.authentication.accessToken);
-        //getUserInfo(response.authentication.accessToken);
-        console.log(response.authentication?.accessToken)
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', response.authentication?.accessToken as string);
-        router.push("/create");
+        getUserInfo(response.authentication?.accessToken as string);
       }
     } else {
       setUserInfo(user);
@@ -113,13 +110,27 @@ export default function Login({ navigation }: any) {
       );
 
       const user = await response.json();
-      await AsyncStorage.setItem("@user", JSON.stringify(user));
-      setUserInfo(user);
+      console.log(user);
+      axios.post(`http://localhost:8080/auth/google`, {
+        email: user.email,
+        sub: user.id,
+      })
+      .then((res) => {
+        console.log(res);
+        AsyncStorage.setItem('isLogin', "true");
+        AsyncStorage.setItem('accessToken', res.data.accessToken);
+        console.log(res.data.accessToken);
+        router.push('/create')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      //await AsyncStorage.setItem("@user", JSON.stringify(user));
+      //setUserInfo(user);
     } catch (error) {
       // Add your own error handler here
     }
   };
-
 
 
   return (
