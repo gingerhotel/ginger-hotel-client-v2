@@ -39,22 +39,23 @@ import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 
-
 export default function HotelComp({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
-  const {id} = useLocalSearchParams();
+  const { id } = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
   const setHotelId = useSetRecoilState<number>(hotelIdState);
   const [open, setOpen] = useState(true);
-  
+
   useEffect(() => {
     const handleUserData = async () => {
-      const { hotel, todayReceivedLetterCount }: any = await getHotel(id as string);
+      const { hotel, todayReceivedLetterCount }: any = await getHotel(
+        id as string
+      );
       setHotel(hotel);
-      setTodayLetterCnt(todayReceivedLetterCount)
+      setTodayLetterCnt(todayReceivedLetterCount);
       //setHotelId(hotel?.id);
       // if (await newLetterData({ hotelId: hotel?.id })) {
       //   setOpen(false);
@@ -72,12 +73,14 @@ export default function HotelComp({ navigation }: any) {
 
   return (
     <ScrollView>
-      <Header navigation={navigation} />
+      <Header />
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
-          <MonoText style={styles.hotel_desc2}>{todayLetterCnt?.toString()/* 객체 처리 필요 */}</MonoText>
-          <ProgressBar/>
+          <MonoText style={styles.hotel_desc2}>
+            {todayLetterCnt?.toString() /* 객체 처리 필요 */}
+          </MonoText>
+          <ProgressBar />
         </ProgressBarView>
         <Text style={styles.hotel_name}>{hotel?.nickname}님의 진저호텔</Text>
         <Text style={styles.hotel_desc}>
@@ -96,13 +99,13 @@ export default function HotelComp({ navigation }: any) {
         </Link>
         <View style={styles.hotel_today_container}>
           <View style={styles.hotel_today}>
-              <Buttons
-                title="오늘의 편지함 보기"
-                color="green"
-                width={288}
-                url="mailbox"
-                is_disable={open}
-              />
+            <Buttons
+              title="오늘의 편지함 보기"
+              color="green"
+              width={288}
+              url="mailbox"
+              is_disable={open}
+            />
             <TouchableOpacity>
               <SvgImg
                 width={40}
@@ -129,23 +132,23 @@ export default function HotelComp({ navigation }: any) {
             />
           </View>
 
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="임시 로그인 버튼"
-                  color="green"
-                  width={350}
-                  callback={() => setLoginModalVisible(true)}
-                  />
-              </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              title="임시 로그인 버튼"
+              color="green"
+              width={350}
+              callback={() => setLoginModalVisible(true)}
+            />
+          </View>
 
-            <View style={styles.hotel_today}>
-              <Buttons
-                title="편지 보내기"
-                url="letter"
-                color="green"
-                width={350}
-              />
-            </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              title="편지 보내기"
+              url="letter"
+              color="green"
+              width={350}
+            />
+          </View>
         </View>
       </View>
 

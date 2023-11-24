@@ -7,7 +7,7 @@ import {
   Platform,
   Image,
 } from "react-native";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
 import { WithLocalSvg } from "react-native-svg";
 import axios from "axios";
@@ -48,7 +48,7 @@ interface UserApiResponse {
   hotel: Hotel;
 }
 
-export default function TabThreeScreen({ navigation }: any) {
+export default function TabThreeScreen() {
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
     code: "",
@@ -164,7 +164,7 @@ export default function TabThreeScreen({ navigation }: any) {
               ></View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("instaShared");
+                  router.push("/instaShared");
                 }}
               >
                 <View
@@ -252,7 +252,7 @@ export default function TabThreeScreen({ navigation }: any) {
 
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-            onPress={() => navigation.navigate("feekCharge")}
+            onPress={() => {}}
           >
             <View>
               <Text
@@ -375,7 +375,7 @@ export default function TabThreeScreen({ navigation }: any) {
         <View>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("csCenter");
+              router.push("/csCenter");
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>

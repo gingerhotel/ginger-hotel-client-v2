@@ -10,11 +10,12 @@ import { WithLocalSvg } from "react-native-svg";
 import { StyleSheet } from "react-native";
 import { colors } from "../constants/Colors";
 import { SvgImg } from "../components/svgImg";
+import { router } from "expo-router";
 
 const closeIcon = require("../assets/icon/i_close_line.svg");
 const bottomLogo = require("../assets/images/logo_info.svg");
 
-const GuidePage = ({ navigation }: any) => {
+const GuidePage = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -24,7 +25,7 @@ const GuidePage = ({ navigation }: any) => {
             height={30}
             url={closeIcon}
             onPress={() => {
-              navigation.goBack();
+              router.back();
             }}
           />
         </SafeAreaView>
