@@ -11,6 +11,8 @@ import CheckBox from "../components/chekbox";
 import { useQueryClient, useMutation } from "react-query";
 import { newHotel } from "../api/hotelApi";
 import Header from "../components/appHeader";
+import { useNavigation } from "expo-router/src/useNavigation";
+import { router, useLocalSearchParams } from "expo-router";
 
 export default function createHotelAgree() {
   const props: any = useLocalSearchParams();
@@ -53,7 +55,6 @@ export default function createHotelAgree() {
   );
 
   const handleFormSubmit = async () => {
-    console.log("chekc");
     try {
       // 뮤테이션 실행
       await mutation.mutateAsync(props);
