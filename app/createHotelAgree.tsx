@@ -10,7 +10,7 @@ import { useState } from "react";
 import CheckBox from "../components/chekbox";
 import { useQueryClient, useMutation } from "react-query";
 import { newHotel } from "../api/hotelApi";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 
 export default function createHotelAgree({ route, navigation }: any) {
   const props: any = useLocalSearchParams();
@@ -37,9 +37,13 @@ export default function createHotelAgree({ route, navigation }: any) {
     newHotel,
     {
       onSuccess: (data) => {
+        router.push(`/hotel/${data.hotelId}`)
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
         console.log("Mutation successful! Response:", data);
       },
+      onError: (data) => {
+        console.log(data);
+      }
     }
   );
 
@@ -90,7 +94,7 @@ export default function createHotelAgree({ route, navigation }: any) {
         <View style={styles.btn_wrapper}>
           <Buttons
             is_disable={!isChecked.personal || !isChecked.age || !isChecked.use}
-            url={"/hotel/15"}
+            // url={"/hotel/15"}
             title="완료"
             color="green"
             callback={handleFormSubmit}
