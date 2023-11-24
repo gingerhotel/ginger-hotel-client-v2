@@ -27,7 +27,7 @@ const SVG = require("../../../assets/images/StartHotel.svg");
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
-const icon: any = require("../../../assets/icon/i_check.png");
+const icon: any = require("../../../assets/icon/i_check_green.svg");
 
 import { myDate } from "../../../api/myApi";
 import { useSetRecoilState } from "recoil";

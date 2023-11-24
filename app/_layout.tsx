@@ -5,6 +5,8 @@ import * as Font from 'expo-font';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useFonts } from "expo-font";
+import Toast from "react-native-toast-message";
+import { toastConfig } from "../components/toast";
 
 export default function _layout() {
   const queryClient = new QueryClient();
@@ -50,6 +52,8 @@ export default function _layout() {
             }}
           />
         </Stack>
+
+        <Toast config={toastConfig} />
       </RecoilRoot>
     </QueryClientProvider>
   );
