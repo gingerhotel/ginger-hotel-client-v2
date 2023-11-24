@@ -36,12 +36,15 @@ import { newLetterData } from "../../../api/letterApi";
 import { getHotel } from "../../../api/hotelApi";
 import { Hotel } from "../../../api/interface";
 import ProgressBar from "../../../components/progressBar";
+import CenterModal from "../../../components/centerModal";
+import LoginModal from "../../../components/Modal/\bloginModal";
 
 
 export default function HotelComp({ navigation }: any) {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const {id} = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
   const setHotelId = useSetRecoilState<number>(hotelIdState);
@@ -60,6 +63,9 @@ export default function HotelComp({ navigation }: any) {
     handleUserData();
   }, []);
 
+  const closeLoginModal = () => {
+    setLoginModalVisible(false);
+  };
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -128,7 +134,7 @@ export default function HotelComp({ navigation }: any) {
                   title="임시 로그인 버튼"
                   color="green"
                   width={350}
-                  url="login"
+                  callback={() => setLoginModalVisible(true)}
                   />
               </View>
 
@@ -149,6 +155,14 @@ export default function HotelComp({ navigation }: any) {
         onClose={closeModal}
         name="벨보이 진저맨"
         desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
+        img={ginger}
+      />
+      <LoginModal
+        height={530}
+        visible={loginModalVisible}
+        onClose={closeLoginModal}
+        name="로그인"
+        desc="하세요 "
         img={ginger}
       />
     </ScrollView>
