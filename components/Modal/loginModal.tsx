@@ -10,6 +10,8 @@ import * as Google from "expo-auth-session/providers/google";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import SocialButton from "../socialButton";
 import axios from "axios";
+import { useMutation } from "react-query";
+import { authGoogle } from "../../api/authApi";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -36,20 +38,16 @@ const LoginModal = ({
     iosClientId: "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
   });
 
-  const [token, setToken] = React.useState("");
-
   React.useEffect(() => {
     handleEffect();
-  }, [response, token]);
+  }, [response]);
 
   async function handleEffect() {
     const user = false;
     //const user = await getLocalUser();
-    console.log("user", user);
     if (!user) {
       if (response?.type === "success") {
-        // setToken(response.authentication.accessToken);
-        getUserInfo(response.authentication?.accessToken as string);
+        googleAuth(response.authentication?.accessToken as string);
       }
     } else {
       setUserInfo(user);
@@ -63,7 +61,24 @@ const LoginModal = ({
     return JSON.parse(data);
   };
 
-  const getUserInfo = async (token:string) => {
+  const mutation = useMutation( authGoogle,
+    {
+      onSuccess: (res) => {
+        AsyncStorage.setItem('accessToken', res.data.accessToken);
+        if (res.status == 200) {
+          router.push('/create');
+        } else if (res.status == 201) {
+          router.push(`/hotel/${res.data.hotelid}`); 
+          // need to get hotelid
+        }
+      },
+      onError: (data) => {
+        console.log(data);
+      }
+    }
+  );
+
+  const googleAuth = async (token:string) => {
     if (!token) return;
     try {
       const response = await fetch(
@@ -72,29 +87,16 @@ const LoginModal = ({
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
+      
       const user = await response.json();
-      console.log(user);
-      axios.post(`http://localhost:8080/auth/google`, {
+      await mutation.mutateAsync({        
         email: user.email,
         sub: user.id,
       })
-      .then((res) => {
-        console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        console.log(res.data.accessToken);
-        router.push('/create')
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      //await AsyncStorage.setItem("@user", JSON.stringify(user));
-      //setUserInfo(user);
-    } catch (error) {
-      // Add your own error handler here
+    } catch (e){
+      console.log(e);
     }
-  };
+  }
 
   const setModalVisible = () => {
     promptAsync();
@@ -103,6 +105,8 @@ const LoginModal = ({
   const close = () => {
     onClose(); 
   };
+
+
 
   
   return (

@@ -40,6 +40,11 @@ export interface NewLetter {
 // }
 
 
+export interface Auth {
+  email: string;
+  sub: string; // Subject, uid
+}
+
 export interface My {
   success: string;
   user: User;
@@ -55,7 +60,6 @@ export interface User {
   keyCount: number;
   feekCount: number;
 }
-
 
 
 export interface Hotel {
