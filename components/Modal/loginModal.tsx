@@ -4,6 +4,13 @@ import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
 import { MonoText } from "../styledText";
 import { router } from "expo-router";
+
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+WebBrowser.maybeCompleteAuthSession();
+
 type Props = {
   onClose?: any;
   visible?: boolean;
@@ -21,9 +28,45 @@ const LoginModal = ({
   img,
   desc,
 }: Props) => {
+  const [userInfo, setUserInfo] = React.useState(null);
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    webClientId: "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+    iosClientId: "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+  });
+
+  const [token, setToken] = React.useState("");
+
+  React.useEffect(() => {
+    handleEffect();
+  }, [response, token]);
+
+  async function handleEffect() {
+    const user = await getLocalUser();
+    console.log("user", user);
+    if (!user) {
+      if (response?.type === "success") {
+        // setToken(response.authentication.accessToken);
+        //getUserInfo(response.authentication.accessToken);
+        console.log(response.authentication?.accessToken)
+        AsyncStorage.setItem('isLogin', "true");
+        AsyncStorage.setItem('accessToken', response.authentication?.accessToken as string);
+        router.push("/create");
+      }
+    } else {
+      setUserInfo(user);
+      console.log("loaded locally");
+    }
+  }
+
+  const getLocalUser = async () => {
+    const data = await AsyncStorage.getItem("@user");
+    if (!data) return null;
+    return JSON.parse(data);
+  };
+
   const setModalVisible = () => {
+    promptAsync();
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
-    router.push("/mailbox");
   };
   const close = () => {
     onClose(); 
@@ -65,7 +108,7 @@ const LoginModal = ({
               onPress={() => setModalVisible()}
             >
               <MonoText style={styles(height).textStyle}>
-                오늘의 편지 보러가기
+                구글 로그인
               </MonoText>
             </Pressable>
           </View>
