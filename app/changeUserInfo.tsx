@@ -6,6 +6,7 @@ import { colors } from "../constants/Colors";
 import { useState } from "react";
 import Buttons from "../components/buttons";
 import CenterModal from "../components/centerModal";
+import { router } from "expo-router";
 
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -96,6 +97,9 @@ const ChangeUserInfo = () => {
           <TouchableOpacity
             accessible={true}
             accessibilityLabel="회원탈퇴 버튼"
+            onPress={() => {
+              router.push("/deleteAccountOne");
+            }}
           >
             <MonoText style={styles.input_title}>회원탈퇴</MonoText>
           </TouchableOpacity>
