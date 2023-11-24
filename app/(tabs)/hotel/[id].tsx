@@ -78,6 +78,9 @@ export default function HotelComp() {
 
   return (
     <ScrollView>
+      const { data, isLoading } = useQuery('loadHotel', async () => await getHotel(id as string));
+      return (
+        <ScrollView>
       <Header />
       <View style={styles.container}>
         <ProgressBarView>
@@ -87,16 +90,19 @@ export default function HotelComp() {
           </MonoText>
           <ProgressBar />
         </ProgressBarView>
-        <Text style={styles.hotel_name}>{hotel?.nickname}님의 진저호텔</Text>
+        <Text style={styles.hotel_name}>{data?.hotel?.nickname}님의 진저호텔</Text>
         <Text style={styles.hotel_desc}>
-          {hotel?.description}
+          {data?.hotel?.description}
+        </Text>
+        <Text style={styles.hotel_desc}>
+          {data?.hotel?.structColor}
         </Text>
 
         <Link href={"/create"}>
           <View style={{ backgroundColor: colors.greyblack }}>
             <CustomUserHotel
               wallColor={"#CF332C"}
-              structColor={"#FFB950"}
+              structColor={"#FFFFFF"}
               is_border={false}
               is_front_bg={true}
             />
