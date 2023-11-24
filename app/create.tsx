@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import CreateHeader from "../components/createHeader";
@@ -9,13 +9,20 @@ import Buttons from "../components/buttons";
 import CustomUserHotel from "../components/customUserHotel";
 import CreateHotelDeco from "../components/createHotelDeco";
 import CreateHotelDecoV2 from "../components/createHotelDecoV2";
+import { useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
-export default function CreateHotel({ navigation }: any) {
+export default function CreateHotel() {
   const [structColor, setStructColor] = useState("#CF332C");
   const [wallColor, setWallColor] = useState("#CF332C");
   const [buildingDeco, setBuildingDeco] = useState("building1");
   const [window, setWindow] = useState("window1");
   const [activeTitle, setTitle] = useState("벽면");
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   // 변경할 수 있는 컬러 리스트
   const selectColors = [
@@ -37,6 +44,7 @@ export default function CreateHotel({ navigation }: any) {
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={1} />
       <ScrollView>
         <View style={styles.container}>

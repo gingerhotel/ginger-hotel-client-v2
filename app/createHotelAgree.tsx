@@ -10,10 +10,15 @@ import { useState } from "react";
 import CheckBox from "../components/chekbox";
 import { useQueryClient, useMutation } from "react-query";
 import { newHotel } from "../api/hotelApi";
-import { router, useLocalSearchParams } from "expo-router";
+import Header from "../components/appHeader";
 
-export default function createHotelAgree({ route, navigation }: any) {
+export default function createHotelAgree() {
   const props: any = useLocalSearchParams();
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const [isChecked, setChecked] = useState<any>({
     all: false,
     age: false,
@@ -60,6 +65,7 @@ export default function createHotelAgree({ route, navigation }: any) {
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={4} />
       <View style={styles.container}>
         <View style={styles.edit_wrapper}>
