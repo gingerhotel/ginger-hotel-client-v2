@@ -22,7 +22,7 @@ import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
 //import { myInfo } from "../../../api/myApi";
 import CustomUserHotel from "../../../components/customUserHotel";
-import { Link, router, useLocalSearchParams } from "expo-router";
+import { Link, router, useLocalSearchParams, useNavigation } from "expo-router";
 const SVG = require("../../../assets/images/StartHotel.svg");
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
@@ -39,7 +39,7 @@ import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 
-export default function HotelComp({ navigation }: any) {
+export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const { id } = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -48,6 +48,11 @@ export default function HotelComp({ navigation }: any) {
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
   const setHotelId = useSetRecoilState<number>(hotelIdState);
   const [open, setOpen] = useState(true);
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   useEffect(() => {
     const handleUserData = async () => {
