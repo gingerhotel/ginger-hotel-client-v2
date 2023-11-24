@@ -7,16 +7,23 @@ import { colors } from "../constants/Colors";
 import Input from "../components/input";
 import { useState } from "react";
 import CustomUserHotel from "../components/customUserHotel";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
 export default function CreateHotelName() {
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
   const params = useLocalSearchParams();
   const { bodyColor, structColor } = params;
+  const navigation = useNavigation();
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={2} />
       <ScrollView>
         <View style={styles.container}>

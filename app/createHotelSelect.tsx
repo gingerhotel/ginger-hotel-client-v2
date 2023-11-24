@@ -14,7 +14,8 @@ import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { Image } from "react-native";
 import { useState } from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 const icon = require("../assets/icon/i_check_user.png");
 
 export default function createHotelSelect() {
@@ -27,16 +28,20 @@ export default function createHotelSelect() {
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
+  const navigation = useNavigation();
+  React.useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
 
   const input_size = {
-    web: 120,
+    web: 110,
     app: 100,
   };
 
   return (
     <>
+      <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={3} />
-
       <ScrollView style={styles.container}>
         <View style={styles.edit_wrapper}>
           <MonoText style={styles.title}>선택 정보를 입력해주세요</MonoText>
