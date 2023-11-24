@@ -17,11 +17,10 @@ export const newHotel = async (props: NewHotel) => {
   }
 };
 
-export const getHotel = async (code: string) => {
+export const getHotel = async (id: string) => {
   try {
     axiosConfig();
-    const response = await axios.get(`${HOTEL_URL}/${code}`);
-    console.log(response.data.success);
+    const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
   } catch (e) {
     console.error(e);

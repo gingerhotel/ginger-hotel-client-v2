@@ -12,6 +12,8 @@ import SocialButton from "../socialButton";
 import axios from "axios";
 import { useMutation } from "react-query";
 import { authGoogle } from "../../api/authApi";
+import { UserApiResponse } from "../../api/interface";
+import { MEMBER_URL } from "../../api/url";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -42,6 +44,7 @@ const LoginModal = ({
     handleEffect();
   }, [response]);
 
+
   async function handleEffect() {
     const user = false;
     //const user = await getLocalUser();
@@ -60,21 +63,29 @@ const LoginModal = ({
     if (!data) return null;
     return JSON.parse(data);
   };
-
-  const mutation = useMutation( authGoogle,
+  const mutation =  useMutation ( authGoogle,
     {
       onSuccess: (res) => {
         AsyncStorage.setItem('accessToken', res.data.accessToken);
+        console.log(res.status);
         if (res.status == 200) {
           router.push('/create');
-        } else if (res.status == 201) {
-          router.push(`/hotel/${res.data.hotelid}`); 
-          // need to get hotelid
+        } else if (res.status == 201) { 
+          // Todo : Need a Funcional code
+          axios.get<UserApiResponse>(`${MEMBER_URL}/my`, {
+            headers: {
+              Authorization: `Bearer ${res.data.accessToken}`,
+            },
+          })
+          .then((response) => {
+            const { hotel } = response.data;
+            router.push(`/hotel/${hotel.id}`)
+          })
         }
-      },
-      onError: (data) => {
-        console.log(data);
-      }
+        },
+        onError: (data) => {
+          console.log(data);  
+        }
     }
   );
 
