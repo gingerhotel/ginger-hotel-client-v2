@@ -89,7 +89,7 @@ export default function HotelComp() {
         </ProgressBarView>
         <Text style={styles.hotel_name}>{hotel?.nickname}님의 진저호텔</Text>
         <Text style={styles.hotel_desc}>
-          진저의 호텔에 오신 여러분 환영합니다~!
+          {hotel?.description}
         </Text>
 
         <Link href={"/create"}>
@@ -137,14 +137,24 @@ export default function HotelComp() {
             />
           </View>
 
-          <View style={styles.hotel_today}>
-            <Buttons
-              title="임시 로그인 버튼"
-              color="green"
-              width={350}
-              callback={() => setLoginModalVisible(true)}
-            />
-          </View>
+
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="임시 로그인 버튼"
+                color="green"
+                width={350}
+                url="login"
+                />
+            </View>
+
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="임시 로그인 팝업"
+                color="green"
+                width={350}
+                callback={() => setLoginModalVisible(true)}
+                />
+            </View>
 
           <View style={styles.hotel_today}>
             <Buttons
