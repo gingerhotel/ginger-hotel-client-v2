@@ -14,6 +14,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
+import { router } from "expo-router";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -102,6 +103,9 @@ export default function TabThreeScreen({ navigation }: any) {
           <View style={styles.name_box}>
             <TouchableOpacity
               style={{ flexDirection: "row", alignItems: "center" }}
+              onPress={() => {
+                router.push("/changeUserInfo");
+              }}
             >
               <Text style={[styles.name, { color: colors.Whiteyello }]}>
                 {userInfo.nickname}
