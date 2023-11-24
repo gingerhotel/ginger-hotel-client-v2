@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     rowGap: 8,
   },
   disabled: {
-    backgroundColor: colors.grey700,
+    backgroundColor: colors.grey400,
     color: colors.grey600,
   },
 });
