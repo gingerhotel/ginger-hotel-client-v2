@@ -28,6 +28,7 @@ export interface NewLetter {
   content: string; // requird
   senderNickname: string; // requird
   image: string;
+  hotelId: string;
 }
 // export interface User {
 //   nickname: string;

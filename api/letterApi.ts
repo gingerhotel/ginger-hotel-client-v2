@@ -27,8 +27,7 @@ export const newLetterData = async (props: any) => {
 export const newLetter = async (props: NewLetter) => {
     try {
       axiosConfig();
-      const hotelOwner:Number = 0;
-      const response = await axios.post(`${LETTERS_URL}/${1}`, props);
+      const response = await axios.post(`${LETTERS_URL}/${props.hotelId}`, props);
       return response.data;
     } catch (e) {
       console.error(e);

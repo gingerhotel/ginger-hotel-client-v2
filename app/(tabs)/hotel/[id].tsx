@@ -141,7 +141,7 @@ export default function HotelComp() {
             <View style={styles.hotel_today}>
               <Buttons
                 title="편지 보내기"
-                url="letter"
+                url={`letter/${id}`}
                 color="green"
                 width={350}
                 callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {} }
