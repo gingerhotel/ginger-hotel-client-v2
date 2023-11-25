@@ -70,12 +70,10 @@ export default function HotelComp() {
       if (status === "error") {
         return <span>Error: </span>;
       }
-      
-    {}
 
       return (
       <ScrollView>
-      <Header />
+      <Header isOwner={data.isOwner}/>
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
@@ -102,7 +100,7 @@ export default function HotelComp() {
         <View style={styles.hotel_today_container}>
 
         {
-          data && data.isOwner ?
+          data.isOwner ?
         <>           
           <View style={styles.hotel_today}>
             <Buttons
@@ -149,6 +147,19 @@ export default function HotelComp() {
               />
             </View>
             <View style={styles.hotel_today}>
+              <Buttons
+                title="빌리지 추가하기"
+                url="letter"
+                color="green"
+                width={350}
+                callback={() => {
+                  console.log(`login ${data?.isLoginMember}`);
+                  !data?.isLoginMember ? setLoginModalVisible(true) : console.log("")
+                }}
+                auth={data?.isLoginMember}
+              />
+            </View>
+            <View style={styles.hotel_today}>
             <Buttons
               title="임시 로그인 팝업"
               color="green"
@@ -174,8 +185,8 @@ export default function HotelComp() {
         height={230}
         visible={loginModalVisible}
         onClose={closeLoginModal}
-        name="로그인(디자인작업중)"
-        desc="하세요 "
+        name="로그인이 필요한 작업"
+        desc=""
         img={ginger}
       />
     </ScrollView>

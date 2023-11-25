@@ -29,6 +29,7 @@ type Props = {
   width?: any;
   props?: any;
   icon?: string;
+  auth?: boolean;
 };
 
 const Buttons = ({
@@ -40,14 +41,16 @@ const Buttons = ({
   width,
   props,
   icon,
+  auth,
 }: Props) => {
   const handlePress = () => {
-    if (url) {
-      router.push({ pathname: `/${url}`, params: props });
-    }
-
     if (callback) {
       callback();
+      if (!auth) return;
+    }
+
+    if (url) {
+      router.push({ pathname: `/${url}`, params: props });
     }
   };
 
