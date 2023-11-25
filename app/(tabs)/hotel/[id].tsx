@@ -68,7 +68,7 @@ export default function HotelComp() {
       });
       console.log(data);
       if (status === "loading") {
-        return <span>Loading...</span>;
+        return <Text>Loading...</Text>;
       }
     
       return (
