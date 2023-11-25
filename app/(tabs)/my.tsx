@@ -47,7 +47,7 @@ interface UserApiResponse {
   user: User;
   hotel: Hotel;
 }
-
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
@@ -61,10 +61,11 @@ export default function TabThreeScreen() {
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
+      
       const accessToken = await AsyncStorage.getItem("accessToken");
       console.log(accessToken);
       axios
-        .get<UserApiResponse>("http://127.0.0.1:8080/members/my", {
+        .get<UserApiResponse>(`${BASE_URL}/members/my`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
