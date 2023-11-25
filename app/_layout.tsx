@@ -40,6 +40,12 @@ export default function _layout() {
             }}
           />
           <Stack.Screen
+            name="letter"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
             name="(tabs)"
             options={{
               headerShown: false,

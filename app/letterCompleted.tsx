@@ -36,14 +36,14 @@ export default function LetterCompleted() {
       <View style={styles.footer}>
         <Buttons
           is_width={true}
-          url={"hotels"}
-          title="답장 모아보기"
+          url={"village"}
+          title="빌리지 가기"
           color="darkgray"
         />
         &nbsp;&nbsp;&nbsp;
         <Buttons
           //navigation={navigation}
-          url={"hotels"}
+          url={"hotel/1"}
           title="진저호텔 홈으로"
           is_width={true}
           color="green"
