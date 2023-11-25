@@ -392,9 +392,14 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              AsyncStorage.removeItem('accessToken');
+              router.push("/");
+            }}
+          >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              팀진저
+              로그아웃
             </Text>
           </TouchableOpacity>
         </View>

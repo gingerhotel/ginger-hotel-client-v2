@@ -61,16 +61,16 @@ export default function HotelComp() {
         setModalVisible(false);
       };
 
-      const { data, status } = useQuery('loadHotel', async () => await getHotel(id as string));
+      const { data, status, error } = useQuery('loadHotel', async () => await getHotel(id as string), {
+        onError: (e) => {
+          console.log(`useQuery error : ${e}`);
+        },
+      });
       console.log(data);
       if (status === "loading") {
         return <span>Loading...</span>;
       }
     
-      if (status === "error") {
-        return <span>Error: </span>;
-      }
-
       return (
       <ScrollView>
       <Header isOwner={data.isOwner}/>
@@ -144,6 +144,8 @@ export default function HotelComp() {
                 url="letter"
                 color="green"
                 width={350}
+                callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {} }
+                auth={data?.isLoginMember}
               />
             </View>
             <View style={styles.hotel_today}>
@@ -152,19 +154,8 @@ export default function HotelComp() {
                 url="letter"
                 color="green"
                 width={350}
-                callback={() => {
-                  console.log(`login ${data?.isLoginMember}`);
-                  !data?.isLoginMember ? setLoginModalVisible(true) : console.log("")
-                }}
+                callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {} }
                 auth={data?.isLoginMember}
-              />
-            </View>
-            <View style={styles.hotel_today}>
-            <Buttons
-              title="임시 로그인 팝업"
-              color="green"
-              width={350}
-              callback={() => setLoginModalVisible(true)}
               />
             </View>
           </>
