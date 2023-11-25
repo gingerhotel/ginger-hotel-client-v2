@@ -61,37 +61,47 @@ export default function HotelComp() {
         setModalVisible(false);
       };
 
-      const { data, isLoading } = useQuery('loadHotel', async () => await getHotel(id as string));
+      const { data, status, error } = useQuery('loadHotel', async () => await getHotel(id as string), {
+        onError: (e) => {
+          console.log(`useQuery error : ${e}`);
+        },
+      });
+      console.log(data);
+      if (status === "loading") {
+        return <Text>Loading...</Text>;
+      }
+    
       return (
-        <ScrollView>
-      <Header />
+      <ScrollView>
+      <Header isOwner={data.isOwner}/>
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
           <MonoText style={styles.hotel_desc2}>
             {todayLetterCnt?.toString() /* 객체 처리 필요 */}
           </MonoText>
-          <ProgressBar />
+          <ProgressBar todayLetterCnt={1}/>
         </ProgressBarView>
         <Text style={styles.hotel_name}>{data?.hotel?.nickname}님의 진저호텔</Text>
         <Text style={styles.hotel_desc}>
           {data?.hotel?.description}
         </Text>
-        <Text style={styles.hotel_desc}>
-          {data?.hotel?.structColor}
-        </Text>
 
         <Link href={"/create"}>
           <View style={{ backgroundColor: colors.greyblack }}>
             <CustomUserHotel
-              wallColor={"#CF332C"}
-              structColor={"#FFFFFF"}
+              wallColor={data?.hotel?.bodyColor}
+              structColor={data?.hotel?.structColor}
               is_border={false}
               is_front_bg={true}
             />
           </View>
         </Link>
         <View style={styles.hotel_today_container}>
+
+        {
+          data.isOwner ?
+        <>           
           <View style={styles.hotel_today}>
             <Buttons
               title="오늘의 편지함 보기"
@@ -108,8 +118,8 @@ export default function HotelComp() {
                 onPress={() => router.push("/gingerAlbum")}
               />
             </TouchableOpacity>
-          </View>
-          <View style={styles.hotel_today}>
+          </View> 
+            <View style={styles.hotel_today}>
             <Buttons
               title="내 호텔 공유하기"
               color="gray_700"
@@ -125,25 +135,32 @@ export default function HotelComp() {
               icon={share}
             />
           </View>
-
-
+        </>
+        : 
+          <>
             <View style={styles.hotel_today}>
               <Buttons
-                title="임시 로그인 팝업"
+                title="편지 보내기"
+                url="letter"
                 color="green"
                 width={350}
-                callback={() => setLoginModalVisible(true)}
-                />
+                callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {} }
+                auth={data?.isLoginMember}
+              />
             </View>
+            <View style={styles.hotel_today}>
+              <Buttons
+                title="빌리지 추가하기"
+                url="letter"
+                color="green"
+                width={350}
+                callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {} }
+                auth={data?.isLoginMember}
+              />
+            </View>
+          </>
+        }
 
-          <View style={styles.hotel_today}>
-            <Buttons
-              title="편지 보내기"
-              url="letter"
-              color="green"
-              width={350}
-            />
-          </View>
         </View>
       </View>
 
@@ -159,8 +176,8 @@ export default function HotelComp() {
         height={230}
         visible={loginModalVisible}
         onClose={closeLoginModal}
-        name="로그인(디자인작업중)"
-        desc="하세요 "
+        name="로그인이 필요한 작업"
+        desc=""
         img={ginger}
       />
     </ScrollView>

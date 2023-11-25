@@ -19,23 +19,29 @@ let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
-const Header = () => {
+const Header = ({ isOwner }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={{ backgroundColor: colors.greyblack }}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
-            <View style={styles.container_1}>
-              <SvgImg width={40} height={40} url={i_key} />
-              <Text style={styles.text}>03</Text>
-            </View>
-            <View style={styles.container_2}>
-              <SvgImg width={40} height={40} url={i_glasses} />
-              <Text style={styles.text}>03</Text>
-              <TouchableOpacity>
-                <SvgImg url={i_plus} />
-              </TouchableOpacity>
-            </View>
+            {isOwner ?
+              <>
+                <View style={styles.container_1}>
+                  <SvgImg width={40} height={40} url={i_key} />
+                  <Text style={styles.text}>03</Text>
+                </View>
+                <View style={styles.container_2}>
+                  <SvgImg width={40} height={40} url={i_glasses} />
+                  <Text style={styles.text}>03</Text>
+                  <TouchableOpacity>
+                    <SvgImg url={i_plus} />
+                  </TouchableOpacity>
+                </View>
+              </>
+              :
+              <></>
+            }
           </View>
           <View style={styles.item2}>
             <SvgImg
