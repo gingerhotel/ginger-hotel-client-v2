@@ -1,5 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
-import { Link } from "expo-router";
 import React from "react";
 import {
   Image,
