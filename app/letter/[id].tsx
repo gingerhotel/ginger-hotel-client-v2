@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, View, TextInput } from "react-native";
-import Buttons from "../components/buttons";
-import { MonoText } from "../components/styledText";
-import { colors } from "../constants/Colors";
+import Buttons from "../../components/buttons";
+import { MonoText } from "../../components/styledText";
+import { colors } from "../../constants/Colors";
 import { useMutation } from "react-query";
-import { newLetter } from "../api/letterApi";
+import { newLetter } from "../../api/letterApi";
 
 export default function Letter({ navigation }: any) {
   const { register, handleSubmit, setValue } = useForm();
