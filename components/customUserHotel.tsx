@@ -65,7 +65,6 @@ export default function CustomUserHotel({
       left: 83,
       font_top: 14,
       font_left: 12,
-      isOpened: window["2023-11-01"] && window["2023-11-01"]?.isOpen,
     },
     {
       num: 2,
@@ -75,7 +74,6 @@ export default function CustomUserHotel({
       left: 128,
       font_top: 14,
       font_left: 11,
-      isOpened: window["2023-11-02"]?.isOpen,
     },
     {
       num: 3,
@@ -602,7 +600,9 @@ export default function CustomUserHotel({
                 url={
                   item.num === 13 || item.num === 18
                     ? window_design[window_v].rec
-                    : item.isOpened
+                    : window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
                     ? window_design[window_v].open
                     : window_design[window_v].default
                 }
@@ -613,7 +613,8 @@ export default function CustomUserHotel({
                   position: "absolute",
                 }}
               />
-              {!item.isOpened && (
+              {!window[`2023-11-${item.num < 10 ? "0" + item.num : item.num}`]
+                ?.isOpen && (
                 <MonoText
                   style={{
                     zIndex: 5,
