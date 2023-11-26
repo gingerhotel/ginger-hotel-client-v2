@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  Image,
-  Platform,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
-import { PngImg } from "./pngImg";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
@@ -34,27 +26,6 @@ export default function CustomUserHotel({
 }: any) {
   const web = { top: 46, left: 44 };
   const app = { top: 63, left: 5 };
-
-  const widow_style = {
-    app: {
-      width: 220,
-      height: 267,
-      marginTop: 20,
-      zIndex: 5,
-      top: 67,
-      left: 76,
-      position: "absolute",
-    },
-    web: {
-      width: 260,
-      height: 312,
-      marginTop: 20,
-      zIndex: 5,
-      top: 50,
-      left: 76,
-      position: "absolute",
-    },
-  };
 
   const windows = [
     {
