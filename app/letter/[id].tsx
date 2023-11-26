@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, View, TextInput } from "react-native";
-import Buttons from "../components/buttons";
-import { MonoText } from "../components/styledText";
-import { colors } from "../constants/Colors";
+import Buttons from "../../components/buttons";
+import { MonoText } from "../../components/styledText";
+import { colors } from "../../constants/Colors";
 import { useMutation } from "react-query";
-import { newLetter } from "../api/letterApi";
+import { newLetter } from "../../api/letterApi";
 
 export default function Letter({ navigation }: any) {
+  const { id } = useLocalSearchParams();
+
   const { register, handleSubmit, setValue } = useForm();
   useEffect(() => {
     register("letters");
@@ -19,8 +21,8 @@ export default function Letter({ navigation }: any) {
     newLetter,
     {
       onSuccess: (data) => {
+        router.push("/letterCompleted")
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
-        // console.log("Mutation successful! Response:", data);
       },
     }
   );
@@ -30,7 +32,8 @@ export default function Letter({ navigation }: any) {
       const letterData = {
         content: data.letters,
         senderNickname: data.nickname,
-        image: ""
+        image: "",
+        hotelId : id.toString()      
       };
       // 뮤테이션 실행
       await mutation.mutateAsync(letterData);
@@ -160,6 +163,7 @@ const styles = StyleSheet.create({
 });
 
 import styled from "styled-components/native";
+import { router, useLocalSearchParams } from "expo-router";
 
 export const LetterOuterContainer = styled.View`
     border-radius: 18px;

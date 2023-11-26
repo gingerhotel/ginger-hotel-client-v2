@@ -20,7 +20,7 @@ import { router } from "expo-router";
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
 WebBrowser.maybeCompleteAuthSession();
 const SVG = require("../assets/images/StartHotel.svg");
-const [userInfo, setUserInfo] = React.useState(null);
+//const [userInfo, setUserInfo] = React.useState(null);
 
 export default function Login({ navigation }: any) {
   const [request, response, promptAsync] = Google.useAuthRequest({
@@ -88,7 +88,7 @@ export default function Login({ navigation }: any) {
         getUserInfo(response.authentication?.accessToken as string);
       }
     } else {
-      setUserInfo(user);
+      //setUserInfo(user);
       console.log("loaded locally");
     }
   }
@@ -190,7 +190,7 @@ export default function Login({ navigation }: any) {
           }
         }}
       />
-      {!userInfo ? (
+
         <Button
           title="Sign in with Google"
           disabled={!request}
@@ -198,7 +198,6 @@ export default function Login({ navigation }: any) {
             promptAsync();
           }}
         />
-      ) : (
         <View style={styles.card}>
           
           {/* <Text style={styles.text}>Email: {userInfo.email}</Text>
@@ -208,7 +207,6 @@ export default function Login({ navigation }: any) {
           <Text style={styles.text}>Name: {userInfo.name}</Text> */}
           {/* <Text style={styles.text}>{JSON.stringify(userInfo, null, 2)}</Text> */}
         </View>
-      )}
 
       {/* <Button title="logout" onPress={() => handleLogout()} /> */}
 
@@ -219,7 +217,6 @@ export default function Login({ navigation }: any) {
       <Button title="운영로그인 테스트" onPress={handleSubmit(handleLoginProd)} />
       <Button title="로컬로그인 테스트" onPress={handleSubmit(handleLoginTest)} />
 
-      <Text>{JSON.stringify(userInfo, null, 2)}</Text>
     </View>
   );
 }

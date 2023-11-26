@@ -27,7 +27,6 @@ const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.
 type Props = {
   from: string; contents: string;
   is_active: boolean;
-  navigation: any;
 };
 
 export const NewLetterItem = ({ letters }: any) => {
