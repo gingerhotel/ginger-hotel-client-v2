@@ -1,14 +1,23 @@
 import React from "react";
-import { Image, Platform, StyleSheet, TextInput, View } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { PngImg } from "./pngImg";
+import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
 const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/building1.svg");
-const window: any = require("../assets/images/window.png");
+const window: any = require("../assets/images/window_v2.svg");
+const window_rec: any = require("../assets/images/window_v2_rec.svg");
 
 export default function CustomUserHotel({
   wallColor,
@@ -17,8 +26,8 @@ export default function CustomUserHotel({
   is_border,
   is_front_bg,
 }: any) {
-  const web = { top: 49, left: 47 };
-  const app = { top: 64, left: 5 };
+  const web = { top: 46, left: 44 };
+  const app = { top: 63, left: 5 };
 
   const widow_style = {
     app: {
@@ -40,6 +49,225 @@ export default function CustomUserHotel({
       position: "absolute",
     },
   };
+
+  const windows = [
+    {
+      num: 1,
+      width: 30,
+      height: 42,
+      top: 92,
+      left: 83,
+      font_top: 14,
+      font_left: 12,
+    },
+    {
+      num: 2,
+      width: 30,
+      height: 42,
+      top: 92,
+      left: 128,
+      font_top: 14,
+      font_left: 11,
+    },
+    {
+      num: 3,
+      width: 28,
+      height: 40,
+      top: 64,
+      left: 193,
+      font_top: 14,
+      font_left: 10,
+    },
+    {
+      num: 4,
+      width: 30,
+      height: 42,
+      top: 92,
+      left: 255,
+      font_top: 14,
+      font_left: 11,
+    },
+    {
+      num: 5,
+      width: 30,
+      height: 42,
+      top: 92,
+      left: 300,
+      font_top: 14,
+      font_left: 11,
+    },
+    {
+      num: 6,
+      width: 35,
+      height: 47,
+      top: 153,
+      left: 77,
+      font_top: 17,
+      font_left: 13,
+    },
+    {
+      num: 7,
+      width: 35,
+      height: 47,
+      top: 153,
+      left: 123,
+      font_top: 17,
+      font_left: 14,
+    },
+    {
+      num: 8,
+      width: 35,
+      height: 47,
+      top: 150,
+      left: 189,
+      font_top: 17,
+      font_left: 13,
+    },
+    {
+      num: 9,
+      width: 35,
+      height: 47,
+      top: 153,
+      left: 255,
+      font_top: 17,
+      font_left: 14,
+    },
+    {
+      num: 10,
+      width: 35,
+      height: 47,
+      top: 153,
+      left: 303,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 11,
+      width: 35,
+      height: 47,
+      top: 213,
+      left: 77,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 12,
+      width: 35,
+      height: 47,
+      top: 213,
+      left: 122,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 13,
+      width: 43,
+      height: 40,
+      top: 217,
+      left: 184,
+      font_top: 14,
+      font_left: 14,
+    },
+    {
+      num: 14,
+      width: 35,
+      height: 47,
+      top: 213,
+      left: 255,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 15,
+      width: 35,
+      height: 47,
+      top: 213,
+      left: 303,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 16,
+      width: 35,
+      height: 47,
+      top: 273,
+      left: 77,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 17,
+      width: 35,
+      height: 47,
+      top: 273,
+      left: 122,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 18,
+      width: 43,
+      height: 32,
+      top: 260,
+      left: 185,
+      font_top: 9,
+      font_left: 14,
+    },
+    {
+      num: 19,
+      width: 35,
+      height: 47,
+      top: 273,
+      left: 255,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 20,
+      width: 35,
+      height: 47,
+      top: 273,
+      left: 303,
+      font_top: 17,
+      font_left: 9,
+    },
+    {
+      num: 21,
+      width: 38,
+      height: 50,
+      top: 337,
+      left: 73,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 22,
+      width: 38,
+      height: 50,
+      top: 337,
+      left: 120,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 23,
+      width: 38,
+      height: 50,
+      top: 337,
+      left: 253,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 24,
+      width: 38,
+      height: 50,
+      top: 337,
+      left: 300,
+      font_top: 18,
+      font_left: 12,
+    },
+  ];
 
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
@@ -165,7 +393,6 @@ export default function CustomUserHotel({
         ]}
       >
         <SvgImg
-          onPress={onPress && onPress}
           url={Hotel1}
           width={340}
           height={400}
@@ -267,7 +494,6 @@ export default function CustomUserHotel({
           }}
         >
           <SvgImg
-            onPress={onPress && onPress}
             url={frontBg}
             width={340}
             height={416}
@@ -285,12 +511,11 @@ export default function CustomUserHotel({
       )}
       <View
         style={{
-          zIndex: 6,
+          zIndex: 3,
           position: "absolute",
         }}
       >
         <SvgImg
-          onPress={onPress && onPress}
           url={building1}
           width={340}
           height={416}
@@ -298,8 +523,8 @@ export default function CustomUserHotel({
             width: 380,
             height: 460,
             marginTop: 20,
-            zIndex: 4,
-            top: 0,
+            zIndex: 3,
+            top: 73,
             left: 13,
             position: "absolute",
           }}
@@ -312,7 +537,6 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          onPress={onPress && onPress}
           url={backBg}
           width={340}
           height={416}
@@ -327,7 +551,91 @@ export default function CustomUserHotel({
           }}
         />
       </View>
+
       <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        {windows?.map((item) => (
+          <TouchableOpacity onPress={() => onPress && onPress(item.num)}>
+            <View
+              key={item.num}
+              style={{
+                width: item.width,
+                height: item.height,
+                zIndex: 4,
+                top: item.top,
+                left: item.left,
+                position: "absolute",
+              }}
+            >
+              <SvgImg
+                width={item.width}
+                height={item.height}
+                url={item.num === 13 || item.num === 18 ? window_rec : window}
+                style={{
+                  width: item.width,
+                  height: item.height,
+                  zIndex: 4,
+                  position: "absolute",
+                }}
+              />
+              <MonoText
+                style={{
+                  zIndex: 5,
+                  top: item.font_top,
+                  left: item.font_left,
+                  textAlign: "center",
+                  position: "absolute",
+                  color: colors.Whiteyello,
+                  fontSize: 12,
+                  fontWeight: "bold",
+                }}
+              >
+                {item.num}
+              </MonoText>
+            </View>
+          </TouchableOpacity>
+        ))}
+        {/* <View
+          style={{
+            width: 32,
+            height: 44,
+            zIndex: 4,
+            top: 92,
+            left: 83,
+            position: "absolute",
+          }}
+        >
+          <SvgImg
+            width={32}
+            height={44}
+            onPress={onPress && onPress}
+            url={window}
+            style={{
+              zIndex: 4,
+              position: "absolute",
+            }}
+          />
+          <MonoText
+            style={{
+              zIndex: 5,
+              top: 13,
+              left: 13,
+              position: "absolute",
+              color: colors.Whiteyello,
+              fontSize: 14,
+              fontWeight: "bold",
+            }}
+          >
+            1
+          </MonoText>
+        </View> */}
+      </View>
+
+      {/* <View
         style={{
           zIndex: 5,
           position: "absolute",
@@ -342,7 +650,7 @@ export default function CustomUserHotel({
               : widow_style.web,
           ]}
         />
-      </View>
+      </View> */}
     </>
   );
 }
