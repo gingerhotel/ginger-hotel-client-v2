@@ -5,11 +5,12 @@ import { getCurrentDate } from "../data/data";
 import { NewLetter } from "./interface";
 import { axiosConfig } from "./commonApi";
 
-axiosConfig();
 
 export const newLetterData = async (props: any) => {
     const date = getCurrentDate()
     try {
+        const accessToken = await AsyncStorage.getItem("accessToken");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
         const response = await axios.get(`${LETTERS_URL}/${props.hotelId}?date=${date}`);
         return response.data;
     } catch (e) {
@@ -21,6 +22,8 @@ export const newLetterData = async (props: any) => {
 
 export const newLetter = async (props: NewLetter) => {
     try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       const response = await axios.post(`${LETTERS_URL}/${props.hotelId}`, props);
       return response.data;
     } catch (e) {

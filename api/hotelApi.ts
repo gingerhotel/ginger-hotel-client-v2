@@ -8,6 +8,8 @@ axiosConfig();
 
 export const newHotel = async (props: NewHotel) => {
   try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     const response = await axios.post(`${AUTH_URL}/hotel`, props);
     return response.data;
   } catch (e) {
@@ -18,6 +20,8 @@ export const newHotel = async (props: NewHotel) => {
 
 export const getHotel = async (id: string) => {
   try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
   } catch (e) {
