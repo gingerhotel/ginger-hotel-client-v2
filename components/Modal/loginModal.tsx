@@ -17,10 +17,12 @@ import { MEMBER_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
 import { signInWithKakao, RestApiKey, redirectUrl } from "../../api/kakaoApi";
+import authStore from "../../atom/zustand/authStore";
 console.log(RestApiKey);
 const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey}&redirect_uri=${redirectUrl}&response_type=code`;
 
 WebBrowser.maybeCompleteAuthSession();
+const { isLogin, setisLogin } = authStore();
 
 type Props = {
   onClose?: any;
@@ -61,22 +63,31 @@ const LoginModal = ({ height, visible, onClose, name, img, desc }: Props) => {
 
   const mutation = useMutation(authGoogle, {
     onSuccess: (res) => {
+      // setisLogin(true);
+      // console.log(isLogin);
       AsyncStorage.setItem("accessToken", res.data.accessToken);
       console.log(res.status);
+      //setisLogin(res.data.accessToken);
+      
       if (res.status == 200) {
+        setisLogin(true);
         router.push("/create");
+        console.log("actoken SUCCESS!!")
       } else if (res.status == 201) {
         // Todo : Need a Funcional code
         axios
-          .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-            headers: {
-              Authorization: `Bearer ${res.data.accessToken}`,
-            },
-          })
-          .then((response) => {
-            const { hotel } = response.data;
-            router.push(`/hotel/${hotel.id}`);
-          });
+        .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+          headers: {
+            Authorization: `Bearer ${res.data.accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log("actoken SUCCESS!!")
+          const { hotel } = response.data;
+          setisLogin(true);
+          router.push(`/hotel/${hotel.id}`);
+          console.log("actoken SUCCESS!!")
+        });
       }
     },
     onError: (data) => {
