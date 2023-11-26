@@ -74,10 +74,9 @@ export default function HotelComp() {
     return <Text>Loading...</Text>;
   }
 
-  const handleClickWindow = (item: any) => {
+  const handleClickWindow = (num: any) => {
     console.log(data.hotelWindows);
-    console.log(data.hotelWindows[`2023-11-${item < 10 ? "0" + item : item}`]);
-    // router.push(`/mailbox/1`);
+    router.push(`/mailbox/${num}`);
   };
 
   return (
