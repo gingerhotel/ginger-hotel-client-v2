@@ -46,7 +46,6 @@ export default function createHotelAgree() {
       onSuccess: (data) => {
         router.push(`/hotel/${data.hotelId}`)
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
-        console.log("Mutation successful! Response:", data);
       },
       onError: (data) => {
         console.log(data);
@@ -58,7 +57,6 @@ export default function createHotelAgree() {
     try {
       // 뮤테이션 실행
       await mutation.mutateAsync(props);
-      console.log("Mutation successful!");
     } catch (error) {
       console.error("Mutation failed:", error);
     }

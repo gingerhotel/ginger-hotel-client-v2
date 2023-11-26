@@ -6,6 +6,7 @@ import { colors } from "../constants/Colors";
 import CenterModal from "./centerModal";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
+import { router } from "expo-router";
 const icon = require("../assets/icon/i_history_edu.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_history_edu_big.svg");
 
@@ -28,7 +29,7 @@ const BottomModal = ({
   const onClickModal = (text: string) => {
     switch (text) {
       case "답장하기":
-        navigation.navigate("answer");
+        router.push("/answer");
         onClose();
         break;
       case "엿보기":

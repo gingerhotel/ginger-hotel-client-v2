@@ -1,4 +1,4 @@
-import { useNavigation } from "expo-router";
+import { router } from "expo-router";
 import React from "react";
 import {
   View,
@@ -13,12 +13,11 @@ import { SvgImg } from "./svgImg";
 const arrow = require("../assets/icon/i_arrow_back.svg");
 
 export default function Header({ title }: any) {
-  const navigation = useNavigation();
   return (
     <SafeAreaView style={{ backgroundColor: colors.greyblack }}>
       <View style={styles.container}>
         <SvgImg
-          onPress={() => navigation.goBack()}
+          onPress={() => router.back()}
           //a_width={30}
           //a_height={30}
           url={arrow}

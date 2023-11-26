@@ -3,6 +3,7 @@ import { View, StyleSheet, Modal, Pressable, Text, Image } from "react-native";
 import { colors } from "../constants/Colors";
 import { typography } from "../constants/Typo";
 import { MonoText } from "./styledText";
+import { router } from "expo-router";
 type Props = {
   onClose?: any;
   visible?: boolean;
@@ -10,7 +11,6 @@ type Props = {
   name: string;
   desc: string;
   img: string | any;
-  navigation?: any;
 };
 
 const GingerModal = ({
@@ -20,11 +20,10 @@ const GingerModal = ({
   name,
   img,
   desc,
-  navigation,
 }: Props) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
-    navigation.navigate("mailbox");
+    router.push("/mailbox");
   };
   return (
     <Modal

@@ -158,6 +158,14 @@ export default function HotelComp() {
                 auth={data?.isLoginMember}
               />
             </View>
+          <View style={styles.hotel_today}>
+            <Buttons
+              title="내 호텔 만들기"
+              color="green"
+              width={350}
+              callback={() => setLoginModalVisible(true)}
+              />
+            </View>
           </>
         }
 
