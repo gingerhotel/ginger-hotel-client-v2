@@ -15,12 +15,17 @@ import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
 import { router } from "expo-router";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accessTokenAtom, isLoginSelector } from "../atom/accessTokenAtom";
 
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
 WebBrowser.maybeCompleteAuthSession();
 const SVG = require("../assets/images/StartHotel.svg");
 //const [userInfo, setUserInfo] = React.useState(null);
+
+const setAccessToken = useSetRecoilState(accessTokenAtom);
+const isLogin = useRecoilValue(isLoginSelector);
 
 export default function Login({ navigation }: any) {
   const [request, response, promptAsync] = Google.useAuthRequest({

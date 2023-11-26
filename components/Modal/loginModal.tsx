@@ -14,6 +14,8 @@ import { useMutation } from "react-query";
 import { authGoogle } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
 import { MEMBER_URL } from "../../api/url";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { accessTokenAtom, isLoginSelector } from "../../atom/accessTokenAtom";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -25,6 +27,9 @@ type Props = {
   desc: string;
   img: string | any;
 };
+
+const setAccessToken = useSetRecoilState(accessTokenAtom);
+const isLogin = useRecoilValue(isLoginSelector);
 
 const LoginModal = ({
   height,
@@ -67,6 +72,7 @@ const LoginModal = ({
     {
       onSuccess: (res) => {
         AsyncStorage.setItem('accessToken', res.data.accessToken);
+        
         console.log(res.status);
         if (res.status == 200) {
           router.push('/create');
