@@ -8,6 +8,30 @@ import { useMutation } from "react-query";
 import { newLetter } from "../../api/letterApi";
 
 export default function Letter({ navigation }: any) {
+  const { isLoggedIn } = AuthStore.useState((s) => s);
+
+  const segments = useSegments();
+  const router = useRouter();
+  // const isLoggedIn = false;
+  const navigationState = useRootNavigationState();
+
+  React.useEffect(() => {
+    if (!navigationState?.key) return;
+    const inAuthGroup = segments[0] === "(auth)";
+
+    if (
+      // If the user is not signed in and the initial segment is not anything in the auth group.
+      !isLoggedIn &&
+      !inAuthGroup
+    ) {
+      // Redirect to the sign-in page.
+      router.replace("/login");
+    } else if (isLoggedIn && inAuthGroup) {
+      // Redirect away from the sign-in page.
+      // router.replace("/");
+    }
+  }, [isLoggedIn, segments, navigationState?.key]);
+
   const { id } = useLocalSearchParams();
 
   const { register, handleSubmit, setValue } = useForm();
@@ -163,7 +187,7 @@ const styles = StyleSheet.create({
 });
 
 import styled from "styled-components/native";
-import { router, useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams, useRootNavigationState, useRouter, useSegments } from "expo-router";
 
 export const LetterOuterContainer = styled.View`
     border-radius: 18px;
