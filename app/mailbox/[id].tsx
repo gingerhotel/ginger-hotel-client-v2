@@ -1,19 +1,26 @@
 import React from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
-import NewLetterItem from "../components/newLetterItem";
-import MailHeader from "../components/mailHeader";
-import ReplyLetterItem from "../components/replyLetterItem";
+import NewLetterItem from "../../components/newLetterItem";
+import MailHeader from "../../components/mailHeader";
+import ReplyLetterItem from "../../components/replyLetterItem";
 import { useRecoilValue } from "recoil";
-import { hotelIdState, letterSwitchState, replyBoxSwitchState } from "../atom/letterAtom";
-import ReplyHeader from "../components/replyHeader";
+import {
+  hotelIdState,
+  letterSwitchState,
+  replyBoxSwitchState,
+} from "../../atom/letterAtom";
+import ReplyHeader from "../../components/replyHeader";
 import { useQuery } from "react-query";
-import { newLetterData } from "../api/letterApi";
+import { newLetterData } from "../../api/letterApi";
 
 export default function MailBox({ navigation }: any) {
-  const letterRender = useRecoilValue(letterSwitchState)
-  const replyGo = useRecoilValue(replyBoxSwitchState)
+  const letterRender = useRecoilValue(letterSwitchState);
+  const replyGo = useRecoilValue(replyBoxSwitchState);
   const hotelId = useRecoilValue(hotelIdState);
-  const { data, isLoading } = useQuery('newLetters', async () => await newLetterData({ hotelId }));
+  const { data, isLoading } = useQuery(
+    "newLetters",
+    async () => await newLetterData({ hotelId })
+  );
   return (
     <View style={styles.container}>
       {replyGo ? (
@@ -25,7 +32,11 @@ export default function MailBox({ navigation }: any) {
       <ScrollView>
         <View style={styles.mailbox_items}>
           {letterRender.new ? (
-            isLoading ? (<Text>로딩...</Text>) : (<NewLetterItem letters={data?.letters} />)
+            isLoading ? (
+              <Text>로딩...</Text>
+            ) : (
+              <NewLetterItem letters={data?.letters} />
+            )
           ) : (
             <ReplyLetterItem />
           )}
