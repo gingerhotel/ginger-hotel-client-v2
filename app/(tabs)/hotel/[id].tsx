@@ -20,10 +20,7 @@ import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
 import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-//import { myInfo } from "../../../api/myApi";
-import CustomUserHotel from "../../../components/customUserHotel";
-import { Link, router, useLocalSearchParams, useNavigation } from "expo-router";
-const SVG = require("../../../assets/images/StartHotel.svg");
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
@@ -38,6 +35,7 @@ import { Hotel } from "../../../api/interface";
 import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
+import CustomCompleteUserHotel from "../../../components/customCompletedUserHotel";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -97,7 +95,7 @@ export default function HotelComp() {
 
         {/* <Link href={"/create"}> */}
         <View style={{ backgroundColor: colors.greyblack }}>
-          <CustomUserHotel
+          <CustomCompleteUserHotel
             window={data.hotelWindows}
             onPress={handleClickWindow}
             wallColor={data?.hotel?.bodyColor}
