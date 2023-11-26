@@ -8,7 +8,7 @@ import React from "react";
 import { SvgImg } from "./svgImg";
 
 const CreateHotelDeco = ({ url, active }: any) => {
-  const image = require(`../assets/decorations/select_building1.svg`);
+  const image = `../assets/decorations/${url}.svg`;
 
   return (
     <View style={[styles.color, active === url && styles.active]}>

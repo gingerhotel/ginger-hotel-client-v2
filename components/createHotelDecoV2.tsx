@@ -8,17 +8,17 @@ import React from "react";
 import { SvgImg } from "./svgImg";
 
 const createHotelDecoV2 = ({ url, active }: any) => {
-  const image = require(`../assets/decorations/select_window1.svg`);
+  const image = `../assets/decorations/${url}.svg`;
 
   return (
     <View style={[styles.color, active === url && styles.active]}>
       <SvgImg
         url={image}
-        width={100}
-        height={100}
+        width={50}
+        height={70}
         style={{
-          width: 90,
-          height: 90,
+          width: 50,
+          height: 70,
           zIndex: 4,
         }}
       />

@@ -55,6 +55,8 @@ export default function createHotelAgree() {
 
   const handleFormSubmit = async () => {
     try {
+      console.log(props);
+      return;
       // 뮤테이션 실행
       await mutation.mutateAsync(props);
     } catch (error) {

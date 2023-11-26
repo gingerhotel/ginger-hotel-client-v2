@@ -14,7 +14,6 @@ export default function CreateHotelName() {
   const [nickname, setNickname] = useState("");
   const [description, setDescription] = useState("");
   const params = useLocalSearchParams();
-  const { bodyColor, structColor } = params;
   const navigation = useNavigation();
 
   React.useEffect(() => {
@@ -37,8 +36,10 @@ export default function CreateHotelName() {
           <View>
             <CustomUserHotel
               is_border={true}
-              wallColor={bodyColor}
-              structColor={structColor}
+              wallColor={params.bodyColor}
+              structColor={params.structColor}
+              gardenDeco={params.gardenDeco}
+              windowDeco={params.windowDeco}
             />
           </View>
 
@@ -65,7 +66,7 @@ export default function CreateHotelName() {
             <Buttons
               is_disable={!nickname || !description}
               url={"createHotelSelect"}
-              props={{ bodyColor, structColor, nickname, description }}
+              props={{ ...params, nickname, description }}
               title="다음으로"
               color="green"
             />
