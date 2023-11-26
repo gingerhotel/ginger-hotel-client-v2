@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Modal, Pressable, Text, Image } from "react-native";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
@@ -15,6 +15,11 @@ import { authGoogle } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
 import { MEMBER_URL } from "../../api/url";
 
+import { useRoute } from "@react-navigation/native";
+import { signInWithKakao, RestApiKey, redirectUrl } from "../../api/kakaoApi";
+console.log(RestApiKey);
+const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey}&redirect_uri=${redirectUrl}&response_type=code`;
+
 WebBrowser.maybeCompleteAuthSession();
 
 type Props = {
@@ -26,24 +31,20 @@ type Props = {
   img: string | any;
 };
 
-const LoginModal = ({
-  height,
-  visible,
-  onClose,
-  name,
-  img,
-  desc,
-}: Props) => {
+const LoginModal = ({ height, visible, onClose, name, img, desc }: Props) => {
   const [userInfo, setUserInfo] = React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId: "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
-    iosClientId: "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+    webClientId:
+      "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+    iosClientId:
+      "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
   });
 
   React.useEffect(() => {
     handleEffect();
   }, [response]);
 
+  const route: any = useRoute();
 
   async function handleEffect() {
     const user = false;
@@ -58,38 +59,32 @@ const LoginModal = ({
     }
   }
 
-  const getLocalUser = async () => {
-    const data = await AsyncStorage.getItem("@user");
-    if (!data) return null;
-    return JSON.parse(data);
-  };
-  const mutation =  useMutation ( authGoogle,
-    {
-      onSuccess: (res) => {
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        console.log(res.status);
-        if (res.status == 200) {
-          router.push('/create');
-        } else if (res.status == 201) { 
-          // Todo : Need a Funcional code
-          axios.get<UserApiResponse>(`${MEMBER_URL}/my`, {
+  const mutation = useMutation(authGoogle, {
+    onSuccess: (res) => {
+      AsyncStorage.setItem("accessToken", res.data.accessToken);
+      console.log(res.status);
+      if (res.status == 200) {
+        router.push("/create");
+      } else if (res.status == 201) {
+        // Todo : Need a Funcional code
+        axios
+          .get<UserApiResponse>(`${MEMBER_URL}/my`, {
             headers: {
               Authorization: `Bearer ${res.data.accessToken}`,
             },
           })
           .then((response) => {
             const { hotel } = response.data;
-            router.push(`/hotel/${hotel.id}`)
-          })
-        }
-        },
-        onError: (data) => {
-          console.log(data);  
-        }
-    }
-  );
+            router.push(`/hotel/${hotel.id}`);
+          });
+      }
+    },
+    onError: (data) => {
+      console.log(data);
+    },
+  });
 
-  const googleAuth = async (token:string) => {
+  const googleAuth = async (token: string) => {
     if (!token) return;
     try {
       const response = await fetch(
@@ -98,28 +93,40 @@ const LoginModal = ({
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      
+
       const user = await response.json();
-      await mutation.mutateAsync({        
+      await mutation.mutateAsync({
         email: user.email,
         sub: user.id,
-      })
-    } catch (e){
+      });
+    } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   const setModalVisible = () => {
     promptAsync();
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
   const close = () => {
-    onClose(); 
+    onClose();
   };
 
+  useEffect(() => {
+    if (route.params && route.params.code) {
+      signInWithKakao(
+        route.params.code,
+        (successData: any) => {
+          // router.push("/create");
+        },
+        (error: any) => {
+          // 처리 실패 시 로직
+          console.error(error);
+        }
+      );
+    }
+  }, [route.params]);
 
-
-  
   return (
     <Modal
       animationType="fade"
@@ -152,14 +159,20 @@ const LoginModal = ({
             </Pressable>
           </View>
           <View style={styles(height).button_wrapper}>
-            <Pressable
-              style={[styles(height).button, styles(height).buttonOpen]}
-              onPress={() => setModalVisible()}
+            <a
+              href={kakaoUrl}
+              style={{
+                minWidth: 250,
+                padding: "10px 0px",
+                borderRadius: 5,
+                backgroundColor: "#F1DC11",
+                fontSize: 20,
+                textDecoration: "none",
+                textAlign: "center",
+              }}
             >
-              <MonoText style={styles(height).textStyle}>
-                카카오 로그인
-              </MonoText>
-            </Pressable>
+              <MonoText>카카오 로그인</MonoText>
+            </a>
           </View>
 
           <View style={styles(height).button_wrapper}>

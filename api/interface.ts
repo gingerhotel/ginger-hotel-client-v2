@@ -46,6 +46,13 @@ export interface Auth {
   sub: string; // Subject, uid
 }
 
+export interface KakaoAuth {
+  name: string;
+  ci: string;
+  id: string;
+}
+
+
 export interface My {
   success: string;
   user: User;
