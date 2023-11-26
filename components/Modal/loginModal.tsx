@@ -135,7 +135,6 @@ const LoginModal = ({
             {name}
           </Text>
 
-
           <View
             style={{
               height: 1,
@@ -143,25 +142,32 @@ const LoginModal = ({
               backgroundColor: colors.grey700,
             }}
           ></View>
-            
+
+          <View style={styles(height).button_wrapper}>
+            <Pressable
+              style={[styles(height).button, styles(height).buttonOpen]}
+              onPress={() => setModalVisible()}
+            >
+              <MonoText style={styles(height).textStyle}>구글 로그인</MonoText>
+            </Pressable>
+          </View>
           <View style={styles(height).button_wrapper}>
             <Pressable
               style={[styles(height).button, styles(height).buttonOpen]}
               onPress={() => setModalVisible()}
             >
               <MonoText style={styles(height).textStyle}>
-                구글 로그인
+                카카오 로그인
               </MonoText>
             </Pressable>
           </View>
+
           <View style={styles(height).button_wrapper}>
             <Pressable
               style={[styles(height).button, styles(height).buttonOpen]}
               onPress={() => close()}
             >
-              <MonoText style={styles(height).textStyle}>
-                취소
-              </MonoText>
+              <MonoText style={styles(height).textStyle}>취소</MonoText>
             </Pressable>
           </View>
         </View>

@@ -41,7 +41,14 @@
     },
     "plugins": [
       "expo-router",
-      "expo-apple-authentication"
+      "expo-apple-authentication",
+      [
+        "@react-native-seoul/kakao-login",
+        {
+          "kakaoAppKey": "9ac294d2ce5192ddcfa96b9d289a8657",
+          "overrideKakaoSDKVersion": "2.9.0"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
