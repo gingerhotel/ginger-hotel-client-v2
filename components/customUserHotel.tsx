@@ -16,8 +16,12 @@ const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
 const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/building1.svg");
-const window: any = require("../assets/images/window_v2.svg");
-const window_rec: any = require("../assets/images/window_v2_rec.svg");
+const window_v1: any = require("../assets/images/window_v1.svg");
+const window_v1_open: any = require("../assets/images/window_v1_open.svg");
+const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
+const window_v2: any = require("../assets/images/window_v2.svg");
+const window_v2_rec: any = require("../assets/images/window_v2_rec.svg");
+const window_v2_open: any = require("../assets/images/window_v2_open.svg");
 
 export default function CustomUserHotel({
   wallColor,
@@ -25,6 +29,8 @@ export default function CustomUserHotel({
   onPress,
   is_border,
   is_front_bg,
+  window_v,
+  window,
 }: any) {
   const web = { top: 46, left: 44 };
   const app = { top: 63, left: 5 };
@@ -59,6 +65,7 @@ export default function CustomUserHotel({
       left: 83,
       font_top: 14,
       font_left: 12,
+      isOpened: window["2023-11-01"] && window["2023-11-01"]?.isOpen,
     },
     {
       num: 2,
@@ -68,6 +75,7 @@ export default function CustomUserHotel({
       left: 128,
       font_top: 14,
       font_left: 11,
+      isOpened: window["2023-11-02"]?.isOpen,
     },
     {
       num: 3,
@@ -269,6 +277,20 @@ export default function CustomUserHotel({
     },
   ];
 
+  const window_design: any = {
+    windowDeco01: {
+      default: window_v1,
+      open: window_v1_open,
+      rec: window_v1_rec,
+    },
+    windowDeco02: {
+      default: window_v2,
+      open: window_v2_open,
+      rec: window_v2_rec,
+    },
+  };
+
+  console.log(window_design[window_v]);
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
@@ -559,7 +581,10 @@ export default function CustomUserHotel({
         }}
       >
         {windows?.map((item) => (
-          <TouchableOpacity onPress={() => onPress && onPress(item.num)}>
+          <TouchableOpacity
+            key={item.num}
+            onPress={() => onPress && onPress(item.num)}
+          >
             <View
               key={item.num}
               style={{
@@ -574,7 +599,13 @@ export default function CustomUserHotel({
               <SvgImg
                 width={item.width}
                 height={item.height}
-                url={item.num === 13 || item.num === 18 ? window_rec : window}
+                url={
+                  item.num === 13 || item.num === 18
+                    ? window_design[window_v].rec
+                    : item.isOpened
+                    ? window_design[window_v].open
+                    : window_design[window_v].default
+                }
                 style={{
                   width: item.width,
                   height: item.height,
@@ -582,20 +613,22 @@ export default function CustomUserHotel({
                   position: "absolute",
                 }}
               />
-              <MonoText
-                style={{
-                  zIndex: 5,
-                  top: item.font_top,
-                  left: item.font_left,
-                  textAlign: "center",
-                  position: "absolute",
-                  color: colors.Whiteyello,
-                  fontSize: 12,
-                  fontWeight: "bold",
-                }}
-              >
-                {item.num}
-              </MonoText>
+              {!item.isOpened && (
+                <MonoText
+                  style={{
+                    zIndex: 5,
+                    top: item.font_top,
+                    left: item.font_left,
+                    textAlign: "center",
+                    position: "absolute",
+                    color: colors.Whiteyello,
+                    fontSize: 12,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.num}
+                </MonoText>
+              )}
             </View>
           </TouchableOpacity>
         ))}

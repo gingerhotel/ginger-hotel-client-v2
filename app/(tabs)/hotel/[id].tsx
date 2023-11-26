@@ -75,8 +75,9 @@ export default function HotelComp() {
   }
 
   const handleClickWindow = (item: any) => {
-    console.log(data.hotelWindows[item]);
-    router.push(`/mailbox/1`);
+    console.log(data.hotelWindows);
+    console.log(data.hotelWindows[`2023-11-${item < 10 ? "0" + item : item}`]);
+    // router.push(`/mailbox/1`);
   };
 
   return (
@@ -98,11 +99,13 @@ export default function HotelComp() {
         {/* <Link href={"/create"}> */}
         <View style={{ backgroundColor: colors.greyblack }}>
           <CustomUserHotel
+            window={data.hotelWindows}
             onPress={handleClickWindow}
             wallColor={data?.hotel?.bodyColor}
             structColor={data?.hotel?.structColor}
             is_border={false}
             is_front_bg={true}
+            window_v={"windowDeco01"}
           />
         </View>
         {/* </Link> */}
