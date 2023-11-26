@@ -107,7 +107,7 @@ export default function HotelComp() {
               title="오늘의 편지함 보기"
               color="green"
               width={288}
-              url="mailbox"
+              callback={() => setModalVisible(true)}
               is_disable={open}
             />
             <TouchableOpacity>
