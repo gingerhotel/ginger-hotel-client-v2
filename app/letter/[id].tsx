@@ -7,6 +7,11 @@ import { colors } from "../../constants/Colors";
 import { useMutation } from "react-query";
 import { newLetter } from "../../api/letterApi";
 
+/*const loadAT = async () => {
+  const accessToken = await AsyncStorage.getItem("accessToken");
+  console.log(`letter accessToken is ${accessToken}`);
+}*/
+
 export default function Letter({ navigation }: any) {
   // const { isLoggedIn } = AuthStore.useState((s) => s);
 
@@ -190,6 +195,7 @@ const styles = StyleSheet.create({
 
 import styled from "styled-components/native";
 import { router, useLocalSearchParams, useRootNavigationState, useRouter, useSegments } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const LetterOuterContainer = styled.View`
     border-radius: 18px;

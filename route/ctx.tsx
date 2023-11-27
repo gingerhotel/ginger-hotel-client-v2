@@ -1,5 +1,7 @@
 import React from 'react';
 import { useStorageState } from './useStorageState';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import authStore from '../atom/zustand/authStore';
 
 const AuthContext = React.createContext<{ signIn: () => void; signOut: () => void; session?: string | null, isLoading: boolean } | null>(null);
 
@@ -15,9 +17,19 @@ export function useSession() {
   return value;
 }
 
+
+const loadAT = async () => {
+    // const accessToken = await AsyncStorage.getItem("accessToken");
+    
+    // const { isLogin, setisLogin } = authStore();
+    // /* error code */
+    // if (accessToken) setisLogin(true);
+    // console.log(`ctx accessToken is ${accessToken}`);
+}
+
 export function SessionProvider(props: React.PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
-    console.log("AuthContext")
+  loadAT();
   return (
     <AuthContext.Provider
       value={{
