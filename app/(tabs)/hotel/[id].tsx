@@ -79,7 +79,11 @@ export default function HotelComp() {
 
   return (
     <ScrollView>
-      <Header isOwner={data.isOwner} keyCount={data?.keyCount} feekCount={data?.feekCount}/>
+      <Header
+        isOwner={data.isOwner}
+        keyCount={data?.keyCount}
+        feekCount={data?.feekCount}
+      />
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
@@ -102,7 +106,7 @@ export default function HotelComp() {
             structColor={data?.hotel?.structColor}
             is_border={false}
             is_front_bg={true}
-            gardenDeco={data?.hotel?.gardenDeco}
+            gardenDecorator={data?.hotel?.gardenDecorator}
             window_v={"windowDeco01"}
           />
         </View>
@@ -198,7 +202,7 @@ export default function HotelComp() {
         name="로그인"
         desc=""
       />
-      <KakaoAdFit/>
+      <KakaoAdFit />
     </ScrollView>
   );
 }
