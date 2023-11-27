@@ -16,14 +16,15 @@ import {
   MailTitleText,
   MailTitleView
 } from "../style/mailBoxStyled";
-import { useRecoilState } from "recoil";
-import { letterSwitchState } from "../atom/letterAtom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { letterSwitchState, newLetterCountState } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
 
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
+  const newLetterCount = useRecoilValue(newLetterCountState);
   useEffect(() => {
     setDate(getCurrentDateDot())
   }, [])
@@ -64,7 +65,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
         <MailInfoView>
           <TouchableOpacity onPress={() => onLetterChange('1')}>
             <MailChoseView b_color={letterCheck.new ? "#34AB96" : "#000"} >
-              <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 2</MailChoseText>
+              <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 {newLetterCount}</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onLetterChange('2')}>
