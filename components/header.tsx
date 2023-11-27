@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyblack,
     marginLeft: 20,
     paddingRight: 40,
+    paddingTop: 35,
   },
   item: {
     fontFamily: "Pretendard-Regular",

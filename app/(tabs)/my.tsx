@@ -16,6 +16,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
 import { router } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
+import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -373,10 +374,8 @@ export default function TabThreeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.ad_banner}>
-          <Text>광고</Text>
+          <KakaoAdFit_relative/>
         </View>
-      </View>
       <View style={styles.linksContainer}>
         <View>
           <TouchableOpacity>
