@@ -18,6 +18,7 @@ export default function CreateHotel() {
   const [buildingDecorator, setBuildingDecorator] = useState("buildingDeco01");
   const [gardenDecorator, setGardenDeco] = useState("gardenDeco01");
   const [windowDecorator, setWindowDeco] = useState("windowDeco01");
+  const [background, setBackground] = useState("background01");
   const [activeTitle, setTitle] = useState("벽면");
   const navigation = useNavigation();
 
@@ -43,6 +44,7 @@ export default function CreateHotel() {
   const buildingList = ["buildingDeco01", "buildingDeco02", "buildingDeco03"];
   const windowList = ["windowDeco01", "windowDeco02"];
   const gardenList = ["gardenDeco01", "gardenDeco02", "gardenDeco03"];
+  const backgroundList = ["background01", "background02", "background03"];
 
   return (
     <>
@@ -58,6 +60,7 @@ export default function CreateHotel() {
               gardenDecorator={gardenDecorator}
               windowDecorator={windowDecorator}
               buildingDecorator={buildingDecorator}
+              background={background}
             />
           </View>
           <View style={styles.deco_wrapper}>
@@ -131,6 +134,24 @@ export default function CreateHotel() {
                 ))}
             </View>
             <View style={styles.building_wrapper}>
+              {activeTitle === "뒷배경" &&
+                backgroundList?.map((url, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => setBackground(url)}
+                  >
+                    <CreateHotelDeco
+                      activeTitle={activeTitle}
+                      key={index}
+                      url={url}
+                      index={index}
+                      active={background}
+                    ></CreateHotelDeco>
+                  </TouchableOpacity>
+                ))}
+            </View>
+
+            <View style={styles.building_wrapper}>
               {activeTitle === "창문" &&
                 windowList?.map((name, index) => (
                   <TouchableOpacity
@@ -157,6 +178,7 @@ export default function CreateHotel() {
                 windowDecorator,
                 gardenDecorator,
                 buildingDecorator,
+                background,
               }}
               title="다음으로"
               color="green"

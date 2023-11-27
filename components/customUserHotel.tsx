@@ -12,6 +12,7 @@ export default function CustomUserHotel({
   gardenDecorator,
   windowDecorator,
   buildingDecorator,
+  background,
   is_border,
   is_front_bg,
 }: any) {
@@ -245,8 +246,6 @@ export default function CustomUserHotel({
       >
         <SvgImg
           url={`../assets/decorations/${buildingDecorator}.svg`}
-          width={300}
-          height={406}
           style={{
             width: 63,
             height: 220,
@@ -303,27 +302,27 @@ export default function CustomUserHotel({
         />
       </View>
 
-      {/* <View
+      <View
         style={{
           zIndex: 0,
           position: "absolute",
         }}
       >
         <SvgImg
-          url={backBg}
+          url={`../assets/decorations/${background}.svg`}
           width={340}
           height={416}
           style={{
-            width: 390,
-            height: 544,
+            width: 355,
+            height: 395,
             marginTop: 20,
             zIndex: 4,
-            top: -30,
+            top: -10,
             left: 13,
             position: "absolute",
           }}
         />
-      </View> */}
+      </View>
     </>
   );
 }

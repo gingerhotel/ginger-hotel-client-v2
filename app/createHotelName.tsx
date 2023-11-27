@@ -40,6 +40,8 @@ export default function CreateHotelName() {
               structColor={params.structColor}
               gardenDecorator={params.gardenDecorator}
               windowDecorator={params.windowDecorator}
+              buildingDecorator={params.buildingDecorator}
+              background={params.background}
             />
           </View>
 

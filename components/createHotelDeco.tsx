@@ -9,7 +9,7 @@ import { SvgImg } from "./svgImg";
 
 const CreateHotelDeco = ({ url, active, activeTitle }: any) => {
   const image =
-    activeTitle === "마당장식"
+    activeTitle === "마당장식" || activeTitle === "뒷배경"
       ? `../assets/decorations/${url}.svg`
       : `../assets/images/${url}.svg`;
 

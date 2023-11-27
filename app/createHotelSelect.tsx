@@ -120,7 +120,7 @@ export default function createHotelSelect() {
               ...props,
               gender: sex_english[activeChip],
               code,
-              birthDate: `${year}-${month}-${day}`,
+              birthDate: activeBirth ? "" : `${year}-${month}-${day}`,
             }}
           />
         </View>
