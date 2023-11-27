@@ -36,6 +36,7 @@ import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 import CustomCompleteUserHotel from "../../../components/customCompletedUserHotel";
+import KakaoAdFit from "../../../advertisement/KakaoAdFit";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -197,6 +198,7 @@ export default function HotelComp() {
         name="로그인"
         desc=""
       />
+      <KakaoAdFit/>
     </ScrollView>
   );
 }
