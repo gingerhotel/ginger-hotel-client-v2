@@ -16,7 +16,8 @@ export default function CreateHotel() {
   const [structColor, setStructColor] = useState("#CF332C");
   const [wallColor, setWallColor] = useState("#CF332C");
   const [buildingDeco, setBuildingDeco] = useState("building1");
-  const [window, setWindow] = useState("window1");
+  const [gardenDeco, setGardenDeco] = useState("gardenDeco1");
+  const [windowDeco, setWindowDeco] = useState("windowDeco1");
   const [activeTitle, setTitle] = useState("벽면");
   const navigation = useNavigation();
 
@@ -39,8 +40,8 @@ export default function CreateHotel() {
   ];
 
   const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
-  const buildingList = ["building1", "building2", "building3"];
-  const windowList = ["window1", "window2"];
+  const windowList = ["windowDeco1", "windowDeco2"];
+  const gardenList = ["gardenDeco1", "gardenDeco2", "gardenDeco3"];
 
   return (
     <>
@@ -53,6 +54,8 @@ export default function CreateHotel() {
               is_border={true}
               wallColor={wallColor}
               structColor={structColor}
+              gardenDeco={gardenDeco}
+              windowDeco={windowDeco}
             />
           </View>
           <View style={styles.deco_wrapper}>
@@ -91,19 +94,17 @@ export default function CreateHotel() {
                 ))}
             </View>
             <View style={styles.building_wrapper}>
-              {(activeTitle === "건물장식" ||
-                activeTitle === "마당장식" ||
-                activeTitle === "뒷배경") &&
-                buildingList?.map((url, index) => (
+              {activeTitle === "마당장식" &&
+                gardenList?.map((url, index) => (
                   <TouchableOpacity
                     key={index}
-                    onPress={() => setBuildingDeco(url)}
+                    onPress={() => setGardenDeco(url)}
                   >
                     <CreateHotelDeco
                       key={index}
                       url={url}
                       index={index}
-                      active={buildingDeco}
+                      active={gardenDeco}
                     ></CreateHotelDeco>
                   </TouchableOpacity>
                 ))}
@@ -111,12 +112,15 @@ export default function CreateHotel() {
             <View style={styles.building_wrapper}>
               {activeTitle === "창문" &&
                 windowList?.map((name, index) => (
-                  <TouchableOpacity key={index} onPress={() => setWindow(name)}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => setWindowDeco(name)}
+                  >
                     <CreateHotelDecoV2
                       key={index}
                       url={name}
                       index={index}
-                      active={window}
+                      active={windowDeco}
                     ></CreateHotelDecoV2>
                   </TouchableOpacity>
                 ))}
@@ -126,7 +130,12 @@ export default function CreateHotel() {
           <View style={styles.btn_wrapper}>
             <Buttons
               url="createHotelName"
-              props={{ structColor, bodyColor: wallColor }}
+              props={{
+                structColor,
+                bodyColor: wallColor,
+                windowDeco,
+                gardenDeco,
+              }}
               title="다음으로"
               color="green"
             />

@@ -4,27 +4,28 @@ import { Tabs } from 'expo-router/tabs'
 
 export default function _layout() {
   return (
-    <Tabs>
+    <Tabs
+      initialRouteName='hotel/[id]'
+      >
       <Tabs.Screen
         name="village"
         options={{
           headerShown: false,
-          tabBarLabel: "빌리지",
+          title: "빌리지",
         }}
       />
       <Tabs.Screen
-        name="hotel"
+        name="hotel/[id]"
         options={{
-          headerShown: false,
-          tabBarLabel: "진저호텔",
-          href: null,
+          title: "진저호텔",
         }}
+        
       />
       <Tabs.Screen
         name="my"
         options={{
           headerShown: false,
-          tabBarLabel: "마이페이지",
+          title: "마이페이지",
         }}
       />
     </Tabs>

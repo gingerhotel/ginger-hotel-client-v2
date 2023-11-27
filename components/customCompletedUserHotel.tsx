@@ -5,21 +5,263 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const frontBg = require("../assets/images/frontBg.svg");
-const backBg = require("../assets/images/backBg.svg");
+// const frontBg = require("../assets/images/frontBg.svg");
+// const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/building1.svg");
-export default function CustomUserHotel({
+const window_v1: any = require("../assets/images/window_v1.svg");
+const window_v1_open: any = require("../assets/images/window_v1_open.svg");
+const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
+const window_v2: any = require("../assets/images/window_v2.svg");
+const window_v2_rec: any = require("../assets/images/window_v2_rec.svg");
+const window_v2_open: any = require("../assets/images/window_v2_open.svg");
+
+export default function CustomCompleteUserHotel({
   wallColor,
   structColor,
-  gardenDeco,
-  windowDeco,
+  onPress,
   is_border,
   is_front_bg,
+  window_v,
+  window,
+  gardenDeco,
 }: any) {
-  const web = { top: 41, left: 43 };
-  const _web = { top: 42, left: 43 };
+  const web = { top: 38, left: 49 };
   const app = { top: 63, left: 5 };
+  const _web = { top: 38, left: 49 };
 
+  const windows = [
+    {
+      num: 1,
+      width: 35,
+      height: 45,
+      top: 92,
+      left: 83,
+      font_top: 14,
+      font_left: 12,
+    },
+    {
+      num: 2,
+      width: 35,
+      height: 45,
+      top: 92,
+      left: 134,
+      font_top: 14,
+      font_left: 13,
+    },
+    {
+      num: 3,
+      width: 32,
+      height: 44,
+      top: 64,
+      left: 214,
+      font_top: 14,
+      font_left: 10,
+    },
+    {
+      num: 4,
+      width: 35,
+      height: 42,
+      top: 92,
+      left: 280,
+      font_top: 14,
+      font_left: 13,
+    },
+    {
+      num: 5,
+      width: 35,
+      height: 42,
+      top: 92,
+      left: 330,
+      font_top: 14,
+      font_left: 13,
+    },
+    {
+      num: 6,
+      width: 35,
+      height: 47,
+      top: 161,
+      left: 83,
+      font_top: 17,
+      font_left: 13,
+    },
+    {
+      num: 7,
+      width: 35,
+      height: 47,
+      top: 161,
+      left: 134,
+      font_top: 17,
+      font_left: 14,
+    },
+    {
+      num: 8,
+      width: 35,
+      height: 47,
+      top: 156,
+      left: 211,
+      font_top: 17,
+      font_left: 13,
+    },
+    {
+      num: 9,
+      width: 35,
+      height: 47,
+      top: 161,
+      left: 285,
+      font_top: 17,
+      font_left: 14,
+    },
+    {
+      num: 10,
+      width: 35,
+      height: 47,
+      top: 161,
+      left: 335,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 11,
+      width: 35,
+      height: 47,
+      top: 228,
+      left: 83,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 12,
+      width: 35,
+      height: 47,
+      top: 228,
+      left: 134,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 13,
+      width: 47,
+      height: 45,
+      top: 229,
+      left: 206,
+      font_top: 14,
+      font_left: 16,
+    },
+    {
+      num: 14,
+      width: 35,
+      height: 47,
+      top: 228,
+      left: 285,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 15,
+      width: 35,
+      height: 47,
+      top: 228,
+      left: 335,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 16,
+      width: 35,
+      height: 47,
+      top: 294,
+      left: 83,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 17,
+      width: 35,
+      height: 47,
+      top: 294,
+      left: 134,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 18,
+      width: 43,
+      height: 32,
+      top: 284,
+      left: 210,
+      font_top: 9,
+      font_left: 14,
+    },
+    {
+      num: 19,
+      width: 35,
+      height: 47,
+      top: 294,
+      left: 285,
+      font_top: 17,
+      font_left: 11,
+    },
+    {
+      num: 20,
+      width: 35,
+      height: 47,
+      top: 294,
+      left: 335,
+      font_top: 17,
+      font_left: 9,
+    },
+    {
+      num: 21,
+      width: 38,
+      height: 50,
+      top: 364,
+      left: 83,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 22,
+      width: 38,
+      height: 50,
+      top: 364,
+      left: 134,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 23,
+      width: 38,
+      height: 50,
+      top: 364,
+      left: 285,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 24,
+      width: 38,
+      height: 50,
+      top: 364,
+      left: 335,
+      font_top: 18,
+      font_left: 12,
+    },
+  ];
+
+  const window_design: any = {
+    windowDeco01: {
+      default: window_v1,
+      open: window_v1_open,
+      rec: window_v1_rec,
+    },
+    windowDeco02: {
+      default: window_v2,
+      open: window_v2_open,
+      rec: window_v2_rec,
+    },
+  };
+
+  console.log(window_design[window_v]);
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
@@ -145,16 +387,17 @@ export default function CustomUserHotel({
       >
         <SvgImg
           url={Hotel1}
-          width={355}
-          height={390}
+          width={375}
+          height={400}
           style={{
-            width: 355,
-            height: 390,
+            width: 435,
+            height: 480,
             marginTop: 20,
             zIndex: 3,
           }}
         />
       </View>
+
       <View
         style={[
           {
@@ -169,9 +412,9 @@ export default function CustomUserHotel({
             Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
           }
           height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "358"
+            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
           }
-          viewBox="0 0 355 390"
+          viewBox="0 0 365 480"
           fill="none"
         >
           <Path
@@ -204,9 +447,9 @@ export default function CustomUserHotel({
             Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
           }
           height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "358"
+            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
           }
-          viewBox="0 0 355 390"
+          viewBox="0 0 365 480"
           fill="none"
         >
           <Path
@@ -234,29 +477,6 @@ export default function CustomUserHotel({
         </Svg>
       </View>
 
-      {is_front_bg && (
-        <View
-          style={{
-            zIndex: 4,
-            position: "absolute",
-          }}
-        >
-          <SvgImg
-            url={frontBg}
-            width={340}
-            height={416}
-            style={{
-              width: 380,
-              height: 460,
-              marginTop: 20,
-              zIndex: 4,
-              top: -20,
-              left: 10,
-              position: "absolute",
-            }}
-          />
-        </View>
-      )}
       <View
         style={{
           zIndex: 3,
@@ -268,12 +488,12 @@ export default function CustomUserHotel({
           width={340}
           height={416}
           style={{
-            width: 355,
-            height: 390,
+            width: 430,
+            height: 460,
             marginTop: 20,
             zIndex: 3,
-            top: 73,
-            left: 13,
+            top: 93,
+            left: 12,
             position: "absolute",
           }}
         />
@@ -300,50 +520,68 @@ export default function CustomUserHotel({
           }}
         />
       </View>
-
       <View
         style={{
           zIndex: 5,
           position: "absolute",
         }}
       >
-        <SvgImg
-          url={`../assets/decorations/${windowDeco}_com.svg`}
-          width={355}
-          height={390}
-          style={{
-            width: 245,
-            height: 293,
-            marginTop: 20,
-            zIndex: 5,
-            top: 37,
-            left: 68,
-            position: "absolute",
-          }}
-        />
+        {windows?.map((item) => (
+          <TouchableOpacity
+            key={item.num}
+            onPress={() => onPress && onPress(item.num)}
+          >
+            <View
+              key={item.num}
+              style={{
+                width: item.width,
+                height: item.height,
+                zIndex: 4,
+                top: item.top,
+                left: item.left,
+                position: "absolute",
+              }}
+            >
+              <SvgImg
+                width={item.width}
+                height={item.height}
+                url={
+                  item.num === 13 || item.num === 18
+                    ? window_design[window_v].rec
+                    : window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                    ? window_design[window_v].open
+                    : window_design[window_v].default
+                }
+                style={{
+                  width: item.width,
+                  height: item.height,
+                  zIndex: 4,
+                  position: "absolute",
+                }}
+              />
+              {!window[`2023-11-${item.num < 10 ? "0" + item.num : item.num}`]
+                ?.isOpen && (
+                <MonoText
+                  style={{
+                    zIndex: 5,
+                    top: item.font_top,
+                    left: item.font_left,
+                    textAlign: "center",
+                    position: "absolute",
+                    color: colors.Whiteyello,
+                    fontSize: 12,
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.num}
+                </MonoText>
+              )}
+            </View>
+          </TouchableOpacity>
+        ))}
       </View>
-
-      {/* <View
-        style={{
-          zIndex: 0,
-          position: "absolute",
-        }}
-      >
-        <SvgImg
-          url={backBg}
-          width={340}
-          height={416}
-          style={{
-            width: 390,
-            height: 544,
-            marginTop: 20,
-            zIndex: 4,
-            top: -30,
-            left: 13,
-            position: "absolute",
-          }}
-        />
-      </View> */}
     </>
   );
 }
