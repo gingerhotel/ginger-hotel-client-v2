@@ -27,8 +27,8 @@ const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.sv
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 
 import { myDate } from "../../../api/myApi";
-import { useSetRecoilState } from "recoil";
-import { hotelIdState } from "../../../atom/letterAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { hotelIdState, newLetterCountState } from "../../../atom/letterAtom";
 import { newLetterData } from "../../../api/letterApi";
 import { getHotel } from "../../../api/hotelApi";
 import { Hotel } from "../../../api/interface";
@@ -45,10 +45,9 @@ export default function HotelComp() {
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
-  const setHotelId = useSetRecoilState<number>(hotelIdState);
-  const [open, setOpen] = useState(true);
+  const setHotelId = useSetRecoilState<string | string[]>(hotelIdState);
   const navigation = useNavigation();
-
+  const [newLetterCount, setNewLetterCount] = useRecoilState(newLetterCountState);
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -59,38 +58,29 @@ export default function HotelComp() {
   const closeModal = () => {
     setModalVisible(false);
   };
-
-  const { data, status, error } = useQuery(
-    "loadHotel",
-    async () => await getHotel(id as string),
-    {
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
-      },
-    }
-  );
+  const { data, status, error } = useQuery('loadHotel', async () => await getHotel(id as string), {
+    onError: (e) => {
+      console.log(`useQuery error : ${e}`);
+    },
+  });
+  console.log(data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
   }
-  console.log(data);
-  const handleClickWindow = (num: any) => {
-    router.push(`/mailbox/${num}`);
-  };
-
+  else {
+    setNewLetterCount(data?.todayReceivedLetterCount);
+    setHotelId(id);
+  }
   return (
     <ScrollView>
-      <Header
-        isOwner={data.isOwner}
-        keyCount={data?.keyCount}
-        feekCount={data?.feekCount}
-      />
+      <Header isOwner={data.isOwner} />
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
           <MonoText style={styles.hotel_desc2}>
             {todayLetterCnt?.toString() /* 객체 처리 필요 */}
           </MonoText>
-          <ProgressBar todayLetterCnt={1} />
+          <ProgressBar todayLetterCnt={newLetterCount} />
         </ProgressBarView>
         <Text style={styles.hotel_name}>
           {data?.hotel?.nickname}님의 진저호텔
@@ -112,78 +102,69 @@ export default function HotelComp() {
         </View>
         {/* </Link> */}
         <View style={styles.hotel_today_container}>
-          {data.isOwner ? (
-            <>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="오늘의 편지함 보기"
-                  color="green"
-                  width={288}
-                  url="mailbox"
-                  is_disable={open}
-                />
-                <TouchableOpacity>
-                  <SvgImg
-                    width={40}
-                    height={40}
-                    url={album}
-                    onPress={() => router.push("/gingerAlbum")}
+
+          {
+            data.isOwner ?
+              <>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="오늘의 편지함 보기"
+                    color="green"
+                    width={288}
+                    url="mailbox"
+                    is_disable={!data?.canReceiveLetterToday}
                   />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="내 호텔 공유하기"
-                  color="gray_700"
-                  width={350}
-                  callback={() => {
-                    Toast.show({
-                      type: "iconToast",
-                      text1: "링크가 복사되었습니다!",
-                      position: "bottom",
-                      props: { icon },
-                    });
-                  }}
-                  icon={share}
-                />
-              </View>
-            </>
-          ) : (
-            <>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="편지 보내기"
-                  url={`letter/${id}`}
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    !data?.isLoginMember ? setLoginModalVisible(true) : {}
-                  }
-                  auth={data?.isLoginMember}
-                />
-              </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="빌리지 추가하기"
-                  url="letter"
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    !data?.isLoginMember ? setLoginModalVisible(true) : {}
-                  }
-                  auth={data?.isLoginMember}
-                />
-              </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="내 호텔 만들기"
-                  color="green"
-                  width={350}
-                  callback={() => setLoginModalVisible(true)}
-                />
-              </View>
-            </>
-          )}
+                  <TouchableOpacity>
+                    <SvgImg
+                      width={40}
+                      height={40}
+                      url={album}
+                      onPress={() => router.push("/gingerAlbum")}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="내 호텔 공유하기"
+                    color="gray_700"
+                    width={350}
+                    callback={() => {
+                      Toast.show({
+                        type: "iconToast",
+                        text1: "링크가 복사되었습니다!",
+                        position: "bottom",
+                        props: { icon },
+                      });
+                    }}
+                    icon={share}
+                  />
+                </View>
+              </>
+              :
+              <>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="편지 보내기"
+                    url={`letter/${id}`}
+                    color="green"
+                    width={350}
+                    callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {}}
+                    auth={data?.isLoginMember}
+                  />
+                </View>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="빌리지 추가하기"
+                    url="letter"
+                    color="green"
+                    width={350}
+                    callback={() => !data?.isLoginMember ? setLoginModalVisible(true) : {}}
+                    auth={data?.isLoginMember}
+                  />
+                </View>
+              </>
+          }
+
         </View>
       </View>
 

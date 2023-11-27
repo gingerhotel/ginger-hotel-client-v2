@@ -36,7 +36,6 @@ const ReplyLetterItem = () => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const setReplyGo = useSetRecoilState(replyBoxSwitchState)
     const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
-
     const toggleModal = () => {
         setBottomSheetVisible(!bottomSheetVisible);
     };
@@ -60,7 +59,7 @@ const ReplyLetterItem = () => {
                             <LetterInnerUserText f_color="#FFFDF0">로운로운</LetterInnerUserText>
                         </LetterInnerTitieTextView>
                         <View />
-                        <TouchableOpacity onPress={toggleModal} style={{ position: 'absolute', left: 312 }}>
+                        <TouchableOpacity onPress={toggleModal} >
                             <SvgImg
                                 url={iconMore}
                                 width={30}
