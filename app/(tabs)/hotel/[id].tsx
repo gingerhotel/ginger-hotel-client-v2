@@ -196,7 +196,6 @@ export default function HotelComp() {
         onClose={closeLoginModal}
         name="로그인"
         desc=""
-        img={ginger}
       />
     </ScrollView>
   );

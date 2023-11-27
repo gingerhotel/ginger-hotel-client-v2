@@ -42,10 +42,9 @@ type Props = {
   height?: number | any;
   name: string;
   desc: string;
-  img: string | any;
 };
 
-const LoginModal = ({ height, visible, onClose, name, img, desc }: Props) => {
+const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
   const [userInfo, setUserInfo] = React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId:
@@ -238,7 +237,7 @@ const styles = (height: number) =>
       margin: 20,
       backgroundColor: colors.grey900,
       borderRadius: 10,
-      width: 400,
+      width: 360,
       padding: 28,
       height,
       display: "flex",

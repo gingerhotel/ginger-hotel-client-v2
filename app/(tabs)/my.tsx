@@ -15,6 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
 import { router } from "expo-router";
+import LoginModal from "../../components/Modal/\bloginModal";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -49,6 +50,16 @@ interface UserApiResponse {
 }
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
+
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+  const closeLoginModal = () => {
+    setLoginModalVisible(false);
+  };
+
+  useEffect(()=>{
+    // setLoginModalVisible(true);
+  }, [])
+
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
     code: "",
@@ -429,6 +440,13 @@ export default function TabThreeScreen() {
           이메일 : teamgingerkr@gmail.com
         </Text>
       </View>
+      <LoginModal
+        height={300}
+        visible={loginModalVisible}
+        onClose={closeLoginModal}
+        name="로그인"
+        desc=""
+      />
     </View>
   );
 }
