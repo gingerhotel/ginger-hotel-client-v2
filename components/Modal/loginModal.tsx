@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Modal, Pressable, Text, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Modal,
+  Pressable,
+  Text,
+  Image,
+  Platform,
+} from "react-native";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
 import { MonoText } from "../styledText";
@@ -17,6 +25,12 @@ import { MEMBER_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
 import { signInWithKakao, RestApiKey, redirectUrl } from "../../api/kakaoApi";
+import { WithLocalSvg } from "react-native-svg";
+
+const kakaoLogo = require("../../assets/logos/kakao.png");
+const googleLogo = require("../../assets/logos/google.png");
+const closeIcon = require("../../assets/icon/i_close_line.svg");
+
 console.log(RestApiKey);
 const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey}&redirect_uri=${redirectUrl}&response_type=code`;
 
@@ -138,8 +152,21 @@ const LoginModal = ({ height, visible, onClose, name, img, desc }: Props) => {
     >
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
-          <Text style={[styles(height).modal_desc, typography.display1_basic]}>
-            {name}
+          <View style={styles(height).close_btn}>
+            <Pressable onPress={close}>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={closeIcon} />
+              ) : (
+                <Image source={closeIcon} />
+              )}
+            </Pressable>
+          </View>
+          <Text style={[styles(height).modal_title]}>{name}</Text>
+          <Text style={[styles(height).modal_desc]}>
+            로그인이 필요한 기능입니다.
+          </Text>
+          <Text style={[styles(height).modal_desc]}>
+            간편하게 가입하고 진저호텔을 시작하세요!
           </Text>
 
           <View
@@ -147,41 +174,50 @@ const LoginModal = ({ height, visible, onClose, name, img, desc }: Props) => {
               height: 1,
               width: "100%",
               backgroundColor: colors.grey700,
+              marginVertical: 15,
             }}
           ></View>
 
-          <View style={styles(height).button_wrapper}>
+          <View>
             <Pressable
-              style={[styles(height).button, styles(height).buttonOpen]}
+              style={[styles(height).button, styles(height).google]}
               onPress={() => setModalVisible()}
             >
-              <MonoText style={styles(height).textStyle}>구글 로그인</MonoText>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={googleLogo} />
+              ) : (
+                <Image source={googleLogo} style={{ width: 30, height: 30 }} />
+              )}
+              <MonoText
+                style={[
+                  styles(height).textStyle,
+                  styles(height).textStyle_google,
+                ]}
+              >
+                구글 계정으로 로그인
+              </MonoText>
             </Pressable>
           </View>
-          <View style={styles(height).button_wrapper}>
+          <View style={[styles(height).kakao]}>
             <a
               href={kakaoUrl}
               style={{
-                minWidth: 250,
-                padding: "10px 0px",
-                borderRadius: 5,
-                backgroundColor: "#F1DC11",
-                fontSize: 20,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 textDecoration: "none",
-                textAlign: "center",
+                width: "100%",
               }}
             >
-              <MonoText>카카오 로그인</MonoText>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={kakaoLogo} />
+              ) : (
+                <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
+              )}
+              <MonoText style={styles(height).kakao_text}>
+                카카오 계정으로 로그인
+              </MonoText>
             </a>
-          </View>
-
-          <View style={styles(height).button_wrapper}>
-            <Pressable
-              style={[styles(height).button, styles(height).buttonOpen]}
-              onPress={() => close()}
-            >
-              <MonoText style={styles(height).textStyle}>취소</MonoText>
-            </Pressable>
           </View>
         </View>
       </View>
@@ -195,18 +231,19 @@ const styles = (height: number) =>
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 22,
+      backgroundColor: "#0e0e0eb1",
     },
     modalView: {
+      position: "relative",
       margin: 20,
       backgroundColor: colors.grey900,
       borderRadius: 10,
-      width: "80%",
+      width: 400,
       padding: 28,
       height,
       display: "flex",
-      justifyContent: "space-between",
       alignItems: "center",
+      justifyContent: "space-around",
       borderWidth: 1,
       borderColor: colors.grey900,
       shadowColor: "#000",
@@ -219,16 +256,18 @@ const styles = (height: number) =>
       elevation: 5,
     },
     button: {
-      borderRadius: 10,
+      borderRadius: 7,
       padding: 13,
       paddingLeft: 10,
       paddingRight: 10,
       elevation: 2,
-      width: "100%",
+      width: 300,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
     },
-    buttonOpen: {
-      backgroundColor: colors.green600,
-      color: colors.Whiteyello,
+    google: {
+      backgroundColor: "white",
     },
     textStyle: {
       color: "white",
@@ -236,30 +275,42 @@ const styles = (height: number) =>
       textAlign: "center",
       flex: 1,
     },
+    textStyle_google: {
+      color: colors.greyblack,
+    },
+    kakao_text: {
+      color: colors.greyblack,
+      fontWeight: "600",
+      flex: 1,
+      textAlign: "center",
+    },
     modal_title: {
-      marginBottom: 6,
       fontSize: 16,
       textAlign: "center",
       color: colors.Whiteyello,
+      fontWeight: "600",
     },
     modal_desc: {
       fontSize: 12,
-      marginBottom: 20,
-      color: colors.Whiteyello,
+      color: colors.grey500,
       textAlign: "center",
-      lineHeight: 21,
-      fontWeight: "700",
     },
-    button_wrapper: {
-      width: "100%",
-      display: "flex",
-      justifyContent: "center",
-      flexDirection: "row",
-    },
-    social_btn_group: {
-      flexDirection: "row",
+    kakao: {
+      backgroundColor: "#FDDC3F",
+      borderRadius: 7,
+      padding: 13,
+      paddingLeft: 10,
+      paddingRight: 10,
+      elevation: 2,
       width: 300,
-      justifyContent: "space-around",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    close_btn: {
+      position: "absolute",
+      top: 10,
+      right: 10,
     },
   });
 

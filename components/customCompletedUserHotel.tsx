@@ -26,7 +26,7 @@ export default function CustomCompleteUserHotel({
   gardenDeco,
 }: any) {
   const web = { top: 38, left: 49 };
-  const app = { top: 63, left: 5 };
+  const app = { top: 38, left: 49 };
   const _web = { top: 38, left: 49 };
 
   const windows = [
