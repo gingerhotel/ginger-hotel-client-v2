@@ -2,11 +2,20 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router/tabs'
 import { TabBarIcon } from '../tab/TabBarIcon';
+import { colors } from '../../constants/Colors';
 
 export default function _layout() {
   return (
     <Tabs
       initialRouteName='hotel/[id]'
+      screenOptions={{
+        tabBarInactiveTintColor: "gray",
+        tabBarStyle : {
+          backgroundColor: colors.greyblack,
+          borderTopWidth: 0,
+          marginBottom: 0,
+        }
+      }}
       >
       <Tabs.Screen
         name="village"
