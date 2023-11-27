@@ -22,7 +22,7 @@ import { letterSwitchState, replyBoxSwitchState } from "../atom/letterAtom";
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
-const ReplyHeader = ({ marginTop, isTitle = true, navigation }: any) => {
+const ReplyHeader = ({ marginTop, isTitle = true }: any) => {
     const setReplyGo = useSetRecoilState(replyBoxSwitchState)
     const replyGoBackHandler = () => {
         setReplyGo(false)

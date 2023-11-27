@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 import NewLetterItem from "../../components/newLetterItem";
 import MailHeader from "../../components/mailHeader";
@@ -12,8 +12,10 @@ import {
 import ReplyHeader from "../../components/replyHeader";
 import { useQuery } from "react-query";
 import { newLetterData } from "../../api/letterApi";
+import { useNavigation } from "expo-router";
 
-export default function MailBox({ navigation }: any) {
+
+export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
   const replyGo = useRecoilValue(replyBoxSwitchState);
   const hotelId = useRecoilValue(hotelIdState);
@@ -21,12 +23,18 @@ export default function MailBox({ navigation }: any) {
     "newLetters",
     async () => await newLetterData({ hotelId })
   );
+
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       {replyGo ? (
-        <ReplyHeader marginTop={50} navigation={navigation} />
+        <ReplyHeader marginTop={50} />
       ) : (
-        <MailHeader marginTop={50} navigation={navigation} />
+        <MailHeader marginTop={50} />
       )}
 
       <ScrollView>
