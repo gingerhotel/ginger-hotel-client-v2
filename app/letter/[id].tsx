@@ -7,6 +7,10 @@ import { colors } from "../../constants/Colors";
 import { useMutation } from "react-query";
 import { newLetter } from "../../api/letterApi";
 
+import styled from "styled-components/native";
+import { router, useLocalSearchParams } from "expo-router";
+import OneBtnModal from "../../components/Modal/OneBtnModal";
+
 export default function Letter({ navigation }: any) {
   const { id } = useLocalSearchParams();
 
@@ -15,6 +19,16 @@ export default function Letter({ navigation }: any) {
     register("letters");
     register("nickname");
   }, [register]);
+
+  const [oneBtnModalVisible, setOneBtnModalVisible] = useState<boolean>(false);
+  const closeoneBtnModal = () => {
+    setOneBtnModalVisible(false);
+  };
+  // useEffect(()=>{
+  //    setOneBtnModalVisible(true);
+  // }, [])
+  // error 코드 분기로, letterSubmit 함수 Catch 쪽에 setOneBtnModalVisible 실행하시면 됩니다. 
+  // 버튼 띄우는거 테스트하려면 주석 푸시고 useEffect() 한번 로드해보세요
 
   const mutation = useMutation(
     // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
@@ -82,6 +96,13 @@ export default function Letter({ navigation }: any) {
           callback={handleSubmit(letterSubmit)}
         />
       </View>
+      <OneBtnModal
+        height={300}
+        visible={oneBtnModalVisible}
+        onClose={closeoneBtnModal}
+        name="zz"
+        desc=""
+      />
     </View>
   );
 }
@@ -161,9 +182,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 });
-
-import styled from "styled-components/native";
-import { router, useLocalSearchParams } from "expo-router";
 
 export const LetterOuterContainer = styled.View`
     border-radius: 18px;
