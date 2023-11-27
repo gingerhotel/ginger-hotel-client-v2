@@ -164,16 +164,7 @@ export default function CustomUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg
-          width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
-          }
-          height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "358"
-          }
-          viewBox="0 0 355 390"
-          fill="none"
-        >
+        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -199,16 +190,7 @@ export default function CustomUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : web,
         ]}
       >
-        <Svg
-          width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
-          }
-          height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "358"
-          }
-          viewBox="0 0 355 390"
-          fill="none"
-        >
+        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"

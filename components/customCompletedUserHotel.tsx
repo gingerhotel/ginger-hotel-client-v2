@@ -260,8 +260,6 @@ export default function CustomCompleteUserHotel({
       rec: window_v2_rec,
     },
   };
-
-  console.log(window_design[window_v]);
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
@@ -397,7 +395,6 @@ export default function CustomCompleteUserHotel({
           }}
         />
       </View>
-
       <View
         style={[
           {
@@ -409,7 +406,7 @@ export default function CustomCompleteUserHotel({
       >
         <Svg
           width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
+            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "410"
           }
           height={
             Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
@@ -444,7 +441,7 @@ export default function CustomCompleteUserHotel({
       >
         <Svg
           width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "100%"
+            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "410"
           }
           height={
             Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
@@ -476,7 +473,6 @@ export default function CustomCompleteUserHotel({
           />
         </Svg>
       </View>
-
       <View
         style={{
           zIndex: 3,
@@ -498,7 +494,6 @@ export default function CustomCompleteUserHotel({
           }}
         />
       </View>
-
       <View
         style={{
           zIndex: 5,
