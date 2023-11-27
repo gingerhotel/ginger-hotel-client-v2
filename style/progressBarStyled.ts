@@ -23,7 +23,8 @@ export const Bar = styled.View`
 `;
 
 export const BarViewText = styled.View`
+  position: absolute;
+  top: 12%;
 `;
 export const BarText = styled.Text`
-
 `;

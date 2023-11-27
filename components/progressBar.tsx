@@ -10,11 +10,12 @@ import Svg, {
 } from "react-native-svg";
 import { Bar, BarText, BarView, BarViewText } from "../style/progressBarStyled";
 import * as Progress from 'react-native-progress';
+import { MonoText } from "./styledText";
 function ProgressBar({ todayLetterCnt }: any) {
   return (
     <BarView >
       <BarViewText>
-        <BarText>{todayLetterCnt} / 5</BarText>
+        <MonoText>{todayLetterCnt} / 5</MonoText>
       </BarViewText>
       <Bar>
         <Progress.Bar
