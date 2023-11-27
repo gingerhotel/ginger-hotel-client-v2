@@ -10,8 +10,15 @@ import { newLetter } from "../../api/letterApi";
 import styled from "styled-components/native";
 import { router, useLocalSearchParams } from "expo-router";
 import OneBtnModal from "../../components/Modal/OneBtnModal";
+import { useNavigation } from "expo-router";
 
-export default function Letter({ navigation }: any) {
+
+export default function Letter() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const { id } = useLocalSearchParams();
 
   const { register, handleSubmit, setValue } = useForm();
