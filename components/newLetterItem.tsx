@@ -21,6 +21,7 @@ import {
   LetterOuterContainer
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
+import BottemSheet from "./bottemSheet";
 const iconMore = require("../assets/icon/i_more_vert.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 
@@ -31,10 +32,10 @@ type Props = {
 };
 
 export const NewLetterItem = ({ letters }: any) => {
-  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
   const toggleModal = () => {
-    setBottomSheetVisible(!bottomSheetVisible);
+    setBottomSheetVisible(true);
   };
 
   const closeModal = () => {
@@ -42,37 +43,39 @@ export const NewLetterItem = ({ letters }: any) => {
   };
   console.log(letters)
   return (
-    <FlatList
-      data={letters}
-      renderItem={({ item }) =>
-        <LetterOuterContainer>
-          <LetterInnerContainer b_color="#FFFDF0">
-            <LetterInnerInfoView>
-              <LetterInnerTitieView>
-                <TouchableOpacity onPress={toggleModal}>
-                  <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-                </TouchableOpacity>
-                <LetterInnerTitieTextView>
-                  <LetterInnerSendText>보내는 이</LetterInnerSendText>
-                  <LetterInnerUserText>{item.content}</LetterInnerUserText>
-                </LetterInnerTitieTextView>
-                <TouchableOpacity onPress={toggleModal}>
-                  <SvgImg
-                    url={iconMore}
-                    style={styles.icon}
-                    width={30}
-                    height={30}
-                  />
-                </TouchableOpacity>
-              </LetterInnerTitieView>
-              <LetterInnerTextBox>
-                {item.senderNickname}
-              </LetterInnerTextBox>
-            </LetterInnerInfoView>
-          </LetterInnerContainer>
-        </LetterOuterContainer>
-      }
-      keyExtractor={item => item.id} />
+    <>
+      <FlatList
+        data={letters}
+        renderItem={({ item }) =>
+          <LetterOuterContainer>
+            <LetterInnerContainer b_color="#FFFDF0">
+              <LetterInnerInfoView>
+                <LetterInnerTitieView>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
+                  </TouchableOpacity>
+                  <LetterInnerTitieTextView>
+                    <LetterInnerSendText>보내는 이</LetterInnerSendText>
+                    <LetterInnerUserText>{item.senderNickname}</LetterInnerUserText>
+                  </LetterInnerTitieTextView>
+                  <TouchableOpacity onPress={toggleModal}>
+                    <SvgImg
+                      url={iconMore}
+                      width={30}
+                      height={30}
+                    />
+                  </TouchableOpacity>
+                </LetterInnerTitieView>
+                <LetterInnerTextBox>
+                  {item.content}
+                </LetterInnerTextBox>
+              </LetterInnerInfoView>
+            </LetterInnerContainer>
+          </LetterOuterContainer>
+        }
+        keyExtractor={item => item.id} />
+      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal}></BottemSheet>
+    </>
   );
 };
 
