@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useFonts } from "expo-font";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../components/toast";
+import { SessionProvider } from '../route/ctx';
 
 export default function _layout() {
   const queryClient = new QueryClient();
@@ -20,47 +21,49 @@ export default function _layout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <Stack
-          screenOptions={
-            {
-              // headerStyle: {
-              //     backgroundColor: 'black'
-              // },
-              // headerTintColor: 'white'
+    <SessionProvider>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <Stack
+            screenOptions={
+              {
+                // headerStyle: {
+                //     backgroundColor: 'black'
+                // },
+                // headerTintColor: 'white'
+              }
             }
-          }
-        >
-          <Stack.Screen
-            name="index"
-            options={{
-              title: "Home",
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="letter"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="(tabs)"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="[missing]"
-            options={{
-              title: "404",
-            }}
-          />
-        </Stack>
+          >
+            <Stack.Screen
+              name="index"
+              options={{
+                title: "Home",
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="letter"
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="[missing]"
+              options={{
+                title: "404",
+              }}
+            />
+          </Stack>
 
-        <Toast config={toastConfig} />
-      </RecoilRoot>
-    </QueryClientProvider>
+          <Toast config={toastConfig} />
+        </RecoilRoot>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }
