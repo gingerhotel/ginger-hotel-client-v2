@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-function KakaoAdFit() {
+function KakaoAdFit_relative() {
 
   // 최초 1회만 광고를 불러오기 위한 변수
   const adRef = useRef(false);
@@ -48,10 +48,8 @@ function KakaoAdFit() {
   );
 }
 
-export default React.memo(KakaoAdFit);
+export default React.memo(KakaoAdFit_relative);
 
 const Aside = styled.div`
   width: 100%;
-  position: fixed;
-  top: 0;
 `
