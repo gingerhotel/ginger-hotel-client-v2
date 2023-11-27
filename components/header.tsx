@@ -19,7 +19,7 @@ let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
-const Header = ({ isOwner }: any) => {
+const Header = ({ isOwner, keyCount, feekCount }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "white" }}>
       <View style={{ backgroundColor: colors.greyblack }}>
@@ -29,11 +29,11 @@ const Header = ({ isOwner }: any) => {
               <>
                 <View style={styles.container_1}>
                   <SvgImg width={40} height={40} url={i_key} />
-                  <Text style={styles.text}>03</Text>
+                  <Text style={styles.text}>{keyCount}</Text>
                 </View>
                 <View style={styles.container_2}>
                   <SvgImg width={40} height={40} url={i_glasses} />
-                  <Text style={styles.text}>03</Text>
+                  <Text style={styles.text}>{feekCount}</Text>
                   <TouchableOpacity>
                     <SvgImg url={i_plus} />
                   </TouchableOpacity>

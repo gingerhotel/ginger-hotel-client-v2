@@ -78,7 +78,7 @@ export default function HotelComp() {
 
   return (
     <ScrollView>
-      <Header isOwner={data.isOwner} />
+      <Header isOwner={data.isOwner} keyCount={data?.keyCount} feekCount={data?.feekCount}/>
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
