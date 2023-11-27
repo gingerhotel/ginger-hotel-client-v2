@@ -32,4 +32,18 @@ export const getHotel = async (id: string) => {
   }
 };
 
+export const updateHotel = async (props: any) => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    const response = await axios.patch(`${HOTEL_URL}/${1000011}`, props);
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
+
+
 
