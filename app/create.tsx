@@ -15,7 +15,7 @@ import Header from "../components/appHeader";
 export default function CreateHotel() {
   const [structColor, setStructColor] = useState("#CF332C");
   const [wallColor, setWallColor] = useState("#CF332C");
-  const [buildingDeco, setBuildingDeco] = useState("building1");
+  const [buildingDecorator, setBuildingDecorator] = useState("buildingDeco01");
   const [gardenDecorator, setGardenDeco] = useState("gardenDeco01");
   const [windowDecorator, setWindowDeco] = useState("windowDeco01");
   const [activeTitle, setTitle] = useState("벽면");
@@ -40,6 +40,7 @@ export default function CreateHotel() {
   ];
 
   const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
+  const buildingList = ["buildingDeco01", "buildingDeco02", "buildingDeco03"];
   const windowList = ["windowDeco01", "windowDeco02"];
   const gardenList = ["gardenDeco01", "gardenDeco02", "gardenDeco03"];
 
@@ -56,6 +57,7 @@ export default function CreateHotel() {
               structColor={structColor}
               gardenDecorator={gardenDecorator}
               windowDecorator={windowDecorator}
+              buildingDecorator={buildingDecorator}
             />
           </View>
           <View style={styles.deco_wrapper}>
@@ -94,6 +96,24 @@ export default function CreateHotel() {
                 ))}
             </View>
             <View style={styles.building_wrapper}>
+              {activeTitle === "건물장식" &&
+                buildingList?.map((url, index) => (
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => setBuildingDecorator(url)}
+                  >
+                    <CreateHotelDeco
+                      activeTitle={activeTitle}
+                      key={index}
+                      url={url}
+                      index={index}
+                      active={buildingDecorator}
+                    ></CreateHotelDeco>
+                  </TouchableOpacity>
+                ))}
+            </View>
+
+            <View style={styles.building_wrapper}>
               {activeTitle === "마당장식" &&
                 gardenList?.map((url, index) => (
                   <TouchableOpacity
@@ -101,6 +121,7 @@ export default function CreateHotel() {
                     onPress={() => setGardenDeco(url)}
                   >
                     <CreateHotelDeco
+                      activeTitle={activeTitle}
                       key={index}
                       url={url}
                       index={index}
@@ -135,6 +156,7 @@ export default function CreateHotel() {
                 bodyColor: wallColor,
                 windowDecorator,
                 gardenDecorator,
+                buildingDecorator,
               }}
               title="다음으로"
               color="green"
