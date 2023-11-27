@@ -19,6 +19,7 @@ import {
 import { useRecoilState } from "recoil";
 import { letterSwitchState } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
+import { router } from "expo-router";
 
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
@@ -53,7 +54,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   return (
     <SafeAreaView style={{ width: "100%" }}>
       <MailBoxView>
-        <SvgImg url={arrow} onPress={() => navigation.goBack()}></SvgImg>
+        <SvgImg url={arrow} onPress={() => router.back()}></SvgImg>
         <MailTitleView>
           <MailTitleText>오늘의 편지함</MailTitleText>
           <MailNumberText>64</MailNumberText>
