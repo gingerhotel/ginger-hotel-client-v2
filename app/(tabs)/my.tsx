@@ -71,8 +71,6 @@ export default function TabThreeScreen() {
         })
         .then((response) => {
           const { user } = response.data;
-          const { hotel } = response.data;
-          setHotelId(hotel.id);
           setUserInfo({
             nickname: user.nickname,
             code: user.code,
@@ -240,7 +238,7 @@ export default function TabThreeScreen() {
 
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-            onPress={() => {}}
+            onPress={() => { }}
           >
             <View>
               <Text
