@@ -52,6 +52,5 @@ export default React.memo(KakaoAdFit);
 
 const Aside = styled.div`
   width: 100%;
-  position: fixed;
   bottom: 0;
 `
