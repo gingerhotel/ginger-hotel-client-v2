@@ -36,6 +36,7 @@ import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 import CustomCompleteUserHotel from "../../../components/customCompletedUserHotel";
+import KakaoAdFit from "../../../advertisement/KakaoAdFit";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -78,7 +79,7 @@ export default function HotelComp() {
 
   return (
     <ScrollView>
-      <Header isOwner={data.isOwner} />
+      <Header isOwner={data.isOwner} keyCount={data?.keyCount} feekCount={data?.feekCount}/>
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
@@ -196,8 +197,8 @@ export default function HotelComp() {
         onClose={closeLoginModal}
         name="로그인"
         desc=""
-        img={ginger}
       />
+      <KakaoAdFit/>
     </ScrollView>
   );
 }
