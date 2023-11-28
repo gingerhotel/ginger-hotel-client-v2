@@ -21,7 +21,7 @@ export default function _layout() {
         name="village"
         options={{
           headerShown: false,
-          title: "빌리지",
+          title: "앨범",
           tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
         }}
       />
