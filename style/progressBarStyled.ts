@@ -25,6 +25,7 @@ export const Bar = styled.View`
 export const BarViewText = styled.View`
   position: absolute;
   top: 12%;
+  z-index: 1;
 `;
 export const BarText = styled.Text`
 `;
