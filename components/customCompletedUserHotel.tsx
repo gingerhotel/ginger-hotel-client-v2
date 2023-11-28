@@ -5,7 +5,6 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const test = require("../assets/decorations/gardenDeco01.svg");
 // const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
@@ -22,6 +21,19 @@ const window_v2_rec2_open: any = require("../assets/images/window_v2_rec2_open.s
 const window_v2_open: any = require("../assets/images/window_v2_open.svg");
 const window_main: any = require("../assets/images/25.svg");
 const window_main_open: any = require("../assets/images/window_main_open.svg");
+
+const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
+const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
+const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+
+const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
+const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
+const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
+
+const backgroundImg01 = require(`../assets/decorations/background01.svg`);
+const backgroundImg02 = require(`../assets/decorations/background02.svg`);
+const backgroundImg03 = require(`../assets/decorations/background03.svg`);
+
 export default function CustomCompleteUserHotel({
   wallColor,
   structColor,
@@ -400,6 +412,24 @@ export default function CustomCompleteUserHotel({
     },
   };
 
+  const gardenDeco: any = {
+    gardenDeco01: gardenDecoImg01,
+    gardenDeco02: gardenDecoImg02,
+    gardenDeco03: gardenDecoImg03,
+  };
+
+  const buildingDeco: any = {
+    buildingDeco01: buildingDecoImg01,
+    buildingDeco02: buildingDecoImg02,
+    buildingDeco03: buildingDecoImg03,
+  };
+
+  const backgroundDeco: any = {
+    background01: backgroundImg01,
+    background02: backgroundImg02,
+    background03: backgroundImg03,
+  };
+
   return (
     <>
       <View
@@ -508,7 +538,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`/assets/decorations/${buildingDecorator}.svg`}
+          url={buildingDeco[buildingDecorator]}
           style={{
             width: 103,
             height: 260,
@@ -527,7 +557,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`/assets/decorations/${background}.svg`}
+          url={backgroundDeco[background]}
           width={340}
           height={416}
           style={{
@@ -548,7 +578,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={test}
+          url={gardenDeco[gardenDecorator]}
           width={150}
           height={140}
           style={{
