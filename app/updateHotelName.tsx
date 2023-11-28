@@ -49,7 +49,7 @@ export default function UpdateHotelName() {
   return (
     <>
       <Header title="호텔 수정하기" />
-      <CreateHeader isActiveNumber={2} />
+      <CreateHeader isActiveNumber={3} />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.edit_wrapper}>

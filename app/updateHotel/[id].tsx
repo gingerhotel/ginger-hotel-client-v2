@@ -20,12 +20,12 @@ export default function UpdateHotel() {
     "loadHotel",
     async () => await getHotel(id as string),
     {
+      // refetchOnWindowFocus: false,
       onError: (e) => {
         console.log(`useQuery error : ${e}`);
       },
     }
   );
-
   const [structColor, setStructColor] = useState(data?.hotel?.structColor);
   const [wallColor, setWallColor] = useState(data?.hotel?.bodyColor);
   const [buildingDecorator, setBuildingDecorator] = useState(
@@ -193,6 +193,7 @@ export default function UpdateHotel() {
             <Buttons
               url="updateHotelName"
               props={{
+                id,
                 nickname: data?.hotel?.nickname,
                 description: data?.hotel?.description,
                 structColor,
