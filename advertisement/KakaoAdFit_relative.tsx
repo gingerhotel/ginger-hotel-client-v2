@@ -19,17 +19,11 @@ function KakaoAdFit_relative() {
     ins.style.display = 'none;';
 
     // 윈도우 사이즈에 따라 광고 사이즈 조정(사이즈마다 해당 광고 단위 ID 적용)
-    const windowSize = window.innerWidth;
-    if (windowSize < 1024) {
-      ins.setAttribute('data-ad-width', '320');
-      ins.setAttribute('data-ad-height', '50');
-      ins.setAttribute('data-ad-unit', 'DAN-BwBbKFsfyEkLOk39');
-    } else {
+
       ins.setAttribute('data-ad-width', '728');
       ins.setAttribute('data-ad-height', '90');
-      ins.setAttribute('data-ad-unit', 'DAN-E2n7vvhhl9oTgc6J');
+      ins.setAttribute('data-ad-unit', 'DAN-phYfLokjYfaajOTg');
       ins.style.marginLeft = "12px";
-    }
 
     script.async = true;
     script.type = 'text/javascript';
