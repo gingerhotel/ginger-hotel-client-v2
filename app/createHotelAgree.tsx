@@ -44,12 +44,12 @@ export default function createHotelAgree() {
     newHotel,
     {
       onSuccess: (data) => {
-        router.push(`/hotel/${data.hotelId}`)
+        router.push(`/hotel/${data.hotelId}`);
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
-      onError: (data) => {
-        console.log(data);
-      }
+      onError: (data: any) => {
+        alert(data?.message);
+      },
     }
   );
 

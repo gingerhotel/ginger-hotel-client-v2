@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { StyleSheet, View, TextInput } from "react-native";
 import Buttons from "../../components/buttons";
@@ -11,7 +11,6 @@ import styled from "styled-components/native";
 import { router, useLocalSearchParams } from "expo-router";
 import ErrorModal from "../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
-import OneBtnModal from "../../components/Modal/OneBtnModal";
 import { useNavigation } from "expo-router";
 
 
@@ -24,6 +23,8 @@ export default function Letter() {
   const { id } = useLocalSearchParams();
 
   const { register, handleSubmit, setValue } = useForm();
+  const [isNotEmptyLetters, setIsNotEmptyLetters] = useState<boolean>(false);
+  const [isNotEmptyNickname, setIsNotEmptyNickname] = useState<boolean>(false);
   useEffect(() => {
     register("letters");
     register("nickname");
@@ -79,7 +80,11 @@ export default function Letter() {
           multiline={true}
           numberOfLines={20}
           placeholder="전하고 싶은 말을 적어주세요!"
-          onChangeText={(text) => setValue("letters", text)}
+          onChangeText={(text) => {
+            setIsNotEmptyLetters(text.length > 0)
+            setValue("letters", text)
+          }}
+          maxLength={300}
         />
         <View style={styles.nickname_input}>
           <MonoText style={styles.input_text}>받는 이</MonoText>
@@ -87,7 +92,11 @@ export default function Letter() {
             blurOnSubmit={true}
             style={styles.input}
             placeholder="닉네임을 입력하세요 (8자 이하)"
-            onChangeText={(text) => setValue("nickname", text)}
+            onChangeText={(text) => {
+              setIsNotEmptyNickname(text.length > 0)
+              setValue("nickname", text)
+            }}
+            maxLength={8}
           />
         </View>
       </View>
@@ -105,6 +114,7 @@ export default function Letter() {
           is_width={true}
           color="green"
           callback={handleSubmit(letterSubmit)}
+          is_disable={!isNotEmptyLetters || !isNotEmptyNickname}
         />
       </View>
       <ErrorModal
