@@ -587,7 +587,7 @@ export default function CustomCompleteUserHotel({
             marginTop: 20,
             zIndex: 3,
             top: 0,
-            left: 22,
+            left: -82,
             position: "absolute",
           }}
         />
