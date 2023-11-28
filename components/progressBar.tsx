@@ -10,12 +10,9 @@ function ProgressBar({ todayLetterCnt, goalCnt }: any) {
   return (
     <BarView>
       <BarViewText style={styles.BarViewText}>
-        <MonoText>
+        <MonoText style={styles.text}>
           {todayLetterCnt} / {goalCnt}
         </MonoText>
-        <Text fontSize={18} fill={colors.Whiteyello}>
-          {todayLetterCnt} / {goalCnt}
-        </Text>
       </BarViewText>
       <Bar>
         <Progress.Bar
@@ -36,11 +33,12 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   text: {
-    paddingTop: 1,
     fontSize: 15,
     fontWeight: "600",
     fontFamily: "Quicksand-Variable",
     color: colors.Whiteyello,
+    textShadowColor: colors.grey900,
+    textShadowOffset: { width: 1, height: 2 },
   },
   BarView: {
     flexDirection: "column",
