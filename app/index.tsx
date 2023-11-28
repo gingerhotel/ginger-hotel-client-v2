@@ -13,7 +13,7 @@ export default function Page() {
   }, []);
   return (
     <Link href={"/hotel/1"}>
-      <KakaoAdFit />
+      {/* <KakaoAdFit /> */}
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Image source={splash} />
       </View>
