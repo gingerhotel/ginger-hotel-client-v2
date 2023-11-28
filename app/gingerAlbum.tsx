@@ -2,10 +2,17 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { colors } from "../constants/Colors";
 import GingermanCard from "../components/gingermanCard";
 import Header from "../components/appHeader";
+import { useEffect } from "react";
+import { useNavigation } from "expo-router";
 
 const bellboy = require("../assets/gingerman/g_bellboy.png");
 
 const GingerAlbum = () => {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
     <>
       <Header title="진저맨 앨범" />
