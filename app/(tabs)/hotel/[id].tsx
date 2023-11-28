@@ -27,8 +27,8 @@ const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.sv
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 
 import { myDate } from "../../../api/myApi";
-import { useSetRecoilState } from "recoil";
-import { hotelIdState } from "../../../atom/letterAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { hotelIdState, newLetterCountState } from "../../../atom/letterAtom";
 import { newLetterData } from "../../../api/letterApi";
 import { getHotel } from "../../../api/hotelApi";
 import { Hotel } from "../../../api/interface";
@@ -45,10 +45,12 @@ export default function HotelComp() {
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
-  const setHotelId = useSetRecoilState<number>(hotelIdState);
+  const [goalCnt, setGoalCnt] = useState<Number>(5);
+  const setHotelId = useSetRecoilState<string | string[]>(hotelIdState);
   const [open, setOpen] = useState(true);
   const navigation = useNavigation();
-
+  const [newLetterCount, setNewLetterCount] =
+    useRecoilState(newLetterCountState);
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -59,7 +61,6 @@ export default function HotelComp() {
   const closeModal = () => {
     setModalVisible(false);
   };
-
   const { data, status, error } = useQuery(
     "loadHotel",
     async () => await getHotel(id as string),
@@ -69,24 +70,27 @@ export default function HotelComp() {
       },
     }
   );
+  console.log(data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
+  } else {
+    setNewLetterCount(data?.todayReceivedLetterCount);
+    setHotelId(id);
   }
-  console.log(data);
-  const handleClickWindow = (num: any) => {
-    router.push(`/mailbox/${num}`);
-  };
-
   return (
     <ScrollView>
-      <Header isOwner={data.isOwner} keyCount={data?.keyCount} feekCount={data?.feekCount}/>
+      <Header
+        isOwner={data.isOwner}
+        keyCount={data?.keyCount}
+        feekCount={data?.feekCount}
+      />
       <View style={styles.container}>
         <ProgressBarView>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
-          <MonoText style={styles.hotel_desc2}>
-            {todayLetterCnt?.toString() /* 객체 처리 필요 */}
-          </MonoText>
-          <ProgressBar todayLetterCnt={1} />
+          <ProgressBar
+            todayLetterCnt={data?.todayReceivedLetterCount}
+            goalCnt={goalCnt}
+          />
         </ProgressBarView>
         <Text style={styles.hotel_name}>
           {data?.hotel?.nickname}님의 진저호텔
@@ -97,13 +101,15 @@ export default function HotelComp() {
         <View style={{ backgroundColor: colors.greyblack }}>
           <CustomCompleteUserHotel
             window={data.hotelWindows}
-            onPress={handleClickWindow}
+            // onPress={handleClickWindow}
             wallColor={data?.hotel?.bodyColor}
             structColor={data?.hotel?.structColor}
+            buildingDecorator={data?.hotel?.buildingDecorator}
             is_border={false}
             is_front_bg={true}
-            gardenDeco={data?.hotel?.gardenDeco}
-            window_v={"windowDeco01"}
+            gardenDecorator={data?.hotel?.gardenDecorator}
+            background={data?.hotel?.background}
+            window_v={data?.hotel?.windowDecorator}
           />
         </View>
         {/* </Link> */}
@@ -116,7 +122,7 @@ export default function HotelComp() {
                   color="green"
                   width={288}
                   url="mailbox"
-                  is_disable={open}
+                  is_disable={!data?.canReceiveLetterToday}
                 />
                 <TouchableOpacity>
                   <SvgImg
@@ -170,14 +176,6 @@ export default function HotelComp() {
                   auth={data?.isLoginMember}
                 />
               </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="내 호텔 만들기"
-                  color="green"
-                  width={350}
-                  callback={() => setLoginModalVisible(true)}
-                />
-              </View>
             </>
           )}
         </View>
@@ -198,7 +196,7 @@ export default function HotelComp() {
         name="로그인"
         desc=""
       />
-      <KakaoAdFit/>
+      <KakaoAdFit />
     </ScrollView>
   );
 }

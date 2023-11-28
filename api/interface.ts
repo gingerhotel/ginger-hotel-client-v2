@@ -18,7 +18,11 @@ export interface NewHotel {
   bodyColor: string;
   nickname: string;
   description: string;
-  gender: "MAN | WOMAN";
+  buildingDecorator: string;
+  gardenDecorator: string;
+  windowDecorator: string;
+  background: string;
+  gender: string;
   birthDate: string;
   code: string;
 }

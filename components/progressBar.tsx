@@ -1,23 +1,25 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
-import { View } from "react-native";
-import Svg, {
-  Defs,
-  Path,
-  Stop,
-  LinearGradient,
-  Text as SvgText,
-} from "react-native-svg";
-import { Bar, BarText, BarView, BarViewText } from "../style/progressBarStyled";
-import * as Progress from 'react-native-progress';
-function ProgressBar({ todayLetterCnt }: any) {
+import { StyleSheet, View } from "react-native";
+import { colors } from "../constants/Colors";
+import * as Progress from "react-native-progress";
+import { Text } from "react-native-svg";
+import { Bar, BarView, BarViewText } from "../style/progressBarStyled";
+import { MonoText } from "./styledText";
+
+function ProgressBar({ todayLetterCnt, goalCnt }: any) {
   return (
-    <BarView >
-      <BarViewText>
-        <BarText>{todayLetterCnt} / 5</BarText>
+    <BarView>
+      <BarViewText style={styles.BarViewText}>
+        <MonoText>
+          {todayLetterCnt} / {goalCnt}
+        </MonoText>
+        <Text fontSize={18} fill={colors.Whiteyello}>
+          {todayLetterCnt} / {goalCnt}
+        </Text>
       </BarViewText>
       <Bar>
         <Progress.Bar
+          style={styles.BarView}
           progress={todayLetterCnt / 5}
           width={null}
           height={20}
@@ -34,13 +36,18 @@ export default ProgressBar;
 
 const styles = StyleSheet.create({
   text: {
+    paddingTop: 1,
     fontSize: 15,
     fontWeight: "600",
     fontFamily: "Quicksand-Variable",
-    shadow: {
-      offset: { width: 0, height: 2 },
-      radius: 2,
-      color: "rgba(60, 32, 32, 0.25)",
-    },
+    color: colors.Whiteyello,
+  },
+  BarView: {
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  BarViewText: {
+    position: "absolute",
+    zIndex: 1,
   },
 });
