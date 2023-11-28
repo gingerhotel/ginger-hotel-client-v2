@@ -9,7 +9,6 @@ import {
   Platform,
 } from "react-native";
 import { colors } from "../../constants/Colors";
-import { typography } from "../../constants/Typo";
 import { MonoText } from "../styledText";
 import { router } from "expo-router";
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
-import { WithLocalSvg } from "react-native-svg";
+import { Line, WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -17,6 +17,7 @@ import { hotelIdState } from "../../atom/letterAtom";
 import { router } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
+import { Link } from "expo-router";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -51,15 +52,14 @@ interface UserApiResponse {
 }
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
-
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const closeLoginModal = () => {
     setLoginModalVisible(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // setLoginModalVisible(true);
-  }, [])
+  }, []);
 
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
@@ -73,9 +73,7 @@ export default function TabThreeScreen() {
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
-      
       const accessToken = await AsyncStorage.getItem("accessToken");
-      console.log(accessToken);
       axios
         .get<UserApiResponse>(`${BASE_URL}/members/my`, {
           headers: {
@@ -251,7 +249,7 @@ export default function TabThreeScreen() {
 
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-            onPress={() => { }}
+            onPress={() => {}}
           >
             <View>
               <Text
@@ -295,16 +293,18 @@ export default function TabThreeScreen() {
             ) : (
               <Image source={brushSvg} />
             )}
-            <Text
-              style={{
-                color: colors.Whiteyello,
-                fontWeight: "400",
-                marginTop: 10,
-                fontFamily: "NanumSquareNeo-Variable",
-              }}
-            >
-              호텔수정
-            </Text>
+            <Link href={`/updateHotel/${1000011}`}>
+              <Text
+                style={{
+                  color: colors.Whiteyello,
+                  fontWeight: "400",
+                  marginTop: 10,
+                  fontFamily: "NanumSquareNeo-Variable",
+                }}
+              >
+                호텔수정
+              </Text>
+            </Link>
           </TouchableOpacity>
           <View
             style={[
@@ -403,7 +403,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              AsyncStorage.removeItem('accessToken');
+              AsyncStorage.removeItem("accessToken");
               router.push("/");
             }}
           >
