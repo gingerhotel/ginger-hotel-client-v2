@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Image,
@@ -14,7 +14,12 @@ import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 
 export default function LetterCompleted() {
-  const navigation: any = useNavigation();
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
+
   const routes = navigation.getState()?.routes;
   const prevRoute = routes[routes.length - 2];
   const isAnswer = prevRoute.name === "answer" ? true : false;
