@@ -9,7 +9,7 @@ export default function Page() {
   useEffect(() => {
     setTimeout(() => {
       router.push("/hotel/1");
-    }, 2000);
+    }, 1);
   }, []);
   return (
     <Link href={"/hotel/1"}>
