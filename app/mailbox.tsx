@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 import NewLetterItem from "../components/newLetterItem";
 import MailHeader from "../components/mailHeader";
@@ -13,7 +13,20 @@ export default function MailBox({ navigation }: any) {
   const letterRender = useRecoilValue(letterSwitchState)
   const replyGo = useRecoilValue(replyBoxSwitchState)
   const hotelId = useRecoilValue(hotelIdState);
-  const { data, isLoading } = useQuery('newLetters', async () => await newLetterData({ hotelId }));
+  const { data, isLoading, refetch } = useQuery('newLetters', async () =>
+    await newLetterData({ hotelId }
+    ), {
+    enabled: true
+  }
+  );
+
+  const [newLettersData, setNewLetters] = useState(data);
+  useEffect(() => {
+    setNewLetters(data);
+    return () => {
+      refetch();
+    }
+  }, [data])
   return (
     <View style={styles.container}>
       {replyGo ? (
@@ -21,11 +34,10 @@ export default function MailBox({ navigation }: any) {
       ) : (
         <MailHeader marginTop={50} navigation={navigation} />
       )}
-
       <ScrollView>
         <View style={styles.mailbox_items}>
           {letterRender.new ? (
-            isLoading ? (<Text>로딩...</Text>) : (<NewLetterItem letters={data?.letters} />)
+            isLoading ? (<Text>로딩...</Text>) : (<NewLetterItem letters={newLettersData?.letters} />)
           ) : (
             <ReplyLetterItem />
           )}
