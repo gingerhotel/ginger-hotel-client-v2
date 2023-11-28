@@ -108,7 +108,7 @@ export default function CreateHotel() {
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={buildingDecorator}
                     ></CreateHotelDeco>
@@ -126,7 +126,7 @@ export default function CreateHotel() {
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={gardenDecorator}
                     ></CreateHotelDeco>
@@ -143,7 +143,7 @@ export default function CreateHotel() {
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={background}
                     ></CreateHotelDeco>
