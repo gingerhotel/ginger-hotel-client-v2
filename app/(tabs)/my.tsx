@@ -374,7 +374,7 @@ export default function TabThreeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-          <KakaoAdFit_relative/>
+          {/* <KakaoAdFit_relative/> */}
         </View>
       <View style={styles.linksContainer}>
         <View>
