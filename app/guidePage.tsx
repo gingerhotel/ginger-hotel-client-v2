@@ -10,12 +10,18 @@ import { WithLocalSvg } from "react-native-svg";
 import { StyleSheet } from "react-native";
 import { colors } from "../constants/Colors";
 import { SvgImg } from "../components/svgImg";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
+import { useEffect } from "react";
 
 const closeIcon = require("../assets/icon/i_close_line.svg");
 const bottomLogo = require("../assets/images/logo_info.svg");
 
 const GuidePage = () => {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
     <ScrollView>
       <View style={styles.container}>

@@ -128,14 +128,14 @@ export default function TabThreeScreen() {
                 width: 150,
               }}
             >
-              <View
+              {/*<View
                 style={{
                   height: 45,
                   justifyContent: "space-between",
                   marginTop: 5,
                 }}
               >
-                <Text
+                 <Text
                   style={{
                     color: colors.grey100,
                     fontWeight: "400",
@@ -145,7 +145,7 @@ export default function TabThreeScreen() {
                   }}
                 >
                   내 멤버쉽
-                </Text>
+                </Text> 
                 <Text
                   style={{
                     color: colors.green600,
@@ -162,7 +162,7 @@ export default function TabThreeScreen() {
                   styles.separator_vertical,
                   { backgroundColor: colors.grey900 },
                 ]}
-              ></View>
+              ></View>*/}
               <TouchableOpacity
                 onPress={() => {
                   router.push("/instaShared");
