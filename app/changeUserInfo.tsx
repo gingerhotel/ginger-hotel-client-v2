@@ -3,10 +3,10 @@ import Chip from "../components/chip";
 import Input from "../components/input";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Buttons from "../components/buttons";
 import CenterModal from "../components/centerModal";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -23,6 +23,12 @@ const ChangeUserInfo = () => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
 
   const input_size = {
     web: 120,

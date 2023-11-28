@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Buttons from "../components/buttons";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
+import { useNavigation } from "expo-router";
 
 export default function DeleteCompleted() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <View style={styles.mailbox_items}>

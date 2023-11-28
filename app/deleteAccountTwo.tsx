@@ -1,12 +1,49 @@
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../constants/Colors";
 import CheckBox from "../components/chekbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Buttons from "../components/buttons";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
+import { useMutation, useQuery } from "react-query";
+import { deleteUser } from "../api/myApi";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DeleteAccountTwo = () => {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const [checked, setChecked] = useState(false);
+
+  const { data, status, error } = useQuery(
+    "deleteUser",
+    async () => await deleteUser,
+    {
+      // refetchOnWindowFocus: false,
+      onError: (e) => {
+        console.log(`useQuery error : ${e}`);
+      },
+    }
+  );
+
+  const mutation = useMutation(
+    deleteUser, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
+    {
+      onSuccess: (data) => {
+        AsyncStorage.removeItem("accessToken");
+        router.push("/deleteCompleted") // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+      },
+    }
+  );
+
+  const userDelSubmit = async () => {
+    try {
+      await mutation.mutateAsync();
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -55,7 +92,7 @@ const DeleteAccountTwo = () => {
             color="green"
             is_disable={!checked}
             callback={() => {
-              router.push("/deleteCompleted");
+              userDelSubmit();
             }}
           />
         </View>
