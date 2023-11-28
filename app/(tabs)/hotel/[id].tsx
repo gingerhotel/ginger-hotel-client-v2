@@ -51,6 +51,8 @@ export default function HotelComp() {
   const navigation = useNavigation();
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -87,6 +89,15 @@ export default function HotelComp() {
       },
     }
   );
+
+  const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
+
+  useEffect(() => {
+    if (data) {
+      setHotelWindow(data.hotelWindows);
+    }
+  }, [data]);
+
   console.log(data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
@@ -94,6 +105,7 @@ export default function HotelComp() {
     setNewLetterCount(data?.todayReceivedLetterCount);
     setHotelId(id);
   }
+
   return (
     <ScrollView>
       <Header
