@@ -65,6 +65,7 @@ export default function HotelComp() {
     "loadHotel",
     async () => await getHotel(id as string),
     {
+      refetchOnWindowFocus : false,
       onError: (e) => {
         console.log(`useQuery error : ${e}`);
       },
