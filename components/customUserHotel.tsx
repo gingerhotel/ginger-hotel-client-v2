@@ -245,7 +245,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${buildingDecorator}.svg`}
+          url={`/assets/decorations/${buildingDecorator}.svg`}
           style={{
             width: 63,
             height: 220,
@@ -265,7 +265,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDecorator}.svg`}
+          url={`/assets/decorations/${gardenDecorator}.svg`}
           width={150}
           height={140}
           style={{
@@ -287,7 +287,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${windowDecorator}_com.svg`}
+          url={`/assets/decorations/${windowDecorator}_com.svg`}
           width={355}
           height={390}
           style={{
@@ -309,7 +309,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${background}.svg`}
+          url={`/assets/decorations/${background}.svg`}
           width={340}
           height={416}
           style={{
