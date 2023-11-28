@@ -15,6 +15,7 @@ import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
 import { router } from "expo-router";
+import LoginModal from "../components/Modal/\bloginModal";
 
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
@@ -34,6 +35,11 @@ export default function Login({ navigation }: any) {
   React.useEffect(() => {
     register("socialId");
   }, [register]);
+
+  const [oneBtnModalVisible, setOneBtnModalVisible] = React.useState<boolean>(false);
+  const closeoneBtnModal = () => {
+    setOneBtnModalVisible(false);
+  };
 
   const handleLoginProd = async (data: FieldValues) => {
     //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
@@ -125,6 +131,7 @@ export default function Login({ navigation }: any) {
       .catch((err) => {
         console.log(err);
       });
+      
       //await AsyncStorage.setItem("@user", JSON.stringify(user));
       //setUserInfo(user);
     } catch (error) {
@@ -143,6 +150,13 @@ export default function Login({ navigation }: any) {
         <Image source={SVG} style={styles.hotel_img} />
       )}
 
+      <LoginModal
+        height={300}
+        visible={oneBtnModalVisible}
+        onClose={closeoneBtnModal}
+        name="로그인"
+        desc=""
+      />
       <View style={styles.social_btn_group}>
         <SocialButton name={"apple"} />
         <SocialButton name={"google"} />
@@ -195,7 +209,7 @@ export default function Login({ navigation }: any) {
           title="Sign in with Google"
           disabled={!request}
           onPress={() => {
-            promptAsync();
+            setOneBtnModalVisible(true);
           }}
         />
         <View style={styles.card}>
