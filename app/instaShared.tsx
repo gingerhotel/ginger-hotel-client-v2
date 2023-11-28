@@ -10,7 +10,7 @@ const bottomLogo = require("../assets/images/logo_insta_shared.svg");
 const InstaShared = () => {
   const [userInfo, setUserInfo] = useState({
     userName: "가나다라마바사",
-    userCode: "222222",
+    userCode: "2222222",
   });
 
   const [codeArray, setCodeArray] = useState<string[]>([
