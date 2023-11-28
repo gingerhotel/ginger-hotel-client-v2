@@ -25,8 +25,6 @@ import { MEMBER_URL } from "../../api/url";
 import { useRoute } from "@react-navigation/native";
 import { signInWithKakao, RestApiKey, redirectUrl } from "../../api/kakaoApi";
 import { WithLocalSvg } from "react-native-svg";
-import { googleLoginState } from "../../atom/letterAtom";
-import { useSetRecoilState } from "recoil";
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");

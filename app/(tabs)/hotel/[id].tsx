@@ -20,7 +20,7 @@ import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
 import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation, useSegments } from "expo-router";
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
@@ -79,9 +79,8 @@ export default function HotelComp() {
   //   }
   // }, [id, navigation]);
 
-  const { data, status, error } = useQuery(
+  
   const segments = useSegments();
-
   useEffect(() => {
     const isHotelPath = segments[1] === "hotel";
     if (isHotelPath) {
