@@ -87,7 +87,8 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
           })
           .then((response) => {
             const { hotel } = response.data;
-            router.push(`/hotel/${hotel.id}`);
+            router.replace(`/`);
+            router.replace(`/hotel/${hotel.id}`);
           });
       }
     },
