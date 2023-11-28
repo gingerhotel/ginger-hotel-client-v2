@@ -7,7 +7,7 @@ import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 // const frontBg = require("../assets/images/frontBg.svg");
 // const backBg = require("../assets/images/backBg.svg");
-const building1 = require("../assets/decorations/buildingDeco01.svg");
+const building1 = require("../assets/decorations/building1.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
 const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");

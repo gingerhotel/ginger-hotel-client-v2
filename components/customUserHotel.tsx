@@ -6,18 +6,20 @@ import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
+const backBg = require("../assets/images/backBg.svg");
+const building1 = require("../assets/decorations/building1.svg");
 export default function CustomUserHotel({
   wallColor,
   structColor,
   gardenDecorator,
   windowDecorator,
-  buildingDecorator,
   is_border,
   is_front_bg,
 }: any) {
   const web = { top: 41, left: 43 };
   const _web = { top: 42, left: 43 };
   const app = { top: 63, left: 5 };
+
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
@@ -244,16 +246,16 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${buildingDecorator}.svg`}
-          width={300}
-          height={406}
+          url={building1}
+          width={340}
+          height={416}
           style={{
-            width: 63,
-            height: 220,
+            width: 355,
+            height: 390,
             marginTop: 20,
-            zIndex: 99,
-            top: 74,
-            left: 160,
+            zIndex: 3,
+            top: 73,
+            left: 13,
             position: "absolute",
           }}
         />
