@@ -80,6 +80,15 @@ export default function HotelComp() {
   // }, [id, navigation]);
 
   const { data, status, error } = useQuery(
+  const segments = useSegments();
+
+  useEffect(() => {
+    const isHotelPath = segments[1] === "hotel";
+    if (isHotelPath) {
+      refetch();
+    }
+  }, [segments]);
+  const { data, status, error, refetch } = useQuery(
     "loadHotel",
     async () => await getHotel(id as string),
     {
