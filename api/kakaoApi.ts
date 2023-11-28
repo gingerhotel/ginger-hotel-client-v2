@@ -12,7 +12,7 @@ import { UserApiResponse } from "./interface";
 import { MEMBER_URL } from "./url";
 
 export const RestApiKey = process.env.EXPO_PUBLIC_KAKAO_WEB_API_KEY;
-export const redirectUrl = "https://www.ginger-hotel.site/hotel/1";
+export const redirectUrl = "https://www.ginger-hotel.site";
 
 export const signInWithKakao = async (
   codeWeb: string,
