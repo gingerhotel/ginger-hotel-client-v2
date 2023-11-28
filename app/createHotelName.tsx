@@ -55,13 +55,15 @@ export default function CreateHotelName() {
           >
             <Input
               onChange={(text: string) => setNickname(text)}
-              placeholder="내 닉네임"
+              placeholder="내 닉네임 (최대 8글자)"
+              maxLength={8}
             />
             <View style={{ marginTop: 8 }}></View>
             <Input
               multiline={5}
               onChange={(text: string) => setDescription(text)}
-              placeholder="내 호텔을 소개해주세요(최대 NN글자)"
+              placeholder="내 호텔을 소개해주세요 (최대 25글자)"
+              maxLength={25}
             />
           </View>
           <View style={styles.btn_wrapper}>
