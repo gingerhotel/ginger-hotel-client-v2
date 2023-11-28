@@ -9,6 +9,8 @@ import { newLetter } from "../../api/letterApi";
 
 import styled from "styled-components/native";
 import { router, useLocalSearchParams } from "expo-router";
+import ErrorModal from "../../components/Modal/errorModal";
+import { ErrorMessageConverter } from "../../data/error-message-converter";
 import OneBtnModal from "../../components/Modal/OneBtnModal";
 import { useNavigation } from "expo-router";
 
@@ -27,23 +29,19 @@ export default function Letter() {
     register("nickname");
   }, [register]);
 
-  const [oneBtnModalVisible, setOneBtnModalVisible] = useState<boolean>(false);
-  const closeoneBtnModal = () => {
-    setOneBtnModalVisible(false);
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>('');
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
   };
-  // useEffect(()=>{
-  //    setOneBtnModalVisible(true);
-  // }, [])
-  // error 코드 분기로, letterSubmit 함수 Catch 쪽에 setOneBtnModalVisible 실행하시면 됩니다. 
-  // 버튼 띄우는거 테스트하려면 주석 푸시고 useEffect() 한번 로드해보세요
 
   const mutation = useMutation(
-    // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
-    newLetter,
+    newLetter, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     {
       onSuccess: (data) => {
-        router.push("/letterCompleted")
-        // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.push("/letterCompleted") // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -58,8 +56,14 @@ export default function Letter() {
       };
       // 뮤테이션 실행
       await mutation.mutateAsync(letterData);
-    } catch (error) {
-      console.error("Mutation failed:", error);
+    } catch (error: any) {
+      if (error.response.status === 400 || error.response.status === 401 || error.response.status === 403) {
+        const obj = ErrorMessageConverter.convert(error.response.data.errorCode);
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage('친구 호텔로 돌아가기');
+        setErrorModalVisible(true);
+      }
     }
   };
 
@@ -82,7 +86,7 @@ export default function Letter() {
           <TextInput
             blurOnSubmit={true}
             style={styles.input}
-            placeholder="닉네임을 입력하세요 (10자 이하)"
+            placeholder="닉네임을 입력하세요 (8자 이하)"
             onChangeText={(text) => setValue("nickname", text)}
           />
         </View>
@@ -103,12 +107,14 @@ export default function Letter() {
           callback={handleSubmit(letterSubmit)}
         />
       </View>
-      <OneBtnModal
+      <ErrorModal
         height={300}
-        visible={oneBtnModalVisible}
-        onClose={closeoneBtnModal}
-        name="zz"
-        desc=""
+        visible={ErrorModalVisible}
+        onClose={closeErrorModal}
+        name={errorTitle}
+        desc={errorMessage}
+        buttonMessage={errorButtonMessage}
+        url={`hotel/${id}`}
       />
     </View>
   );
