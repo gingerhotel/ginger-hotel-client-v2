@@ -7,13 +7,19 @@ import { colors } from "../constants/Colors";
 import React from "react";
 import { SvgImg } from "./svgImg";
 
+const windowDeco01 = require(`../assets/decorations/windowDeco01.svg`);
+const windowDeco02 = require(`../assets/decorations/windowDeco02.svg`);
+
 const createHotelDecoV2 = ({ url, active }: any) => {
-  const image = `../assets/decorations/${url}.svg`;
+  const windowDeco: any = {
+    windowDeco01: windowDeco01,
+    windowDeco02: windowDeco01,
+  };
 
   return (
     <View style={[styles.color, active === url && styles.active]}>
       <SvgImg
-        url={image}
+        url={windowDeco[url]}
         width={50}
         height={70}
         style={{

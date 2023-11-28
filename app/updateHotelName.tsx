@@ -40,7 +40,17 @@ export default function UpdateHotelName() {
   const handleFormSubmit = async () => {
     try {
       // 뮤테이션 실행
-      await mutation.mutateAsync({ ...props });
+      await mutation.mutateAsync({
+        id: props?.id,
+        nickname: newNickname,
+        description: newDescription,
+        structColor: props?.structColor,
+        bodyColor: props?.bodyColor,
+        windowDecorator: props?.windowDecorator,
+        gardenDecorator: props?.gardenDecorator,
+        buildingDecorator: props?.buildingDecorator,
+        background: props?.background,
+      });
     } catch (error) {
       console.error("Mutation failed:", error);
     }

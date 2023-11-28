@@ -12,7 +12,7 @@ import { UserApiResponse } from "./interface";
 import { MEMBER_URL } from "./url";
 
 export const RestApiKey = process.env.EXPO_PUBLIC_KAKAO_WEB_API_KEY;
-export const redirectUrl = "https://www.ginger-hotel.site";
+export const redirectUrl = "https://www.ginger-hotel.site/hotel/1";
 
 export const signInWithKakao = async (
   codeWeb: string,
@@ -37,21 +37,22 @@ export const signInWithKakao = async (
       const response = await authKakao(_data);
       const { status, data } = response;
 
+      AsyncStorage.setItem("accessToken", data?.accessToken);
+
       if (status === 200) {
-        AsyncStorage.setItem("accessToken", data.accessToken);
         router.push("/create");
         onSuccess(data);
       } else if (status === 201) {
-        const hotelResponse = await axios.get<UserApiResponse>(
-          `${MEMBER_URL}/my`,
-          {
+        axios
+          .get<UserApiResponse>(`${MEMBER_URL}/my`, {
             headers: {
               Authorization: `Bearer ${data.accessToken}`,
             },
-          }
-        );
-        const { hotel } = hotelResponse.data;
-        onSuccess({ status, hotel });
+          })
+          .then((response) => {
+            const { hotel } = response.data;
+            router.push(`/hotel/${hotel.id}`);
+          });
       }
     } catch (error) {
       onError(error);

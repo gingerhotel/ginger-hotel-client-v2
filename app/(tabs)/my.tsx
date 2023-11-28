@@ -70,6 +70,8 @@ export default function TabThreeScreen() {
     keyCount: 0,
     feekCount: 0,
   });
+
+  const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
@@ -81,7 +83,7 @@ export default function TabThreeScreen() {
           },
         })
         .then((response) => {
-          const { user } = response.data;
+          const { user, hotel } = response.data;
           setUserInfo({
             nickname: user.nickname,
             code: user.code,
@@ -91,6 +93,8 @@ export default function TabThreeScreen() {
             keyCount: user.keyCount,
             feekCount: user.feekCount,
           });
+
+          setHotelinfo(hotel.id);
 
           console.log(response.data);
           console.log("?");
@@ -124,14 +128,14 @@ export default function TabThreeScreen() {
                 width: 150,
               }}
             >
-              <View
+              {/*<View
                 style={{
                   height: 45,
                   justifyContent: "space-between",
                   marginTop: 5,
                 }}
               >
-                <Text
+                 <Text
                   style={{
                     color: colors.grey100,
                     fontWeight: "400",
@@ -141,7 +145,7 @@ export default function TabThreeScreen() {
                   }}
                 >
                   내 멤버쉽
-                </Text>
+                </Text> 
                 <Text
                   style={{
                     color: colors.green600,
@@ -158,7 +162,7 @@ export default function TabThreeScreen() {
                   styles.separator_vertical,
                   { backgroundColor: colors.grey900 },
                 ]}
-              ></View>
+              ></View>*/}
               <TouchableOpacity
                 onPress={() => {
                   router.push("/instaShared");
@@ -293,7 +297,7 @@ export default function TabThreeScreen() {
             ) : (
               <Image source={brushSvg} />
             )}
-            <Link href={`/updateHotel/${1000011}`}>
+            <Link href={`/updateHotel/${hotel}`}>
               <Text
                 style={{
                   color: colors.Whiteyello,
@@ -372,8 +376,8 @@ export default function TabThreeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-          {/* <KakaoAdFit_relative/> */}
-        </View>
+        {/* <KakaoAdFit_relative/> */}
+      </View>
       <View style={styles.linksContainer}>
         <View>
           <TouchableOpacity>

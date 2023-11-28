@@ -45,7 +45,6 @@ export default function UpdateHotel() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  console.log(data);
   // 변경할 수 있는 컬러 리스트
   const selectColors = [
     "#CF332C",
@@ -122,13 +121,13 @@ export default function UpdateHotel() {
               {activeTitle === "건물장식" &&
                 buildingList?.map((url, index) => (
                   <TouchableOpacity
-                    key={index}
+                    key={url}
                     onPress={() => setBuildingDecorator(url)}
                   >
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={buildingDecorator}
                     ></CreateHotelDeco>
@@ -146,7 +145,7 @@ export default function UpdateHotel() {
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={gardenDecorator}
                     ></CreateHotelDeco>
@@ -163,7 +162,7 @@ export default function UpdateHotel() {
                     <CreateHotelDeco
                       activeTitle={activeTitle}
                       key={index}
-                      url={url}
+                      item={url}
                       index={index}
                       active={background}
                     ></CreateHotelDeco>

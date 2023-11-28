@@ -5,12 +5,34 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
+// const backBg = require("../assets/images/backBg.svg");
+const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
 const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
+const window_v1_rec2: any = require("../assets/images/window_v1_rec2.svg");
+const window_v1_rec_open: any = require("../assets/images/window_v1_rec1_open.svg");
+const window_v1_rec2_open: any = require("../assets/images/window_v1_rec2_open.svg");
 const window_v2: any = require("../assets/images/window_v2.svg");
 const window_v2_rec: any = require("../assets/images/window_v2_rec.svg");
+const window_v2_rec2: any = require("../assets/images/window_v2_rec2.svg");
+const window_v2_rec_open: any = require("../assets/images/window_v2_rec1_open.svg");
+const window_v2_rec2_open: any = require("../assets/images/window_v2_rec2_open.svg");
 const window_v2_open: any = require("../assets/images/window_v2_open.svg");
+const window_main: any = require("../assets/images/25.svg");
+const window_main_open: any = require("../assets/images/window_main_open.svg");
+
+const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
+const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
+const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+
+const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
+const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
+const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
+
+const backgroundImg01 = require(`../assets/decorations/background01.svg`);
+const backgroundImg02 = require(`../assets/decorations/background02.svg`);
+const backgroundImg03 = require(`../assets/decorations/background03.svg`);
 
 export default function CustomCompleteUserHotel({
   wallColor,
@@ -31,6 +53,7 @@ export default function CustomCompleteUserHotel({
   const windows = [
     {
       num: 1,
+      date: "2023-12-01",
       width: 35,
       height: 45,
       top: 92,
@@ -40,6 +63,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 2,
+      date: "2023-12-02",
       width: 35,
       height: 45,
       top: 92,
@@ -49,6 +73,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 3,
+      date: "2023-12-03",
       width: 32,
       height: 44,
       top: 64,
@@ -58,6 +83,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 4,
+      date: "2023-12-04",
       width: 35,
       height: 42,
       top: 92,
@@ -67,6 +93,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 5,
+      date: "2023-12-05",
       width: 35,
       height: 42,
       top: 92,
@@ -76,6 +103,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 6,
+      date: "2023-12-06",
       width: 35,
       height: 47,
       top: 161,
@@ -85,6 +113,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 7,
+      date: "2023-12-07",
       width: 35,
       height: 47,
       top: 161,
@@ -94,6 +123,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 8,
+      date: "2023-12-08",
       width: 35,
       height: 47,
       top: 156,
@@ -103,6 +133,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 9,
+      date: "2023-12-09",
       width: 35,
       height: 47,
       top: 161,
@@ -112,6 +143,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 10,
+      date: "2023-12-10",
       width: 35,
       height: 47,
       top: 161,
@@ -121,6 +153,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 11,
+      date: "2023-12-11",
       width: 35,
       height: 47,
       top: 228,
@@ -130,6 +163,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 12,
+      date: "2023-12-12",
       width: 35,
       height: 47,
       top: 228,
@@ -139,15 +173,17 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 13,
+      date: "2023-12-13",
       width: 47,
       height: 45,
-      top: 229,
+      top: 232,
       left: 206,
       font_top: 14,
       font_left: 16,
     },
     {
       num: 14,
+      date: "2023-12-14",
       width: 35,
       height: 47,
       top: 228,
@@ -157,6 +193,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 15,
+      date: "2023-12-15",
       width: 35,
       height: 47,
       top: 228,
@@ -166,6 +203,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 16,
+      date: "2023-12-16",
       width: 35,
       height: 47,
       top: 294,
@@ -175,6 +213,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 17,
+      date: "2023-12-17",
       width: 35,
       height: 47,
       top: 294,
@@ -184,15 +223,17 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 18,
+      date: "2023-12-18",
       width: 43,
       height: 32,
-      top: 284,
-      left: 210,
+      top: 282,
+      left: 208,
       font_top: 9,
       font_left: 14,
     },
     {
       num: 19,
+      date: "2023-12-19",
       width: 35,
       height: 47,
       top: 294,
@@ -202,6 +243,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 20,
+      date: "2023-12-20",
       width: 35,
       height: 47,
       top: 294,
@@ -211,6 +253,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 21,
+      date: "2023-12-21",
       width: 38,
       height: 50,
       top: 364,
@@ -220,6 +263,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 22,
+      date: "2023-12-22",
       width: 38,
       height: 50,
       top: 364,
@@ -229,6 +273,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 23,
+      date: "2023-12-23",
       width: 38,
       height: 50,
       top: 364,
@@ -238,10 +283,19 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 24,
+      date: "2023-12-24",
       width: 38,
       height: 50,
       top: 364,
       left: 335,
+      font_top: 18,
+      font_left: 12,
+    },
+    {
+      num: 25,
+      date: "2023-12-25",
+      top: 380,
+      left: 218,
       font_top: 18,
       font_left: 12,
     },
@@ -252,11 +306,21 @@ export default function CustomCompleteUserHotel({
       default: window_v1,
       open: window_v1_open,
       rec: window_v1_rec,
+      rec_open: window_v1_rec_open,
+      rec2: window_v1_rec2,
+      rec2_open: window_v1_rec2_open,
+      main: window_main,
+      mainOpen: window_main_open,
     },
     windowDeco02: {
       default: window_v2,
       open: window_v2_open,
       rec: window_v2_rec,
+      rec_open: window_v2_rec_open,
+      rec2: window_v2_rec2,
+      rec2_open: window_v2_rec2_open,
+      main: window_main,
+      mainOpen: window_main_open,
     },
   };
   type TColorsFill = {
@@ -371,6 +435,24 @@ export default function CustomCompleteUserHotel({
     },
   };
 
+  const gardenDeco: any = {
+    gardenDeco01: gardenDecoImg01,
+    gardenDeco02: gardenDecoImg02,
+    gardenDeco03: gardenDecoImg03,
+  };
+
+  const buildingDeco: any = {
+    buildingDeco01: buildingDecoImg01,
+    buildingDeco02: buildingDecoImg02,
+    buildingDeco03: buildingDecoImg03,
+  };
+
+  const backgroundDeco: any = {
+    background01: backgroundImg01,
+    background02: backgroundImg02,
+    background03: backgroundImg03,
+  };
+
   return (
     <>
       <View
@@ -474,12 +556,12 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 8,
+          zIndex: 6,
           position: "absolute",
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${buildingDecorator}.svg`}
+          url={buildingDeco[buildingDecorator]}
           style={{
             width: 103,
             height: 260,
@@ -498,21 +580,18 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${background}.svg`}
-          width={340}
-          height={416}
+          url={backgroundDeco[background]}
           style={{
-            width: 435,
-            height: 480,
+            width: 643,
+            height: 400,
             marginTop: 20,
-            zIndex: 4,
-            top: -10,
-            left: 30,
+            zIndex: 3,
+            top: 0,
+            left: 22,
             position: "absolute",
           }}
         />
       </View>
-
       <View
         style={{
           zIndex: 5,
@@ -520,7 +599,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDecorator}.svg`}
+          url={gardenDeco[gardenDecorator]}
           width={150}
           height={140}
           style={{
@@ -529,7 +608,7 @@ export default function CustomCompleteUserHotel({
             marginTop: 20,
             zIndex: 5,
             top: 370,
-            left: 45,
+            left: 24,
             position: "absolute",
           }}
         />
@@ -557,11 +636,25 @@ export default function CustomCompleteUserHotel({
               }}
             >
               <SvgImg
-                width={item.width}
-                height={item.height}
                 url={
-                  item.num === 13 || item.num === 18
-                    ? window_design[window_v].rec
+                  item.num === 13
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].rec_open
+                      : window_design[window_v].rec
+                    : item.num === 18
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].rec2_open
+                      : window_design[window_v].rec2
+                    : item.num === 25
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].mainOpen
+                      : window_design[window_v].main
                     : window[
                         `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
@@ -569,29 +662,60 @@ export default function CustomCompleteUserHotel({
                     : window_design[window_v].default
                 }
                 style={{
-                  width: item.width,
-                  height: item.height,
+                  width:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? 50
+                      : item.width,
+                  height:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? 72
+                      : item.height,
+                  top:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? -32
+                      : item.num === 25
+                      ? 4
+                      : 0,
+                  left:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? -14
+                      : item.num === 25
+                      ? 2
+                      : 0,
                   zIndex: 4,
                   position: "absolute",
                 }}
               />
               {!window[`2023-11-${item.num < 10 ? "0" + item.num : item.num}`]
-                ?.isOpen && (
-                <MonoText
-                  style={{
-                    zIndex: 5,
-                    top: item.font_top,
-                    left: item.font_left,
-                    textAlign: "center",
-                    position: "absolute",
-                    color: colors.Whiteyello,
-                    fontSize: 12,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.num}
-                </MonoText>
-              )}
+                ?.isOpen &&
+                item.num !== 25 && (
+                  <MonoText
+                    style={{
+                      zIndex: 5,
+                      top: item.font_top,
+                      left: item.font_left,
+                      textAlign: "center",
+                      position: "absolute",
+                      color: colors.Whiteyello,
+                      fontSize: 12,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.num}
+                  </MonoText>
+                )}
             </View>
           </TouchableOpacity>
         ))}

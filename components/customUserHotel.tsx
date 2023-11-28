@@ -6,6 +6,46 @@ import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/frontBg.svg");
+
+
+const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
+const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
+const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+
+const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
+const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
+const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
+
+const backgroundImg01 = require(`../assets/decorations/background01.svg`);
+const backgroundImg02 = require(`../assets/decorations/background02.svg`);
+const backgroundImg03 = require(`../assets/decorations/background03.svg`);
+
+const windowImg01 = require(`../assets/decorations/windowDeco01_com.svg`);
+const windowImg02 = require(`../assets/decorations/windowDeco02_com.svg`);
+
+const gardenDeco: any = {
+  gardenDeco01: gardenDecoImg01,
+  gardenDeco02: gardenDecoImg02,
+  gardenDeco03: gardenDecoImg03,
+};
+
+const buildingDeco: any = {
+  buildingDeco01: buildingDecoImg01,
+  buildingDeco02: buildingDecoImg02,
+  buildingDeco03: buildingDecoImg03,
+};
+
+const backgroundDeco: any = {
+  background01: backgroundImg01,
+  background02: backgroundImg02,
+  background03: backgroundImg03,
+};
+
+const windowDeco: any = {
+  windowDeco01: windowImg01,
+  windowDeco02: windowImg02,
+};
+
 export default function CustomUserHotel({
   wallColor,
   structColor,
@@ -22,6 +62,7 @@ export default function CustomUserHotel({
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
+  console.log(buildingDecorator);
   // 벽면 컬러값
   const wallColors: TColorsFill = {
     "#CF332C": {
@@ -215,29 +256,6 @@ export default function CustomUserHotel({
         </Svg>
       </View>
 
-      {is_front_bg && (
-        <View
-          style={{
-            zIndex: 4,
-            position: "absolute",
-          }}
-        >
-          <SvgImg
-            url={frontBg}
-            width={340}
-            height={416}
-            style={{
-              width: 380,
-              height: 460,
-              marginTop: 20,
-              zIndex: 4,
-              top: -20,
-              left: 10,
-              position: "absolute",
-            }}
-          />
-        </View>
-      )}
       <View
         style={{
           zIndex: 3,
@@ -245,7 +263,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${buildingDecorator}.svg`}
+          url={buildingDeco[buildingDecorator]}
           style={{
             width: 63,
             height: 220,
@@ -265,7 +283,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDecorator}.svg`}
+          url={gardenDeco[gardenDecorator]}
           width={150}
           height={140}
           style={{
@@ -287,7 +305,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${windowDecorator}_com.svg`}
+          url={windowDeco[windowDecorator]}
           width={355}
           height={390}
           style={{
@@ -309,7 +327,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${background}.svg`}
+          url={backgroundDeco[background]}
           width={340}
           height={416}
           style={{
