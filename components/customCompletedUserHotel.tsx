@@ -23,7 +23,7 @@ export default function CustomCompleteUserHotel({
   is_front_bg,
   window_v,
   window,
-  gardenDeco,
+  gardenDecorator,
 }: any) {
   const web = { top: 38, left: 49 };
   const app = { top: 38, left: 49 };
@@ -501,7 +501,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDeco}.svg`}
+          url={`../assets/decorations/${gardenDecorator}.svg`}
           width={150}
           height={140}
           style={{

@@ -38,8 +38,8 @@ export default function CreateHotelName() {
               is_border={true}
               wallColor={params.bodyColor}
               structColor={params.structColor}
-              gardenDeco={params.gardenDeco}
-              windowDeco={params.windowDeco}
+              gardenDecorator={params.gardenDecorator}
+              windowDecorator={params.windowDecorator}
             />
           </View>
 

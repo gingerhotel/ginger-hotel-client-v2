@@ -11,8 +11,8 @@ const building1 = require("../assets/decorations/building1.svg");
 export default function CustomUserHotel({
   wallColor,
   structColor,
-  gardenDeco,
-  windowDeco,
+  gardenDecorator,
+  windowDecorator,
   is_border,
   is_front_bg,
 }: any) {
@@ -268,7 +268,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDeco}.svg`}
+          url={`../assets/decorations/${gardenDecorator}.svg`}
           width={150}
           height={140}
           style={{
@@ -290,7 +290,7 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${windowDeco}_com.svg`}
+          url={`../assets/decorations/${windowDecorator}_com.svg`}
           width={355}
           height={390}
           style={{

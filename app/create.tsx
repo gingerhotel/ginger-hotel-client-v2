@@ -16,8 +16,8 @@ export default function CreateHotel() {
   const [structColor, setStructColor] = useState("#CF332C");
   const [wallColor, setWallColor] = useState("#CF332C");
   const [buildingDeco, setBuildingDeco] = useState("building1");
-  const [gardenDeco, setGardenDeco] = useState("gardenDeco1");
-  const [windowDeco, setWindowDeco] = useState("windowDeco1");
+  const [gardenDecorator, setGardenDeco] = useState("gardenDeco01");
+  const [windowDecorator, setWindowDeco] = useState("windowDeco01");
   const [activeTitle, setTitle] = useState("벽면");
   const navigation = useNavigation();
 
@@ -40,8 +40,8 @@ export default function CreateHotel() {
   ];
 
   const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
-  const windowList = ["windowDeco1", "windowDeco2"];
-  const gardenList = ["gardenDeco1", "gardenDeco2", "gardenDeco3"];
+  const windowList = ["windowDeco01", "windowDeco02"];
+  const gardenList = ["gardenDeco01", "gardenDeco02", "gardenDeco03"];
 
   return (
     <>
@@ -54,8 +54,8 @@ export default function CreateHotel() {
               is_border={true}
               wallColor={wallColor}
               structColor={structColor}
-              gardenDeco={gardenDeco}
-              windowDeco={windowDeco}
+              gardenDecorator={gardenDecorator}
+              windowDecorator={windowDecorator}
             />
           </View>
           <View style={styles.deco_wrapper}>
@@ -104,7 +104,7 @@ export default function CreateHotel() {
                       key={index}
                       url={url}
                       index={index}
-                      active={gardenDeco}
+                      active={gardenDecorator}
                     ></CreateHotelDeco>
                   </TouchableOpacity>
                 ))}
@@ -120,7 +120,7 @@ export default function CreateHotel() {
                       key={index}
                       url={name}
                       index={index}
-                      active={windowDeco}
+                      active={windowDecorator}
                     ></CreateHotelDecoV2>
                   </TouchableOpacity>
                 ))}
@@ -133,8 +133,8 @@ export default function CreateHotel() {
               props={{
                 structColor,
                 bodyColor: wallColor,
-                windowDeco,
-                gardenDeco,
+                windowDecorator,
+                gardenDecorator,
               }}
               title="다음으로"
               color="green"

@@ -15,7 +15,11 @@ export const replyBoxSwitchState = atom<boolean>({
     key: 'replyBoxSwitchState',
     default: false
 })
-export const hotelIdState = atom<number>({
+export const hotelIdState = atom<string | string[]>({
     key: 'hotelIdState',
+    default: '0'
+})
+export const newLetterCountState = atom<number>({
+    key: 'newLetterCount',
     default: 0
 })
