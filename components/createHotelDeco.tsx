@@ -7,8 +7,11 @@ import { colors } from "../constants/Colors";
 import React from "react";
 import { SvgImg } from "./svgImg";
 
-const CreateHotelDeco = ({ url, active }: any) => {
-  const image = `../assets/decorations/${url}.svg`;
+const CreateHotelDeco = ({ url, active, activeTitle }: any) => {
+  const image =
+    activeTitle === "마당장식" || activeTitle === "뒷배경"
+      ? `../assets/decorations/${url}.svg`
+      : `../assets/images/${url}.svg`;
 
   return (
     <View style={[styles.color, active === url && styles.active]}>
