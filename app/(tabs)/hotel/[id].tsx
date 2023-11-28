@@ -156,6 +156,10 @@ export default function HotelComp() {
                   color="gray_700"
                   width={350}
                   callback={() => {
+                    // web only
+                    let nowUrl = window.location.href;
+                    navigator.clipboard.writeText(nowUrl);
+
                     Toast.show({
                       type: "iconToast",
                       text1: "링크가 복사되었습니다!",
