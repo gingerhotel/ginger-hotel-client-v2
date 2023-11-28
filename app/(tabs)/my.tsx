@@ -135,7 +135,7 @@ export default function TabThreeScreen() {
                   marginTop: 5,
                 }}
               >
-                <Text
+                {/* <Text
                   style={{
                     color: colors.grey100,
                     fontWeight: "400",
@@ -145,7 +145,7 @@ export default function TabThreeScreen() {
                   }}
                 >
                   내 멤버쉽
-                </Text>
+                </Text> */}
                 <Text
                   style={{
                     color: colors.green600,
