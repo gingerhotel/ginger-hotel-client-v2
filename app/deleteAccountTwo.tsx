@@ -1,11 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../constants/Colors";
 import CheckBox from "../components/chekbox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Buttons from "../components/buttons";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 const DeleteAccountTwo = () => {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const [checked, setChecked] = useState(false);
 
   return (

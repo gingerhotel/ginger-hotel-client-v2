@@ -4,10 +4,11 @@ import CheckBox from "../components/chekbox";
 import { useState, useEffect } from "react";
 import Input from "../components/input";
 import Buttons from "../components/buttons";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
 const DeleteAccountOne = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const navigation = useNavigation();
 
   const [checked, setChecked] = useState({
     checkedOne: false,
@@ -22,7 +23,11 @@ const DeleteAccountOne = () => {
     const anyChecked = Object.values(checked).some((value) => value === true);
     setIsButtonDisabled(!anyChecked);
   }, [checked]);
-
+  
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+  
   const [reason, setReason] = useState("");
 
   return (
