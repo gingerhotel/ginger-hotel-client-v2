@@ -1,16 +1,16 @@
 export interface TodayLetterProps {
-    hotelId: number,
-    date: string
+  hotelId: number,
+  date: string
 }
 export interface TodayLetters {
-    id: number,
-    createdAt: string,
-    senderNickname: string,
-    content: string,
-    isBlocked: boolean,
-    imageUrl: string,
-    feekStatus: string,
-    feekComment: null | string
+  id: number,
+  createdAt: string,
+  senderNickname: string,
+  content: string,
+  isBlocked: boolean,
+  imageUrl: string,
+  feekStatus: string,
+  feekComment: null | string
 }
 
 export interface NewHotel {
@@ -74,4 +74,11 @@ export interface UserApiResponse {
   success: boolean;
   user: User;
   hotel: Hotel;
+}
+export interface BottomSheetProps {
+  isVisible: boolean;
+  onClose: () => void;
+}
+export interface BottomSheetDeleteProps extends BottomSheetProps {
+  letterId: number;
 }
