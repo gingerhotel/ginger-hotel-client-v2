@@ -31,33 +31,38 @@ type Props = {
 };
 
 export const NewLetterItem = ({ letters }: any) => {
-  const [bottomSheetVisible, setBottomSheetVisible] = useState(true);
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [letterId, setLetterId] = useState(0);
+  const [lettersData, setLettersData] = useState(letters);
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
-  const toggleModal = () => {
+  const toggleModal = (id: number) => {
     setBottomSheetVisible(true);
+    setLetterId(id);
   };
 
   const closeModal = () => {
     setBottomSheetVisible(false);
   };
-  console.log(letters)
+  useEffect(() => {
+    setLettersData(letters)
+  })
   return (
     <>
       <FlatList
-        data={letters}
+        data={lettersData}
         renderItem={({ item }) =>
           <LetterOuterContainer>
             <LetterInnerContainer b_color="#FFFDF0">
               <LetterInnerInfoView>
                 <LetterInnerTitieView>
-                  <TouchableOpacity onPress={toggleModal}>
+                  <TouchableOpacity onPress={() => toggleModal(item.id)}>
                     <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
                   </TouchableOpacity>
                   <LetterInnerTitieTextView>
                     <LetterInnerSendText>보내는 이</LetterInnerSendText>
                     <LetterInnerUserText>{item.senderNickname}</LetterInnerUserText>
                   </LetterInnerTitieTextView>
-                  <TouchableOpacity onPress={toggleModal}>
+                  <TouchableOpacity onPress={() => toggleModal(item.id)}>
                     <SvgImg
                       url={iconMore}
                       width={30}
@@ -72,8 +77,8 @@ export const NewLetterItem = ({ letters }: any) => {
             </LetterInnerContainer>
           </LetterOuterContainer>
         }
-        keyExtractor={item => item.id} />
-      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal}></BottemSheet>
+        keyExtractor={item => item.id.toString()} />
+      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} ></BottemSheet>
     </>
   );
 };

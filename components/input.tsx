@@ -6,6 +6,7 @@ export default function Input({
   value,
   placeholder,
   onChange,
+  maxLength = 1000,
   multiline = 0,
   width = 0,
 }: any) {
@@ -15,6 +16,7 @@ export default function Input({
       placeholder={placeholder}
       value={value}
       onChangeText={onChange}
+      maxLength={maxLength}
       placeholderTextColor={colors.grey600}
       multiline={multiline != 0 ? true : false}
       numberOfLines={multiline}

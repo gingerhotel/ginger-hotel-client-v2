@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { colors } from "../../constants/Colors";
 import { MonoText } from "../styledText";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
@@ -30,10 +30,19 @@ const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
 const closeIcon = require("../../assets/icon/i_close_line.svg");
 
-console.log(RestApiKey);
+// console.log(RestApiKey);
 const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey}&redirect_uri=${redirectUrl}&response_type=code`;
 
 WebBrowser.maybeCompleteAuthSession();
+
+
+function isEmpty(str){
+		
+  if(typeof str == "undefined" || str == null || str == "")
+    return true;
+  else
+    return false ;
+}
 
 type Props = {
   onClose?: any;
@@ -44,6 +53,8 @@ type Props = {
 };
 
 const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
+  const { id } = useLocalSearchParams();
+
   const [userInfo, setUserInfo] = React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId:
@@ -78,17 +89,20 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
       if (res.status == 200) {
         router.push("/create");
       } else if (res.status == 201) {
-        // Todo : Need a Funcional code
-        axios
-          .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-            headers: {
-              Authorization: `Bearer ${res.data.accessToken}`,
-            },
-          })
-          .then((response) => {
-            const { hotel } = response.data;
-            router.replace(`/hotel/${hotel.id}`);
-          });
+        if (!isEmpty(id)) {
+          router.push(`/hotel/${id}`);
+        } else {
+          // Todo : Need a Funcional code
+          axios.get<UserApiResponse>(`${MEMBER_URL}/my`, {
+              headers: {
+                Authorization: `Bearer ${res.data.accessToken}`,
+              },
+            })
+            .then((response) => {
+              const { hotel } = response.data;
+              router.push(`/hotel/${hotel.id}`);
+            });
+        }
       }
     },
     onError: (data) => {
@@ -127,9 +141,13 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
   useEffect(() => {
     if (route.params && route.params.code) {
       signInWithKakao(
+        // id as string,
         route.params.code,
         (successData: any) => {
+          console.log(successData)
           // router.push("/create");
+          //location.reload();
+          // router.push(`/hotel/${id}`);
         },
         (error: any) => {
           // 처리 실패 시 로직

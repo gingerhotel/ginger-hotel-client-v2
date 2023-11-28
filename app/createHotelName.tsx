@@ -55,13 +55,15 @@ export default function CreateHotelName() {
           >
             <Input
               onChange={(text: string) => setNickname(text)}
-              placeholder="내 닉네임"
+              placeholder="내 닉네임 (최대 8글자)"
+              maxLength={8}
             />
             <View style={{ marginTop: 8 }}></View>
             <Input
               multiline={5}
               onChange={(text: string) => setDescription(text)}
-              placeholder="내 호텔을 소개해주세요(최대 NN글자)"
+              placeholder="내 호텔을 소개해주세요 (최대 25글자)"
+              maxLength={25}
             />
           </View>
           <View style={styles.btn_wrapper}>
@@ -72,6 +74,10 @@ export default function CreateHotelName() {
               title="다음으로"
               color="green"
             />
+
+            <MonoText style={styles.hotel_info}>
+              ※호텔 색상은 나중에도 수정할 수 있어요!
+            </MonoText>
           </View>
         </View>
       </ScrollView>
@@ -134,12 +140,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    height: 70,
+    height: 90,
     width: "100%",
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 20,
     marginBottom: 28,
+  },
+  hotel_info: {
+    color: colors.grey500,
+    fontSize: 10,
   },
 });

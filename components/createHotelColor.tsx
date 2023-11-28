@@ -18,7 +18,10 @@ const cstyles = (color: string) =>
     color: {
       width: 55,
       height: 55,
-      borderRadius: 55,
+      borderRadius: 12,
+      borderStyle: "solid",
+      borderColor: "#C6C6C7",
+      borderWidth: 1.53509,
       backgroundColor: color,
       marginTop: 16,
     },

@@ -53,6 +53,7 @@ export default function CustomCompleteUserHotel({
   const windows = [
     {
       num: 1,
+      date: "2023-12-01",
       width: 35,
       height: 45,
       top: 92,
@@ -62,6 +63,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 2,
+      date: "2023-12-02",
       width: 35,
       height: 45,
       top: 92,
@@ -71,6 +73,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 3,
+      date: "2023-12-03",
       width: 32,
       height: 44,
       top: 64,
@@ -80,6 +83,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 4,
+      date: "2023-12-04",
       width: 35,
       height: 42,
       top: 92,
@@ -89,6 +93,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 5,
+      date: "2023-12-05",
       width: 35,
       height: 42,
       top: 92,
@@ -98,6 +103,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 6,
+      date: "2023-12-06",
       width: 35,
       height: 47,
       top: 161,
@@ -107,6 +113,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 7,
+      date: "2023-12-07",
       width: 35,
       height: 47,
       top: 161,
@@ -116,6 +123,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 8,
+      date: "2023-12-08",
       width: 35,
       height: 47,
       top: 156,
@@ -125,6 +133,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 9,
+      date: "2023-12-09",
       width: 35,
       height: 47,
       top: 161,
@@ -134,6 +143,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 10,
+      date: "2023-12-10",
       width: 35,
       height: 47,
       top: 161,
@@ -143,6 +153,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 11,
+      date: "2023-12-11",
       width: 35,
       height: 47,
       top: 228,
@@ -152,6 +163,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 12,
+      date: "2023-12-12",
       width: 35,
       height: 47,
       top: 228,
@@ -161,6 +173,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 13,
+      date: "2023-12-13",
       width: 47,
       height: 45,
       top: 232,
@@ -170,6 +183,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 14,
+      date: "2023-12-14",
       width: 35,
       height: 47,
       top: 228,
@@ -179,6 +193,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 15,
+      date: "2023-12-15",
       width: 35,
       height: 47,
       top: 228,
@@ -188,6 +203,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 16,
+      date: "2023-12-16",
       width: 35,
       height: 47,
       top: 294,
@@ -197,6 +213,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 17,
+      date: "2023-12-17",
       width: 35,
       height: 47,
       top: 294,
@@ -206,6 +223,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 18,
+      date: "2023-12-18",
       width: 43,
       height: 32,
       top: 282,
@@ -215,6 +233,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 19,
+      date: "2023-12-19",
       width: 35,
       height: 47,
       top: 294,
@@ -224,6 +243,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 20,
+      date: "2023-12-20",
       width: 35,
       height: 47,
       top: 294,
@@ -233,6 +253,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 21,
+      date: "2023-12-21",
       width: 38,
       height: 50,
       top: 364,
@@ -242,6 +263,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 22,
+      date: "2023-12-22",
       width: 38,
       height: 50,
       top: 364,
@@ -251,6 +273,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 23,
+      date: "2023-12-23",
       width: 38,
       height: 50,
       top: 364,
@@ -260,6 +283,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 24,
+      date: "2023-12-24",
       width: 38,
       height: 50,
       top: 364,
@@ -269,8 +293,7 @@ export default function CustomCompleteUserHotel({
     },
     {
       num: 25,
-      width: 22,
-      height: 17,
+      date: "2023-12-25",
       top: 380,
       left: 218,
       font_top: 18,
@@ -533,7 +556,7 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 3,
+          zIndex: 6,
           position: "absolute",
         }}
       >
@@ -564,7 +587,7 @@ export default function CustomCompleteUserHotel({
             marginTop: 20,
             zIndex: 3,
             top: 0,
-            left: 22,
+            left: -82,
             position: "absolute",
           }}
         />
@@ -613,15 +636,25 @@ export default function CustomCompleteUserHotel({
               }}
             >
               <SvgImg
-                width={item.num === 25 ? 18 : item.width}
-                height={item.num === 25 ? 18 : item.height}
                 url={
                   item.num === 13
-                    ? window_design[window_v].rec
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].rec_open
+                      : window_design[window_v].rec
                     : item.num === 18
-                    ? window_design[window_v].rec2
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].rec2_open
+                      : window_design[window_v].rec2
                     : item.num === 25
-                    ? window_design[window_v].main
+                    ? window[
+                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
+                      ? window_design[window_v].mainOpen
+                      : window_design[window_v].main
                     : window[
                         `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
@@ -629,8 +662,38 @@ export default function CustomCompleteUserHotel({
                     : window_design[window_v].default
                 }
                 style={{
-                  width: item.width,
-                  height: item.height,
+                  width:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? 50
+                      : item.width,
+                  height:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? 72
+                      : item.height,
+                  top:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? -32
+                      : item.num === 25
+                      ? 4
+                      : 0,
+                  left:
+                    item.num === 25 &&
+                    window[
+                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? -14
+                      : item.num === 25
+                      ? 2
+                      : 0,
                   zIndex: 4,
                   position: "absolute",
                 }}

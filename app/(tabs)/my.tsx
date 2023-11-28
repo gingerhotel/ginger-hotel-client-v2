@@ -18,6 +18,8 @@ import { router } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 import { Link } from "expo-router";
+import KeyModal from "../../components/Modal/keyModal";
+import PeekModal from "../../components/Modal/peekModal";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -53,6 +55,22 @@ interface UserApiResponse {
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+
+  const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
+  const [peekModalVisible, setPeekModalVisible] = useState<boolean>(false);
+
+  const openKeyModal = () => {
+    setKeyModalVisible(true);
+  };
+  const closeKeyModal = () => {
+    setKeyModalVisible(false);
+  };
+  const openPeekModal = () => {
+    setPeekModalVisible(true);
+  };
+  const closePeekModal = () => {
+    setPeekModalVisible(false);
+  };
   const closeLoginModal = () => {
     setLoginModalVisible(false);
   };
@@ -222,6 +240,7 @@ export default function TabThreeScreen() {
         <View style={styles.key_peek_container}>
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
+            onPress={openKeyModal}
           >
             <View>
               <Text
@@ -253,7 +272,7 @@ export default function TabThreeScreen() {
 
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-            onPress={() => {}}
+            onPress={openPeekModal}
           >
             <View>
               <Text
@@ -448,6 +467,8 @@ export default function TabThreeScreen() {
         name="로그인"
         desc=""
       />
+      <KeyModal visible={keyModalVisible} onClose={closeKeyModal} />
+      <PeekModal visible={peekModalVisible} onClose={closePeekModal} />
     </View>
   );
 }

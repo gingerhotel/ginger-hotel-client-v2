@@ -20,12 +20,18 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { letterSwitchState, newLetterCountState } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
 import { router } from "expo-router";
+import { useQuery } from "react-query";
+import { getHotel } from "../api/hotelApi";
 
 const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
-  const newLetterCount = useRecoilValue(newLetterCountState);
+  const { data, refetch } = useQuery('loadHotel', {
+    onError: (e) => {
+      console.log(`useQuery error : ${e}`);
+    },
+  });
   useEffect(() => {
     setDate(getCurrentDateDot())
   }, [])
@@ -52,6 +58,9 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
       }
     }
   }
+  useEffect(() => {
+    refetch();
+  }, [data])
   return (
     <SafeAreaView style={{ width: "100%" }}>
       <MailBoxView>
@@ -66,7 +75,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
         <MailInfoView>
           <TouchableOpacity onPress={() => onLetterChange('1')}>
             <MailChoseView b_color={letterCheck.new ? "#34AB96" : "#000"} >
-              <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 {newLetterCount}</MailChoseText>
+              <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 {data?.todayReceivedLetterCount}</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onLetterChange('2')}>

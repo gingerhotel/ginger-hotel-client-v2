@@ -62,7 +62,6 @@ export default function CustomUserHotel({
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
-  console.log(buildingDecorator);
   // 벽면 컬러값
   const wallColors: TColorsFill = {
     "#CF332C": {

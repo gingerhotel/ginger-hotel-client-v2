@@ -18,6 +18,8 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   border-color: #005142;
   background-color: ${(props) => props.b_color};
   border-style: dotted;
+  max-width:384px;
+  max-width:384px;
 `;
 export const LetterInnerInfoView = styled.View`
     display: flex;
