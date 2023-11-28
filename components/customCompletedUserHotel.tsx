@@ -479,7 +479,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${buildingDecorator}.svg`}
+          url={`/assets/decorations/${buildingDecorator}.svg`}
           style={{
             width: 103,
             height: 260,
@@ -498,7 +498,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${background}.svg`}
+          url={`/assets/decorations/${background}.svg`}
           width={340}
           height={416}
           style={{
@@ -520,7 +520,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDecorator}.svg`}
+          url={`/assets/decorations/${gardenDecorator}.svg`}
           width={150}
           height={140}
           style={{
