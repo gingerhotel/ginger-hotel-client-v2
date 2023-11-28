@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from "react";
 
 import { View, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
-import CreateHeader from "../components/createHeader";
-import { buttons_text, colors } from "../constants/Colors";
-import { MonoText } from "../components/styledText";
-import CreateHotelColorItem from "../components/createHotelColor";
-import Buttons from "../components/buttons";
-import CustomUserHotel from "../components/customUserHotel";
-import CreateHotelDeco from "../components/createHotelDeco";
-import CreateHotelDecoV2 from "../components/createHotelDecoV2";
-import { useNavigation } from "expo-router";
-import Header from "../components/appHeader";
+import CreateHeader from "../../components/createHeader";
+import { buttons_text, colors } from "../../constants/Colors";
+import { MonoText } from "../../components/styledText";
+import CreateHotelColorItem from "../../components/createHotelColor";
+import Buttons from "../../components/buttons";
+import CustomUserHotel from "../../components/customUserHotel";
+import CreateHotelDeco from "../../components/createHotelDeco";
+import CreateHotelDecoV2 from "../../components/createHotelDecoV2";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import Header from "../../components/appHeader";
+import { useQuery } from "react-query";
+import { getHotel } from "../../api/hotelApi";
 
-export default function CreateHotel() {
-  const [structColor, setStructColor] = useState("#CF332C");
-  const [wallColor, setWallColor] = useState("#CF332C");
-  const [buildingDecorator, setBuildingDecorator] = useState("buildingDeco01");
-  const [gardenDecorator, setGardenDeco] = useState("gardenDeco01");
-  const [windowDecorator, setWindowDeco] = useState("windowDeco01");
-  const [background, setBackground] = useState("background01");
+export default function UpdateHotel() {
+  const { id } = useLocalSearchParams();
+  const { data, status, error } = useQuery(
+    "loadHotel",
+    async () => await getHotel(id as string),
+    {
+      // refetchOnWindowFocus: false,
+      onError: (e) => {
+        console.log(`useQuery error : ${e}`);
+      },
+    }
+  );
+  const [structColor, setStructColor] = useState(data?.hotel?.structColor);
+  const [wallColor, setWallColor] = useState(data?.hotel?.bodyColor);
+  const [buildingDecorator, setBuildingDecorator] = useState(
+    data?.hotel?.buildingDecorator
+  );
+  const [gardenDecorator, setGardenDeco] = useState(
+    data?.hotel?.gardenDecorator
+  );
+  const [windowDecorator, setWindowDeco] = useState(
+    data?.hotel?.windowDecorator
+  );
+  const [background, setBackground] = useState(data?.hotel?.background);
   const [activeTitle, setTitle] = useState("벽면");
   const navigation = useNavigation();
 
@@ -26,6 +45,7 @@ export default function CreateHotel() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
+  console.log(data);
   // 변경할 수 있는 컬러 리스트
   const selectColors = [
     "#CF332C",
@@ -48,8 +68,8 @@ export default function CreateHotel() {
 
   return (
     <>
-      <Header title="호텔 만들기" />
-      <CreateHeader isActiveNumber={1} />
+      <Header title="호텔 수정하기" />
+      <CreateHeader isActiveNumber={2} />
       <ScrollView>
         <View style={styles.container}>
           <View>
@@ -171,8 +191,11 @@ export default function CreateHotel() {
 
           <View style={styles.btn_wrapper}>
             <Buttons
-              url="createHotelName"
+              url="updateHotelName"
               props={{
+                id,
+                nickname: data?.hotel?.nickname,
+                description: data?.hotel?.description,
                 structColor,
                 bodyColor: wallColor,
                 windowDecorator,

@@ -5,9 +5,6 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-// const frontBg = require("../assets/images/frontBg.svg");
-// const backBg = require("../assets/images/backBg.svg");
-const building1 = require("../assets/decorations/building1.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
 const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
@@ -23,7 +20,9 @@ export default function CustomCompleteUserHotel({
   is_front_bg,
   window_v,
   window,
-  gardenDeco,
+  gardenDecorator,
+  buildingDecorator,
+  background,
 }: any) {
   const web = { top: 38, left: 49 };
   const app = { top: 38, left: 49 };
@@ -475,25 +474,45 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 3,
+          zIndex: 8,
           position: "absolute",
         }}
       >
         <SvgImg
-          url={building1}
-          width={340}
-          height={416}
+          url={`/assets/decorations/${buildingDecorator}.svg`}
           style={{
-            width: 430,
-            height: 460,
+            width: 103,
+            height: 260,
             marginTop: 20,
-            zIndex: 3,
-            top: 93,
-            left: 12,
+            zIndex: 99,
+            top: 92,
+            left: 180,
             position: "absolute",
           }}
         />
       </View>
+      <View
+        style={{
+          zIndex: 0,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={`/assets/decorations/${background}.svg`}
+          width={340}
+          height={416}
+          style={{
+            width: 435,
+            height: 480,
+            marginTop: 20,
+            zIndex: 4,
+            top: -10,
+            left: 30,
+            position: "absolute",
+          }}
+        />
+      </View>
+
       <View
         style={{
           zIndex: 5,
@@ -501,7 +520,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`../assets/decorations/${gardenDeco}.svg`}
+          url={`/assets/decorations/${gardenDecorator}.svg`}
           width={150}
           height={140}
           style={{
@@ -509,8 +528,8 @@ export default function CustomCompleteUserHotel({
             height: 140,
             marginTop: 20,
             zIndex: 5,
-            top: 290,
-            left: 18,
+            top: 370,
+            left: 45,
             position: "absolute",
           }}
         />

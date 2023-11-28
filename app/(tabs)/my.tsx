@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   TouchableOpacity,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
-import { WithLocalSvg } from "react-native-svg";
+import { Line, WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -17,6 +17,7 @@ import { hotelIdState } from "../../atom/letterAtom";
 import { router } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
+import { Link } from "expo-router";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -51,15 +52,14 @@ interface UserApiResponse {
 }
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
-
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const closeLoginModal = () => {
     setLoginModalVisible(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // setLoginModalVisible(true);
-  }, [])
+  }, []);
 
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
@@ -70,12 +70,12 @@ export default function TabThreeScreen() {
     keyCount: 0,
     feekCount: 0,
   });
+
+  const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
     const handleUserData = async () => {
-      
       const accessToken = await AsyncStorage.getItem("accessToken");
-      console.log(accessToken);
       axios
         .get<UserApiResponse>(`${BASE_URL}/members/my`, {
           headers: {
@@ -83,9 +83,7 @@ export default function TabThreeScreen() {
           },
         })
         .then((response) => {
-          const { user } = response.data;
-          const { hotel } = response.data;
-          setHotelId(hotel.id);
+          const { user, hotel } = response.data;
           setUserInfo({
             nickname: user.nickname,
             code: user.code,
@@ -95,6 +93,8 @@ export default function TabThreeScreen() {
             keyCount: user.keyCount,
             feekCount: user.feekCount,
           });
+
+          setHotelinfo(hotel.id);
 
           console.log(response.data);
           console.log("?");
@@ -297,16 +297,18 @@ export default function TabThreeScreen() {
             ) : (
               <Image source={brushSvg} />
             )}
-            <Text
-              style={{
-                color: colors.Whiteyello,
-                fontWeight: "400",
-                marginTop: 10,
-                fontFamily: "NanumSquareNeo-Variable",
-              }}
-            >
-              호텔수정
-            </Text>
+            <Link href={`/updateHotel/${hotel}`}>
+              <Text
+                style={{
+                  color: colors.Whiteyello,
+                  fontWeight: "400",
+                  marginTop: 10,
+                  fontFamily: "NanumSquareNeo-Variable",
+                }}
+              >
+                호텔수정
+              </Text>
+            </Link>
           </TouchableOpacity>
           <View
             style={[
@@ -374,8 +376,8 @@ export default function TabThreeScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-          <KakaoAdFit_relative/>
-        </View>
+        {/* <KakaoAdFit_relative/> */}
+      </View>
       <View style={styles.linksContainer}>
         <View>
           <TouchableOpacity>
@@ -405,7 +407,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              AsyncStorage.removeItem('accessToken');
+              AsyncStorage.removeItem("accessToken");
               router.push("/");
             }}
           >

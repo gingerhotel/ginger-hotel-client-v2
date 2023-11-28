@@ -7,12 +7,15 @@ import { colors } from "../constants/Colors";
 import Input from "../components/input";
 import { useState } from "react";
 import CustomUserHotel from "../components/customUserHotel";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
+import { updateHotel } from "../api/hotelApi";
+import { useMutation } from "react-query";
 
-export default function CreateHotelName() {
-  const [nickname, setNickname] = useState("");
-  const [description, setDescription] = useState("");
+export default function UpdateHotelName() {
+  const props = useLocalSearchParams();
+  const [newNickname, setNickname] = useState(props.nickname);
+  const [newDescription, setDescription] = useState(props.description);
   const params = useLocalSearchParams();
   const navigation = useNavigation();
 
@@ -20,10 +23,43 @@ export default function CreateHotelName() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
+  const mutation = useMutation(
+    // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
+    updateHotel,
+    {
+      onSuccess: (data) => {
+        router.push(`/hotel/${data.hotelId}`);
+        // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+      },
+      onError: (error) => {
+        console.error(error);
+      },
+    }
+  );
+
+  const handleFormSubmit = async () => {
+    try {
+      // 뮤테이션 실행
+      await mutation.mutateAsync({
+        id: props?.id,
+        nickname: newNickname,
+        description: newDescription,
+        structColor: props?.structColor,
+        bodyColor: props?.bodyColor,
+        windowDecorator: props?.windowDecorator,
+        gardenDecorator: props?.gardenDecorator,
+        buildingDecorator: props?.buildingDecorator,
+        background: props?.background,
+      });
+    } catch (error) {
+      console.error("Mutation failed:", error);
+    }
+  };
+
   return (
     <>
-      <Header title="호텔 만들기" />
-      <CreateHeader isActiveNumber={2} />
+      <Header title="호텔 수정하기" />
+      <CreateHeader isActiveNumber={3} />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.edit_wrapper}>
@@ -54,11 +90,13 @@ export default function CreateHotelName() {
             }}
           >
             <Input
+              value={newNickname}
               onChange={(text: string) => setNickname(text)}
               placeholder="내 닉네임"
             />
             <View style={{ marginTop: 8 }}></View>
             <Input
+              value={newDescription}
               multiline={5}
               onChange={(text: string) => setDescription(text)}
               placeholder="내 호텔을 소개해주세요(최대 NN글자)"
@@ -66,11 +104,10 @@ export default function CreateHotelName() {
           </View>
           <View style={styles.btn_wrapper}>
             <Buttons
-              is_disable={!nickname || !description}
-              url={"createHotelSelect"}
-              props={{ ...params, nickname, description }}
-              title="다음으로"
+              is_disable={!newNickname || !newDescription}
+              title="수정하기"
               color="green"
+              callback={handleFormSubmit}
             />
           </View>
         </View>

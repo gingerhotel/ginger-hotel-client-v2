@@ -11,8 +11,16 @@ import styled from "styled-components/native";
 import { router, useLocalSearchParams } from "expo-router";
 import ErrorModal from "../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
+import OneBtnModal from "../../components/Modal/OneBtnModal";
+import { useNavigation } from "expo-router";
 
-export default function Letter({ navigation }: any) {
+
+export default function Letter() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const { id } = useLocalSearchParams();
 
   const { register, handleSubmit, setValue } = useForm();
