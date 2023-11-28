@@ -81,7 +81,7 @@ export default function Letter() {
           numberOfLines={20}
           placeholder="전하고 싶은 말을 적어주세요!"
           onChangeText={(text) => {
-            setIsNotEmptyLetters(text.length >= 0)
+            setIsNotEmptyLetters(text.length > 0)
             setValue("letters", text)
           }}
           maxLength={300}
