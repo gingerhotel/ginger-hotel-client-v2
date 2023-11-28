@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -11,12 +11,17 @@ import { FontAwesome } from "@expo/vector-icons";
 import { View } from "../components/themed";
 import { useThemeColor } from "../components/themed";
 import NoticeItem from "../components/noticeItem";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 import CenterModal from "../components/centerModal";
 
 import * as Updates from "expo-updates";
 
 export default function Push() {
+  const navigation = useNavigation();
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   const [pushDeleteMode, setPushDeleteMode] = useState(false);
   const [deleteChecked, setDeleteChecked] = useState([
     { id: 1, checked: false },

@@ -51,6 +51,8 @@ export default function HotelComp() {
   const navigation = useNavigation();
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -88,13 +90,23 @@ export default function HotelComp() {
       },
     }
   );
+
+  const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
+
+  useEffect(() => {
+    if (data) {
+      setHotelWindow(data.hotelWindows);
+    }
+  }, [data]);
+
   console.log(data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
   } else {
     setNewLetterCount(data?.todayReceivedLetterCount);
-    setHotelId(id);
+    setHotelId(id as string);
   }
+
   return (
     <ScrollView>
       <Header
@@ -140,7 +152,7 @@ export default function HotelComp() {
                   color="green"
                   width={288}
                   url="mailbox"
-                  is_disable={!data?.canReceiveLetterToday}
+                  is_disable={data?.canReceiveLetterToday}
                 />
                 <TouchableOpacity>
                   <SvgImg
