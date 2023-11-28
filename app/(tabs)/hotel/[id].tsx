@@ -62,31 +62,31 @@ export default function HotelComp() {
     setModalVisible(false);
   };
 
-useEffect(() => {
-  // 페이지가 전환될 때마다 실행
-  navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
+  // useEffect(() => {
+  //   // 페이지가 전환될 때마다 실행
+  //   navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
 
-  // 현재 URL과 목표 URL이 다른 경우에만 새로 고침
-  if (
-    window.location.pathname !==
-    `/hotel/${id === undefined || id === "undefined" || !id ? 1 : id}`
-  ) {
-    window.location.href = `/hotel/${
-      id === undefined || id === "undefined" || !id ? 1 : id
-    }`;
-  }
-}, [id, navigation]);
+  //   // 현재 URL과 목표 URL이 다른 경우에만 새로 고침
+  //   if (
+  //     window.location.pathname !==
+  //     `/hotel/${id === undefined || id === "undefined" || !id ? 1 : id}`
+  //   ) {
+  //     window.location.href = `/hotel/${
+  //       id === undefined || id === "undefined" || !id ? 1 : id
+  //     }`;
+  //   }
+  // }, [id, navigation]);
 
-const { data, status, error } = useQuery(
-  "loadHotel",
-  async () => await getHotel(id as string),
-  {
-    refetchOnWindowFocus: false,
-    onError: (e) => {
-      console.log(`useQuery error : ${e}`);
-    },
-  }
-);
+  const { data, status, error } = useQuery(
+    "loadHotel",
+    async () => await getHotel(id as string),
+    {
+      refetchOnWindowFocus: false,
+      onError: (e) => {
+        console.log(`useQuery error : ${e}`);
+      },
+    }
+  );
   console.log(data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
