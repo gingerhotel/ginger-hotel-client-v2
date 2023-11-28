@@ -558,15 +558,13 @@ export default function CustomCompleteUserHotel({
       >
         <SvgImg
           url={backgroundDeco[background]}
-          width={340}
-          height={416}
           style={{
-            width: 90,
-            height: 410,
+            width: 643,
+            height: 400,
             marginTop: 20,
             zIndex: 3,
-            top: 93,
-            left: 12,
+            top: 0,
+            left: 22,
             position: "absolute",
           }}
         />

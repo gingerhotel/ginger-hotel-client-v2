@@ -159,7 +159,6 @@ export default function HotelComp() {
                     // web only
                     let nowUrl = window.location.href;
                     navigator.clipboard.writeText(nowUrl);
-
                     Toast.show({
                       type: "iconToast",
                       text1: "링크가 복사되었습니다!",
