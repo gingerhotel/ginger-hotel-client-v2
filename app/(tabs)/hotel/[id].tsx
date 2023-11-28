@@ -87,7 +87,7 @@ export default function HotelComp() {
       },
     }
   );
-  console.log(data);
+  console.log("testtestestestestestststsetse", data);
   if (status === "loading") {
     return <Text>Loading...</Text>;
   } else {
@@ -110,7 +110,7 @@ export default function HotelComp() {
           />
         </ProgressBarView>
         <Text style={styles.hotel_name}>
-          {data?.hotel?.nickname}님의 진저호텔
+          {data?.hotel?.nickname}님의 진저호텔!!
         </Text>
         <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
 
