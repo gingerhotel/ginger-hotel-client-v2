@@ -72,6 +72,10 @@ export default function CreateHotelName() {
               title="다음으로"
               color="green"
             />
+
+            <MonoText style={styles.hotel_info}>
+              ※호텔 색상은 나중에도 수정할 수 있어요!
+            </MonoText>
           </View>
         </View>
       </ScrollView>
@@ -134,12 +138,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    height: 70,
+    height: 90,
     width: "100%",
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 20,
     marginBottom: 28,
+  },
+  hotel_info: {
+    color: colors.grey500,
+    fontSize: 10,
   },
 });
