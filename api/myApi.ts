@@ -21,23 +21,20 @@ export const myDate = async () => {
     });
 }
 
-/*
-import axios from "axios";
-import { MEMBER_URL } from "./url";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { My } from "./interface";
+export const deleteUser = async () => {
+  const accessToken = await AsyncStorage.getItem("accessToken");
 
-export const myInfo = async () => {
-  try {
-    const accessToken = await AsyncStorage.getItem("accessToken");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    console.log(accessToken);
-    const response: { data: My } = await axios.get(`${MEMBER_URL}/my`);
-    return response.data;
-  } catch (e) {
-    console.error(e);
-    throw e;
-    //
-  }
-};
-*/
+  return await axios
+    .delete<UserApiResponse>(`${MEMBER_URL}/me`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      return (response.data)
+
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
