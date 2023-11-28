@@ -5,7 +5,7 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-// const frontBg = require("../assets/images/frontBg.svg");
+const test = require("../assets/decorations/gardenDeco01.svg");
 // const backBg = require("../assets/images/backBg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
@@ -548,7 +548,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
-          url={`/assets/decorations/${gardenDecorator}.svg`}
+          url={test}
           width={150}
           height={140}
           style={{
@@ -556,8 +556,8 @@ export default function CustomCompleteUserHotel({
             height: 140,
             marginTop: 20,
             zIndex: 5,
-            top: 290,
-            left: 18,
+            top: 370,
+            left: 24,
             position: "absolute",
           }}
         />
