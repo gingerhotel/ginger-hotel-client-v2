@@ -91,22 +91,24 @@ export default function Letter() {
           <TextInput
             blurOnSubmit={true}
             style={styles.input}
-            placeholder="닉네임을 입력하세요 (8자 이하)"
+            placeholder="닉네임을 입력하세요 (15자 이하)"
             onChangeText={(text) => {
               setIsNotEmptyNickname(text.length > 0)
               setValue("nickname", text)
             }}
-            maxLength={8}
+            maxLength={15}
           />
         </View>
       </View>
       <View style={styles.footer}>
+        {/* 이미지 첨부 버튼 주석
         <Buttons
           is_width={true}
           url={"gingercard"}
           title="이미지 첨부"
           color="darkgray"
         />
+        */}
         <MonoText>{'   '}</MonoText>
         <Buttons
           url={"letterCompleted"}
