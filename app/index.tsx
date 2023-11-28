@@ -11,8 +11,10 @@ export default function Page() {
     }, 2000);
   }, []);
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Image source={splash} />
-    </View>
+    <Link href={"/hotel/1"}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Image source={splash} />
+      </View>
+    </Link>
   );
 }
