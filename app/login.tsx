@@ -11,12 +11,13 @@ import SocialButton from "../components/socialButton";
 
 import axios from 'axios';
 
-import * as AppleAuthentication from "expo-apple-authentication";
+// import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
 import { router } from "expo-router";
 import LoginModal from "../components/Modal/\bloginModal";
-
+import { MEMBER_URL } from "../api/url";
+import { UserApiResponse } from "../api/interface";
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
 WebBrowser.maybeCompleteAuthSession();
@@ -68,10 +69,26 @@ export default function Login({ navigation }: any) {
         vendor: "NAVER",
       })
       .then((res) => {
-        console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        router.push('/create')
+          //
+          AsyncStorage.setItem("accessToken", res.data.accessToken);
+          console.log(res.status);
+          if (res.status == 200) {
+            router.push("/create");
+          } else if (res.status == 201) {
+            // Todo : Need a Funcional code
+            axios
+              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                headers: {
+                  Authorization: `Bearer ${res.data.accessToken}`,
+                },
+              })
+              .then((response) => {
+                const { hotel } = response.data;
+                router.replace(`/`);
+                router.replace(`/hotel/${hotel.id}`);
+              });
+          }
+          //
       })
       .catch((err) => {
         console.log(err);
@@ -166,44 +183,6 @@ export default function Login({ navigation }: any) {
 
 
 
-      <AppleAuthentication.AppleAuthenticationButton
-        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-        cornerRadius={5}
-        style={{
-          width:40,
-          height:40,
-          borderColor : "#000",
-        }}
-        onPress={async () => {
-          try {
-            const credential = await AppleAuthentication.signInAsync({
-              requestedScopes: [
-                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                AppleAuthentication.AppleAuthenticationScope.EMAIL,
-              ],
-            });
-            
-            const response = await axios.post(
-              'http://127.0.0.1:8080/auth/apple',
-              {
-                token: credential.identityToken,
-              }
-            );
-
-            AsyncStorage.setItem('isLogin', "true");
-            AsyncStorage.setItem('accessToken', response.data.accessToken);
-            router.push('/hotelcreate')
-
-          } catch (e) {
-            /*if (e.code === 'ERR_REQUEST_CANCELED') {
-              // handle that the user canceled the sign-in flow
-            } else {
-              // handle other errors
-            }*/
-          }
-        }}
-      />
 
         <Button
           title="Sign in with Google"
