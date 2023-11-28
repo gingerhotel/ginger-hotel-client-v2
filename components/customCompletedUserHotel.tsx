@@ -5,13 +5,23 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
+// const frontBg = require("../assets/images/frontBg.svg");
+// const backBg = require("../assets/images/backBg.svg");
+const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
 const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
+const window_v1_rec2: any = require("../assets/images/window_v1_rec2.svg");
+const window_v1_rec_open: any = require("../assets/images/window_v1_rec1_open.svg");
+const window_v1_rec2_open: any = require("../assets/images/window_v1_rec2_open.svg");
 const window_v2: any = require("../assets/images/window_v2.svg");
 const window_v2_rec: any = require("../assets/images/window_v2_rec.svg");
+const window_v2_rec2: any = require("../assets/images/window_v2_rec2.svg");
+const window_v2_rec_open: any = require("../assets/images/window_v2_rec1_open.svg");
+const window_v2_rec2_open: any = require("../assets/images/window_v2_rec2_open.svg");
 const window_v2_open: any = require("../assets/images/window_v2_open.svg");
-
+const window_main: any = require("../assets/images/25.svg");
+const window_main_open: any = require("../assets/images/window_main_open.svg");
 export default function CustomCompleteUserHotel({
   wallColor,
   structColor,
@@ -141,7 +151,7 @@ export default function CustomCompleteUserHotel({
       num: 13,
       width: 47,
       height: 45,
-      top: 229,
+      top: 232,
       left: 206,
       font_top: 14,
       font_left: 16,
@@ -186,8 +196,8 @@ export default function CustomCompleteUserHotel({
       num: 18,
       width: 43,
       height: 32,
-      top: 284,
-      left: 210,
+      top: 282,
+      left: 208,
       font_top: 9,
       font_left: 14,
     },
@@ -245,6 +255,15 @@ export default function CustomCompleteUserHotel({
       font_top: 18,
       font_left: 12,
     },
+    {
+      num: 25,
+      width: 22,
+      height: 17,
+      top: 380,
+      left: 218,
+      font_top: 18,
+      font_left: 12,
+    },
   ];
 
   const window_design: any = {
@@ -252,11 +271,21 @@ export default function CustomCompleteUserHotel({
       default: window_v1,
       open: window_v1_open,
       rec: window_v1_rec,
+      rec_open: window_v1_rec_open,
+      rec2: window_v1_rec2,
+      rec2_open: window_v1_rec2_open,
+      main: window_main,
+      mainOpen: window_main_open,
     },
     windowDeco02: {
       default: window_v2,
       open: window_v2_open,
       rec: window_v2_rec,
+      rec_open: window_v2_rec_open,
+      rec2: window_v2_rec2,
+      rec2_open: window_v2_rec2_open,
+      main: window_main,
+      mainOpen: window_main_open,
     },
   };
   type TColorsFill = {
@@ -474,7 +503,7 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 8,
+          zIndex: 3,
           position: "absolute",
         }}
       >
@@ -502,17 +531,16 @@ export default function CustomCompleteUserHotel({
           width={340}
           height={416}
           style={{
-            width: 435,
-            height: 480,
+            width: 90,
+            height: 410,
             marginTop: 20,
-            zIndex: 4,
-            top: -10,
-            left: 30,
+            zIndex: 3,
+            top: 93,
+            left: 12,
             position: "absolute",
           }}
         />
       </View>
-
       <View
         style={{
           zIndex: 5,
@@ -528,8 +556,8 @@ export default function CustomCompleteUserHotel({
             height: 140,
             marginTop: 20,
             zIndex: 5,
-            top: 370,
-            left: 45,
+            top: 290,
+            left: 18,
             position: "absolute",
           }}
         />
@@ -557,11 +585,15 @@ export default function CustomCompleteUserHotel({
               }}
             >
               <SvgImg
-                width={item.width}
-                height={item.height}
+                width={item.num === 25 ? 18 : item.width}
+                height={item.num === 25 ? 18 : item.height}
                 url={
-                  item.num === 13 || item.num === 18
+                  item.num === 13
                     ? window_design[window_v].rec
+                    : item.num === 18
+                    ? window_design[window_v].rec2
+                    : item.num === 25
+                    ? window_design[window_v].main
                     : window[
                         `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
@@ -576,22 +608,23 @@ export default function CustomCompleteUserHotel({
                 }}
               />
               {!window[`2023-11-${item.num < 10 ? "0" + item.num : item.num}`]
-                ?.isOpen && (
-                <MonoText
-                  style={{
-                    zIndex: 5,
-                    top: item.font_top,
-                    left: item.font_left,
-                    textAlign: "center",
-                    position: "absolute",
-                    color: colors.Whiteyello,
-                    fontSize: 12,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {item.num}
-                </MonoText>
-              )}
+                ?.isOpen &&
+                item.num !== 25 && (
+                  <MonoText
+                    style={{
+                      zIndex: 5,
+                      top: item.font_top,
+                      left: item.font_left,
+                      textAlign: "center",
+                      position: "absolute",
+                      color: colors.Whiteyello,
+                      fontSize: 12,
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {item.num}
+                  </MonoText>
+                )}
             </View>
           </TouchableOpacity>
         ))}
