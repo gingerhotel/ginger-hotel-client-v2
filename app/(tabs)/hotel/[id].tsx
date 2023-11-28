@@ -103,7 +103,7 @@ export default function HotelComp() {
     return <Text>Loading...</Text>;
   } else {
     setNewLetterCount(data?.todayReceivedLetterCount);
-    setHotelId(id);
+    setHotelId(id as string);
   }
 
   return (
