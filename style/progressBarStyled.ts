@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { colors } from "../constants/Colors";
 
 export const ProgressBarView = styled.View`
   display: flex;
@@ -13,7 +14,7 @@ export const BarView = styled.View`
   flex: 1;
   justify-content: center;
   flex-direction: row;
-  background-color: #36363B;
+  background-color: #36363b;
   border: none;
   border-radius: 10px;
 `;
