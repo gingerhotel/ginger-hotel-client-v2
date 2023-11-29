@@ -212,14 +212,13 @@ export default function HotelComp() {
               </View>
               <View style={styles.hotel_today}>
                 <Buttons
-                  title="빌리지 추가하기"
+                  title="내 호텔 추가하기"
                   url="letter"
                   color="green"
                   width={350}
                   callback={() =>
-                    !data?.isLoginMember ? setLoginModalVisible(true) : {}
+                    setLoginModalVisible(true)
                   }
-                  auth={data?.isLoginMember}
                 />
               </View>
             </>
