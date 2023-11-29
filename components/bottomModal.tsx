@@ -7,7 +7,7 @@ import CenterModal from "./centerModal";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 import { router } from "expo-router";
-const icon = require("../assets/icon/i_history_edu.svg");
+const icon = require("../assets/icon/i_incognito.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_history_edu_big.svg");
 
 const BottomModal = ({
@@ -15,7 +15,7 @@ const BottomModal = ({
   visible,
   onClose,
   modalTextList,
-  navigation,
+  callback,
 }: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
@@ -48,7 +48,7 @@ const BottomModal = ({
     >
       <View style={styles(height).bottomNavigationView}>
         {modalTextList.map((text: string) => (
-          <TouchableOpacity key={text} onPress={() => onClickModal(text)}>
+          <TouchableOpacity key={text} onPress={callback}>
             <View
               style={{
                 display: "flex",

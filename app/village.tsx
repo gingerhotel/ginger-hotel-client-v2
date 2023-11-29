@@ -1,36 +1,41 @@
 import * as React from "react";
-import { View, useWindowDimensions, StyleSheet, Text } from "react-native";
+import { View, useWindowDimensions, StyleSheet, Image } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Header from "../components/appHeader";
 import { MonoText } from "../components/styledText";
 import VillageHeader from "../components/villageHeader";
 import LoginModal from "../components/Modal/loginModal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "expo-router";
 import { useQuery } from "react-query";
-import { myVillage } from "../api/villageApi";
+import { deleteVillage, myVillage } from "../api/villageApi";
 import CustomSmallHotel from "../components/customSmallHotel";
 import { colors } from "../constants/Colors";
 import { typography } from "../constants/Typo";
 import { SvgImg } from "../components/svgImg";
+import BottomModal from "../components/bottomModal";
+import Toast from "react-native-toast-message";
 const more = require("../assets/icon/i_more_vert_grey.svg");
+const bellboy = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 const AllVillage = () => (
   <View
     style={{
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      padding: 30,
+      flexDirection: "column",
+      alignItems: "center",
+      // justifyContent: "center",
+      padding: 50,
       backgroundColor: colors.greyblack,
       height: "100%",
     }}
   >
-    <MonoText style={{ color: colors.Whiteyello }}>준비중입니다!</MonoText>
+    <Image style={{ width: 200, height: 300 }} source={bellboy} />
+    <MonoText style={styles.text}>준비중입니다!</MonoText>
   </View>
 );
 
-const MyVillage = ({ data }: { data: any }) => (
+const MyVillage = ({ data, open }: { data: any; open: any }) => (
   <View
     style={{
       display: "flex",
@@ -80,10 +85,34 @@ const MyVillage = ({ data }: { data: any }) => (
             >
               {village.nickname}의 진저호텔
             </MonoText>
-            <SvgImg url={more} style={{ width: 24, height: 24 }} />
+            <SvgImg
+              url={more}
+              style={{ width: 24, height: 24 }}
+              onPress={() => open(village.hotelId)}
+            />
           </View>
         </View>
       ))}
+      {!data ||
+        (data?.villages?.length < 1 && (
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              // padding: 50,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <Image style={{ width: 200, height: 300 }} source={bellboy} />
+
+            <MonoText style={styles.text}>
+              내 빌리지에 친구를 추가해보세요!
+            </MonoText>
+          </View>
+        ))}
     </View>
   </View>
 );
@@ -93,7 +122,7 @@ export default function Village() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  const { data, status, error } = useQuery(
+  const { data, status, error, refetch } = useQuery(
     "myVillage",
     async () => await myVillage(),
     {
@@ -104,17 +133,26 @@ export default function Village() {
     }
   );
 
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+  const [selected, setSelected] = useState("");
+  const closeModal = () => {
+    setBottomSheetVisible(false);
+  };
+
   const renderScene = SceneMap({
     all: AllVillage,
     my: () => {
-      return <MyVillage data={data || {}} />;
+      return <MyVillage data={data || {}} open={open} />;
     },
   });
 
-  console.log(data?.villages);
+  const open = (id: string) => {
+    setBottomSheetVisible(true);
+    setSelected(id);
+  };
 
   const layout = useWindowDimensions();
-  const [index, setIndex] = React.useState(1);
+  const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "my", title: "내 진저 빌리지" },
     { key: "all", title: "진저호텔 둘러보기" },
@@ -140,6 +178,20 @@ export default function Village() {
     />
   );
 
+  const handelDeleteVillage = async () => {
+    const res = await deleteVillage(String(selected));
+    setBottomSheetVisible(false);
+
+    if (res?.success) {
+      Toast.show({
+        type: "iconToast",
+        text1: "내 빌리지에서 삭제되었습니다.",
+        position: "top",
+      });
+      refetch();
+    }
+  };
+
   return (
     <>
       <Header title="빌리지" disabledIcon={true} />
@@ -149,6 +201,12 @@ export default function Village() {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={{ width: layout.width }}
+      />
+      <BottomModal
+        modalTextList={["내 빌리지에서 삭제"]}
+        visible={bottomSheetVisible}
+        onClose={closeModal}
+        callback={handelDeleteVillage}
       />
     </>
   );
@@ -168,5 +226,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     backgroundColor: colors.greyblack,
     padding: 4,
+  },
+
+  text: {
+    color: colors.Whiteyello,
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 20,
   },
 });
