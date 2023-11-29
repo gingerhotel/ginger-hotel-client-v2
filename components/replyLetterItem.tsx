@@ -58,7 +58,6 @@ const ReplyLetterItem = () => {
                             <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
                             <LetterInnerUserText f_color="#FFFDF0">로운로운</LetterInnerUserText>
                         </LetterInnerTitieTextView>
-                        <View />
                         <TouchableOpacity onPress={toggleModal} >
                             <SvgImg
                                 url={iconMore}
@@ -66,19 +65,19 @@ const ReplyLetterItem = () => {
                                 height={30} />
                         </TouchableOpacity>
                     </LetterInnerTitieView>
-                    <LetterInnerTextBox f_color="#fff">
-                        메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
-                        23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
-                        편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
-                    </LetterInnerTextBox>
-                    <TouchableOpacity onPress={() => replyBoxHandler()}>
-                        <LetterReplyButtonView>
-                            <LetterReplyButtonText>
-                                답장 모아보기
-                            </LetterReplyButtonText>
-                        </LetterReplyButtonView>
-                    </TouchableOpacity>
                 </LetterInnerInfoView>
+                <LetterInnerTextBox f_color="#fff">
+                    메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
+                    23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
+                    편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+                </LetterInnerTextBox>
+                <TouchableOpacity onPress={() => replyBoxHandler()} style={{ alignItems: 'center', padding: 15 }}>
+                    <LetterReplyButtonView>
+                        <LetterReplyButtonText>
+                            답장 모아보기
+                        </LetterReplyButtonText>
+                    </LetterReplyButtonView>
+                </TouchableOpacity>
             </LetterInnerContainer>
         </LetterOuterContainer>
     );
