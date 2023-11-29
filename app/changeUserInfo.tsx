@@ -16,19 +16,27 @@ const ChangeUserInfo = () => {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [userEmail, setUserEmail] = useState("happyginger@naver.com");
-  const [modalVisible, setModalVisible] = useState(false);
-  const openModal = () => {
-    setModalVisible(true);
+
+  const [modifyModalVisible, setModifyModalVisible] = useState<boolean>(false);
+  const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
+
+  const openModifiyModal = () => {
+    setModifyModalVisible(true);
   };
-  const closeModal = () => {
-    setModalVisible(false);
+  const closeModifyModal = () => {
+    setModifyModalVisible(false);
+  };
+  const openLogoutModal = () => {
+    setLogoutModalVisible(true);
+  };
+  const closeLogoutModal = () => {
+    setLogoutModalVisible(false);
   };
 
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-
 
   const input_size = {
     web: 120,
@@ -40,17 +48,29 @@ const ChangeUserInfo = () => {
       <View style={styles.container}>
         <CenterModal
           height={180}
-          visible={modalVisible}
-          onClose={closeModal}
-          title="선택한 알림을 삭제할까요?"
-          desc="한번 삭제한 알림은 복구할 수 없어요."
-          btn_text="삭제하기"
+          visible={modifyModalVisible}
+          onClose={closeModifyModal}
+          title="회원정보를 수정하시겠어요?"
+          desc="성별과 출생연도는 한 번 수정 후 변경할 수 없습니다."
+          btn_text="수정하기"
+        />
+        <CenterModal
+          height={180}
+          visible={logoutModalVisible}
+          onClose={closeLogoutModal}
+          title="로그아웃 하시겠어요?"
+          desc="다음 로그인 때 동일한 계정으로 소셜로그인을 해야 호텔을 그대로 볼 수 있어요."
+          btn_text="로그아웃"
         />
         <View style={styles.edit_wrapper}>
           <MonoText style={styles.title}>내 계정 정보</MonoText>
           <View style={styles.email_wrapper}>
             <MonoText style={styles.email_text}>{userEmail}</MonoText>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                openLogoutModal();
+              }}
+            >
               <MonoText style={styles.logout_text}>로그아웃</MonoText>
             </TouchableOpacity>
           </View>
@@ -115,7 +135,7 @@ const ChangeUserInfo = () => {
             title="수정하기"
             color="green"
             callback={() => {
-              openModal();
+              openModifiyModal();
             }}
           />
         </View>
