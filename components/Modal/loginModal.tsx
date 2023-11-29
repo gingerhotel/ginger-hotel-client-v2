@@ -36,12 +36,9 @@ const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey
 WebBrowser.maybeCompleteAuthSession();
 
 
-function isEmpty(str:string){
-		
-  if(typeof str == "undefined" || str == null || str == "")
-    return true;
-  else
-    return false ;
+export function isEmpty(str: string) {
+  if (typeof str == "undefined" || str == null || str == "") return true;
+  else return false;
 }
 
 type Props = {
@@ -85,7 +82,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
   const mutation = useMutation(authGoogle, {
     onSuccess: (res) => {
       AsyncStorage.setItem("accessToken", res.data.accessToken);
-      console.log(res.status);
+
       if (res.status == 200) {
         router.push("/create");
       } else if (res.status == 201) {
@@ -94,7 +91,8 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
           location.reload();
         } else {
           // Todo : Need a Funcional code
-          axios.get<UserApiResponse>(`${MEMBER_URL}/my`, {
+          axios
+            .get<UserApiResponse>(`${MEMBER_URL}/my`, {
               headers: {
                 Authorization: `Bearer ${res.data.accessToken}`,
               },
@@ -146,7 +144,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
         // id as string,
         route.params.code,
         (successData: any) => {
-          console.log(successData)
+          // console.log(successData);
           // router.push("/create");
           //location.reload();
           // router.push(`/hotel/${id}`);
@@ -226,6 +224,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
                 textDecoration: "none",
                 width: "100%",
               }}
+              onClick={() => AsyncStorage.setItem("kakaoUserId", String(id))}
             >
               {Platform.OS === "ios" || Platform.OS === "android" ? (
                 <WithLocalSvg asset={kakaoLogo} />
