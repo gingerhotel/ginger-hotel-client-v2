@@ -13,7 +13,7 @@ const windowDeco02 = require(`../assets/decorations/windowDeco02.svg`);
 const createHotelDecoV2 = ({ url, active }: any) => {
   const windowDeco: any = {
     windowDeco01: windowDeco01,
-    windowDeco02: windowDeco01,
+    windowDeco02: windowDeco02,
   };
 
   return (
