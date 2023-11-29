@@ -188,14 +188,6 @@ export default function HotelComp() {
                       onPress={() => router.push("/gingerAlbum")}
                     />
                   </TouchableOpacity>
-                  <TouchableOpacity>
-                    <SvgImg
-                      width={40}
-                      height={40}
-                      url={album}
-                      onPress={() => router.push("/gingerAlbum")}
-                    />
-                  </TouchableOpacity>
                 </View>
                 <View style={styles.hotel_today}>
                   <Buttons

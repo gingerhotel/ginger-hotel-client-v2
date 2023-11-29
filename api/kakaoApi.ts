@@ -1,10 +1,10 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { useMutation } from "react-query";
 import { authKakao } from "./authApi";
 import { UserApiResponse } from "./interface";
 import { MEMBER_URL } from "./url";
+import { isEmpty } from "../components/Modal/\bloginModal";
 
 export const RestApiKey = process.env.EXPO_PUBLIC_KAKAO_WEB_API_KEY;
 export const redirectUrl = process.env.EXPO_PUBLIC_KAKAO_OAUTH_REDIRECT_URL;
@@ -15,45 +15,46 @@ export const signInWithKakao = async (
   onError: Function
 ) => {
   try {
-    console.log("check 1");
     const { access_token } = await login({
       restApiKeyWeb: RestApiKey,
       redirectUrlWeb: redirectUrl,
       codeWeb,
     });
 
-    console.log("check 2");
     const kakao_data: any = await getProfile(access_token);
-    console.log("check 3", kakao_data);
+
     const _data = {
       id: kakao_data.id,
       name: kakao_data.properties.nickname,
       ci: access_token,
     };
-    console.log("check 4", _data);
 
     try {
       const response = await authKakao(_data);
       const { status, data } = response;
+      AsyncStorage.setItem("accessToken", data?.accessToken);
 
-      console.log("check 4.5", _data);
-      localStorage.setItem("accessToken", data?.accessToken);
-
-      console.log("check 5", _data);
       if (status === 200) {
         router.push("/create");
         onSuccess(data);
       } else if (status === 201) {
-        axios
-          .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-            headers: {
-              Authorization: `Bearer ${data.accessToken}`,
-            },
-          })
-          .then((response) => {
-            const { hotel } = response.data;
-            window.location.href = `/hotel/${hotel.id}`;
-          });
+        const id: any = await AsyncStorage.getItem("kakaoUserId");
+
+        if (!isEmpty(id as string)) {
+          window.location.href = `/hotel/${id}`;
+          AsyncStorage.removeItem("kakaoUserId");
+        } else {
+          axios
+            .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+              headers: {
+                Authorization: `Bearer ${data.accessToken}`,
+              },
+            })
+            .then((response) => {
+              const { hotel } = response.data;
+              window.location.href = `/hotel/${hotel.id}`;
+            });
+        }
       }
     } catch (error) {
       onError(error);
