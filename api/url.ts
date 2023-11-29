@@ -5,3 +5,4 @@ export const LETTERS_HOTEL_URL = `${BASE_URL}/letters/hotel`;
 export const LETTERS_URL = `${BASE_URL}/letters`;
 export const AUTH_URL = `${BASE_URL}/auth`;
 export const HOTEL_URL = `${BASE_URL}/hotel`;
+export const REPLIES_URL = `${BASE_URL}/replies`;
