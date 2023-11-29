@@ -467,7 +467,7 @@ export default function TabThreeScreen() {
         name="로그인"
         desc=""
       />
-      <KeyModal visible={keyModalVisible} onClose={closeKeyModal} />
+      <KeyModal visible={keyModalVisible} onClose={closeKeyModal} code={userInfo?.code}/>
       <PeekModal visible={peekModalVisible} onClose={closePeekModal} />
     </View>
   );
