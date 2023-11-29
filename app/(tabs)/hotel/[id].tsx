@@ -143,7 +143,7 @@ export default function HotelComp() {
           </ProgressBarView>
 
           <Text style={styles.hotel_name}>
-            {data?.hotel?.nickname}님의 진저호텔!!
+            {data?.hotel?.nickname}님의 진저호텔
           </Text>
           <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
 
@@ -160,6 +160,12 @@ export default function HotelComp() {
               gardenDecorator={data?.hotel?.gardenDecorator}
               background={data?.hotel?.background}
               window_v={data?.hotel?.windowDecorator}
+            />
+          </View>
+          <View style={{ position: "relative" }}>
+            <Image
+              source={require("../../../assets/gif/smoke.gif")}
+              style={styles.gifImage}
             />
           </View>
           {/* </Link> */}
@@ -311,8 +317,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
-
     gap: 10,
     height: 52,
+  },
+  gifImage: {
+    width: 100,
+    height: 100,
+    position: "absolute",
+    opacity: 0.4,
+    right: -160,
+    top: -596,
   },
 });
