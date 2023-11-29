@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
 import NewLetterItem from "../../components/newLetterItem";
 import MailHeader from "../../components/mailHeader";
@@ -7,6 +7,7 @@ import { useRecoilValue } from "recoil";
 import {
   hotelIdState,
   letterSwitchState,
+  letterUpdateState,
   replyBoxSwitchState,
 } from "../../atom/letterAtom";
 import ReplyHeader from "../../components/replyHeader";
@@ -19,7 +20,8 @@ export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
   const replyGo = useRecoilValue(replyBoxSwitchState);
   const hotelId = useRecoilValue(hotelIdState);
-  const { data, isLoading } = useQuery(
+  const deleteCheck = useRecoilValue(letterUpdateState);
+  const { data, isLoading, refetch } = useQuery(
     "newLetters",
     async () => await newLetterData({ hotelId })
   );
@@ -28,7 +30,9 @@ export default function MailBox() {
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-
+  useEffect(() => {
+    refetch();
+  }, [deleteCheck])
   return (
     <View style={styles.container}>
       {replyGo ? (
