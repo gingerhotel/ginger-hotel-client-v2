@@ -165,7 +165,7 @@ export default function HotelComp() {
                   color="green"
                   width={288}
                   url="mailbox"
-                  is_disable={data?.canReceiveLetterToday}
+                  is_disable={data?.todayLetterCnt <= 5}
                 />
                 <TouchableOpacity>
                   <SvgImg
