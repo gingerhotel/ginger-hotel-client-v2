@@ -89,7 +89,18 @@ export interface UserApiResponse {
 export interface BottomSheetProps {
   isVisible: boolean;
   onClose: () => void;
+  letterId: number;
 }
 export interface BottomSheetDeleteProps extends BottomSheetProps {
-  letterId: number;
+  blocked: boolean
+}
+export interface LetterArrayProps {
+  content: string;
+  createdAt: string;
+  feekComment: any
+  feekStatus: any
+  id: number
+  imageUrl: any
+  isBlocked: boolean
+  senderNickname: string
 }
