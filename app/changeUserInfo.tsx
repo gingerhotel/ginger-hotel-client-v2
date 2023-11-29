@@ -8,6 +8,7 @@ import Buttons from "../components/buttons";
 import CenterModal from "../components/centerModal";
 import { router, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -28,6 +29,9 @@ const ChangeUserInfo = () => {
     setModifyModalVisible(false);
   };
   const openLogoutModal = () => {
+    // refactor
+    AsyncStorage.removeItem("accessToken");
+    router.push("/");
     setLogoutModalVisible(true);
   };
   const closeLogoutModal = () => {
