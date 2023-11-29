@@ -13,6 +13,7 @@ type Props = {
   btn_text: string;
   img?: string;
   sub?: string;
+  callback?: () => void;
 };
 
 const CenterModal = ({
@@ -24,6 +25,7 @@ const CenterModal = ({
   btn_text,
   img,
   sub,
+  callback,
 }: Props) => {
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
@@ -54,7 +56,7 @@ const CenterModal = ({
             </Pressable>
             <Pressable
               style={[styles(height).button, styles(height).buttonOpen]}
-              onPress={() => setModalVisible()}
+              onPress={callback}
             >
               <MonoText style={styles(height).textStyle}>{btn_text}</MonoText>
             </Pressable>
