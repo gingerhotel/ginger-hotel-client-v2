@@ -9,10 +9,11 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { FontAwesome } from "@expo/vector-icons";
 import { WithLocalSvg } from "react-native-svg";
+import Toast from "react-native-toast-message";
 
+const icon: any = require("../assets/icon/i_no_check.svg");
 const frameImage = require("../assets/images/ginger_card_frame.svg");
 const defaultGingerman = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
-
 type TGingermanCard = {
   isOpened?: boolean;
   pngImage?: { uri: string };
@@ -28,8 +29,25 @@ const GingermanCard = ({
   isOpened,
   onPress,
 }: TGingermanCard) => {
+  const showToast = () => {
+    if (!isOpened) {
+      Toast.show({
+        type: "iconToast",
+        text1: "당일 창문을 열어야 볼 수 있어요!",
+        visibilityTime: 3000, // 토스트 메시지가 보이는 시간 (밀리초)
+        autoHide: true,
+        props: { icon },
+        position: "bottom",
+      });
+    }
+  };
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+      onPress={() => {
+        onPress && onPress();
+        showToast();
+      }}
+    >
       <View style={styles.card_wrapper}>
         {isOpened ? (
           <>
