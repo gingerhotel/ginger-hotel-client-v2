@@ -14,6 +14,7 @@ import { MEMBER_URL } from "./url";
 export const RestApiKey = process.env.EXPO_PUBLIC_KAKAO_WEB_API_KEY;
 export const redirectUrl = process.env.EXPO_PUBLIC_KAKAO_OAUTH_REDIRECT_URL;
 
+
 export const signInWithKakao = async (
   codeWeb: string,
   onSuccess: Function,
