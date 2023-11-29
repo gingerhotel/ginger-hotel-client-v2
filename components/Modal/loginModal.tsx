@@ -91,6 +91,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
       } else if (res.status == 201) {
         if (!isEmpty(id as string)) {
           router.push(`/hotel/${id}`);
+          location.reload();
         } else {
           // Todo : Need a Funcional code
           axios.get<UserApiResponse>(`${MEMBER_URL}/my`, {
@@ -101,6 +102,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
             .then((response) => {
               const { hotel } = response.data;
               router.push(`/hotel/${hotel.id}`);
+              location.reload();
             });
         }
       }

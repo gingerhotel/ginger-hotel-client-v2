@@ -42,6 +42,8 @@ import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 import CustomCompleteUserHotel from "../../../components/customCompletedUserHotel";
 import KakaoAdFit from "../../../advertisement/KakaoAdFit";
+import SnowfallContainer from "../../../components/snow/snowfallContainer";
+import Snowfall from "react-snowfall";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -111,6 +113,7 @@ export default function HotelComp() {
   }, [data]);
 
   console.log(data);
+
   if (status === "loading") {
     return <Text>Loading...</Text>;
   } else {
@@ -120,128 +123,145 @@ export default function HotelComp() {
 
   return (
     <ScrollView>
-      <Header
-        isOwner={data.isOwner}
-        keyCount={data?.keyCount}
-        feekCount={data?.feekCount}
-      />
-      <View style={styles.container}>
-        <ProgressBarView style={{ width: 230 }}>
-          <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
+      <View style={{ backgroundColor: colors.greyblack }}>
+        <SnowfallContainer>
+          <Snowfall color="white" snowflakeCount={20} />
+        </SnowfallContainer>
+        <Header
+          isOwner={data.isOwner}
+          keyCount={data?.keyCount}
+          feekCount={data?.feekCount}
+        />
+        <View style={styles.container}>
+          <ProgressBarView style={{ width: 230 }}>
+            <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
 
-          <ProgressBar
-            todayLetterCnt={data?.todayReceivedLetterCount}
-            goalCnt={goalCnt}
-          />
-        </ProgressBarView>
+            <ProgressBar
+              todayLetterCnt={data?.todayReceivedLetterCount}
+              goalCnt={goalCnt}
+            />
+          </ProgressBarView>
 
-        <Text style={styles.hotel_name}>
-          {data?.hotel?.nickname}님의 진저호텔
-        </Text>
-        <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
+          <Text style={styles.hotel_name}>
+            {data?.hotel?.nickname}님의 진저호텔
+          </Text>
+          <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
 
-        {/* <Link href={"/create"}> */}
-        <View style={{ backgroundColor: colors.greyblack }}>
-          <CustomCompleteUserHotel
-            window={data.hotelWindows}
-            // onPress={handleClickWindow}
-            wallColor={data?.hotel?.bodyColor}
-            structColor={data?.hotel?.structColor}
-            buildingDecorator={data?.hotel?.buildingDecorator}
-            is_border={false}
-            is_front_bg={true}
-            gardenDecorator={data?.hotel?.gardenDecorator}
-            background={data?.hotel?.background}
-            window_v={data?.hotel?.windowDecorator}
-          />
-        </View>
-        {/* </Link> */}
-        <View style={styles.hotel_today_container}>
-          {data.isOwner ? (
-            <>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="오늘의 편지함 보기"
-                  color="green"
-                  width={288}
-                  url="mailbox/1"
-                  is_disable={data?.todayLetterCnt >= 5}
-                />
-                <TouchableOpacity>
-                  <SvgImg
-                    width={40}
-                    height={40}
-                    url={album}
-                    onPress={() => router.push("/gingerAlbum")}
+          {/* <Link href={"/create"}> */}
+          <View style={{ backgroundColor: "transparent" }}>
+            <CustomCompleteUserHotel
+              window={data.hotelWindows}
+              // onPress={handleClickWindow}
+              wallColor={data?.hotel?.bodyColor}
+              structColor={data?.hotel?.structColor}
+              buildingDecorator={data?.hotel?.buildingDecorator}
+              is_border={false}
+              is_front_bg={true}
+              gardenDecorator={data?.hotel?.gardenDecorator}
+              background={data?.hotel?.background}
+              window_v={data?.hotel?.windowDecorator}
+            />
+          </View>
+          <View style={{ position: "relative" }}>
+            <Image
+              source={require("../../../assets/gif/smoke.gif")}
+              style={styles.gifImage}
+            />
+          </View>
+          {/* </Link> */}
+          <View style={styles.hotel_today_container}>
+            {data.isOwner ? (
+              <>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="오늘의 편지함 보기"
+                    color="green"
+                    width={288}
+                    url="mailbox/1"
+                    is_disable={data?.todayLetterCnt >= 5}
                   />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="내 호텔 공유하기"
-                  color="gray_700"
-                  width={350}
-                  callback={() => {
-                    // web only
-                    let nowUrl = window.location.href;
-                    navigator.clipboard.writeText(nowUrl);
-                    Toast.show({
-                      type: "iconToast",
-                      text1: "링크가 복사되었습니다!",
-                      position: "bottom",
-                      props: { icon },
-                    });
-                  }}
-                  icon={share}
-                />
-              </View>
-            </>
-          ) : (
-            <>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="편지 보내기"
-                  url={`letter/${id}`}
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    !data?.isLoginMember ? setLoginModalVisible(true) : {}
-                  }
-                  auth={data?.isLoginMember}
-                />
-              </View>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="내 호텔 추가하기"
-                  url="letter"
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    setLoginModalVisible(true)
-                  }
-                />
-              </View>
-            </>
-          )}
+                  <TouchableOpacity>
+                    <SvgImg
+                      width={40}
+                      height={40}
+                      url={album}
+                      onPress={() => router.push("/gingerAlbum")}
+                    />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <SvgImg
+                      width={40}
+                      height={40}
+                      url={album}
+                      onPress={() => router.push("/gingerAlbum")}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="내 호텔 공유하기"
+                    color="gray_700"
+                    width={350}
+                    callback={() => {
+                      // web only
+                      let nowUrl = window.location.href;
+                      navigator.clipboard.writeText(nowUrl);
+                      Toast.show({
+                        type: "iconToast",
+                        text1: "링크가 복사되었습니다!",
+                        position: "bottom",
+                        props: { icon },
+                      });
+                    }}
+                    icon={share}
+                  />
+                </View>
+              </>
+            ) : (
+              <>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="편지 보내기"
+                    url={`letter/${id}`}
+                    color="green"
+                    width={350}
+                    callback={() =>
+                      !data?.isLoginMember ? setLoginModalVisible(true) : {}
+                    }
+                    auth={data?.isLoginMember}
+                  />
+                </View>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="내 호텔 추가하기"
+                    url="letter"
+                    color="green"
+                    width={350}
+                    callback={() => setLoginModalVisible(true)}
+                  />
+                </View>
+              </>
+            )}
+          </View>
         </View>
-      </View>
 
-      <GingerModal
-        height={530}
-        visible={modalVisible}
-        onClose={closeModal}
-        name="벨보이 진저맨"
-        desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
-        img={ginger}
-      />
-      <LoginModal
-        height={300}
-        visible={loginModalVisible}
-        onClose={closeLoginModal}
-        name="로그인"
-        desc=""
-      />
-      <KakaoAdFit />
+        <GingerModal
+          height={530}
+          visible={modalVisible}
+          onClose={closeModal}
+          name="벨보이 진저맨"
+          desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
+          img={ginger}
+        />
+        <LoginModal
+          height={300}
+          visible={loginModalVisible}
+          onClose={closeLoginModal}
+          name="로그인"
+          desc=""
+        />
+        <KakaoAdFit />
+      </View>
     </ScrollView>
   );
 }
@@ -250,7 +270,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     alignItems: "center",
-    backgroundColor: colors.greyblack,
+    backgroundColor: "transparent",
   },
   hotel_img: {
     width: 300,
@@ -297,8 +317,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
-
     gap: 10,
     height: 52,
+  },
+  gifImage: {
+    width: 100,
+    height: 100,
+    position: "absolute",
+    opacity: 0.4,
+    right: -160,
+    top: -596,
   },
 });
