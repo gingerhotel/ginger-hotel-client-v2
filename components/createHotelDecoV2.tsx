@@ -1,10 +1,6 @@
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { View } from "./themed";
-import { useThemeColor } from "./themed";
-import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
-import { MonoText } from "./styledText";
 import { colors } from "../constants/Colors";
-import React from "react";
 import { SvgImg } from "./svgImg";
 
 const windowDeco01 = require(`../assets/decorations/windowDeco01.svg`);

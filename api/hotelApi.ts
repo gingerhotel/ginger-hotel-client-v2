@@ -9,14 +9,12 @@ axiosConfig();
 export const newHotel = async (props: NewHotel) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
-    console.log(accessToken);
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     const response = await axios.post(`${AUTH_URL}/hotel`, props);
-    console.log(response);
     return response.data;
-  } catch (e) {
-    console.error(e);
-    throw e;
+  } catch (err: any) {
+    alert(err?.response?.data?.errorMessage);
+    window.location.href = `/hotel/1`;
   }
 };
 
@@ -26,9 +24,8 @@ export const getHotel = async (id: string) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
-  } catch (e) {
-    console.error(e);
-    throw e;
+  } catch (err: any) {
+    alert(err?.response?.data?.errorMessage);
   }
 };
 
@@ -47,11 +44,11 @@ export const updateHotel = async (props: any) => {
       background: props?.background,
     });
     return response.data;
-  } catch (e) {
-    console.error(e);
-    throw e;
+  } catch (err: any) {
+    alert(err?.response?.data?.errorMessage);
   }
 };
+
 
 
 
