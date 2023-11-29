@@ -12,18 +12,23 @@ import { typography } from "../constants/Typo";
 import { SvgImg } from "./svgImg";
 const arrow = require("../assets/icon/i_arrow_back.svg");
 
-export default function Header({ title }: any) {
+export default function Header({ title, disabledIcon }: any) {
   return (
     <SafeAreaView style={{ backgroundColor: colors.greyblack }}>
       <View style={styles.container}>
-        <SvgImg
-          onPress={() => router.back()}
-          //a_width={30}
-          //a_height={30}
-          url={arrow}
-          width={30}
-          height={30}
-        />
+        {!disabledIcon ? (
+          <SvgImg
+            onPress={() => router.back()}
+            //a_width={30}
+            //a_height={30}
+            url={arrow}
+            width={30}
+            height={30}
+          />
+        ) : (
+          <View style={{ width: 30, height: 30, marginLeft: -5 }}></View>
+        )}
+
         <Text style={[styles.title, typography.soyo]}>{title}</Text>
         <View style={styles.empty}></View>
       </View>

@@ -15,3 +15,16 @@ export const addVillage = async (hotelId: string) => {
     throw e;
   }
 };
+
+export const myVillage = async () => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    const response = await axios.get(`${VILLAGE_URL}/my`);
+    console.log(response.data);
+    return response.data;
+  } catch (err: any) {
+    alert(err?.response?.data?.errorMessage);
+  }
+};
+
