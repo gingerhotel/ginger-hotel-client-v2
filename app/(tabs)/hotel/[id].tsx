@@ -20,7 +20,12 @@ import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
 import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-import { router, useLocalSearchParams, useNavigation, useSegments } from "expo-router";
+import {
+  router,
+  useLocalSearchParams,
+  useNavigation,
+  useSegments,
+} from "expo-router";
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
@@ -79,7 +84,6 @@ export default function HotelComp() {
   //   }
   // }, [id, navigation]);
 
-  
   const segments = useSegments();
   useEffect(() => {
     const isHotelPath = segments[1] === "hotel";
@@ -122,13 +126,15 @@ export default function HotelComp() {
         feekCount={data?.feekCount}
       />
       <View style={styles.container}>
-        <ProgressBarView>
+        <ProgressBarView style={{ width: 230 }}>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
+
           <ProgressBar
             todayLetterCnt={data?.todayReceivedLetterCount}
             goalCnt={goalCnt}
           />
         </ProgressBarView>
+
         <Text style={styles.hotel_name}>
           {data?.hotel?.nickname}님의 진저호텔
         </Text>

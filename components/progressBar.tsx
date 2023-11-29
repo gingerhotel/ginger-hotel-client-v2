@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     fontFamily: "Quicksand-Variable",
     color: colors.Whiteyello,
     textShadowColor: colors.grey900,
-    textShadowOffset: { width: 1, height: 2 },
+    textShadowOffset: { width: 1, height: 1 },
   },
   BarView: {
     flexDirection: "column",
