@@ -25,14 +25,16 @@ export default function Page() {
   } else {
     // Todo : Need a Funcional code
     axios
-      .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        const { hotel } = response.data;
-        router.push(`/hotel/${hotel.id}`);
+    .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    .then((response) => {
+      const { hotel } = response.data;
+      router.push(`/hotel/${hotel.id}`);
+    }).catch((e) => {
+        router.push("/hotel/1");
       }); // need to 401 test
   }
 }
