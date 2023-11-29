@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Buttons from "../components/buttons";
 import CenterModal from "../components/centerModal";
 import { router, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -46,89 +47,93 @@ const ChangeUserInfo = () => {
   return (
     <>
       <View style={styles.container}>
-        <CenterModal
-          height={180}
-          visible={modifyModalVisible}
-          onClose={closeModifyModal}
-          title="회원정보를 수정하시겠어요?"
-          desc="성별과 출생연도는 한 번 수정 후 변경할 수 없습니다."
-          btn_text="수정하기"
-        />
-        <CenterModal
-          height={180}
-          visible={logoutModalVisible}
-          onClose={closeLogoutModal}
-          title="로그아웃 하시겠어요?"
-          desc="다음 로그인 때 동일한 계정으로 소셜로그인을 해야 호텔을 그대로 볼 수 있어요."
-          btn_text="로그아웃"
-        />
-        <View style={styles.edit_wrapper}>
-          <MonoText style={styles.title}>내 계정 정보</MonoText>
-          <View style={styles.email_wrapper}>
-            <MonoText style={styles.email_text}>{userEmail}</MonoText>
+        <View>
+          <Header title="내 정보 수정" />
+          <CenterModal
+            height={180}
+            visible={modifyModalVisible}
+            onClose={closeModifyModal}
+            title="회원정보를 수정하시겠어요?"
+            desc="성별과 출생연도는 한 번 수정 후 변경할 수 없습니다."
+            btn_text="수정하기"
+          />
+          <CenterModal
+            height={180}
+            visible={logoutModalVisible}
+            onClose={closeLogoutModal}
+            title="로그아웃 하시겠어요?"
+            desc="다음 로그인 때 동일한 계정으로 소셜로그인을 해야 호텔을 그대로 볼 수 있어요."
+            btn_text="로그아웃"
+          />
+
+          <View style={styles.edit_wrapper}>
+            <MonoText style={styles.title}>내 계정 정보</MonoText>
+            <View style={styles.email_wrapper}>
+              <MonoText style={styles.email_text}>{userEmail}</MonoText>
+              <TouchableOpacity
+                onPress={() => {
+                  openLogoutModal();
+                }}
+              >
+                <MonoText style={styles.logout_text}>로그아웃</MonoText>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.separator_horizontal}></View>
+            <MonoText style={styles.input_title}>성별</MonoText>
+            <View style={styles.chip_wrapper}>
+              {sex_chip?.map((text, index) => (
+                <TouchableOpacity key={index} onPress={() => setChip(text)}>
+                  <Chip text={text} active={activeChip} width={80} />
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            <MonoText style={styles.input_title}>생년월일</MonoText>
+            <MonoText style={styles.input_label}>
+              생년월일을 형식에 맞게 입력해주세요.
+            </MonoText>
+
+            <View style={styles.input_wrapper}>
+              <Input
+                placeholder="YYYY"
+                width={
+                  Platform.OS === "ios" || Platform.OS === "android"
+                    ? input_size.app
+                    : input_size.web
+                }
+                onChange={(text: string) => setYear(text)}
+              />
+              <View style={{ marginLeft: 8 }}></View>
+              <Input
+                placeholder="MM"
+                width={
+                  Platform.OS === "ios" || Platform.OS === "android"
+                    ? input_size.app
+                    : input_size.web
+                }
+                onChange={(text: string) => setMonth(text)}
+              />
+              <View style={{ marginLeft: 8 }}></View>
+              <Input
+                placeholder="DD"
+                width={
+                  Platform.OS === "ios" || Platform.OS === "android"
+                    ? input_size.app
+                    : input_size.web
+                }
+                onChange={(text: string) => setDay(text)}
+              />
+            </View>
             <TouchableOpacity
+              accessible={true}
+              accessibilityLabel="회원탈퇴 버튼"
               onPress={() => {
-                openLogoutModal();
+                router.push("/deleteAccountOne");
               }}
             >
-              <MonoText style={styles.logout_text}>로그아웃</MonoText>
+              <MonoText style={styles.input_title}>회원탈퇴</MonoText>
             </TouchableOpacity>
           </View>
-          <View style={styles.separator_horizontal}></View>
-          <MonoText style={styles.input_title}>성별</MonoText>
-          <View style={styles.chip_wrapper}>
-            {sex_chip?.map((text, index) => (
-              <TouchableOpacity key={index} onPress={() => setChip(text)}>
-                <Chip text={text} active={activeChip} width={80} />
-              </TouchableOpacity>
-            ))}
-          </View>
-
-          <MonoText style={styles.input_title}>생년월일</MonoText>
-          <MonoText style={styles.input_label}>
-            생년월일을 형식에 맞게 입력해주세요.
-          </MonoText>
-
-          <View style={styles.input_wrapper}>
-            <Input
-              placeholder="YYYY"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setYear(text)}
-            />
-            <View style={{ marginLeft: 8 }}></View>
-            <Input
-              placeholder="MM"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setMonth(text)}
-            />
-            <View style={{ marginLeft: 8 }}></View>
-            <Input
-              placeholder="DD"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setDay(text)}
-            />
-          </View>
-          <TouchableOpacity
-            accessible={true}
-            accessibilityLabel="회원탈퇴 버튼"
-            onPress={() => {
-              router.push("/deleteAccountOne");
-            }}
-          >
-            <MonoText style={styles.input_title}>회원탈퇴</MonoText>
-          </TouchableOpacity>
         </View>
         <View style={styles.btn_wrapper}>
           <Buttons
@@ -147,7 +152,6 @@ const ChangeUserInfo = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.greyblack,
-    width: "100%",
     height: "100%",
     paddingLeft: 20,
     paddingRight: 20,

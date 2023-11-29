@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Input from "../components/input";
 import Buttons from "../components/buttons";
 import { router, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
 const DeleteAccountOne = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -23,16 +24,17 @@ const DeleteAccountOne = () => {
     const anyChecked = Object.values(checked).some((value) => value === true);
     setIsButtonDisabled(!anyChecked);
   }, [checked]);
-  
+
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
-  
+
   const [reason, setReason] = useState("");
 
   return (
     <View style={styles.container}>
       <View>
+        <Header title="탈퇴하기" />
         <View style={styles.text_box}>
           <Text style={styles.title}>탈퇴하시겠습니까?</Text>
           <Text style={styles.subtitle}>

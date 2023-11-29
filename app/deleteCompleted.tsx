@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import Buttons from "../components/buttons";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { useNavigation } from "expo-router";
+
+const deleteImage = require("../assets/images/deleteAccount.svg");
 
 export default function DeleteCompleted() {
   const navigation = useNavigation();
@@ -20,7 +22,7 @@ export default function DeleteCompleted() {
         </MonoText>
 
         <View style={styles.temp}>
-          <MonoText>일러스트</MonoText>
+          <Image source={deleteImage} />
         </View>
       </View>
 
@@ -66,11 +68,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     color: colors.grey500,
+    marginTop: 8,
   },
   temp: {
-    backgroundColor: colors.green100,
     width: 300,
     height: 400,
     marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

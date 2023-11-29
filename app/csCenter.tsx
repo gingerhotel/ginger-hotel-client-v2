@@ -1,14 +1,25 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { router, useNavigation } from "expo-router";
 import { colors } from "../constants/Colors";
+import Header from "../components/appHeader";
 
 const CsCenter = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
+      <Header title="고객센터" />
       <Text
         style={{
           fontSize: 16,
           fontWeight: "600",
           color: colors.Whiteyello,
+          marginTop: 30,
         }}
       >
         문의

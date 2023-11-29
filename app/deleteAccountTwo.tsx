@@ -7,6 +7,7 @@ import { router, useNavigation } from "expo-router";
 import { useMutation, useQuery } from "react-query";
 import { deleteUser } from "../api/myApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Header from "../components/appHeader";
 
 const DeleteAccountTwo = () => {
   const navigation = useNavigation();
@@ -32,7 +33,7 @@ const DeleteAccountTwo = () => {
     {
       onSuccess: (data) => {
         AsyncStorage.removeItem("accessToken");
-        router.push("/deleteCompleted") // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.push("/deleteCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -48,6 +49,7 @@ const DeleteAccountTwo = () => {
   return (
     <View style={styles.container}>
       <View>
+        <Header title="탈퇴하기" />
         <View style={styles.text_box}>
           <Text style={styles.title}>진저호텔을 이용해주셔서 감사합니다.</Text>
           <Text style={styles.subtitle}>

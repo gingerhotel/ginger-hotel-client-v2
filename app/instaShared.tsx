@@ -2,12 +2,15 @@ import { View, StyleSheet, Text, Image, Platform } from "react-native";
 import { useState, useEffect } from "react";
 import { WithLocalSvg } from "react-native-svg";
 import { colors } from "../constants/Colors";
+import { router, useNavigation } from "expo-router";
+import Header from "../components/appHeader";
 
 const hotelFrame = require("../assets/images/frame_insta_shared.svg");
 const hotelImage = require("../assets/images/StartHotel.svg");
 const bottomLogo = require("../assets/images/logo_insta_shared.svg");
 
 const InstaShared = () => {
+  const navigation = useNavigation();
   const [userInfo, setUserInfo] = useState({
     userName: "가나다라마바사",
     userCode: "2222222",
@@ -23,56 +26,66 @@ const InstaShared = () => {
   ]);
 
   useEffect(() => {
+    navigation.setOptions({ headerShown: false });
+  }, [navigation]);
+
+  useEffect(() => {
     setCodeArray(userInfo.userCode.split(""));
   }, [userInfo]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content_wrapper}>
-        <View style={styles.title_wrapper}>
-          <Text style={styles.name_text}>
-            <Text style={styles.from}>From</Text>
-            {userInfo.userName}
-          </Text>
-          <Text style={styles.title_text}>내 진저호텔에 놀러오세요!</Text>
+    <>
+      <Header title="내 카드" />
+      <View style={styles.container}>
+        <View style={styles.content_wrapper}>
+          <View style={styles.title_wrapper}>
+            <Text style={styles.name_text}>
+              <Text style={styles.from}>From</Text>
+              {userInfo.userName}
+            </Text>
+            <Text style={styles.title_text}>내 진저호텔에 놀러오세요!</Text>
+          </View>
+          <View style={styles.hotel_wrapper}>
+            <View style={styles.hotel_frame}>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={hotelFrame} />
+              ) : (
+                <Image source={hotelFrame} />
+              )}
+            </View>
+            <View style={styles.hotel_image}>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={hotelImage} width={300} height={380} />
+              ) : (
+                <Image
+                  source={hotelImage}
+                  style={{ width: 300, height: 380 }}
+                />
+              )}
+            </View>
+          </View>
+          <View style={styles.code_info_wrapper}>
+            <Text style={styles.code_text}>친구코드</Text>
+            <View style={styles.code_wrapper}>
+              {codeArray.map((item) => {
+                return (
+                  <View style={styles.code_box}>
+                    <Text style={styles.code}>{item}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
         </View>
-        <View style={styles.hotel_wrapper}>
-          <View style={styles.hotel_frame}>
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={hotelFrame} />
-            ) : (
-              <Image source={hotelFrame} />
-            )}
-          </View>
-          <View style={styles.hotel_image}>
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={hotelImage} width={300} height={380} />
-            ) : (
-              <Image source={hotelImage} style={{ width: 300, height: 380 }} />
-            )}
-          </View>
-        </View>
-        <View style={styles.code_info_wrapper}>
-          <Text style={styles.code_text}>친구코드</Text>
-          <View style={styles.code_wrapper}>
-            {codeArray.map((item) => {
-              return (
-                <View style={styles.code_box}>
-                  <Text style={styles.code}>{item}</Text>
-                </View>
-              );
-            })}
-          </View>
+        <View style={styles.bottom_logo}>
+          {Platform.OS === "ios" || Platform.OS === "android" ? (
+            <WithLocalSvg asset={bottomLogo} />
+          ) : (
+            <Image source={bottomLogo} />
+          )}
         </View>
       </View>
-      <View style={styles.bottom_logo}>
-        {Platform.OS === "ios" || Platform.OS === "android" ? (
-          <WithLocalSvg asset={bottomLogo} />
-        ) : (
-          <Image source={bottomLogo} />
-        )}
-      </View>
-    </View>
+    </>
   );
 };
 
