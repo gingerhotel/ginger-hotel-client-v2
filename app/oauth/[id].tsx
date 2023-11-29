@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { Image, View } from "react-native";
 import { MonoText } from "../../components/styledText";
 import { typography } from "../../constants/Typo";
-const bellboy = require("../../assets/gingerman/g_bellboy.png");
+const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 export default function OAuth() {
   const navigation = useNavigation();

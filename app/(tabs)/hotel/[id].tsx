@@ -26,7 +26,7 @@ import {
   useNavigation,
   useSegments,
 } from "expo-router";
-const ginger = require("../../../assets/gingerman/g_bellboy.png");
+const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
