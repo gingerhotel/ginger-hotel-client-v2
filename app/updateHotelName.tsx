@@ -28,7 +28,7 @@ export default function UpdateHotelName() {
     updateHotel,
     {
       onSuccess: (data) => {
-        router.push(`/hotel/${data.hotelId}`);
+        window.location.href = `/hotel/${data.hotelId}`;
         // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
       onError: (error) => {
