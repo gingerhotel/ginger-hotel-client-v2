@@ -16,8 +16,8 @@ const GingerAlbum = () => {
   return (
     <>
       <Header title="진저맨 앨범" />
-      <View style={styles.containter}>
-        <ScrollView>
+      <ScrollView>
+        <View style={styles.containter}>
           <View style={styles.card_container}>
             <GingermanCard
               name="벨보이 진저맨"
@@ -50,8 +50,8 @@ const GingerAlbum = () => {
             <GingermanCard date="12/24" isOpened={false} />
             <GingermanCard date="12/25" isOpened={false} />
           </View>
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     </>
   );
 };
