@@ -21,6 +21,7 @@ let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
 let i_key = require("../assets/icon/i_key.svg");
 let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
+let feek_blur = require("../assets/images/feekBlur.svg");
 const Header = ({ isOwner, keyCount, feekCount }: any) => {
   return (
     <SafeAreaView style={{ backgroundColor: "transparent" }}>
@@ -33,6 +34,19 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
                   <SvgImg width={40} height={40} url={i_key} />
                   <Text style={styles.text}>{keyCount}</Text>
                 </View>
+                {/* 엿보기 개수 Update Soon */}
+                <View style={styles.container_4}>
+                  <View style={styles.container_2}>
+                    <SvgImg width={40} height={40} url={i_glasses} />
+                    <Text style={styles.text}>0</Text>
+                    <TouchableOpacity>
+                      <SvgImg url={i_plus} />
+                    </TouchableOpacity>
+                  </View>
+                  <SvgImg style={styles.container_3} url={feek_blur} />
+                </View>
+                
+                {/* 엿보기 개수 주석 처리 : 엿보기 기능 구현 전
                 <View style={styles.container_2}>
                   <SvgImg width={40} height={40} url={i_glasses} />
                   <Text style={styles.text}>{feekCount}</Text>
@@ -40,6 +54,7 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
                     <SvgImg url={i_plus} />
                   </TouchableOpacity>
                 </View>
+                 */}
               </>
             ) : (
               <></>
@@ -52,12 +67,14 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
               onPress={() => router.push("/guidePage")}
               url={i_info}
             />
+            {/* 알림 아이콘 주석 처리 : 알림 기능 구현 전
             <SvgImg
               width={30}
               height={30}
               onPress={() => router.push("/push")}
               url={icon}
             />
+            */}
           </View>
         </View>
       </View>
@@ -89,6 +106,27 @@ const styles = StyleSheet.create({
     height: 28,
     width: 100,
   },
+  // 엿보기 Updated Soon을 위한 임시 설정 시작 (나중에 지워도 됨)
+  container_3: {
+    display: "flex",
+    position: "absolute",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    height: 35,
+    width: 110,
+  },
+  container_4: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    height: 35,
+    width: 100,
+  },
+  // 엿보기 Updated Soon을 위한 임시 설정 끝
   wrapper: {
     display: "flex",
     flexDirection: "row",

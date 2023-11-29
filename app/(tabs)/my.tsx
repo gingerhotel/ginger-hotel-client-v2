@@ -19,6 +19,7 @@ import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 import KeyModal from "../../components/Modal/keyModal";
 import PeekModal from "../../components/Modal/peekModal";
+import { SvgImg } from "../../components/svgImg";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -27,6 +28,8 @@ const questionCircleSvg = require("../../assets/icon/i_question_circle.svg");
 const copySvg = require("../../assets/icon/i_copy.svg");
 const hotelModifySvg = require("../../assets/icon/i_hotel_modify.svg");
 const mycardSvg = require("../../assets/icon/i_mycard.svg");
+const feek_blur = require("../../assets/images/feekBlurMy.svg");
+const feek_blur_text = require("../../assets/images/feekBlurMyText.svg");
 
 interface User {
   nickname: string;
@@ -232,6 +235,40 @@ export default function TabThreeScreen() {
             )}
           </TouchableOpacity>
 
+          {/* 엿보기 블러 버전 시작 */}
+          <TouchableOpacity style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
+            <View>
+              <Text
+                style={{
+                  color: colors.Whiteyello,
+                  fontWeight: "700",
+                  marginBottom: 5,
+                  fontFamily: "NanumSquareNeo-Variable",
+                }}
+              >
+                내 엿보기 <FontAwesome name={"chevron-right"} />
+              </Text>
+              <Text
+                style={{
+                  color: colors.Whiteyello,
+                  fontWeight: "400",
+                  fontFamily: "NanumSquareNeo-Variable",
+                }}
+              >
+                0개
+              </Text>
+            </View>
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={glassesSvg} width={50} height={50} />
+            ) : (
+              <Image source={glassesSvg} style={styles.icon_style} />
+            )}
+            <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
+            <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
+          </TouchableOpacity>
+          {/* 엿보기 블러 버전 끝 */}
+
+          {/* 마이페이지 엿보기 버튼 주석 처리 : 엿보기 기능 구현 전
           <TouchableOpacity
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
             onPress={openPeekModal}
@@ -262,7 +299,8 @@ export default function TabThreeScreen() {
             ) : (
               <Image source={glassesSvg} style={styles.icon_style} />
             )}
-          </TouchableOpacity>
+          </TouchableOpacity> 
+          */}
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
           <TouchableOpacity
@@ -496,6 +534,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
+  // 엿보기 버튼 블러 시작
+  key_peek_box_blur: {
+    width: "100%",
+    position: "absolute"
+  },
+  key_peek_box_blur_text: {
+    position: "absolute",
+    alignItems: "center"
+  },
+  // 엿보기 버튼 블러 끝
   icon_style: {
     width: 50,
     height: 50,
