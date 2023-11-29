@@ -11,7 +11,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { WithLocalSvg } from "react-native-svg";
 
 const frameImage = require("../assets/images/ginger_card_frame.svg");
-const defaultGingerman = require("../assets/gingerman/g_bellboy.png");
+const defaultGingerman = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 type TGingermanCard = {
   isOpened?: boolean;
@@ -83,8 +83,10 @@ const styles = StyleSheet.create({
 
   image: {
     position: "absolute",
-    width: "100%",
-    height: "100%",
+    top: 10,
+    left: 10,
+    width: 72,
+    height: 95,
   },
   question_mark: {
     position: "absolute",
