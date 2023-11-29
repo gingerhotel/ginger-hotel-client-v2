@@ -62,6 +62,8 @@ export default function CustomUserHotel({
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
+
+  console.log(wallColor, structColor);
   // 벽면 컬러값
   const wallColors: TColorsFill = {
     "#CF332C": {
@@ -105,7 +107,7 @@ export default function CustomUserHotel({
       color2: "#644083",
       color3: "#976BB7",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#D7D6D3",
       color2: "#CECBC3",
       color3: "#E8E6E4",
@@ -145,9 +147,9 @@ export default function CustomUserHotel({
       color3: "#398385",
     },
     "#65BBD0": {
-      color1: "#225052",
-      color2: "#347779",
-      color3: "#398385",
+      color1: "#24638D",
+      color2: "#184167",
+      color3: "#276C99",
     },
     "#143561": {
       color1: "#184167",
@@ -159,7 +161,7 @@ export default function CustomUserHotel({
       color2: "#4D2156",
       color3: "#54255E",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#4E4236",
       color2: "#746351",
       color3: "#806D59",
@@ -264,12 +266,12 @@ export default function CustomUserHotel({
         <SvgImg
           url={buildingDeco[buildingDecorator]}
           style={{
-            width: 63,
+            width: 82,
             height: 220,
             marginTop: 20,
             zIndex: 99,
-            top: 74,
-            left: 160,
+            top: 68,
+            left: 152,
             position: "absolute",
           }}
         />
@@ -330,12 +332,12 @@ export default function CustomUserHotel({
           width={340}
           height={416}
           style={{
-            width: 355,
-            height: 395,
+            width: 373,
+            height: 375,
             marginTop: 20,
             zIndex: 4,
-            top: -10,
-            left: 13,
+            top: -20,
+            left: 5,
             position: "absolute",
           }}
         />
