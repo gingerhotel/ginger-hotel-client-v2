@@ -51,7 +51,6 @@ export default function Login({ navigation }: any) {
       })
       .then((res) => {
         console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
         AsyncStorage.setItem('accessToken', res.data.accessToken);
         router.push('/hotelcreate')
       })
@@ -140,7 +139,6 @@ export default function Login({ navigation }: any) {
       })
       .then((res) => {
         console.log(res);
-        AsyncStorage.setItem('isLogin', "true");
         AsyncStorage.setItem('accessToken', res.data.accessToken);
         console.log(res.data.accessToken);
         router.push('/create')

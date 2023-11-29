@@ -9,25 +9,24 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { colors } from "../../constants/Colors";
-import { Line, WithLocalSvg } from "react-native-svg";
+import { WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
 import { router } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
-import { Link } from "expo-router";
 import KeyModal from "../../components/Modal/keyModal";
 import PeekModal from "../../components/Modal/peekModal";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
 const pencilSvg = require("../../assets/icon/i_pencil.svg");
-const membershipSvg = require("../../assets/icon/i_membership.svg");
 const questionCircleSvg = require("../../assets/icon/i_question_circle.svg");
-const brushSvg = require("../../assets/icon/i_brush.svg");
 const copySvg = require("../../assets/icon/i_copy.svg");
+const hotelModifySvg = require("../../assets/icon/i_hotel_modify.svg");
+const mycardSvg = require("../../assets/icon/i_mycard.svg");
 
 interface User {
   nickname: string;
@@ -132,109 +131,75 @@ export default function TabThreeScreen() {
       <View style={styles.profileContainer}>
         <View style={styles.user_info_box}>
           <View style={styles.name_box}>
-            <Text style={[styles.name, { color: colors.Whiteyello }]}>
-              {userInfo.nickname}
-            </Text>
-          </View>
-          <View style={styles.user_info}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 45,
-                width: 150,
-              }}
-            >
-              {/*<View
-                style={{
-                  height: 45,
-                  justifyContent: "space-between",
-                  marginTop: 5,
-                }}
-              >
-                 <Text
-                  style={{
-                    color: colors.grey100,
-                    fontWeight: "400",
-                    fontFamily: "NanumSquareNeo-Variable",
-                    marginBottom: 5,
-                    height: 20,
+            <View style={styles.name_bow_wrapper}>
+              <Text style={[styles.name, { color: colors.Whiteyello }]}>
+                {userInfo.nickname}
+              </Text>
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <TouchableOpacity
+                  onPress={() => {
+                    router.push("/changeUserInfo");
                   }}
                 >
-                  내 멤버쉽
-                </Text> 
+                  <WithLocalSvg asset={pencilSvg} />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => {
+                    router.push("/changeUserInfo");
+                  }}
+                >
+                  <Image source={pencilSvg} style={{ marginTop: 5 }} />
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+          <View style={styles.user_info}>
+            <TouchableOpacity>
+              <View>
+                <View
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                    marginBottom: 3,
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: colors.grey100,
+                      fontWeight: "400",
+                      fontFamily: "NanumSquareNeo-Variable",
+                      height: 20,
+                    }}
+                  >
+                    내 코드{" "}
+                  </Text>
+                  {Platform.OS === "ios" || Platform.OS === "android" ? (
+                    <WithLocalSvg
+                      asset={copySvg}
+                      width={15}
+                      height={15}
+                      style={{ marginBottom: 5 }}
+                    />
+                  ) : (
+                    <Image
+                      source={copySvg}
+                      style={{ marginBottom: 5, marginLeft: 5 }}
+                    />
+                  )}
+                </View>
                 <Text
                   style={{
                     color: colors.green600,
                     fontWeight: "700",
                     fontFamily: "NanumSquareNeo-Variable",
-                    height: 20,
                   }}
                 >
-                  {userInfo.membership}
+                  {userInfo.code}
                 </Text>
               </View>
-              <View
-                style={[
-                  styles.separator_vertical,
-                  { backgroundColor: colors.grey900 },
-                ]}
-              ></View>*/}
-              <TouchableOpacity
-                onPress={() => {
-                  router.push("/instaShared");
-                }}
-              >
-                <View
-                  style={{
-                    height: 40,
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <View
-                    style={{
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexDirection: "row",
-                      height: 20,
-                      marginBottom: 5,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: colors.grey100,
-                        fontWeight: "400",
-                        fontFamily: "NanumSquareNeo-Variable",
-                        height: 20,
-                      }}
-                    >
-                      내 코드{" "}
-                    </Text>
-                    {Platform.OS === "ios" || Platform.OS === "android" ? (
-                      <WithLocalSvg
-                        asset={copySvg}
-                        width={15}
-                        height={15}
-                        style={{ marginBottom: 5 }}
-                      />
-                    ) : (
-                      <Image source={copySvg} style={{ marginBottom: 5 }} />
-                    )}
-                  </View>
-                  <Text
-                    style={{
-                      color: colors.green600,
-                      fontWeight: "700",
-                      fontFamily: "NanumSquareNeo-Variable",
-                      height: 20,
-                    }}
-                  >
-                    {userInfo.code}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.key_peek_container}>
@@ -306,62 +271,27 @@ export default function TabThreeScreen() {
           <TouchableOpacity
             style={{
               alignItems: "center",
-              width: 70,
-              height: 55,
               justifyContent: "center",
-            }}
-          >
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={brushSvg} />
-            ) : (
-              <Image source={brushSvg} />
-            )}
-            <Link href={`/updateHotel/${hotel}`}>
-              <Text
-                style={{
-                  color: colors.Whiteyello,
-                  fontWeight: "400",
-                  marginTop: 10,
-                  fontFamily: "NanumSquareNeo-Variable",
-                }}
-              >
-                호텔수정
-              </Text>
-            </Link>
-          </TouchableOpacity>
-          <View
-            style={[
-              styles.separtator_vertical_for_btn,
-              { backgroundColor: colors.grey800 },
-            ]}
-          ></View>
-          <TouchableOpacity
-            style={{
-              alignItems: "center",
-              justifyContent: "center",
-              width: 70,
-              height: 55,
+              width: 60,
             }}
             onPress={() => {
-              router.push("/changeUserInfo");
+              router.push(`/updateHotel/${hotel}`);
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={pencilSvg} width={25} height={25} />
+              <WithLocalSvg asset={hotelModifySvg} />
             ) : (
-              <Image source={pencilSvg} style={{ width: 27, height: 27 }} />
+              <Image source={hotelModifySvg} />
             )}
             <Text
               style={{
                 color: colors.Whiteyello,
                 fontWeight: "400",
-                marginTop:
-                  Platform.OS === "ios" || Platform.OS === "android" ? 10 : 10,
-
                 fontFamily: "NanumSquareNeo-Variable",
+                marginTop: 10,
               }}
             >
-              내정보수정
+              호텔수정
             </Text>
           </TouchableOpacity>
           <View
@@ -373,9 +303,40 @@ export default function TabThreeScreen() {
           <TouchableOpacity
             style={{
               alignItems: "center",
-              width: 70,
-              height: 55,
               justifyContent: "center",
+              width: 60,
+            }}
+            onPress={() => {
+              router.push("/instaShared");
+            }}
+          >
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={mycardSvg} />
+            ) : (
+              <Image source={mycardSvg} />
+            )}
+            <Text
+              style={{
+                color: colors.Whiteyello,
+                fontWeight: "400",
+                marginTop: 10,
+                fontFamily: "NanumSquareNeo-Variable",
+              }}
+            >
+              내 카드
+            </Text>
+          </TouchableOpacity>
+          <View
+            style={[
+              styles.separtator_vertical_for_btn,
+              { backgroundColor: colors.grey800 },
+            ]}
+          ></View>
+          <TouchableOpacity
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              width: 60,
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
@@ -424,14 +385,9 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity
-            onPress={() => {
-              AsyncStorage.removeItem("accessToken");
-              router.push("/");
-            }}
-          >
+          <TouchableOpacity>
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              로그아웃
+              팀진저
             </Text>
           </TouchableOpacity>
         </View>
@@ -467,7 +423,11 @@ export default function TabThreeScreen() {
         name="로그인"
         desc=""
       />
-      <KeyModal visible={keyModalVisible} onClose={closeKeyModal} />
+      <KeyModal
+        visible={keyModalVisible}
+        onClose={closeKeyModal}
+        code={userInfo?.code}
+      />
       <PeekModal visible={peekModalVisible} onClose={closePeekModal} />
     </View>
   );
@@ -505,9 +465,17 @@ const styles = StyleSheet.create({
   user_info: {
     width: "50%",
     alignItems: "center",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    paddingTop: 5,
   },
   name_box: {
     width: "50%",
+  },
+  name_bow_wrapper: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
   name: {
     fontSize: 28,
@@ -550,7 +518,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
     width: "100%",
-    height: 75,
   },
 
   ad_banner: {

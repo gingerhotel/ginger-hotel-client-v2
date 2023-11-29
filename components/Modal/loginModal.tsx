@@ -36,7 +36,7 @@ const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey
 WebBrowser.maybeCompleteAuthSession();
 
 
-function isEmpty(str){
+function isEmpty(str:string){
 		
   if(typeof str == "undefined" || str == null || str == "")
     return true;
@@ -89,7 +89,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
       if (res.status == 200) {
         router.push("/create");
       } else if (res.status == 201) {
-        if (!isEmpty(id)) {
+        if (!isEmpty(id as string)) {
           router.push(`/hotel/${id}`);
         } else {
           // Todo : Need a Funcional code

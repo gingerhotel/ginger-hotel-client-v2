@@ -20,7 +20,12 @@ import GingerModal from "../../../components/gingerModal";
 import { colors } from "../../../constants/Colors";
 import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
-import { router, useLocalSearchParams, useNavigation, useSegments } from "expo-router";
+import {
+  router,
+  useLocalSearchParams,
+  useNavigation,
+  useSegments,
+} from "expo-router";
 const ginger = require("../../../assets/gingerman/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
@@ -79,7 +84,6 @@ export default function HotelComp() {
   //   }
   // }, [id, navigation]);
 
-  
   const segments = useSegments();
   useEffect(() => {
     const isHotelPath = segments[1] === "hotel";
@@ -123,13 +127,15 @@ export default function HotelComp() {
         feekCount={data?.feekCount}
       />
       <View style={styles.container}>
-        <ProgressBarView>
+        <ProgressBarView style={{ width: 230 }}>
           <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
+
           <ProgressBar
             todayLetterCnt={data?.todayReceivedLetterCount}
             goalCnt={goalCnt}
           />
         </ProgressBarView>
+
         <Text style={styles.hotel_name}>
           {data?.hotel?.nickname}님의 진저호텔!!
         </Text>
@@ -159,8 +165,8 @@ export default function HotelComp() {
                   title="오늘의 편지함 보기"
                   color="green"
                   width={288}
-                  url="mailbox"
-                  is_disable={data?.canReceiveLetterToday}
+                  url="mailbox/1"
+                  is_disable={data?.todayLetterCnt <= 5}
                 />
                 <TouchableOpacity>
                   <SvgImg
@@ -207,14 +213,13 @@ export default function HotelComp() {
               </View>
               <View style={styles.hotel_today}>
                 <Buttons
-                  title="빌리지 추가하기"
+                  title="내 호텔 추가하기"
                   url="letter"
                   color="green"
                   width={350}
                   callback={() =>
-                    !data?.isLoginMember ? setLoginModalVisible(true) : {}
+                    setLoginModalVisible(true)
                   }
-                  auth={data?.isLoginMember}
                 />
               </View>
             </>

@@ -11,6 +11,7 @@ import {
 import { colors } from "../../constants/Colors";
 import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../buttons";
+import Toast from "react-native-toast-message";
 
 const closeIcon = require("../../assets/icon/i_close_line.svg");
 const keySvg = require("../../assets/icon/i_key.svg");
@@ -19,10 +20,10 @@ const copyIcon = require("../../assets/icon/i_copy.svg");
 type TProps = {
   onClose?: any;
   visible?: boolean;
+  code?: string;
 };
 
-const KeyModal = ({ onClose, visible }: TProps) => {
-  const [myCode, setMyCode] = useState("2A5BR16");
+const KeyModal = ({ onClose, visible, code }: TProps) => {
   const close = () => {
     onClose();
   };
@@ -74,11 +75,19 @@ const KeyModal = ({ onClose, visible }: TProps) => {
           </View>
           <View style={styles.codeWrapper}>
             <Text style={styles.codeDesc}>
-              내코드 : <Text style={styles.codeAccent}>{myCode}</Text>
+              내코드 : <Text style={styles.codeAccent}>{code}</Text>
             </Text>
           </View>
           <View style={styles.btnWrapper}>
-            <Buttons title={"내 코드 복사하기"} color="green" icon={copyIcon} />
+            <Buttons title={"내 코드 복사하기"} color="green" icon={copyIcon} 
+            callback={()=>{
+              navigator.clipboard.writeText(code as string);
+              Toast.show({
+                type: "iconToast",
+                text1: "링크가 복사되었습니다!",
+                position: "bottom",
+              });
+            }}/>
           </View>
           <Text style={styles.captionText}>
             ※단, 지난 날짜 창문에는 열쇠를 사용할 수 없어요.

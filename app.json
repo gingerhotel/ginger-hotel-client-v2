@@ -2,7 +2,7 @@
   "name": "gingerhotel",
   "displayName": "gingerhotel",
   "expo": {
-    "name": "gingerhotel-client-v2",
+    "name": "진저호텔",
     "slug": "ginger-hotel-client-v2",
     "version": "2.2.2",
     "orientation": "portrait",
