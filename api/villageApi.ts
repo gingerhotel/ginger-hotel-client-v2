@@ -28,3 +28,15 @@ export const myVillage = async () => {
   }
 };
 
+export const deleteVillage = async (hotelId: string) => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    const response = await axios.delete(`${VILLAGE_URL}/hotel/${hotelId}`);
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};
+
