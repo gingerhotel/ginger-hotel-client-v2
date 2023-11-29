@@ -264,12 +264,12 @@ export default function CustomUserHotel({
         <SvgImg
           url={buildingDeco[buildingDecorator]}
           style={{
-            width: 63,
+            width: 82,
             height: 220,
             marginTop: 20,
             zIndex: 99,
-            top: 74,
-            left: 160,
+            top: 68,
+            left: 152,
             position: "absolute",
           }}
         />
