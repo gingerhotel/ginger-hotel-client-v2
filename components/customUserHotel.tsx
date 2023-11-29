@@ -330,12 +330,12 @@ export default function CustomUserHotel({
           width={340}
           height={416}
           style={{
-            width: 355,
-            height: 395,
+            width: 373,
+            height: 375,
             marginTop: 20,
             zIndex: 4,
-            top: -10,
-            left: 13,
+            top: -20,
+            left: 5,
             position: "absolute",
           }}
         />
