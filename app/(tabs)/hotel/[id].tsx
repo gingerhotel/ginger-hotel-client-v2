@@ -164,7 +164,7 @@ export default function HotelComp() {
                   title="오늘의 편지함 보기"
                   color="green"
                   width={288}
-                  url="mailbox"
+                  url="mailbox/1"
                   is_disable={data?.todayLetterCnt <= 5}
                 />
                 <TouchableOpacity>
