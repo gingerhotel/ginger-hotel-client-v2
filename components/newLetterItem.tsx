@@ -22,9 +22,10 @@ import {
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
 import BottemSheet from "./bottemSheet";
+import { LetterArrayProps } from "../api/interface";
 const iconMore = require("../assets/icon/i_more_vert.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
-
+const i_block = require("../assets/icon/i_block.svg");
 type Props = {
   from: string; contents: string;
   is_active: boolean;
@@ -33,23 +34,21 @@ type Props = {
 export const NewLetterItem = ({ letters }: any) => {
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
   const [letterId, setLetterId] = useState(0);
-  const [lettersData, setLettersData] = useState(letters);
+  const [blocked, setBlocked] = useState(false);
   const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
-  const toggleModal = (id: number) => {
+  const toggleModal = (props: LetterArrayProps) => {
     setBottomSheetVisible(true);
-    setLetterId(id);
+    setLetterId(props.id);
+    setBlocked(props.isBlocked);
   };
 
   const closeModal = () => {
     setBottomSheetVisible(false);
   };
-  useEffect(() => {
-    setLettersData(letters)
-  })
   return (
     <>
       <FlatList
-        data={lettersData}
+        data={letters}
         renderItem={({ item }) =>
           <LetterOuterContainer>
             <LetterInnerContainer b_color="#FFFDF0">
@@ -59,26 +58,35 @@ export const NewLetterItem = ({ letters }: any) => {
                     <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
                   </TouchableOpacity>
                   <LetterInnerTitieTextView>
-                    <LetterInnerSendText>보내는 이</LetterInnerSendText>
-                    <LetterInnerUserText>{item.senderNickname}</LetterInnerUserText>
+                    <LetterInnerSendText f_color="#4A4A4E">보내는 이</LetterInnerSendText>
+                    <LetterInnerUserText f_color="#25796B">{item.senderNickname}</LetterInnerUserText>
                   </LetterInnerTitieTextView>
-                  <TouchableOpacity onPress={() => toggleModal(item.id)}>
+                  <View style={{ position: 'absolute', right: '-3%' }}>
                     <SvgImg
                       url={iconMore}
                       width={30}
                       height={30}
+                      onPress={() => toggleModal(item)}
                     />
-                  </TouchableOpacity>
+                  </View>
+                  {item.isBlocked ? (
+                    <SvgImg
+                      url={i_block}
+                      width={30}
+                      height={30}
+                    // onPress={() => toggleModal(item.id)}
+                    />
+                  ) : (<View />)}
                 </LetterInnerTitieView>
-                <LetterInnerTextBox>
-                  {item.content}
-                </LetterInnerTextBox>
               </LetterInnerInfoView>
+              <LetterInnerTextBox f_color="#36363B">
+                {item.content}
+              </LetterInnerTextBox>
             </LetterInnerContainer>
           </LetterOuterContainer>
         }
         keyExtractor={item => item.id.toString()} />
-      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} ></BottemSheet>
+      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked}></BottemSheet>
     </>
   );
 };
