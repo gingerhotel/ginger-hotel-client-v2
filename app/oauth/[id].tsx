@@ -7,19 +7,32 @@ export default function OAuth() {
     const route: any = useRoute();
 
     useEffect(() => {
-        if (route.params && route.params.code) {
-          signInWithKakao(
-            route.params.code,
-            (successData: any) => {
-                // 처리 성공
-            },
-            (error: any) => {
-                // 처리 실패
-                location.href = '/hotel/1'
-            }
-          );
+        const code = route.path.split('/')[2];
+
+        if (code && code.indexOf('?') === -1) {
+            signInWithKakao(
+                code,
+                (successData: any) => {
+                    // 처리 성공
+                },
+                (error: any) => {
+                    // 처리 실패
+                    location.href = '/hotel/1'
+                }
+            );
+        } else if (route.params && route.params.code) {
+            signInWithKakao(
+                route.params.code,
+                (successData: any) => {
+                    // 처리 성공
+                },
+                (error: any) => {
+                    // 처리 실패
+                    location.href = '/hotel/1'
+                }
+            );
         }
-      }, [route.params]);
+    }, [route.params]);
 
     return;
 }
