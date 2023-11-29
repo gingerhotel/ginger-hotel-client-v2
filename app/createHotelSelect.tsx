@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  TextInput,
 } from "react-native";
 import Buttons from "../components/buttons";
 import Chip from "../components/chip";
@@ -18,6 +19,12 @@ import { useLocalSearchParams, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
 const icon = require("../assets/icon/i_check_user.png");
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css"; // 새로운 CSS 파일을 생성하여 스타일을 추가합니다.
+import { checkMemberCode } from "../api/authApi";
+import Toast from "react-native-toast-message";
+
 export default function createHotelSelect() {
   const props = useLocalSearchParams();
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -25,9 +32,29 @@ export default function createHotelSelect() {
   const [activeChip, setChip] = React.useState("선택안함");
   const [activeBirth, setBirth] = React.useState("선택안함");
   const [code, setCode] = useState("");
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date("2000-01-01"));
+
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date);
+    // 생년월일을 원하는 형식으로 표시
+    const formattedDate = date.toISOString().split("T")[0];
+    setBirthday(formattedDate);
+  };
+
+  const handelCheckCode = async () => {
+    const res = await checkMemberCode(code);
+    if (res.success) {
+      Toast.show({
+        type: "iconToast",
+        text1: "친구코드 인증이 완료되었습니다.",
+        position: "bottom",
+      });
+    } else {
+      setCode("");
+    }
+  };
+
   const navigation = useNavigation();
   React.useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -60,36 +87,16 @@ export default function createHotelSelect() {
             생년월일을 형식에 맞게 입력해주세요.
           </MonoText>
 
-          <Chip text={"선택안함"} active={activeBirth} />
+          {/* <Chip text={"선택안함"} active={activeBirth} /> */}
           <View style={styles.input_wrapper}>
-            <Input
-              placeholder="YYYY"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setYear(text)}
-            />
-            <View style={{ marginLeft: 8 }}></View>
-            <Input
-              placeholder="MM"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setMonth(text)}
-            />
-            <View style={{ marginLeft: 8 }}></View>
-            <Input
-              placeholder="DD"
-              width={
-                Platform.OS === "ios" || Platform.OS === "android"
-                  ? input_size.app
-                  : input_size.web
-              }
-              onChange={(text: string) => setDay(text)}
+            <DatePicker
+              portalId="root-portal"
+              selected={selectedDate}
+              onChange={handleDateChange}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="YYYY-MM-DD"
+              showYearDropdown
+              popperPlacement="bottom"
             />
           </View>
 
@@ -102,12 +109,15 @@ export default function createHotelSelect() {
 
           <View style={styles.input_wrapper_2}>
             <Input
+              maxLength={7}
               onChange={(text: string) => setCode(text)}
               width={"90%"}
               placeholder="친구 코드 7자리를 입력해주세요 (ex. 14B78H1)"
             />
             <View style={styles.icon}>
-              <Image style={{ width: 27, height: 27 }} source={icon} />
+              <TouchableOpacity onPress={handelCheckCode}>
+                <Image style={{ width: 27, height: 27 }} source={icon} />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -120,7 +130,7 @@ export default function createHotelSelect() {
               ...props,
               gender: sex_english[activeChip],
               code,
-              birthDate: activeBirth ? "" : `${year}-${month}-${day}`,
+              birthDate: birthday,
             }}
           />
         </View>
@@ -172,10 +182,10 @@ const styles = StyleSheet.create({
   },
   input_wrapper: {
     width: "100%",
-    display: "flex",
-    flexDirection: "row",
+    // display: "flex",
+    // flexDirection: "row",
     marginTop: 12,
-    alignItems: "center",
+    // alignItems: "center",
   },
 
   input_wrapper_2: {
