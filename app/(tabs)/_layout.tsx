@@ -21,7 +21,7 @@ export default function _layout() {
       }}
     >
       <Tabs.Screen
-        name="village"
+        name="gingerAlbum"
         options={{
           headerShown: false,
           title: "앨범",

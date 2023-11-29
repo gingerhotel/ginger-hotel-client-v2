@@ -1,10 +1,10 @@
 import * as React from "react";
 import { View, useWindowDimensions, StyleSheet, Text } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import Header from "../../components/header";
-import { MonoText } from "../../components/styledText";
-import VillageHeader from "../../components/villageHeader";
-import LoginModal from "../../components/Modal/\bloginModal";
+import Header from "../components/header";
+import { MonoText } from "../components/styledText";
+import VillageHeader from "../components/villageHeader";
+import LoginModal from "../components/Modal/loginModal";
 
 const AllVillage = () => <View style={{ flex: 1, backgroundColor: "white" }} />;
 
@@ -36,17 +36,15 @@ export default function Village() {
     { key: "my", title: "내 진저 빌리지" },
   ]);
 
-  const [loginModalVisible, setLoginModalVisible] = React.useState<boolean>(false);
+  const [loginModalVisible, setLoginModalVisible] =
+    React.useState<boolean>(false);
   const closeLoginModal = () => {
     setLoginModalVisible(false);
   };
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     //setLoginModalVisible(true);
-  }, [])
-  
-
-
+  }, []);
 
   const renderTabBar = (props: any) => (
     <TabBar

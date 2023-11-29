@@ -1,11 +1,11 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import { colors } from "../constants/Colors";
-import GingermanCard from "../components/gingermanCard";
-import Header from "../components/appHeader";
+import { colors } from "../../constants/Colors";
+import GingermanCard from "../../components/gingermanCard";
+import Header from "../../components/appHeader";
 import { useEffect } from "react";
 import { useNavigation } from "expo-router";
 
-const bellboy = require("../assets/gingerman/g_bellboy.png");
+const bellboy = require("../../assets/gingerman/g_bellboy.png");
 
 const GingerAlbum = () => {
   const navigation = useNavigation();
