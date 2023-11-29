@@ -20,25 +20,31 @@ export const signInWithKakao = async (
   onError: Function
 ) => {
   try {
+    console.log("check 1");
     const { access_token } = await login({
       restApiKeyWeb: RestApiKey,
       redirectUrlWeb: redirectUrl,
       codeWeb,
     });
 
+    console.log("check 2");
     const kakao_data: any = await getKakaoProfile(access_token);
+    console.log("check 3", kakao_data);
     const _data = {
       id: kakao_data.id,
       name: kakao_data.properties.nickname,
       ci: access_token,
     };
+    console.log("check 4", _data);
 
     try {
       const response = await authKakao(_data);
       const { status, data } = response;
 
-      await AsyncStorage.setItem("accessToken", data?.accessToken);
+      console.log("check 4.5", _data);
+      localStorage.setItem("accessToken", data?.accessToken);
 
+      console.log("check 5", _data);
       if (status === 200) {
         router.push("/create");
         onSuccess(data);
