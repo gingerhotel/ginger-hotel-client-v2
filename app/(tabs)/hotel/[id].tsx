@@ -113,7 +113,7 @@ export default function HotelComp() {
   }, [data]);
 
   console.log(data);
-  
+
   if (status === "loading") {
     return <Text>Loading...</Text>;
   } else {
@@ -142,45 +142,46 @@ export default function HotelComp() {
             />
           </ProgressBarView>
 
-        <Text style={styles.hotel_name}>
-          {data?.hotel?.nickname}님의 진저호텔!!
-        </Text>
-        <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
+          <Text style={styles.hotel_name}>
+            {data?.hotel?.nickname}님의 진저호텔!!
+          </Text>
+          <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
 
-        {/* <Link href={"/create"}> */}
-        <View style={{ backgroundColor: colors.greyblack }}>
-          <CustomCompleteUserHotel
-            window={data.hotelWindows}
-            // onPress={handleClickWindow}
-            wallColor={data?.hotel?.bodyColor}
-            structColor={data?.hotel?.structColor}
-            buildingDecorator={data?.hotel?.buildingDecorator}
-            is_border={false}
-            is_front_bg={true}
-            gardenDecorator={data?.hotel?.gardenDecorator}
-            background={data?.hotel?.background}
-            window_v={data?.hotel?.windowDecorator}
-          />
-        </View>
-        {/* </Link> */}
-        <View style={styles.hotel_today_container}>
-          {data.isOwner ? (
-            <>
-              <View style={styles.hotel_today}>
-                <Buttons
-                  title="오늘의 편지함 보기"
-                  color="green"
-                  width={288}
-                  url="mailbox/1"
-                  is_disable={data?.todayLetterCnt >= 5}
-                />
-                <TouchableOpacity>
-                  <SvgImg
-                    width={40}
-                    height={40}
-                    url={album}
-                    onPress={() => router.push("/gingerAlbum")}
+          {/* <Link href={"/create"}> */}
+          <View style={{ backgroundColor: "transparent" }}>
+            <CustomCompleteUserHotel
+              window={data.hotelWindows}
+              // onPress={handleClickWindow}
+              wallColor={data?.hotel?.bodyColor}
+              structColor={data?.hotel?.structColor}
+              buildingDecorator={data?.hotel?.buildingDecorator}
+              is_border={false}
+              is_front_bg={true}
+              gardenDecorator={data?.hotel?.gardenDecorator}
+              background={data?.hotel?.background}
+              window_v={data?.hotel?.windowDecorator}
+            />
+          </View>
+          {/* </Link> */}
+          <View style={styles.hotel_today_container}>
+            {data.isOwner ? (
+              <>
+                <View style={styles.hotel_today}>
+                  <Buttons
+                    title="오늘의 편지함 보기"
+                    color="green"
+                    width={288}
+                    url="mailbox/1"
+                    is_disable={data?.todayLetterCnt >= 5}
                   />
+                  <TouchableOpacity>
+                    <SvgImg
+                      width={40}
+                      height={40}
+                      url={album}
+                      onPress={() => router.push("/gingerAlbum")}
+                    />
+                  </TouchableOpacity>
                   <TouchableOpacity>
                     <SvgImg
                       width={40}

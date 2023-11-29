@@ -5,7 +5,7 @@ export const SnowfallStyle = StyleSheet.create({
     margin: 0,
     top: 0,
     left: 0,
-    height: "60%",
+    height: "70%",
     width: "100%",
     flexDirection: "column",
     justifyContent: "center",
