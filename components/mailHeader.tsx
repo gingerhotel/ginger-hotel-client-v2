@@ -17,7 +17,7 @@ import {
   MailTitleView
 } from "../style/mailBoxStyled";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { letterSwitchState, newLetterCountState } from "../atom/letterAtom";
+import { letterSwitchState, letterUpdateState, newLetterCountState } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
 import { router } from "expo-router";
 import { useQuery } from "react-query";
@@ -27,6 +27,7 @@ const arrow = require("../assets/icon/i_left_arrow.svg")
 const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
+  const countCheck = useRecoilValue(letterUpdateState);
   const { data, refetch } = useQuery('loadHotel', {
     onError: (e) => {
       console.log(`useQuery error : ${e}`);
@@ -60,26 +61,26 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   }
   useEffect(() => {
     refetch();
-  }, [data])
+  }, [countCheck])
   return (
     <SafeAreaView style={{ width: "100%" }}>
       <MailBoxView>
         <SvgImg url={arrow} onPress={() => router.back()}></SvgImg>
         <MailTitleView>
           <MailTitleText>오늘의 편지함</MailTitleText>
-          <MailNumberText>64</MailNumberText>
+          <MailNumberText>{data?.todayReceivedLetterCount}</MailNumberText>
         </MailTitleView>
         <View />
       </MailBoxView>
       <MailChoseContainer>
         <MailInfoView>
           <TouchableOpacity onPress={() => onLetterChange('1')}>
-            <MailChoseView b_color={letterCheck.new ? "#34AB96" : "#000"} >
+            <MailChoseView b_color={letterCheck.new ? "#FFFDF0" : "#000"} >
               <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>새로운 편지 {data?.todayReceivedLetterCount}</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onLetterChange('2')}>
-            <MailChoseView b_color={!letterCheck.reply ? "#000" : "#34AB96"}>
+            <MailChoseView b_color={!letterCheck.reply ? "#000" : "#FFFDF0"}>
               <MailChoseText f_color={!letterCheck.reply ? "#6E6E73" : "#fff"}>답장 2</MailChoseText>
             </MailChoseView>
           </TouchableOpacity>

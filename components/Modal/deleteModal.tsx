@@ -6,22 +6,24 @@ import {
 } from "../../style/deleteModalStyled";
 import { Text, View } from "../themed";
 import Modal from "react-native-modal";
-import { BottomSheetDeleteProps } from "../../api/interface";
+import { BottomSheetProps } from "../../api/interface";
 import { MonoText } from "../styledText";
 import { SvgImg } from "../svgImg";
 import { letterDelete } from "../../api/letterApi";
 import { useMutation, useQueryClient } from "react-query";
+import { useRecoilState } from "recoil";
+import { letterUpdateState } from "../../atom/letterAtom";
 const i_yes = require("../../assets/icon/i_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const DeleteModal = ({
   isVisible,
   onClose,
   letterId,
-}: BottomSheetDeleteProps) => {
-  const deleteMutation = useMutation((letterId: any) => letterDelete(letterId));
+}: BottomSheetProps) => {
+  const [deleteCheck, setDeleteCheck] = useRecoilState(letterUpdateState);
   const onDelelet = async () => {
     await letterDelete(letterId);
-    deleteMutation.mutate(letterId);
+    setDeleteCheck(!deleteCheck);
     onClose();
   };
   return (

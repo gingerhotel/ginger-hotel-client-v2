@@ -13,6 +13,8 @@ import { SvgImg } from "./svgImg";
 import { colors } from "../constants/Colors";
 
 import { router } from "expo-router";
+import SnowfallContainer from "./snow/snowfallContainer";
+import Snowfall from "react-snowfall";
 
 let icon = require("../assets/icon/ic_alert_no.svg");
 let i_info = require("../assets/icon/help_FILL0_wght400_GRAD0_opsz241.svg");
@@ -21,11 +23,11 @@ let i_glasses = require("../assets/icon/i_glasses.svg");
 let i_plus = require("../assets/icon/i_plus.svg");
 const Header = ({ isOwner, keyCount, feekCount }: any) => {
   return (
-    <SafeAreaView style={{ backgroundColor: "white" }}>
-      <View style={{ backgroundColor: colors.greyblack }}>
+    <SafeAreaView style={{ backgroundColor: "transparent" }}>
+      <View style={{ backgroundColor: "transparent" }}>
         <View style={styles.wrapper}>
           <View style={styles.item}>
-            {isOwner ?
+            {isOwner ? (
               <>
                 <View style={styles.container_1}>
                   <SvgImg width={40} height={40} url={i_key} />
@@ -39,9 +41,9 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
                   </TouchableOpacity>
                 </View>
               </>
-              :
+            ) : (
               <></>
-            }
+            )}
           </View>
           <View style={styles.item2}>
             <SvgImg
@@ -95,10 +97,11 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "100%",
     marginTop: 30,
-    backgroundColor: colors.greyblack,
+    backgroundColor: "transparent",
     marginLeft: 20,
     paddingRight: 40,
     paddingTop: 35,
+    zIndex: -100,
   },
   item: {
     fontFamily: "Pretendard-Regular",

@@ -48,3 +48,14 @@ export const letterBlock = async (letterId: number) => {
     throw e;
   }
 }
+export const letterUnBlock = async (letterId: number) => {
+  try {
+    const response = await axios.post(`${LETTERS_URL}/${letterId}/unblock`);
+    console.error(response)
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+}
+

@@ -23,3 +23,7 @@ export const newLetterCountState = atom<number>({
     key: 'newLetterCount',
     default: 0
 })
+export const letterUpdateState = atom<boolean>({
+    key: 'letterUpdateState',
+    default: false
+})
