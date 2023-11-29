@@ -112,9 +112,6 @@ export default function TabThreeScreen() {
           });
 
           setHotelinfo(hotel.id);
-
-          console.log(response.data);
-          console.log("?");
         })
         .catch((error) => {
           console.error(error);
@@ -360,14 +357,14 @@ export default function TabThreeScreen() {
       </View>
       <View style={styles.linksContainer}>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { window.open('https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4') }}>
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               이용약관
             </Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { window.open('https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4') }}>
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               개인정보 처리방침
             </Text>
@@ -385,14 +382,7 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity>
-            <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              팀진저
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => { window.open('https://www.instagram.com/gingerhotel_official') }}>
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               <FontAwesome name="instagram" size={16} /> 진저호텔
             </Text>
@@ -407,7 +397,7 @@ export default function TabThreeScreen() {
           ]}
         ></View>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          사업자등록번호 : 202-58-00723 대표이사 강민지
+          사업자등록번호 : 202-58-00723 대표 강민지
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
           주소 : 서울특별시 중구 서대문로7길 16 508-3호
