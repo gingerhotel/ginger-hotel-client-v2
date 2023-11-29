@@ -125,7 +125,7 @@ export default function HotelComp() {
     <ScrollView>
       <View style={{ backgroundColor: colors.greyblack }}>
         <SnowfallContainer>
-          <Snowfall color="white" snowflakeCount={20} />
+          <Snowfall color="white" snowflakeCount={50} />
         </SnowfallContainer>
         <Header
           isOwner={data.isOwner}
@@ -224,28 +224,24 @@ export default function HotelComp() {
                   />
                 </View>
                 <View style={styles.hotel_today}>
-                {!data?.isLoginMember ? <Buttons
-                  title="내 호텔 만들기"
-                  url="letter"
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    setLoginModalVisible(true)
-                  }
-                />
-                :
-                <Buttons
-                  title="내 호텔로 가기"
-                  url="letter"
-                  color="green"
-                  width={350}
-                  callback={() =>
-                    setLoginModalVisible(true)
-                  }
-                /> 
-                }
+                  {!data?.isLoginMember ? (
+                    <Buttons
+                      title="내 호텔 만들기"
+                      url="letter"
+                      color="green"
+                      width={350}
+                      callback={() => setLoginModalVisible(true)}
+                    />
+                  ) : (
+                    <Buttons
+                      title="내 호텔로 가기"
+                      url="letter"
+                      color="green"
+                      width={350}
+                      callback={() => setLoginModalVisible(true)}
+                    />
+                  )}
                 </View>
-                
               </>
             )}
           </View>
