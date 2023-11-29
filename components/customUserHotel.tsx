@@ -63,7 +63,6 @@ export default function CustomUserHotel({
     [key: string]: { color1: string; color2: string; color3: string };
   };
 
-  console.log(wallColor, structColor);
   // 벽면 컬러값
   const wallColors: TColorsFill = {
     "#CF332C": {
@@ -152,9 +151,9 @@ export default function CustomUserHotel({
       color3: "#276C99",
     },
     "#143561": {
-      color1: "#184167",
-      color2: "#24638D",
-      color3: "#276C99",
+      color1: "#091546",
+      color2: "#0F2273",
+      color3: "#263B96",
     },
     "#8A61AC": {
       color1: "#321538",
