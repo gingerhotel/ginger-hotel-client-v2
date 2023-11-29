@@ -66,10 +66,6 @@ const DeleteAccountTwo = () => {
             ⋅ 현재 계정으로 받은 편지와 답장이 모두 삭제됩니다.
           </Text>
           <Text style={styles.info_item}>
-            ⋅ 구매한 멤버쉽, 엿보기는 사용 여부와 관계 없이
-          </Text>
-          <Text style={styles.info_item}>{"   "}환불되지 않습니다.</Text>
-          <Text style={styles.info_item}>
             ⋅ 탈퇴 후 계정 복구가 불가합니다.
           </Text>
           <Text style={styles.info_item}>
