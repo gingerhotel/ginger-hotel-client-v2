@@ -37,7 +37,6 @@ function FirstLetter({ letter }: any) {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
-    console.log(letter)
     return (
         <View>
             <LetterOuterContainer b_color="#FFFDF0">

@@ -58,7 +58,6 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
       }
     }
   };
-  console.log(data);
   useEffect(() => {
     refetch();
   }, [countCheck]);

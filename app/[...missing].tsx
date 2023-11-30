@@ -21,7 +21,7 @@ const NotFoundScreen: React.FC<NotFoundScreenProps> = () => {
         <Text style={styles.TextStyle}>지금은 호텔을 정비 중이야!</Text>
         <MonoText style={styles.SubTextStyle}>잠시만 기다려줘~</MonoText>
         <Link href="/" style={styles.link}>
-          <Buttons title="내 호텔로 가기" url="/" color="green" width={180} />
+          <Buttons title="홈으로 가기" url="/" color="green" width={180} />
         </Link>
       </View>
     </>

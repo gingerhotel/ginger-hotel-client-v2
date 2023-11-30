@@ -6,11 +6,9 @@ import { NewLetter } from "./interface";
 import { axiosConfig } from "./commonApi";
 
 
-export const newLetterData = async (id: any) => {
-  const date = getCurrentDate()
+export const newLetterData = async (id: any, day:string) => {
   try {
-    const response = await axios.get(`${LETTERS_HOTEL_URL}/${id}?date=${date}`);
-    // const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=2023-11-29`);
+    const response = await axios.get(`${LETTERS_HOTEL_URL}/${id}?date=2023-12-${day.padStart(2, '0')}`);
     return response.data;
   } catch (e) {
     console.error(e);
@@ -63,7 +61,7 @@ export const repliesLetterData = async (letterId: string | string[] | undefined)
   console.error(letterId)
   try {
     const response = await axios.get(`${LETTERS_URL}/${letterId}/replies`);
-    console.log(response.data)
+    // console.log(response.data)
     return response.data;
   } catch (e) {
     console.error(e);

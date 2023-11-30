@@ -5,6 +5,7 @@ import {
     Image,
     TouchableOpacity,
     TouchableHighlight,
+    ScrollView,
 } from "react-native";
 import {
     LetterInnerContainer,
@@ -35,18 +36,16 @@ type Props = {
     navigation: any;
 };
 const i_block = require("../assets/icon/i_block.svg");
-const ReplyLetterBoxItem = (props: any) => {
-    console.log(props)
+const ReplyLetterBoxItem = (data: any) => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const [letterId, setLetterId] = useState(0);
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
     const toggleModal = (props: ReplyArrayProps) => {
-        console.log('as', props)
         setLetterType(false);
         setBottomSheetVisible(true);
-        setLetterId(props.id);
+        setLetterId(data.letter.id);
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
@@ -54,13 +53,11 @@ const ReplyLetterBoxItem = (props: any) => {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
-    console.log(letterId);
-    console.log(props.replies);
     return (
-        <>
-            <FirstLetter letter={props.letter} />
+        <ScrollView>
+            <FirstLetter letter={data.letter} />
             <FlatList
-                data={props.replies}
+                data={data.replies}
                 renderItem={({ item }) =>
                     <LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                         <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
@@ -101,7 +98,7 @@ const ReplyLetterBoxItem = (props: any) => {
                 keyExtractor={item => item.id.toString()} />
 
             <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
-        </>
+        </ScrollView>
 
     );
 }

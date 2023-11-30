@@ -40,23 +40,17 @@ export default function _layout() {
             }}
           />
           <Stack.Screen
-            name="letter"
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
             name="(tabs)"
             options={{
               headerShown: false,
             }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="[missing]"
             options={{
               title: "404",
             }}
-          />
+          /> */}
         </Stack>
 
         <Toast config={toastConfig} />

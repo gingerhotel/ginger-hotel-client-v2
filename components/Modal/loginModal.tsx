@@ -82,7 +82,6 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
       }
     } else {
       setUserInfo(user);
-      console.log("loaded locally");
     }
   }
 

@@ -41,6 +41,7 @@ import {
   hotelIdState,
   newLetterCountState,
   userCodeState,
+  windowDateState,
 } from "../../../atom/letterAtom";
 import { newLetterData } from "../../../api/letterApi";
 import { getHotel, openWindow } from "../../../api/hotelApi";
@@ -72,9 +73,10 @@ export default function HotelComp() {
   const [keyModal, setKeyModal] = useState<boolean>(false);
   const [noKeyModal, setNoKeyModal] = useState<boolean>(false);
 
-  const [newLetterCount, setNewLetterCount] =
-    useRecoilState(newLetterCountState);
+  const [newLetterCount, setNewLetterCount] =useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
+  const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -194,6 +196,7 @@ export default function HotelComp() {
       setKeyModal(true);
       return;
     }
+    setLetterCheck(new Date().getDate());
     router.push(`/mailbox/${id}`);
   };
 
@@ -207,7 +210,7 @@ export default function HotelComp() {
     }
   }, [data]);
 
-  console.log(data);
+  // console.log(data);
 
   if (status === "loading") {
     return <Text>Loading...</Text>;

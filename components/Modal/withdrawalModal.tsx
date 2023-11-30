@@ -38,7 +38,7 @@ const WithdrawalModal = ({
                         <Buttons
                             title='확인'
                             width={141}
-                            color='gray_700'
+                            color='green'
                             callback={onClose}
                             auth={true}
                         />

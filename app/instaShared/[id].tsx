@@ -33,7 +33,7 @@ const InstaShared = () => {
       },
     }
   );
-  console.log(data?.hotel);
+  // console.log(data?.hotel);
 
   const [codeArray, setCodeArray] = useState<string[]>([
     "0",
