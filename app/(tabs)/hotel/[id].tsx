@@ -28,6 +28,7 @@ import {
 } from "expo-router";
 import moment from "moment";
 
+const album = require("../../../assets/icon/i_album.svg");
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const addVillageImg = require("../../../assets/images/add_village.svg");
 const addedVillageImg = require("../../../assets/images/added_village.svg");
@@ -279,9 +280,18 @@ export default function HotelComp() {
                   <Buttons
                     title="오늘의 편지함 보기"
                     color="green"
-                    width={350}
+                    width={288}
                     callback={handelTodayLetters}
                   />
+
+                  <TouchableOpacity>
+                    <SvgImg
+                      width={40}
+                      height={40}
+                      url={album}
+                      onPress={() => router.push("/gingerAlbum")}
+                    />
+                  </TouchableOpacity>
                 </View>
 
                 <View style={styles.hotel_today}>
@@ -323,7 +333,13 @@ export default function HotelComp() {
                       <SvgImg width={40} height={38} url={addedVillageImg} />
                     </TouchableOpacity>
                   ) : (
-                    <TouchableOpacity onPress={() => setVillageModal(true)}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        !data?.isLoginMember
+                          ? setLoginModalVisible(true)
+                          : setVillageModal(true)
+                      }
+                    >
                       <SvgImg width={40} height={38} url={addVillageImg} />
                     </TouchableOpacity>
                   )}
