@@ -171,6 +171,7 @@ export default function Login({ navigation }: any) {
         onClose={closeoneBtnModal}
         name="로그인"
         desc=""
+        closeDisable={false}
       />
       <View style={styles.social_btn_group}>
         <SocialButton name={"apple"} />

@@ -46,6 +46,7 @@ import KakaoAdFit from "../../../advertisement/KakaoAdFit";
 import SnowfallContainer from "../../../components/snow/snowfallContainer";
 import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
+import { checkAuth } from "../../../api/authApi";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -59,6 +60,7 @@ export default function HotelComp() {
   const [open, setOpen] = useState(true);
   const navigation = useNavigation();
   const [villageModal, setVillageModal] = useState<boolean>(false);
+  const [myHotelModal, setMyHotelModal] = useState<boolean>(false);
 
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
@@ -74,6 +76,28 @@ export default function HotelComp() {
   const closeModal = () => {
     setModalVisible(false);
   };
+  
+
+
+  const handleGoMyHotel = async () => {
+    setMyHotelModal(false);
+    try {
+      const res = await checkAuth();
+      if (res?.success) {
+        router.push(`/hotel/${res.hotelId}`);
+        setTimeout(() => {
+          location.reload();
+        }, 1);
+      }
+    } catch (err: any) {
+      Toast.show({
+        type: "iconToast",
+        text1: err?.response?.data?.errorMessage,
+        position: "top",
+      });
+    }
+  };
+
 
   const handelAddVillage = async () => {
     setVillageModal(false);
@@ -264,7 +288,7 @@ export default function HotelComp() {
                         url="letter"
                         color="green"
                         width={350}
-                        callback={() => setLoginModalVisible(true)}
+                        callback={() => setMyHotelModal(true)}
                       />
                     </View>
                     <View style={styles.hotel_today}>
@@ -301,6 +325,16 @@ export default function HotelComp() {
           친구 진저호텔에 방문할 수 있어요."
           btn_text="추가하기"
           callback={handelAddVillage}
+        />
+
+        <CenterModal
+          height={180}
+          visible={myHotelModal}
+          onClose={() => setMyHotelModal(false)}
+          title="내 호텔로 이동"
+          desc="내 진저호텔로 이동 하시겠습니까?"
+          btn_text="이동하기"
+          callback={handleGoMyHotel}
         />
         <LoginModal
           height={300}
