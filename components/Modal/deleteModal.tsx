@@ -21,6 +21,7 @@ const DeleteModal = ({
   isVisible,
   onClose,
   letterId,
+  replyId,
   letterType
 }: BottomSheetProps) => {
   const [deleteCheck, setDeleteCheck] = useRecoilState(letterUpdateState);
@@ -29,7 +30,7 @@ const DeleteModal = ({
       await letterDelete(letterId);
     }
     else {
-      await replyDelete(letterId);
+      await replyDelete(replyId);
     }
     setDeleteCheck(!deleteCheck);
     onClose();

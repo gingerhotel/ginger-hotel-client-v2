@@ -61,7 +61,7 @@ const InstaShared = () => {
 
           <View style={styles.title_wrapper}>
             <Text style={styles.name_text}>
-              <Text style={styles.from}>From</Text>
+              <Text style={styles.from}>From </Text>
               {userInfo.nickname}
             </Text>
             <Text style={styles.title_text}>내 진저호텔에 놀러오세요!</Text>
@@ -129,10 +129,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyblack,
   },
   content_wrapper: {
-    backgroundColor: colors.grey800,
+    backgroundColor: colors.grey900,
     borderRadius: 20,
     width: 350,
-    height: 680,
+    height: 670,
     paddingVertical: 32,
     paddingHorizontal: 25,
     alignItems: "center",
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   code_box: {
     width: 34,
     height: 40,
-    backgroundColor: colors.grey900,
+    backgroundColor: colors.grey800,
     borderRadius: 8,
     justifyContent: "center",
     alignContent: "center",

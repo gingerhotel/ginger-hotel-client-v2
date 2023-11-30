@@ -360,7 +360,7 @@ export default function HotelComp() {
                       <Buttons
                         title="내 호텔로 가기"
                         url="letter"
-                        color="green"
+                        color="gray_700"
                         width={350}
                         callback={() => setMyHotelModal(true)}
                       />

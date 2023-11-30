@@ -92,6 +92,7 @@ export interface BottomSheetProps {
   onClose: () => void;
   letterId: number;
   letterType: boolean;
+  replyId: number;
 }
 export interface BottomSheetDeleteProps {
   isVisible: boolean;
