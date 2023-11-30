@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
 
-export const LetterOuterContainer = styled.View`
+export const LetterOuterContainer = styled.View<{ b_color?: string }>`
     border-radius: 18px;
-    border-width: 2px;
+    border-width: 3px;
     border-color: #25796B;
-  
+    background-color: ${(props) => props.b_color};
     max-width:384px;
-    min-width:384px;
+    width: 100%;
     padding: 7px;
     margin-bottom: 15px;
 `
@@ -17,8 +17,8 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   border-width: 4px;
   border-color: #005142;
   background-color: ${(props) => props.b_color};
-  border-style: dotted;
-  max-width:384px;
+  border-style: dashed;
+  max-width:310px;
   justify-content: center;
 `;
 export const LetterInnerInfoView = styled.View`
@@ -26,18 +26,19 @@ export const LetterInnerInfoView = styled.View`
     margin: 10px;
     align-items: center;
     justify-content: center;
+    max-width: 290px;
+    min-width: 290px;
 `
 
-export const LetterInnerTitieView = styled.View`
+export const LetterInnerTitieView = styled.View<{ border_color?: string }>`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    max-width: 290px;
-    min-width: 290px;
     border-bottom-width: 1px;
+    border-color: ${(props) => props.border_color};
     padding: 10px;
-
+    min-width: 240px;
 `
 
 export const LetterInnerTitieTextView = styled.View`
@@ -58,11 +59,12 @@ export const LetterInnerUserText = styled.Text<{ f_color?: string }>`
   font-weight: bold;
 `;
 export const LetterInnerTextBox = styled.Text<{ f_color?: string }>`
-  padding: 10px;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-bottom: 20px;
   color: ${(porps) => porps.f_color};
+  max-width: 300px;
+  padding-left: 33px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 `;
 export const LetterReplyButtonView = styled.View`
     display: flex;
