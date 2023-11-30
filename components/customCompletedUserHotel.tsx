@@ -6,7 +6,7 @@ import { structColors, wallColors } from "./customUserHotel";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-// const backBg = require("../assets/images/backBg.svg");
+const frontBg = require("../assets/images/front_bg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
@@ -484,6 +484,28 @@ export default function CustomCompleteUserHotel({
           }}
         />
       </View>
+      <View
+        style={{
+          zIndex: 3,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={frontBg}
+          width={150}
+          height={140}
+          style={{
+            width: 440,
+            height: 150,
+            marginTop: 20,
+            zIndex: 5,
+            top: 360,
+            left: 10,
+            position: "absolute",
+          }}
+        />
+      </View>
+
       <View
         style={{
           zIndex: 5,
