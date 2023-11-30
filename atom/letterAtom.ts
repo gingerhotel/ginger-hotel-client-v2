@@ -62,5 +62,6 @@ export const letterTypeState = atom<boolean>({
 
 export const windowDateState = atom<number>({
     key: 'windowDateState',
-    default: 0
+    default: 0,
+    effects_UNSTABLE: [persistAtom],
 })
