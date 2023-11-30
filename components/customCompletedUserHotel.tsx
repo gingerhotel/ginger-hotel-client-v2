@@ -515,7 +515,7 @@ export default function CustomCompleteUserHotel({
         {windows?.map((item) => (
           <TouchableOpacity
             key={item.num}
-            onPress={() => onPress && onPress(item.num)}
+            onPress={onPress && onPress(item.num)}
           >
             <View
               key={item.num}
@@ -532,24 +532,24 @@ export default function CustomCompleteUserHotel({
                 url={
                   item.num === 13
                     ? window[
-                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].rec_open
                       : window_design[window_v].rec
                     : item.num === 18
                     ? window[
-                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].rec2_open
                       : window_design[window_v].rec2
                     : item.num === 25
                     ? window[
-                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].mainOpen
                       : window_design[window_v].main
                     : window[
-                        `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                     ? window_design[window_v].open
                     : window_design[window_v].default
@@ -558,21 +558,21 @@ export default function CustomCompleteUserHotel({
                   width:
                     item.num === 25 &&
                     window[
-                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? 50
                       : item.width,
                   height:
                     item.num === 25 &&
                     window[
-                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? 72
                       : item.height,
                   top:
                     item.num === 25 &&
                     window[
-                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? -32
                       : item.num === 25
@@ -581,7 +581,7 @@ export default function CustomCompleteUserHotel({
                   left:
                     item.num === 25 &&
                     window[
-                      `2023-11-${item.num < 10 ? "0" + item.num : item.num}`
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? -14
                       : item.num === 25
@@ -591,7 +591,7 @@ export default function CustomCompleteUserHotel({
                   position: "absolute",
                 }}
               />
-              {!window[`2023-11-${item.num < 10 ? "0" + item.num : item.num}`]
+              {!window[`2023-12-${item.num < 10 ? "0" + item.num : item.num}`]
                 ?.isOpen &&
                 item.num !== 25 && (
                   <MonoText
