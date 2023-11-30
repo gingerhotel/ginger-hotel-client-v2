@@ -29,23 +29,11 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
   const countCheck = useRecoilValue(letterUpdateState);
-<<<<<<< HEAD
-  const { id } = useLocalSearchParams()
-  const { data, isLoading, refetch } = useQuery(
-    "newLetters",
-    {
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
-      },
-    }
-  );
-=======
   const { data, isLoading, refetch } = useQuery("newLetters", {
     onError: (e) => {
       console.log(`useQuery error : ${e}`);
     },
   });
->>>>>>> 89b8ab87e68eee2b152947bfead8fd2215c769f3
   useEffect(() => {
     setDate(getCurrentDateDot());
   }, []);
