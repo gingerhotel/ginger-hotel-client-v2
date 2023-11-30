@@ -47,9 +47,8 @@ export default function CustomCompleteUserHotel({
   buildingDecorator,
   background,
 }: any) {
-  const web = { top: 38, left: 49 };
-  const app = { top: 38, left: 49 };
-  const _web = { top: 38, left: 49 };
+  const web = { top: 38, left: 50 };
+  const _web = { top: 37, left: 50 };
 
   const windows = [
     {
@@ -374,16 +373,7 @@ export default function CustomCompleteUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg
-          width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "410"
-          }
-          height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
-          }
-          viewBox="0 0 365 480"
-          fill="none"
-        >
+        <Svg width={407} height={547} viewBox="0 0 365 480" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -409,16 +399,7 @@ export default function CustomCompleteUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : web,
         ]}
       >
-        <Svg
-          width={
-            Platform.OS === "ios" || Platform.OS === "android" ? "363" : "410"
-          }
-          height={
-            Platform.OS === "ios" || Platform.OS === "android" ? "323" : "550"
-          }
-          viewBox="0 0 365 480"
-          fill="none"
-        >
+        <Svg width={407} height={547} viewBox="0 0 365 480" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"

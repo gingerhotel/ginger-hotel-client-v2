@@ -169,8 +169,8 @@ export default function CustomUserHotel({
   is_border,
   is_front_bg,
 }: any) {
-  const web = { top: 41, left: 43 };
-  const _web = { top: 42, left: 43 };
+  const web = { top: 42, left: 43 };
+  const _web = { top: 42, left: 42 };
   const app = { top: 63, left: 5 };
 
   return (
@@ -205,7 +205,7 @@ export default function CustomUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
+        <Svg width="327" height="355" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -231,7 +231,7 @@ export default function CustomUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : web,
         ]}
       >
-        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
+        <Svg width="327" height="355" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
