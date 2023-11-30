@@ -102,11 +102,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     width: "100%",
-    marginTop: 30,
     backgroundColor: "transparent",
     marginLeft: 20,
     paddingRight: 40,
-    paddingTop: 35,
     zIndex: -100,
   },
   item: {
