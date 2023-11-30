@@ -14,14 +14,14 @@ import { SvgImg } from "./svgImg";
 type Props = {
   title: string;
   color:
-    | "red"
-    | "darkgray"
-    | "grey"
-    | "green"
-    | "white"
-    | "disable_red"
-    | "gray_700"
-    | "neongreen";
+  | "red"
+  | "darkgray"
+  | "grey"
+  | "green"
+  | "white"
+  | "disable_red"
+  | "gray_700"
+  | "neongreen";
   is_disable?: boolean;
   url?: string;
   callback?: any;
@@ -44,13 +44,13 @@ const Buttons = ({
   auth,
 }: Props) => {
   const handlePress = () => {
-    if (callback) {
-      callback();
-      if (!auth) return;
-    }
 
     if (url) {
       router.push({ pathname: `/${url}`, params: props });
+    }
+    if (callback) {
+      callback();
+      if (!auth) return;
     }
   };
 
