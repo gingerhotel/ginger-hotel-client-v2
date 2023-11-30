@@ -5,8 +5,7 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const frontBg = require("../assets/images/frontBg.svg");
-
+const frontBg = require("../assets/images/front_bg.svg");
 
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
@@ -338,6 +337,28 @@ export default function CustomUserHotel({
             zIndex: 4,
             top: -20,
             left: 5,
+            position: "absolute",
+          }}
+        />
+      </View>
+
+      <View
+        style={{
+          zIndex: 3,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={frontBg}
+          width={150}
+          height={140}
+          style={{
+            width: 365,
+            height: 130,
+            marginTop: 20,
+            zIndex: 5,
+            top: 290,
+            left: 10,
             position: "absolute",
           }}
         />

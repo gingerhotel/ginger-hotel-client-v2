@@ -118,7 +118,7 @@ export default function HotelComp() {
         Toast.show({
           type: "iconToast",
           text1: "내 빌리지에 추가되었습니다!",
-          position: "top",
+          position: "bottom",
         });
         router.push(`/village`);
       }
@@ -126,7 +126,7 @@ export default function HotelComp() {
       Toast.show({
         type: "iconToast",
         text1: err?.response?.data?.errorMessage,
-        position: "top",
+        position: "bottom",
       });
     }
   };
