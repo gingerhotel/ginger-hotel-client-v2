@@ -28,9 +28,6 @@ export default function CreateHotelName() {
         <View style={styles.container}>
           <View style={styles.edit_wrapper}>
             <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
-            <MonoText style={styles.desc}>
-              호텔 이름은 나중에도 수정할 수 있어요!
-            </MonoText>
           </View>
 
           <View>
