@@ -170,6 +170,7 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
           <View style={styles(height).close_btn}>
+          {closeDisable ? <></> : 
             <Pressable onPress={close}>
               {Platform.OS === "ios" || Platform.OS === "android" ? (
                 <WithLocalSvg asset={closeIcon} />
@@ -177,6 +178,7 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
                 <Image source={closeIcon} />
               )}
             </Pressable>
+          }
           </View>
           <Text style={[styles(height).modal_title]}>{name}</Text>
           <Text style={[styles(height).modal_desc]}>
