@@ -4,12 +4,15 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  Pressable,
 } from "react-native";
 import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { FontAwesome } from "@expo/vector-icons";
 import { WithLocalSvg } from "react-native-svg";
 import Toast from "react-native-toast-message";
+import { useState } from "react";
+import GingerModal from "./gingerModal";
 
 const icon: any = require("../assets/icon/i_no_check.svg");
 const frameImage = require("../assets/images/ginger_card_frame.svg");
@@ -17,18 +20,27 @@ const defaultGingerman = require("../assets/gingerman/Modal_Ginger/g_bellboy.png
 type TGingermanCard = {
   isOpened?: boolean;
   pngImage?: { uri: string };
+  pngImage2?: { uri: string };
   name?: string;
   date?: string;
+  desc: string;
   onPress?: () => void;
 };
 
 const GingermanCard = ({
   name,
-  pngImage = { uri: defaultGingerman },
+  pngImage = { uri: "" },
+  pngImage2 = { uri: "" },
   date,
   isOpened,
+  desc,
   onPress,
 }: TGingermanCard) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const showToast = () => {
     if (!isOpened) {
       Toast.show({
@@ -39,8 +51,15 @@ const GingermanCard = ({
         props: { icon },
         position: "bottom",
       });
+    } else {
+      setModalVisible(true);
     }
   };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -76,6 +95,14 @@ const GingermanCard = ({
             <MonoText style={styles.date}>{date}</MonoText>
           </>
         )}
+        <GingerModal
+          height={530}
+          visible={isModalVisible}
+          onClose={closeModal}
+          name="벨보이 진저맨"
+          desc={desc}
+          img={pngImage2}
+        />
       </View>
     </TouchableOpacity>
   );
