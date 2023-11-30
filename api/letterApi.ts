@@ -6,10 +6,10 @@ import { NewLetter } from "./interface";
 import { axiosConfig } from "./commonApi";
 
 
-export const newLetterData = async (props: any) => {
+export const newLetterData = async (id: any) => {
   const date = getCurrentDate()
   try {
-    const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=${date}`);
+    const response = await axios.get(`${LETTERS_HOTEL_URL}/${id}?date=${date}`);
     // const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=2023-11-29`);
     return response.data;
   } catch (e) {
