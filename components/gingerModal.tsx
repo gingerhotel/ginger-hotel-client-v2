@@ -22,7 +22,6 @@ const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
   const setCloseModal = () => {
-    router.push(`/mailbox/1`);
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
   return (
