@@ -38,14 +38,14 @@ type Props = {
 const i_block = require("../assets/icon/i_block.svg");
 const ReplyLetterBoxItem = (data: any) => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-    const [letterId, setLetterId] = useState(0);
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
+    const [letterId, setLetterId] = useState(0);
     const toggleModal = (props: ReplyArrayProps) => {
         setLetterType(false);
         setBottomSheetVisible(true);
-        setLetterId(data.letter.id);
+        setLetterId(props.id);
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
@@ -71,14 +71,15 @@ const ReplyLetterBoxItem = (data: any) => {
                                         <LetterInnerSendText f_color={item.isMe ? ("#4A4A4E") : ("#77C7B9")}>{item.isMe ? ("나의 편지") : ("보내는 이")}</LetterInnerSendText>
                                         <LetterInnerUserText f_color={item.isMe ? ("#25796B") : ("#FFFDF0")} >{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
-                                    <View style={{ position: 'absolute', left: '98%' }}>
-                                        <SvgImg
-                                            url={iconMore}
-                                            width={30}
-                                            height={30}
-                                            onPress={() => toggleModal(item)}
-                                        />
-                                    </View>
+                                    {item.isMe ? (null) :
+                                        (<View style={{ position: 'absolute', left: '98%' }}>
+                                            <SvgImg
+                                                url={iconMore}
+                                                width={30}
+                                                height={30}
+                                                onPress={() => toggleModal(item)}
+                                            />
+                                        </View>)}
                                     {item.isBlocked ? (
                                         <SvgImg
                                             url={i_block}
@@ -95,7 +96,16 @@ const ReplyLetterBoxItem = (data: any) => {
                         </LetterInnerContainer>
                     </LetterOuterContainer>
                 }
-                keyExtractor={item => item.id.toString()} />
+                keyExtractor={item => {
+                    // if (item.isMe) {
+                    //     setLetterId(item.id);
+                    // }
+
+                    return item.id.toString()
+                }
+                }
+
+            />
 
             <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
         </ScrollView>
