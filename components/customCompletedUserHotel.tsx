@@ -457,7 +457,7 @@ export default function CustomCompleteUserHotel({
             height: 400,
             marginTop: 20,
             zIndex: 3,
-            top: 0,
+            top: 31,
             left: -82,
             position: "absolute",
           }}
@@ -591,6 +591,16 @@ export default function CustomCompleteUserHotel({
           </TouchableOpacity>
         ))}
       </View>
+      <View
+        style={{
+          backgroundColor: "#ffff",
+          position: "absolute",
+          zIndex: 0,
+          width: "100%",
+          height: 300,
+          bottom: -220,
+        }}
+      ></View>
     </>
   );
 }

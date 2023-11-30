@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
   hotel_today_container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.greyblack,
+    // backgroundColor: colors.greyblack,
     gap: 12,
     marginBottom: 30,
     marginTop: 12,
@@ -391,9 +391,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.greyblack,
+    // backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52
+    height: 52,
   },
   hotel_today2: {
     flexDirection: "column",
