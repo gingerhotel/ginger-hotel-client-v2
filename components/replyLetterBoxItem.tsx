@@ -42,10 +42,12 @@ const ReplyLetterBoxItem = (data: any) => {
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
     const [letterId, setLetterId] = useState(0);
+    const [replyId, setReplyId] = useState(0);
     const toggleModal = (props: ReplyArrayProps) => {
         setLetterType(false);
         setBottomSheetVisible(true);
-        setLetterId(props.id);
+        setLetterId(data.letter.id);
+        setReplyId(props.id)
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
@@ -107,7 +109,7 @@ const ReplyLetterBoxItem = (data: any) => {
 
             />
 
-            <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
+            <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} replyId={replyId} blocked={blocked} ></BottemSheet>
         </ScrollView>
 
     );

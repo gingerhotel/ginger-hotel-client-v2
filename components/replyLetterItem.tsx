@@ -44,7 +44,7 @@ const ReplyLetterItem = ({ replies }: any) => {
         console.log(props)
         setLetterType(false);
         setBottomSheetVisible(true);
-        setLetterId(props.id);
+        setLetterId(props.letterId);
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
