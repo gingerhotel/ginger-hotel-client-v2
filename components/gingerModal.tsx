@@ -39,7 +39,12 @@ const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
           width: "100%",
           height: "100%",
         }}
-        onPress={() => setCloseModal()}
+        onPress={(e) => {
+          e.stopPropagation();
+          if (e.target === e.currentTarget) {
+            setCloseModal();
+          }
+        }}
       >
         <View style={styles(height).centeredView}>
           <View style={styles(height).modalView}>
@@ -79,11 +84,11 @@ const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
             <View style={styles(height).button_wrapper}>
               <Pressable
                 style={[styles(height).button, styles(height).buttonOpen]}
-                onPress={() => setModalVisible()}
+                onPress={() => {
+                  setCloseModal();
+                }}
               >
-                <MonoText style={styles(height).textStyle}>
-                  오늘의 편지 보러가기
-                </MonoText>
+                <MonoText style={styles(height).textStyle}>확인</MonoText>
               </Pressable>
             </View>
           </View>
