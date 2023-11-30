@@ -1,12 +1,18 @@
 import * as React from "react";
-import { View, useWindowDimensions, StyleSheet, Image } from "react-native";
+import {
+  View,
+  useWindowDimensions,
+  StyleSheet,
+  Image,
+  Touchable,
+} from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Header from "../components/appHeader";
 import { MonoText } from "../components/styledText";
 import VillageHeader from "../components/villageHeader";
 import LoginModal from "../components/Modal/loginModal";
 import { useEffect, useState } from "react";
-import { useNavigation } from "expo-router";
+import { Link, useNavigation } from "expo-router";
 import { useQuery } from "react-query";
 import { deleteVillage, myVillage } from "../api/villageApi";
 import CustomSmallHotel from "../components/customSmallHotel";
@@ -61,37 +67,39 @@ const MyVillage = ({ data, open }: { data: any; open: any }) => (
       }}
     >
       {data?.villages?.map((village: any) => (
-        <View key={village.id}>
-          <CustomSmallHotel
-            wallColor={village.bodyColor}
-            structColor={village.structColor}
-          />
+        <Link href={`/hotel/${village.hotelId}`}>
+          <View key={village.id}>
+            <CustomSmallHotel
+              wallColor={village.bodyColor}
+              structColor={village.structColor}
+            />
 
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginTop: 10,
-            }}
-          >
-            <MonoText
+            <View
               style={{
-                color: colors.Whiteyello,
-                textAlign: "center",
-                marginLeft: 8,
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginTop: 10,
               }}
             >
-              {village.nickname}의 진저호텔
-            </MonoText>
-            <SvgImg
-              url={more}
-              style={{ width: 24, height: 24 }}
-              onPress={() => open(village.hotelId)}
-            />
+              <MonoText
+                style={{
+                  color: colors.Whiteyello,
+                  textAlign: "center",
+                  marginLeft: 8,
+                }}
+              >
+                {village.nickname}의 진저호텔
+              </MonoText>
+              <SvgImg
+                url={more}
+                style={{ width: 24, height: 24 }}
+                onPress={() => open(village.hotelId)}
+              />
+            </View>
           </View>
-        </View>
+        </Link>
       ))}
       {!data ||
         (data?.villages?.length < 1 && (
