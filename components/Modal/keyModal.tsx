@@ -16,6 +16,7 @@ import Toast from "react-native-toast-message";
 const closeIcon = require("../../assets/icon/i_close_line.svg");
 const keySvg = require("../../assets/icon/i_key.svg");
 const copyIcon = require("../../assets/icon/i_copy.svg");
+const icon: any = require("../../assets/icon/i_check_green.svg");
 
 type TProps = {
   onClose?: any;
@@ -85,14 +86,15 @@ const KeyModal = ({ onClose, visible, code }: TProps) => {
               icon={copyIcon}
               callback={() => {
                 navigator.clipboard.writeText(code as string);
-                close()
+                close();
                 {
                   Toast.show({
                     type: "iconToast",
                     text1: "초대코드가 복사되었습니다!",
                     position: "bottom",
-                  })
-                };
+                    props: { icon },
+                  });
+                }
               }}
             />
           </View>
@@ -192,7 +194,6 @@ const styles = StyleSheet.create({
     width: 247,
     height: 60,
     marginTop: 20,
-
   },
   captionText: {
     fontFamily: "NanumSquareNeo-Variable",
