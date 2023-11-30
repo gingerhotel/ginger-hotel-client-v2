@@ -23,8 +23,8 @@ import {
 import { SvgImg } from "./svgImg";
 import BottemSheet from "./bottemSheet";
 import { LetterArrayProps } from "../api/interface";
-import { useSetRecoilState } from "recoil";
-import { replyNameState } from "../atom/letterAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { letterTypeState, replyNameState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 const i_block = require("../assets/icon/i_block.svg");
@@ -38,7 +38,9 @@ export const NewLetterItem = ({ letters }: any) => {
   const [letterId, setLetterId] = useState(0);
   const [blocked, setBlocked] = useState(false);
   const setSenderNickname = useSetRecoilState(replyNameState);
+  const setLetterType = useSetRecoilState(letterTypeState);
   const toggleModal = (props: LetterArrayProps) => {
+    setLetterType(true);
     setBottomSheetVisible(true);
     setLetterId(props.id);
     setBlocked(props.isBlocked);
@@ -94,42 +96,5 @@ export const NewLetterItem = ({ letters }: any) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: 18,
-    borderWidth: 1,
-    borderColor: "#D9D9D9",
-    borderRadius: 8,
-    marginTop: 15,
-    width: "100%",
-  },
-  bold: {
-    fontWeight: "bold",
-  },
-  from_text: {
-    fontSize: 14,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  contents: {
-    fontSize: 13,
-    lineHeight: 17,
-    marginTop: 10,
-  },
-  from_wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    justifyContent: "space-between",
-  },
-  icon: {
-    width: 20,
-    height: 20,
-  },
-});
 
 export default NewLetterItem;
