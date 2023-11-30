@@ -307,6 +307,7 @@ export default function HotelComp() {
           onClose={closeLoginModal}
           name="로그인"
           desc=""
+          closeDisable={false}
         />
         <KakaoAdFit />
       </View>

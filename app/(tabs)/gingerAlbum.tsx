@@ -3,7 +3,7 @@ import { colors } from "../../constants/Colors";
 import GingermanCard from "../../components/gingermanCard";
 import Header from "../../components/appHeader";
 import { useEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, useNavigation, useSegments } from "expo-router";
 import { useQuery } from "react-query";
 import { getHotel } from "../../api/hotelApi";
 import { hotelIdState } from "../../atom/letterAtom";
@@ -11,6 +11,8 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Text } from "../../components/themed";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AUTH_URL } from "../../api/url";
+import LoginModal from "../../components/Modal/\bloginModal";
 
 const bellboy = require("../../assets/gingerman/Album_Ginger/a_bellboy.png");
 
@@ -22,6 +24,33 @@ const GingerAlbum = () => {
   const [hotelId, setHotelId] = useRecoilState<string>(hotelIdState);
   const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
   const [info, setInfo] = useState<any>([]);
+
+
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+  const closeLoginModal = () => {
+    setLoginModalVisible(false);
+  };
+
+  const checkLogin = async () => {
+    try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      const response = await axios.get(`${AUTH_URL}`);
+      return response.data;
+    } catch (err: any) {
+      // console.log(err?.response?.data?.errorMessage);
+      setLoginModalVisible(true);
+    }
+  };
+
+  const segments = useSegments();
+  useEffect(() => {
+    const isPath = segments[1] === "gingerAlbum";
+    if (isPath) {
+      checkLogin();
+    }
+  }, [segments]);
+
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -262,6 +291,14 @@ const GingerAlbum = () => {
             />
           </View>
         </View>
+        <LoginModal
+        height={300}
+        visible={loginModalVisible}
+        onClose={closeLoginModal}
+        name="로그인"
+        desc=""
+        closeDisable={true}
+      />
       </ScrollView>
     </>
   );
