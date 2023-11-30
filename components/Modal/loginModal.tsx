@@ -47,7 +47,7 @@ type Props = {
   height?: number | any;
   name: string;
   desc: string;
-  closeDisable : false;
+  closeDisable : boolean;
 };
 
 const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Props) => {

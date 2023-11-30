@@ -38,3 +38,14 @@ export const checkMemberCode = async (code: string) => {
     alert(err?.response?.data?.errorMessage);
   }
 };
+export const checkAuth = async () => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    const response = await axios.get(`${AUTH_URL}`);
+    return response.data;
+  } catch (err: any) {
+    // alert(err?.response?.data?.errorMessage);
+    console.log(err?.response?.data?.errorMessage);
+  }
+};
