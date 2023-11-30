@@ -10,47 +10,58 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
+import { colors } from "../../constants/Colors";
 const ReplyModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
-    // const [replyCheck, setReplykCheck] = useRecoilState(letterUpdateState);
-    const onReply = () => {
-        // await letterBlock(letterId);
-        // setReplykCheck(!replyCheck);
-        onClose();
-    }
-    return (
-        <Modal
-            isVisible={isVisible}
-            style={{ margin: 0, backgroundColor: 'transparent' }}
-            backdropOpacity={0.2}
-        >
-            <DeleteModalView>
-                <DeleteModaContentlView>
-                    <MonoText style={{ fontSize: 16, fontWeight: 'bold' }}>답장을 보낼까요?</MonoText>
-                    <MonoText style={{ color: '#98989B' }}>광고를 보면 상대방에게 답장을 보낼 수 있어요!</MonoText>
-                    <DeleteModalButtonView>
-                        {/* <SvgImg url={i_no} width={141} height={46} onPress={onClose} /> */}
-                        <Buttons
-                            title='취소하기'
-                            width={141}
-                            color='gray_700'
-                            callback={onClose}
-                            auth={true}
-                        />
-                        {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
-                        <Buttons
-                            title='답장쓰기'
-                            url={`reply/${letterId}`}
-                            width={141}
-                            color='green'
-                            callback={onReply}
-                            props={letterId}
-                            auth={true}
-                        />
-                    </DeleteModalButtonView>
-                </DeleteModaContentlView>
-            </DeleteModalView>
-        </Modal>
-    )
-}
+  // const [replyCheck, setReplykCheck] = useRecoilState(letterUpdateState);
+  const onReply = () => {
+    // await letterBlock(letterId);
+    // setReplykCheck(!replyCheck);
+    onClose();
+  };
+  return (
+    <Modal
+      isVisible={isVisible}
+      style={{ margin: 0, backgroundColor: "transparent", height: 500 }}
+      backdropOpacity={0.2}
+    >
+      <DeleteModalView>
+        <DeleteModaContentlView>
+          <MonoText
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              color: colors.Whiteyello,
+            }}
+          >
+            답장을 보낼까요?
+          </MonoText>
+          <MonoText style={{ color: colors.grey400 }}>
+            답장은 친구의 오늘자 편지함에 전달돼요!
+          </MonoText>
+          <DeleteModalButtonView>
+            {/* <SvgImg url={i_no} width={141} height={46} onPress={onClose} /> */}
+            <Buttons
+              title="취소하기"
+              width={141}
+              color="gray_700"
+              callback={onClose}
+              auth={true}
+            />
+            {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
+            <Buttons
+              title="답장쓰기"
+              url={`reply/${letterId}`}
+              width={141}
+              color="green"
+              callback={onReply}
+              props={letterId}
+              auth={true}
+            />
+          </DeleteModalButtonView>
+        </DeleteModaContentlView>
+      </DeleteModalView>
+    </Modal>
+  );
+};
 
 export default ReplyModal
