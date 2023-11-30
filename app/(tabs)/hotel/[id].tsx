@@ -387,12 +387,12 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   hotel_today: {
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52,
+    height: 52
   },
   hotel_today2: {
     flexDirection: "column",

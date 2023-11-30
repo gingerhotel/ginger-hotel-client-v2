@@ -369,7 +369,7 @@ export default function CustomCompleteUserHotel({
       color2: "#644083",
       color3: "#976BB7",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#D7D6D3",
       color2: "#CECBC3",
       color3: "#E8E6E4",
@@ -423,7 +423,7 @@ export default function CustomCompleteUserHotel({
       color2: "#4D2156",
       color3: "#54255E",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#4E4236",
       color2: "#746351",
       color3: "#806D59",

@@ -32,7 +32,8 @@ export const MailChoseContainer = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
+    border-bottom-color: #6E6E73;
+    border-bottom-width: 1px;
     padding-left: 20px;
 `
 export const MailChoseView = styled.View<{ b_color: string }>`

@@ -266,9 +266,7 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <View
-            style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-          >
+          <View style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
             <View>
               <Text
                 style={{
@@ -296,46 +294,11 @@ export default function TabThreeScreen() {
               <Image source={glassesSvg} style={styles.icon_style} />
             )}
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
-            <SvgImg
-              style={styles.key_peek_box_blur_text}
-              url={feek_blur_text}
-            />
+
+            <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
           </View>
           {/* 엿보기 블러 버전 끝 */}
 
-          {/* 마이페이지 엿보기 버튼 주석 처리 : 엿보기 기능 구현 전
-          <TouchableOpacity
-            style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-            onPress={openPeekModal}
-          >
-            <View>
-              <Text
-                style={{
-                  color: colors.Whiteyello,
-                  fontWeight: "700",
-                  marginBottom: 5,
-                  fontFamily: "NanumSquareNeo-Variable",
-                }}
-              >
-                내 엿보기 <FontAwesome name={"chevron-right"} />
-              </Text>
-              <Text
-                style={{
-                  color: colors.Whiteyello,
-                  fontWeight: "400",
-                  fontFamily: "NanumSquareNeo-Variable",
-                }}
-              >
-                {userInfo.feekCount}개
-              </Text>
-            </View>
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={glassesSvg} width={50} height={50} />
-            ) : (
-              <Image source={glassesSvg} style={styles.icon_style} />
-            )}
-          </TouchableOpacity> 
-          */}
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
           <TouchableOpacity
