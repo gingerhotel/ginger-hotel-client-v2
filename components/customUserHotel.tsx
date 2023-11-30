@@ -314,7 +314,7 @@ export default function CustomUserHotel({
             height: 293,
             marginTop: 20,
             zIndex: 5,
-            top: 37,
+            top: 36,
             left: 68,
             position: "absolute",
           }}
