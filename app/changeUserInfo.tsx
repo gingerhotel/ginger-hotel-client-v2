@@ -22,13 +22,17 @@ const ChangeUserInfo = () => {
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
 
   const openLogoutModal = () => {
-    // refactor
-    AsyncStorage.removeItem("accessToken");
-    router.push("/");
     setLogoutModalVisible(true);
   };
   const closeLogoutModal = () => {
     setLogoutModalVisible(false);
+  };
+
+  const Logout = () => {
+    setLogoutModalVisible(false);
+    // refactor
+    AsyncStorage.removeItem("accessToken");
+    router.push("/");
   };
 
   const navigation = useNavigation();
@@ -45,7 +49,7 @@ const ChangeUserInfo = () => {
     <>
       <View style={styles.container}>
         <View>
-          <Header title="내 정보 수정" />
+          <Header title="내 계정" />
           <CenterModal
             height={180}
             visible={logoutModalVisible}
@@ -53,6 +57,7 @@ const ChangeUserInfo = () => {
             title="로그아웃 하시겠어요?"
             desc="다음 로그인 때 동일한 계정으로 소셜로그인을 해야 호텔을 그대로 볼 수 있어요."
             btn_text="로그아웃"
+            callback={Logout}
           />
 
           <View style={styles.edit_wrapper}>

@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { BaseToast } from "react-native-toast-message";
 import { colors } from "../constants/Colors";
 import { Icon } from "./Icon";
+import { MonoText } from "./styledText";
 
 export const toastConfig = {
   basicToast: (props: any) => (
@@ -14,6 +15,7 @@ export const toastConfig = {
         textAlign: "center",
         padding: 2,
         height: 40,
+        zIndex: 1000,
       }}
       text1Style={{
         fontSize: 15,
@@ -34,10 +36,13 @@ export const toastConfig = {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        zIndex: 1000,
       }}
     >
       <Icon url={props.icon} width={24} />
-      <Text style={{ color: colors.grey800, marginLeft: 8 }}>{text1}</Text>
+      <MonoText style={{ color: colors.grey800, marginLeft: 8 }}>
+        {text1}
+      </MonoText>
     </View>
   ),
 };

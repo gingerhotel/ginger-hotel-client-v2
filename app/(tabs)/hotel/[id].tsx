@@ -190,7 +190,9 @@ export default function HotelComp() {
           <Text style={styles.hotel_name}>
             {data?.hotel?.nickname}님의 진저호텔
           </Text>
-          <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
+          <MonoText style={styles.hotel_desc}>
+            {data?.hotel?.description}
+          </MonoText>
 
           {/* <Link href={"/create"}> */}
           <View style={{ backgroundColor: "transparent" }}>
