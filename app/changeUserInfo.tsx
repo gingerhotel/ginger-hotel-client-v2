@@ -155,7 +155,7 @@ const ChangeUserInfo = () => {
               accessible={true}
               accessibilityLabel="회원탈퇴 버튼"
               onPress={() => {
-                router.push("/deleteAccountOne");
+                router.push("/deleteAccountTwo");
               }}
             >
               <MonoText style={styles.input_title}>회원탈퇴</MonoText>
