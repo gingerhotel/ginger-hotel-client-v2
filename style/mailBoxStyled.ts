@@ -56,7 +56,7 @@ export const MailInfoView = styled.View`
 export const MailChoseText = styled(Font_16)<{ f_color: string }>`
   color: ${(props) => props.f_color};
   padding: 10px;
-  font-family: "NanumSquare Neo OTF";
+  font-family: "NanumSquareNeo-Variable";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
