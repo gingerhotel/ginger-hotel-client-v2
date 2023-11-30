@@ -347,6 +347,7 @@ export default function TabThreeScreen() {
                 fontWeight: "400",
                 fontFamily: "NanumSquareNeo-Variable",
                 marginTop: 10,
+                fontSize: 12,
               }}
             >
               호텔수정
@@ -378,6 +379,7 @@ export default function TabThreeScreen() {
                 color: colors.Whiteyello,
                 fontWeight: "400",
                 marginTop: 10,
+                fontSize: 12,
                 fontFamily: "NanumSquareNeo-Variable",
               }}
             >
@@ -407,6 +409,7 @@ export default function TabThreeScreen() {
                 color: colors.Whiteyello,
                 fontWeight: "400",
                 marginTop: 10,
+                fontSize: 12,
                 fontFamily: "NanumSquareNeo-Variable",
               }}
             >
@@ -624,7 +627,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   links_text: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "NanumSquareNeo-Variable",
   },
 
