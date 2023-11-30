@@ -14,6 +14,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const bellboy = require("../../assets/gingerman/Album_Ginger/a_bellboy.png");
 
+const bellboy2 = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
+
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
@@ -29,7 +31,7 @@ const GingerAlbum = () => {
     const handleHotelData = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios
-        .get(`${BASE_URL}/hotel/1`, {
+        .get(`${BASE_URL}/hotel/${hotelId}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -52,7 +54,9 @@ const GingerAlbum = () => {
 
   return (
     <>
-      <Header title="진저맨 앨범" />
+      <View style={styles.header}>
+        <Text style={styles.header_text}>진저맨 앨범</Text>
+      </View>
       <ScrollView>
         <View style={styles.containter}>
           <View style={styles.card_container}>
@@ -60,150 +64,200 @@ const GingerAlbum = () => {
               name="벨보이 진저맨"
               date="12/01"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={`올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~`}
               isOpened={true}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/02"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-02`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/03"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-03`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/04"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-04`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/05"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-05`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/06"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-06`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/07"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-07`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/08"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-08`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/09"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-09`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/10"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-10`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/11"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-11`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/12"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-12`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/13"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-13`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/14"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-14`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/15"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-15`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/16"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-16`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/17"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-17`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/18"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-18`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/19"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-19`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/20"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-20`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/21"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-21`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/22"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-22`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/23"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-23`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/24"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-24`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
               date="12/25"
               pngImage={bellboy}
+              pngImage2={bellboy2}
+              desc={``}
               isOpened={info[`2023-12-25`]?.isOpen}
             />
           </View>
@@ -230,6 +284,20 @@ const styles = StyleSheet.create({
   CardGinger_Style: {
     width: 72,
     height: 95,
+  },
+  header: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: 44,
+    paddingTop: 54,
+    paddingBottom: 33,
+    backgroundColor: colors.greyblack,
+  },
+  header_text: {
+    fontFamily: "SOYOMaple-Regular",
+    fontSize: 18,
+    color: colors.Whiteyello,
+    width: 92,
   },
 });
 
