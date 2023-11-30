@@ -13,6 +13,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "**/*.svg",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "components/customMediumHoteltsx"
   ]
 }
