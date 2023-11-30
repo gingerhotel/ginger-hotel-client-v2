@@ -50,6 +50,19 @@ export const updateHotel = async (props: any) => {
   }
 };
 
+export const openWindow = async (props: any) => {
+  console.log(props?.date);
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    const response = await axios.post(
+      `${HOTEL_URL}/${props.id}/open/window?date=${props?.date}`
+    );
+    return response.data;
+  } catch (err: any) {
+    alert(err?.response?.data?.errorMessage);
+  }
+};
 
 
 
