@@ -75,19 +75,23 @@ const KeyModal = ({ onClose, visible, code }: TProps) => {
           </View>
           <View style={styles.codeWrapper}>
             <Text style={styles.codeDesc}>
-              내코드 : <Text style={styles.codeAccent}>{code}</Text>
+              초대코드 : <Text style={styles.codeAccent}>{code}</Text>
             </Text>
           </View>
           <View style={styles.btnWrapper}>
-            <Buttons title={"내 코드 복사하기"} color="green" icon={copyIcon} 
-            callback={()=>{
-              navigator.clipboard.writeText(code as string);
-              Toast.show({
-                type: "iconToast",
-                text1: "링크가 복사되었습니다!",
-                position: "bottom",
-              });
-            }}/>
+            <Buttons
+              title={"초대코드 복사하기"}
+              color="green"
+              icon={copyIcon}
+              callback={() => {
+                navigator.clipboard.writeText(code as string);
+                Toast.show({
+                  type: "iconToast",
+                  text1: "초대코드가 복사되었습니다!",
+                  position: "bottom",
+                });
+              }}
+            />
           </View>
           <Text style={styles.captionText}>
             ※단, 지난 날짜 창문에는 열쇠를 사용할 수 없어요.
