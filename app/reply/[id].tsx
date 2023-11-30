@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         textAlign: "left",
         marginBottom: 20,
+        gap: 20
     },
     input_text: {
         fontSize: 12,
