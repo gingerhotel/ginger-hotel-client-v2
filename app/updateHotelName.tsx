@@ -64,9 +64,6 @@ export default function UpdateHotelName() {
         <View style={styles.container}>
           <View style={styles.edit_wrapper}>
             <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
-            <MonoText style={styles.desc}>
-              호텔 이름은 나중에도 수정할 수 있어요!
-            </MonoText>
           </View>
 
           <View>
@@ -112,6 +109,9 @@ export default function UpdateHotelName() {
               callback={handleFormSubmit}
             />
           </View>
+          <MonoText style={styles.hotel_info}>
+            호텔 이름은 나중에도 수정할 수 있어요!
+          </MonoText>
         </View>
       </ScrollView>
     </>
@@ -179,6 +179,10 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 20,
-    marginBottom: 28,
+  },
+  hotel_info: {
+    color: colors.grey500,
+    fontSize: 10,
+    marginBottom: 20,
   },
 });

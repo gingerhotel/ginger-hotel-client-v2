@@ -1,32 +1,31 @@
 import { View, StyleSheet, Text, Image, Platform } from "react-native";
 import { useState, useEffect } from "react";
 import { WithLocalSvg } from "react-native-svg";
-import { colors } from "../constants/Colors";
-import { router, useNavigation } from "expo-router";
-import Header from "../components/appHeader";
+import { colors } from "../../constants/Colors";
+import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import Header from "../../components/appHeader";
 import { useRecoilState } from "recoil";
-import { hotelIdState, userCodeState } from "../atom/letterAtom";
-import { SvgImg } from "../components/svgImg";
-import { PngImg } from "../components/pngImg";
+import { hotelIdState, userCodeState } from "../../atom/letterAtom";
+import { SvgImg } from "../../components/svgImg";
+import { PngImg } from "../../components/pngImg";
 import { useQuery } from "react-query";
-import { myDate } from "../api/myApi";
-import { getHotel } from "../api/hotelApi";
-import CustomUserHotel from "../components/customUserHotel";
-import CustomSmallHotel from "../components/customSmallHotel";
-import CustomMediumHotel from "../components/customMediumHotel";
+import { myDate } from "../../api/myApi";
+import { getHotel } from "../../api/hotelApi";
+import CustomUserHotel from "../../components/customUserHotel";
+import CustomSmallHotel from "../../components/customSmallHotel";
+import CustomMediumHotel from "../../components/customMediumHotel";
 
-const hotelFrame = require("../assets/images/frame_insta_shared.png");
-const hotelImage = require("../assets/images/StartHotel.svg");
-const sharedLogo = require("../assets/images/logo_insta_shared.svg");
+const hotelFrame = require("../../assets/images/frame_insta_shared.png");
+const sharedLogo = require("../../assets/images/logo_insta_shared.svg");
 
 const InstaShared = () => {
+  const { id } = useLocalSearchParams();
   const navigation = useNavigation();
 
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
-  const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
   const { data, status, error, refetch } = useQuery(
     "loadHotel",
-    async () => await getHotel(hotelId as string),
+    async () => await getHotel(id as string),
     {
       refetchOnWindowFocus: false,
       onError: (e) => {

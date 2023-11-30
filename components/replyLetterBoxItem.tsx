@@ -28,23 +28,25 @@ import { letterTypeState, replyNameState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 import BottemSheet from "./bottemSheet";
+import FirstLetter from "./firstLetter";
 type Props = {
     from: string; contents: string;
     is_active: boolean;
     navigation: any;
 };
 const i_block = require("../assets/icon/i_block.svg");
-const ReplyLetterItem = ({ replies }: any) => {
+const ReplyLetterBoxItem = (props: any) => {
+    console.log(props)
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const [letterId, setLetterId] = useState(0);
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
     const toggleModal = (props: ReplyArrayProps) => {
-        console.log(props)
+        console.log('as', props)
         setLetterType(false);
         setBottomSheetVisible(true);
-        setLetterId(props.letterId);
+        setLetterId(props.id);
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
@@ -53,10 +55,12 @@ const ReplyLetterItem = ({ replies }: any) => {
         setBottomSheetVisible(false);
     };
     console.log(letterId);
+    console.log(props.replies);
     return (
         <>
+            <FirstLetter letter={props.letter} />
             <FlatList
-                data={replies}
+                data={props.replies}
                 renderItem={({ item }) =>
                     <LetterOuterContainer b_color="#36363B">
                         <LetterInnerContainer b_color="#36363B">
@@ -67,8 +71,8 @@ const ReplyLetterItem = ({ replies }: any) => {
                               </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
                                     <View />
                                     <LetterInnerTitieTextView>
-                                        <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
-                                        <LetterInnerUserText f_color="#FFFDF0">{item?.senderNickname}</LetterInnerUserText>
+                                        <LetterInnerSendText f_color={item.isMe ? ("#4A4A4E") : ("#77C7B9")}>{item.isMe ? ("나의 편지") : ("보내는 이")}</LetterInnerSendText>
+                                        <LetterInnerUserText f_color={item.isMe ? ("#25796B") : ("#FFFDF0")} >{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
                                     <View style={{ position: 'absolute', left: '98%' }}>
                                         <SvgImg
@@ -88,21 +92,12 @@ const ReplyLetterItem = ({ replies }: any) => {
                                     ) : (<View />)}
                                 </LetterInnerTitieView>
                             </LetterInnerInfoView>
-                            <LetterInnerTextBox f_color="#fff">
+                            <LetterInnerTextBox f_color={item.isMe ? ("#36363B") : ("#FFFDF0")} >
                                 {item?.content}
                             </LetterInnerTextBox>
-                            <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
-                                <LetterReplyButtonView>
-                                    <Buttons
-                                        title="답장 모아보기"
-                                        color="green"
-                                        width={247}
-                                        url={`replybox/${item.letterId}`}
-                                    />
-                                </LetterReplyButtonView>
-                            </TouchableOpacity>
                         </LetterInnerContainer>
-                    </LetterOuterContainer>}
+                    </LetterOuterContainer>
+                }
                 keyExtractor={item => item.id.toString()} />
 
             <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
@@ -148,4 +143,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ReplyLetterItem;
+export default ReplyLetterBoxItem;

@@ -26,17 +26,24 @@ import {
   useNavigation,
   useSegments,
 } from "expo-router";
+import moment from "moment";
+
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/link.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 const plus = require("../../../assets/icon/i_plus_2.svg");
+const key = require("../../../assets/icon/i_key_big.svg");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { hotelIdState, newLetterCountState } from "../../../atom/letterAtom";
+import {
+  hotelIdState,
+  newLetterCountState,
+  userCodeState,
+} from "../../../atom/letterAtom";
 import { newLetterData } from "../../../api/letterApi";
-import { getHotel } from "../../../api/hotelApi";
+import { getHotel, openWindow } from "../../../api/hotelApi";
 import { Hotel } from "../../../api/interface";
 import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
@@ -47,6 +54,7 @@ import SnowfallContainer from "../../../components/snow/snowfallContainer";
 import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
 import { checkAuth } from "../../../api/authApi";
+import KeyModal from "../../../components/Modal/keyModal";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -61,6 +69,8 @@ export default function HotelComp() {
   const navigation = useNavigation();
   const [villageModal, setVillageModal] = useState<boolean>(false);
   const [myHotelModal, setMyHotelModal] = useState<boolean>(false);
+  const [keyModal, setKeyModal] = useState<boolean>(false);
+  const [noKeyModal, setNoKeyModal] = useState<boolean>(false);
 
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
@@ -116,6 +126,33 @@ export default function HotelComp() {
       });
     }
   };
+
+  const OpenWindow = async () => {
+    if (data?.keyCount < 1) {
+      setKeyModal(false);
+      setNoKeyModal(true);
+      return;
+    }
+
+    // 창문 열기 로직 추가
+    try {
+      const res = await openWindow({
+        id,
+        date: moment().format("YYYY-MM-DD"),
+      });
+      if (res?.success) {
+        setKeyModal(false);
+        router.push(`/mailbox/${id}`);
+      }
+    } catch (err: any) {
+      alert(err?.response?.data?.errorMessage);
+    }
+  };
+
+  const handelInvite = () => {
+    setNoKeyModal(false);
+    setKeyModalVisible(true);
+  };
   // useEffect(() => {
   //   // 페이지가 전환될 때마다 실행
   //   navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
@@ -130,6 +167,8 @@ export default function HotelComp() {
   //     }`;
   //   }
   // }, [id, navigation]);
+  const [userInfo, setUserInfo] = useRecoilState(userCodeState);
+  const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
 
   const segments = useSegments();
   useEffect(() => {
@@ -149,11 +188,22 @@ export default function HotelComp() {
     }
   );
 
+  const handelTodayLetters = () => {
+    const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
+    if (data?.todayReceivedLetterCount < 5 && !todayWindow.isOpen) {
+      setKeyModal(true);
+      return;
+    }
+    router.push(`/mailbox/${id}`);
+  };
+
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
+  const [isMine, setIsMine] = useState(data?.isOwner);
 
   useEffect(() => {
     if (data) {
       setHotelWindow(data.hotelWindows);
+      setIsMine(data.isOwner);
     }
   }, [data]);
 
@@ -198,6 +248,7 @@ export default function HotelComp() {
           {/* <Link href={"/create"}> */}
           <View style={{ backgroundColor: "transparent" }}>
             <CustomCompleteUserHotel
+              isMy={data.isOwner}
               window={data.hotelWindows}
               // onPress={handleClickWindow}
               wallColor={data?.hotel?.bodyColor}
@@ -225,8 +276,8 @@ export default function HotelComp() {
                     title="오늘의 편지함 보기"
                     color="green"
                     width={350}
-                    url={`mailbox/${id}`}
-                    is_disable={data?.todayReceivedLetterCount < 5}
+                    callback={handelTodayLetters}
+                    // is_disable={data?.todayReceivedLetterCount < 5}
                   />
                 </View>
 
@@ -337,6 +388,32 @@ export default function HotelComp() {
           name="로그인"
           desc=""
           closeDisable={false}
+        />
+        <CenterModal
+          height={350}
+          visible={keyModal}
+          onClose={() => setKeyModal(false)}
+          title="열쇠를 사용해 창문을 열까요?"
+          desc="아직 오늘의 편지 수가 부족하지만
+            열쇠 1개를 쓰면 오늘의 편지함을 열 수 있어요!"
+          sub={`남은 열쇠: ${data?.keyCount}`}
+          btn_text="창문열기"
+          img={key}
+          callback={OpenWindow}
+        />
+        <CenterModal
+          height={180}
+          visible={noKeyModal}
+          onClose={() => setNoKeyModal(false)}
+          title="열쇠가 부족해요 :("
+          desc="지금 친구를 초대하고 열쇠 1개를 받으세요!"
+          btn_text="친구 초대하기"
+          callback={handelInvite}
+        />
+        <KeyModal
+          visible={keyModalVisible}
+          onClose={() => setKeyModalVisible(false)}
+          code={userInfo?.code}
         />
       </View>
     </ScrollView>

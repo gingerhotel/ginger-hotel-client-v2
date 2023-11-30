@@ -11,7 +11,7 @@ import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
 import { colors } from "../../constants/Colors";
-const ReplyModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
+const ReplyModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
   // const [replyCheck, setReplykCheck] = useRecoilState(letterUpdateState);
   const onReply = () => {
     // await letterBlock(letterId);

@@ -335,7 +335,7 @@ export default function TabThreeScreen() {
               width: 60,
             }}
             onPress={() => {
-              router.push("/instaShared");
+              router.push(`/instaShared/${hotel}`);
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (

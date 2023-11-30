@@ -10,12 +10,19 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
+import { replyBlock } from '../../api/repliesApi';
 const i_yes = require("../../assets/icon/i_block_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
-const BlockModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
+const BlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
     const [blockCheck, setBlockCheck] = useRecoilState(letterUpdateState);
     const onBlock = async () => {
-        await letterBlock(letterId);
+        if (letterType) {
+
+            await letterBlock(letterId);
+        }
+        else {
+            await replyBlock(letterId);
+        }
         setBlockCheck(!blockCheck);
         onClose();
     }
