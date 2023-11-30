@@ -1,9 +1,12 @@
 
 import { atom } from "recoil";
+import { User } from "../api/interface";
+import { recoilPersist } from 'recoil-persist';
 interface letterSwitchType {
     new: boolean,
     reply: boolean
 }
+const { persistAtom } = recoilPersist();
 export const letterSwitchState = atom<letterSwitchType>({
     key: 'letterSwitchState',
     default: {
@@ -26,4 +29,17 @@ export const letterUpdateState = atom<boolean>({
 export const replyNameState = atom<string>({
     key: 'replyNameState',
     default: ''
+})
+export const userCodeState = atom<User>({
+    key: 'userCodeState',
+    default: {
+        nickname: "",
+        code: "",
+        membership: "",
+        gender: null,
+        birthDate: null,
+        keyCount: 0,
+        feekCount: 0,
+    },
+    effects_UNSTABLE: [persistAtom],
 })
