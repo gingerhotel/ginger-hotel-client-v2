@@ -2,6 +2,7 @@ import React from "react";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
+import { wallColors, structColors } from "./customUserHotel";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
@@ -10,115 +11,6 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
   const _web = { top: 18, left: 32 };
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
-  };
-
-  // 벽면 컬러값
-  const wallColors: TColorsFill = {
-    "#CF332C": {
-      color1: "#CF332C",
-      color2: "#A8211C",
-      color3: "#D43730",
-    },
-    "#FD883F": {
-      color1: "#FB7B3A",
-      color2: "#D35726",
-      color3: "#FD883F",
-    },
-    "#FFB950": {
-      color1: "#FFA630",
-      color2: "#D38226",
-      color3: "#FFB950",
-    },
-
-    "#C7DA82": {
-      color1: "#C7DA82",
-      color2: "#9EAF5F",
-      color3: "#CEEA94",
-    },
-    "#82DAB9": {
-      color1: "#82DAB9",
-      color2: "#5FAF91",
-      color3: "#8CDFC0",
-    },
-    "#65BBD0": {
-      color1: "#68C5DC",
-      color2: "#34A6C3",
-      color3: "#77D2E9",
-    },
-    "#143561": {
-      color1: "#143561",
-      color2: "#0D2340",
-      color3: "#163A6A",
-    },
-    "#8A61AC": {
-      color1: "#8A61AC",
-      color2: "#644083",
-      color3: "#976BB7",
-    },
-    "#FBDFC0": {
-      color1: "#D7D6D3",
-      color2: "#CECBC3",
-      color3: "#E8E6E4",
-    },
-    "#343434": {
-      color1: "#343434",
-      color2: "#232323",
-      color3: "#393939",
-    },
-  };
-
-  const structColors: TColorsFill = {
-    "#CF332C": {
-      color1: "#3C1315",
-      color2: "#5B1D20",
-      color3: "#632022",
-    },
-    "#FD883F": {
-      color1: "#6D2512",
-      color2: "#943A1C",
-      color3: "#9D3F1E",
-    },
-    "#FFB950": {
-      color1: "#9D4B00",
-      color2: "#C27000",
-      color3: "#C67A00",
-    },
-
-    "#C7DA82": {
-      color1: "#345222",
-      color2: "#4E7934",
-      color3: "#578539",
-    },
-    "#82DAB9": {
-      color1: "#225052",
-      color2: "#347779",
-      color3: "#398385",
-    },
-    "#65BBD0": {
-      color1: "#24638D",
-      color2: "#184167",
-      color3: "#276C99",
-    },
-    "#143561": {
-      color1: "#184167",
-      color2: "#24638D",
-      color3: "#276C99",
-    },
-    "#8A61AC": {
-      color1: "#321538",
-      color2: "#4D2156",
-      color3: "#54255E",
-    },
-    "#FBDFC0": {
-      color1: "#4E4236",
-      color2: "#746351",
-      color3: "#806D59",
-    },
-    "#343434": {
-      color1: "#1F1717",
-      color2: "#332727",
-      color3: "#402E2E",
-    },
   };
 
   return (
