@@ -14,6 +14,7 @@ import ReplyBoxHeader from "../../components/replyBoxHeader";
 import { useQuery } from "react-query";
 import { newLetterData, repliesLetterData } from "../../api/letterApi";
 import { useNavigation, useLocalSearchParams } from "expo-router";
+import ReplyLetterBoxItem from "../../components/replyLetterBoxItem";
 
 
 export default function ReplyBox() {
@@ -31,11 +32,13 @@ export default function ReplyBox() {
         refetch();
     }, [deleteCheck])
     console.log(data?.letter);
+    if (isLoading) {
+        return <Text>...로딩중</Text>
+    }
     return (
         <View style={styles.container}>
             <ReplyBoxHeader />
-            <NewLetterItem letters={data?.letter} />
-            <ReplyLetterItem replies={data?.replies} />
+            <ReplyLetterBoxItem letter={data.letter} replies={data.replies} />
         </View>
     );
 }
