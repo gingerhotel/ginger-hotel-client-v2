@@ -222,7 +222,7 @@ export default function HotelComp() {
                     title="오늘의 편지함 보기"
                     color="green"
                     width={350}
-                    url="mailbox/1"
+                    url={`mailbox/${id}`}
                     is_disable={data?.todayReceivedLetterCount < 5}
                   />
                 </View>

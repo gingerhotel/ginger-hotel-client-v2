@@ -12,8 +12,8 @@ import { colors } from "../../constants/Colors";
 import { WithLocalSvg } from "react-native-svg";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useSetRecoilState } from "recoil";
-import { hotelIdState } from "../../atom/letterAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { hotelIdState, userCodeState } from "../../atom/letterAtom";
 import { router, useSegments } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
@@ -36,7 +36,6 @@ const mycardSvg = require("../../assets/icon/i_mycard.svg");
 const feek_blur = require("../../assets/images/feekBlurMy.svg");
 const feek_blur_text = require("../../assets/images/feekBlurMyText.svg");
 const icon: any = require("../../assets/icon/i_check_green.svg");
-
 interface User {
   nickname: string;
   code: string;
@@ -46,7 +45,6 @@ interface User {
   keyCount: number;
   feekCount: number;
 }
-
 interface Hotel {
   id: number;
   nickname: string;
@@ -103,15 +101,7 @@ export default function TabThreeScreen() {
     }
   };
 
-  const [userInfo, setUserInfo] = useState<User>({
-    nickname: "",
-    code: "",
-    membership: "",
-    gender: null,
-    birthDate: null,
-    keyCount: 0,
-    feekCount: 0,
-  });
+  const [userInfo, setUserInfo] = useRecoilState(userCodeState);
 
   const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);

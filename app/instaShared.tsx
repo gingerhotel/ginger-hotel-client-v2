@@ -4,6 +4,8 @@ import { WithLocalSvg } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { router, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
+import { useRecoilState } from "recoil";
+import { userCodeState } from "../atom/letterAtom";
 
 const hotelFrame = require("../assets/images/frame_insta_shared.svg");
 const hotelImage = require("../assets/images/StartHotel.svg");
@@ -11,10 +13,8 @@ const bottomLogo = require("../assets/images/logo_insta_shared.svg");
 
 const InstaShared = () => {
   const navigation = useNavigation();
-  const [userInfo, setUserInfo] = useState({
-    userName: "가나다라마바사",
-    userCode: "2222222",
-  });
+
+  const [userInfo, setUserInfo] = useRecoilState(userCodeState);
 
   const [codeArray, setCodeArray] = useState<string[]>([
     "0",
@@ -30,7 +30,7 @@ const InstaShared = () => {
   }, [navigation]);
 
   useEffect(() => {
-    setCodeArray(userInfo.userCode.split(""));
+    setCodeArray(userInfo.code.split(""));
   }, [userInfo]);
 
   return (
@@ -41,7 +41,7 @@ const InstaShared = () => {
           <View style={styles.title_wrapper}>
             <Text style={styles.name_text}>
               <Text style={styles.from}>From</Text>
-              {userInfo.userName}
+              {userInfo.nickname}
             </Text>
             <Text style={styles.title_text}>내 진저호텔에 놀러오세요!</Text>
           </View>
@@ -59,7 +59,7 @@ const InstaShared = () => {
               ) : (
                 <Image
                   source={hotelImage}
-                  style={{ width: 300, height: 380 }}
+                  style={{ width: 320, height: 380 }}
                 />
               )}
             </View>
@@ -77,13 +77,6 @@ const InstaShared = () => {
             </View>
           </View>
         </View>
-        <View style={styles.bottom_logo}>
-          {Platform.OS === "ios" || Platform.OS === "android" ? (
-            <WithLocalSvg asset={bottomLogo} />
-          ) : (
-            <Image source={bottomLogo} />
-          )}
-        </View>
       </View>
     </>
   );
@@ -94,7 +87,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.green300,
+    backgroundColor: colors.greyblack,
   },
   content_wrapper: {
     backgroundColor: colors.grey900,
