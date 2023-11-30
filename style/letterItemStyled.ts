@@ -60,7 +60,7 @@ export const LetterInnerUserText = styled.Text<{ f_color?: string }>`
   /* color: #25796B; */
   color: ${(props) => props.f_color};
   font-size: 16px;
-  font-family: "SOYO Maple";
+  font-family: "SOYOMaple-Regular";
   font-style: normal;
   font-weight: 700;
   line-height: 24px;

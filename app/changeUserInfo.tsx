@@ -61,7 +61,9 @@ const ChangeUserInfo = () => {
 
   const [birthday, setBirthday] = useState("");
   const [selectedDate, setSelectedDate] = useState(
-    new Date(String(data?.user?.birthDate))
+    new Date(
+      String(data?.user?.birthDate ? data?.user?.birthDate : "2000-01-01")
+    )
   );
   const handleDateChange = (date: any) => {
     setSelectedDate(date);
