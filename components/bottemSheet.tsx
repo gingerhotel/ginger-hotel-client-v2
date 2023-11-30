@@ -21,6 +21,7 @@ const i_pro = require("../assets/icon/i_pro.svg");
 const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDeleteProps) => {
     const [letterDelete, setLetterDelete] = useState(false)
     const [letterBlock, setLetterBlock] = useState(false)
+    const [letterUnBlock, setLetterUnBlock] = useState(false)
     const [letterReply, setLetterReply] = useState(false)
     const handleSwipeMove = (gestureState: any) => {
         console.log(gestureState.dy);
@@ -34,7 +35,7 @@ const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDelet
         onClose();
     }
     const handleUnBlock = () => {
-        setLetterBlock(true);
+        setLetterUnBlock(true);
         onClose();
     }
     const handleReply = () => {
@@ -42,8 +43,9 @@ const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDelet
         onClose();
     }
     const closeModal = () => {
-        setLetterDelete(false)
-        setLetterBlock(false)
+        setLetterDelete(false);
+        setLetterBlock(false);
+        setLetterUnBlock(false);
         setLetterReply(false);
     }
     console.log(letterId);
@@ -97,7 +99,7 @@ const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDelet
             </Modal >
             <DeleteModal isVisible={letterDelete} onClose={closeModal} letterId={letterId} />
             <BlockModal isVisible={letterBlock} onClose={closeModal} letterId={letterId} />
-            <UnBlockModal isVisible={letterBlock} onClose={closeModal} letterId={letterId} />
+            <UnBlockModal isVisible={letterUnBlock} onClose={closeModal} letterId={letterId} />
             <ReplyModal isVisible={letterReply} onClose={closeModal} letterId={letterId} />
         </>
     );
