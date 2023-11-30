@@ -33,7 +33,7 @@ const UnBlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetP
         >
             <DeleteModalView>
                 <DeleteModaContentlView>
-                    <MonoText style={{ fontSize: 16, fontWeight: 'bold' }}>차단을 해제하시겠습니까?</MonoText>
+                    <MonoText style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFDF0' }}>차단을 해제하시겠습니까?</MonoText>
                     <MonoText style={{ color: '#98989B' }}>차단을 해제하면 다시 편지를 주고 받을 수 있어요.</MonoText>
                     <DeleteModalButtonView>
                         <Buttons
