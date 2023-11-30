@@ -267,9 +267,7 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <View
-            style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
-          >
+          <View style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
             <View>
               <Text
                 style={{
@@ -297,10 +295,8 @@ export default function TabThreeScreen() {
               <Image source={glassesSvg} style={styles.icon_style} />
             )}
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
-            <SvgImg
-              style={styles.key_peek_box_blur_text}
-              url={feek_blur_text}
-            />
+
+            <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
           </View>
           {/* 엿보기 블러 버전 끝 */}
 

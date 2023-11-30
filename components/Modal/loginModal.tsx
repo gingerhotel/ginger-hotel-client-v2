@@ -47,9 +47,10 @@ type Props = {
   height?: number | any;
   name: string;
   desc: string;
+  closeDisable : false;
 };
 
-const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
+const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Props) => {
   const { id } = useLocalSearchParams();
 
   const [userInfo, setUserInfo] = React.useState(null);
@@ -80,7 +81,7 @@ const LoginModal = ({ height, visible, onClose, name, desc }: Props) => {
   }
 
   const mutation = useMutation(authGoogle, {
-    onSuccess: (res) => {
+    onSuccess: (res : any) => {
       AsyncStorage.setItem("accessToken", res.data.accessToken);
 
       if (res.status == 200) {
