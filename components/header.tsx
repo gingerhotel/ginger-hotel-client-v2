@@ -34,18 +34,6 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
                   <SvgImg width={40} height={40} url={i_key} />
                   <Text style={styles.text}>{keyCount}</Text>
                 </View>
-                {/* 엿보기 개수 Update Soon */}
-                <View style={styles.container_4}>
-                  <View style={styles.container_2}>
-                    <SvgImg width={40} height={40} url={i_glasses} />
-                    <Text style={styles.text}>0</Text>
-                    <TouchableOpacity>
-                      <SvgImg url={i_plus} />
-                    </TouchableOpacity>
-                  </View>
-                  <SvgImg style={styles.container_3} url={feek_blur} />
-                </View>
-                
 
                 {/* 엿보기 개수 주석 처리 : 엿보기 기능 구현 전
                 <View style={styles.container_2}>
@@ -107,27 +95,6 @@ const styles = StyleSheet.create({
     height: 28,
     width: 100,
   },
-  // 엿보기 Updated Soon을 위한 임시 설정 시작 (나중에 지워도 됨)
-  container_3: {
-    display: "flex",
-    position: "absolute",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    height: 35,
-    width: 110,
-  },
-  container_4: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    height: 35,
-    width: 100,
-  },
-  // 엿보기 Updated Soon을 위한 임시 설정 끝
   wrapper: {
     display: "flex",
     flexDirection: "row",

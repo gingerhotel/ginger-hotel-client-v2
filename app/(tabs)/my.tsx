@@ -236,7 +236,7 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          
+
           <View style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
             <View>
               <Text
@@ -267,6 +267,7 @@ export default function TabThreeScreen() {
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
             <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
           </View>
+
 
           {/* 마이페이지 엿보기 버튼 주석 처리 : 엿보기 기능 구현 전
           <TouchableOpacity
