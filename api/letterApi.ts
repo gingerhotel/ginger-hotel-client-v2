@@ -9,8 +9,8 @@ import { axiosConfig } from "./commonApi";
 export const newLetterData = async (props: any) => {
   const date = getCurrentDate()
   try {
-    // const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=${date}`);
-    const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=2023-11-29`);
+    const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=${date}`);
+    // const response = await axios.get(`${LETTERS_HOTEL_URL}/${props.hotelId}?date=2023-11-30`);
     return response.data;
   } catch (e) {
     console.error(e);
