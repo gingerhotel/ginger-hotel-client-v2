@@ -48,7 +48,7 @@ export default function CreateHotel() {
 
   return (
     <>
-      <Header title="호텔 만들기" />
+      <Header disabledIcon={true} title="호텔 만들기" />
       <CreateHeader isActiveNumber={1} />
       <ScrollView>
         <View style={styles.container}>

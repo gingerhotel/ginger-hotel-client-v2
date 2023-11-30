@@ -24,6 +24,7 @@ import { useQuery } from "react-query";
 import { checkAuth } from "../../api/authApi";
 import { AUTH_URL } from "../../api/url";
 import Toast from "react-native-toast-message";
+import KakaoAdFit from "../../advertisement/KakaoAdFit";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -138,6 +139,7 @@ export default function TabThreeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
+      <KakaoAdFit />
       <View style={styles.header}>
         <Text style={styles.header_text}>마이페이지</Text>
       </View>

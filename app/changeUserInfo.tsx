@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useQuery } from "react-query";
 import { myDate, updateUser } from "../api/myApi";
 import DatePicker from "react-datepicker";
+import { ko, enUS } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import Toast from "react-native-toast-message";
@@ -141,6 +142,7 @@ const ChangeUserInfo = () => {
 
             <View style={styles.input_wrapper}>
               <DatePicker
+                locale={ko}
                 portalId="root-portal"
                 selected={selectedDate}
                 onChange={handleDateChange}

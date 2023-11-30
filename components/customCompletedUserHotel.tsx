@@ -18,6 +18,7 @@ import { router } from "expo-router";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { hotelIdState, windowDateState } from "../atom/letterAtom";
 import { typography } from "../constants/Typo";
+import { isEmpty } from "./Modal/\bloginModal";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/front_bg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
@@ -86,8 +87,12 @@ export default function CustomCompleteUserHotel({
     if (isLogin) {
 
       if (isMy) {
-        setLetterCheck(itemNo);
-        router.push(`/mailbox/${myHotelId}`);
+        if (window[`2023-12-${itemNo.toString().padStart(2, '0')}`]?.isOpen) {
+          setLetterCheck(itemNo);
+          router.push(`/mailbox/${myHotelId}`);
+        } else {
+
+        }
       } else {
         setIsNotMineModal(true);
         // console.log(isNotMineModal);
