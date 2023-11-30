@@ -32,7 +32,7 @@ const WithdrawalModal = ({
                         답장을 보낼 수 없어요!
                     </MonoText>
                     <MonoText style={{ color: "#98989B" }}>
-                        탈퇴한 회원이에요.
+                        상대방이 나를 차단했어요!
                     </MonoText>
                     <DeleteModalButtonView>
                         <Buttons
