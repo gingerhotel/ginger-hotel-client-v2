@@ -297,6 +297,7 @@ const GingerAlbum = () => {
         onClose={closeLoginModal}
         name="로그인"
         desc=""
+        closeDisable={true}
       />
       </ScrollView>
     </>
