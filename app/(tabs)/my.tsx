@@ -23,6 +23,7 @@ import { SvgImg } from "../../components/svgImg";
 import { useQuery } from "react-query";
 import { checkAuth } from "../../api/authApi";
 import { AUTH_URL } from "../../api/url";
+import Toast from "react-native-toast-message";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -34,6 +35,7 @@ const hotelModifySvg = require("../../assets/icon/i_hotel_modify.svg");
 const mycardSvg = require("../../assets/icon/i_mycard.svg");
 const feek_blur = require("../../assets/images/feekBlurMy.svg");
 const feek_blur_text = require("../../assets/images/feekBlurMyText.svg");
+const icon: any = require("../../assets/icon/i_check_green.svg");
 
 interface User {
   nickname: string;
@@ -176,7 +178,18 @@ export default function TabThreeScreen() {
             </View>
           </View>
           <View style={styles.user_info}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                let nowUrl = window.location.href;
+                navigator.clipboard.writeText(nowUrl);
+                Toast.show({
+                  type: "iconToast",
+                  text1: "링크가 복사되었습니다!",
+                  position: "bottom",
+                  props: { icon },
+                });
+              }}
+            >
               <View>
                 <View
                   style={{
