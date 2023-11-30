@@ -23,7 +23,7 @@ export const Common_Colors = {
   neongreen: "#A2D8CF",
   red: "#AF2010",
   green: "#2F9C89",
-  white: "#FFFFFF",
+  white: "#FBDFC0",
   black: "#000000",
   beige: "#FCF4E9",
   grey: "#D9D9D9",
