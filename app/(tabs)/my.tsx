@@ -14,16 +14,20 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
-import { router } from "expo-router";
+import { router, useSegments } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 import KeyModal from "../../components/Modal/keyModal";
 import PeekModal from "../../components/Modal/peekModal";
 import { SvgImg } from "../../components/svgImg";
+import { useQuery } from "react-query";
+import { checkAuth } from "../../api/authApi";
+import { AUTH_URL } from "../../api/url";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
 const pencilSvg = require("../../assets/icon/i_pencil.svg");
+const gearSvg = require("../../assets/icon/gear.svg");
 const questionCircleSvg = require("../../assets/icon/i_question_circle.svg");
 const copySvg = require("../../assets/icon/i_copy.svg");
 const hotelModifySvg = require("../../assets/icon/i_hotel_modify.svg");
@@ -56,6 +60,14 @@ interface UserApiResponse {
 }
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
+  const segments = useSegments();
+  useEffect(() => {
+    const isPath = segments[1] === "my";
+    if (isPath) {
+      checkLogin();
+    }
+  }, [segments]);
+
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
   const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
@@ -77,9 +89,17 @@ export default function TabThreeScreen() {
     setLoginModalVisible(false);
   };
 
-  useEffect(() => {
-    // setLoginModalVisible(true);
-  }, []);
+  const checkLogin = async () => {
+    try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      const response = await axios.get(`${AUTH_URL}`);
+      return response.data;
+    } catch (err: any) {
+      // console.log(err?.response?.data?.errorMessage);
+      setLoginModalVisible(true);
+    }
+  };
 
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
@@ -94,6 +114,7 @@ export default function TabThreeScreen() {
   const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
+    checkLogin();
     const handleUserData = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios
@@ -149,7 +170,7 @@ export default function TabThreeScreen() {
                     router.push("/changeUserInfo");
                   }}
                 >
-                  <Image source={pencilSvg} style={{ marginTop: 5 }} />
+                  <Image source={gearSvg} style={{ marginTop: 5 }} />
                 </TouchableOpacity>
               )}
             </View>
@@ -162,7 +183,7 @@ export default function TabThreeScreen() {
                     alignItems: "center",
                     justifyContent: "center",
                     flexDirection: "row",
-                    marginBottom: 3,
+                    marginBottom: 2,
                   }}
                 >
                   <Text
@@ -173,7 +194,7 @@ export default function TabThreeScreen() {
                       height: 20,
                     }}
                   >
-                    내 코드{" "}
+                    초대코드{" "}
                   </Text>
                   {Platform.OS === "ios" || Platform.OS === "android" ? (
                     <WithLocalSvg
@@ -183,10 +204,7 @@ export default function TabThreeScreen() {
                       style={{ marginBottom: 5 }}
                     />
                   ) : (
-                    <Image
-                      source={copySvg}
-                      style={{ marginBottom: 5, marginLeft: 5 }}
-                    />
+                    <Image source={copySvg} style={{ marginBottom: 5 }} />
                   )}
                 </View>
                 <Text
@@ -236,7 +254,9 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <TouchableOpacity style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
+          <View
+            style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
+          >
             <View>
               <Text
                 style={{
@@ -264,8 +284,11 @@ export default function TabThreeScreen() {
               <Image source={glassesSvg} style={styles.icon_style} />
             )}
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
-            <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
-          </TouchableOpacity>
+            <SvgImg
+              style={styles.key_peek_box_blur_text}
+              url={feek_blur_text}
+            />
+          </View>
           {/* 엿보기 블러 버전 끝 */}
 
           {/* 마이페이지 엿보기 버튼 주석 처리 : 엿보기 기능 구현 전
@@ -395,14 +418,26 @@ export default function TabThreeScreen() {
       </View>
       <View style={styles.linksContainer}>
         <View>
-          <TouchableOpacity onPress={() => { window.open('https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4') }}>
+          <TouchableOpacity
+            onPress={() => {
+              window.open(
+                "https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4"
+              );
+            }}
+          >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               이용약관
             </Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => { window.open('https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4') }}>
+          <TouchableOpacity
+            onPress={() => {
+              window.open(
+                "https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4"
+              );
+            }}
+          >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               개인정보 처리방침
             </Text>
@@ -420,7 +455,11 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => { window.open('https://www.instagram.com/gingerhotel_official') }}>
+          <TouchableOpacity
+            onPress={() => {
+              window.open("https://www.instagram.com/gingerhotel_official");
+            }}
+          >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
               <FontAwesome name="instagram" size={16} /> 진저호텔
             </Text>
@@ -434,11 +473,13 @@ export default function TabThreeScreen() {
             { backgroundColor: colors.grey900 },
           ]}
         ></View>
-        <Text style={[styles.footer_text, { color: colors.grey500 }]}>
+        <Text
+          style={[styles.footer_text, { color: colors.grey500, marginTop: 8 }]}
+        >
           사업자등록번호 : 202-58-00723 대표 강민지
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          주소 : 서울특별시 중구 서대문로7길 16 508-3호
+          주소 : 서울특별시 중구 남대문로7길 16 508-3호
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
           이메일 : teamgingerkr@gmail.com
@@ -450,6 +491,7 @@ export default function TabThreeScreen() {
         onClose={closeLoginModal}
         name="로그인"
         desc=""
+        closeDisable={true}
       />
       <KeyModal
         visible={keyModalVisible}
@@ -471,7 +513,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 44,
-    marginTop: 33,
+    paddingTop: 30,
   },
   header_text: {
     fontFamily: "SOYOMaple-Regular",
@@ -481,14 +523,18 @@ const styles = StyleSheet.create({
   },
 
   profileContainer: {
+    marginTop: 38,
     backgroundColor: "transparent",
-    flex: 5,
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
     justifyContent: "space-around",
   },
 
   user_info_box: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 34,
   },
   user_info: {
     width: "50%",
@@ -501,6 +547,7 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   name_bow_wrapper: {
+    marginLeft: 10,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -508,7 +555,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 28,
     fontWeight: "700",
-    marginRight: 10,
+    marginRight: 4,
     fontFamily: "SOYOMaple-Regular",
   },
   separator_vertical: {
@@ -537,11 +584,11 @@ const styles = StyleSheet.create({
   // 엿보기 버튼 블러 시작
   key_peek_box_blur: {
     width: "100%",
-    position: "absolute"
+    position: "absolute",
   },
   key_peek_box_blur_text: {
     position: "absolute",
-    alignItems: "center"
+    alignItems: "center",
   },
   // 엿보기 버튼 블러 끝
   icon_style: {
@@ -568,8 +615,12 @@ const styles = StyleSheet.create({
   },
 
   linksContainer: {
+    marginTop: 40,
+    marginBottom: 100,
     backgroundColor: "transparent",
-    flex: 4,
+    display: "flex",
+    flexDirection: "column",
+    gap: 32,
     justifyContent: "space-around",
   },
   links_text: {
@@ -580,15 +631,16 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     backgroundColor: "transparent",
-    marginBottom: 10,
+    marginBottom: 12,
   },
   separator_horizontal: {
-    height: 2,
+    height: 1,
     width: "100%",
     marginVertical: 5,
   },
   footer_text: {
-    marginBottom: 5,
+    marginBottom: 8,
+    fontSize: 10,
     fontFamily: "NanumSquareNeo-Variable",
   },
 });

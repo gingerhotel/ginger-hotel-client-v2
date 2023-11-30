@@ -18,7 +18,7 @@ export default function _layout() {
         },
         tabBarLabelStyle: {
           fontSize: 10,
-          marginBottom: 10, // 텍스트 크기 조절
+          marginBottom: 11,
         },
       }}
     >
