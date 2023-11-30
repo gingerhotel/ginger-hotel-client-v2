@@ -19,12 +19,12 @@ import {
     LetterReplyButtonView
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import Buttons from "./buttons";
 import { FlatList } from "react-native-gesture-handler";
 import { BottemSheetBorderView } from "../style/bottemSheetStyled";
 import { ReplyArrayProps } from "../api/interface";
-import { replyNameState } from "../atom/letterAtom";
+import { letterTypeState, replyNameState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 import BottemSheet from "./bottemSheet";
@@ -39,8 +39,10 @@ const ReplyLetterItem = ({ replies }: any) => {
     const [letterId, setLetterId] = useState(0);
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
+    const setLetterType = useSetRecoilState(letterTypeState);
     const toggleModal = (props: ReplyArrayProps) => {
         console.log(props)
+        setLetterType(false);
         setBottomSheetVisible(true);
         setLetterId(props.letterId);
         setBlocked(props.isBlocked);
