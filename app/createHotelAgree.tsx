@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Linking } from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
@@ -13,6 +13,7 @@ import { newHotel } from "../api/hotelApi";
 import Header from "../components/appHeader";
 import { useNavigation } from "expo-router/src/useNavigation";
 import { router, useLocalSearchParams } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function createHotelAgree() {
   const props: any = useLocalSearchParams();
@@ -20,6 +21,22 @@ export default function createHotelAgree() {
   React.useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
+
+  const useAgree = () => {
+    const url =
+      "https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4";
+    Linking.openURL(url).catch((err) =>
+      console.error("Error opening the website:", err)
+    );
+  };
+
+  const personalAgree = () => {
+    const url =
+      "https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4";
+    Linking.openURL(url).catch((err) =>
+      console.error("Error opening the website:", err)
+    );
+  };
 
   const [isChecked, setChecked] = useState<any>({
     all: false,
@@ -83,18 +100,28 @@ export default function createHotelAgree() {
             text="[필수] 만 14세 이상입니다"
             onPress={() => checkAgree("age")}
           />
-          <CheckBox
-            checked={isChecked.use}
-            onPress={() => checkAgree("use")}
-            bg={false}
-            text="[필수] 이용약관 동의"
-          />
-          <CheckBox
-            checked={isChecked.personal}
-            onPress={() => checkAgree("personal")}
-            bg={false}
-            text="[필수] 개인정보 처리방침 동의"
-          />
+          <View style={styles.flexStyle}>
+            <CheckBox
+              checked={isChecked.use}
+              onPress={() => checkAgree("use")}
+              bg={false}
+              text="[필수] 이용약관 동의"
+            />
+            <TouchableOpacity onPress={useAgree}>
+              <Text style={{ color: colors.Whiteyello }}>보기</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.flexStyle}>
+            <CheckBox
+              checked={isChecked.personal}
+              onPress={() => checkAgree("personal")}
+              bg={false}
+              text="[필수] 개인정보 처리방침 동의"
+            />
+            <TouchableOpacity onPress={personalAgree}>
+              <Text style={{ color: colors.Whiteyello }}>보기</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View style={styles.btn_wrapper}>
@@ -145,5 +172,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.grey900,
     marginTop: 22,
     marginBottom: 22,
+  },
+  flexStyle: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginRight: 20,
+    alignItems: "center",
   },
 });
