@@ -50,7 +50,7 @@ export const letterBlock = async (letterId: number) => {
 }
 export const letterUnBlock = async (letterId: number) => {
   try {
-    const response = await axios.post(`${LETTERS_URL}/${letterId}/unblock`);
+    const response = await axios.post(`${LETTERS_URL}/${letterId}/block`);
     console.error(response)
     return response.data;
   } catch (e) {
@@ -59,3 +59,12 @@ export const letterUnBlock = async (letterId: number) => {
   }
 }
 
+export const repliesLetterData = async (letterId: number) => {
+  try {
+    const response = await axios.get(`${LETTERS_HOTEL_URL}/${letterId}/replies`);
+    return response.data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
+};

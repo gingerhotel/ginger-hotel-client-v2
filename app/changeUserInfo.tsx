@@ -19,15 +19,8 @@ const ChangeUserInfo = () => {
   const [day, setDay] = useState("");
   const [userEmail, setUserEmail] = useState("happyginger@naver.com");
 
-  const [modifyModalVisible, setModifyModalVisible] = useState<boolean>(false);
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
 
-  const openModifiyModal = () => {
-    setModifyModalVisible(true);
-  };
-  const closeModifyModal = () => {
-    setModifyModalVisible(false);
-  };
   const openLogoutModal = () => {
     // refactor
     AsyncStorage.removeItem("accessToken");
@@ -53,14 +46,6 @@ const ChangeUserInfo = () => {
       <View style={styles.container}>
         <View>
           <Header title="내 정보 수정" />
-          <CenterModal
-            height={180}
-            visible={modifyModalVisible}
-            onClose={closeModifyModal}
-            title="회원정보를 수정하시겠어요?"
-            desc="성별과 출생연도는 한 번 수정 후 변경할 수 없습니다."
-            btn_text="수정하기"
-          />
           <CenterModal
             height={180}
             visible={logoutModalVisible}
@@ -144,7 +129,8 @@ const ChangeUserInfo = () => {
             title="수정하기"
             color="green"
             callback={() => {
-              openModifiyModal();
+              // TODO: 사용자 정보 (성별, 생년월일) 수정하는 API 호출 메서드로 변경
+              router.back();
             }}
           />
         </View>

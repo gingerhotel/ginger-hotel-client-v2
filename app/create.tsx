@@ -36,7 +36,7 @@ export default function CreateHotel() {
     "#65BBD0",
     "#143561",
     "#8A61AC",
-    "#FFFFFF",
+    "#FBDFC0",
     "#343434",
   ];
 

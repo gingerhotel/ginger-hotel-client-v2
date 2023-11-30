@@ -5,60 +5,9 @@ import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const frontBg = require("../assets/images/frontBg.svg");
 
-
-const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
-const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
-const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
-
-const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
-const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
-const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
-
-const backgroundImg01 = require(`../assets/decorations/background01.svg`);
-const backgroundImg02 = require(`../assets/decorations/background02.svg`);
-const backgroundImg03 = require(`../assets/decorations/background03.svg`);
-
-const windowImg01 = require(`../assets/decorations/windowDeco01_com.svg`);
-const windowImg02 = require(`../assets/decorations/windowDeco02_com.svg`);
-
-const gardenDeco: any = {
-  gardenDeco01: gardenDecoImg01,
-  gardenDeco02: gardenDecoImg02,
-  gardenDeco03: gardenDecoImg03,
-};
-
-const buildingDeco: any = {
-  buildingDeco01: buildingDecoImg01,
-  buildingDeco02: buildingDecoImg02,
-  buildingDeco03: buildingDecoImg03,
-};
-
-const backgroundDeco: any = {
-  background01: backgroundImg01,
-  background02: backgroundImg02,
-  background03: backgroundImg03,
-};
-
-const windowDeco: any = {
-  windowDeco01: windowImg01,
-  windowDeco02: windowImg02,
-};
-
-export default function CustomUserHotel({
-  wallColor,
-  structColor,
-  gardenDecorator,
-  windowDecorator,
-  buildingDecorator,
-  background,
-  is_border,
-  is_front_bg,
-}: any) {
-  const web = { top: 41, left: 43 };
-  const _web = { top: 42, left: 43 };
-  const app = { top: 63, left: 5 };
+export default function CustomSmallHotel({ wallColor, structColor }: any) {
+  const _web = { top: 18, left: 32 };
   type TColorsFill = {
     [key: string]: { color1: string; color2: string; color3: string };
   };
@@ -151,9 +100,9 @@ export default function CustomUserHotel({
       color3: "#276C99",
     },
     "#143561": {
-      color1: "#091546",
-      color2: "#0F2273",
-      color3: "#263B96",
+      color1: "#184167",
+      color2: "#24638D",
+      color3: "#276C99",
     },
     "#8A61AC": {
       color1: "#321538",
@@ -173,25 +122,18 @@ export default function CustomUserHotel({
   };
 
   return (
-    <>
-      <View
-        style={[
-          styles.img_wrapper,
-          is_border && {
-            borderWidth: 0.3,
-            borderColor: colors.grey500,
-          },
-        ]}
-      >
+    <View
+      style={{
+        backgroundColor: "rgba(30,31,35,1.00)",
+        height: "100%",
+      }}
+    >
+      <View style={[styles.img_wrapper]}>
         <SvgImg
           url={Hotel1}
-          width={355}
-          height={390}
           style={{
-            width: 355,
-            height: 390,
-            marginTop: 20,
-            zIndex: 3,
+            width: 148,
+            height: 171,
           }}
         />
       </View>
@@ -201,10 +143,10 @@ export default function CustomUserHotel({
             position: "absolute",
             zIndex: 1,
           },
-          Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
+          _web,
         ]}
       >
-        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
+        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -224,13 +166,8 @@ export default function CustomUserHotel({
           />
         </Svg>
       </View>
-      <View
-        style={[
-          { position: "absolute", zIndex: 2 },
-          Platform.OS === "ios" || Platform.OS === "android" ? app : web,
-        ]}
-      >
-        <Svg width="330" height="358" viewBox="0 0 355 390" fill="none">
+      <View style={[{ position: "absolute", zIndex: 2 }, _web]}>
+        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -255,93 +192,7 @@ export default function CustomUserHotel({
           />
         </Svg>
       </View>
-
-      <View
-        style={{
-          zIndex: 3,
-          position: "absolute",
-        }}
-      >
-        <SvgImg
-          url={buildingDeco[buildingDecorator]}
-          style={{
-            width: 82,
-            height: 220,
-            marginTop: 20,
-            zIndex: 99,
-            top: 68,
-            left: 152,
-            position: "absolute",
-          }}
-        />
-      </View>
-
-      <View
-        style={{
-          zIndex: 5,
-          position: "absolute",
-        }}
-      >
-        <SvgImg
-          url={gardenDeco[gardenDecorator]}
-          width={150}
-          height={140}
-          style={{
-            width: 150,
-            height: 140,
-            marginTop: 20,
-            zIndex: 5,
-            top: 290,
-            left: 18,
-            position: "absolute",
-          }}
-        />
-      </View>
-
-      <View
-        style={{
-          zIndex: 5,
-          position: "absolute",
-        }}
-      >
-        <SvgImg
-          url={windowDeco[windowDecorator]}
-          width={355}
-          height={390}
-          style={{
-            width: 245,
-            height: 293,
-            marginTop: 20,
-            zIndex: 5,
-            top: 37,
-            left: 68,
-            position: "absolute",
-          }}
-        />
-      </View>
-
-      <View
-        style={{
-          zIndex: 0,
-          position: "absolute",
-        }}
-      >
-        <SvgImg
-          url={backgroundDeco[background]}
-          width={340}
-          height={416}
-          style={{
-            width: 373,
-            height: 375,
-            marginTop: 20,
-            zIndex: 4,
-            top: -20,
-            left: 5,
-            position: "absolute",
-          }}
-        />
-      </View>
-    </>
+    </View>
   );
 }
 
@@ -349,11 +200,12 @@ const styles = StyleSheet.create({
   img_wrapper: {
     zIndex: 3,
     marginTop: 10,
-    padding: 10,
     borderRadius: 12,
     marginLeft: 5,
-    width: "98%",
     alignItems: "center",
     position: "relative",
+    width: 180,
+    padding: 10,
+    border: "1px solid gray",
   },
 });

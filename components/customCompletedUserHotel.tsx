@@ -369,7 +369,7 @@ export default function CustomCompleteUserHotel({
       color2: "#644083",
       color3: "#976BB7",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#D7D6D3",
       color2: "#CECBC3",
       color3: "#E8E6E4",
@@ -409,21 +409,21 @@ export default function CustomCompleteUserHotel({
       color3: "#398385",
     },
     "#65BBD0": {
-      color1: "#225052",
-      color2: "#347779",
-      color3: "#398385",
+      color1: "#24638D",
+      color2: "#184167",
+      color3: "#276C99",
     },
     "#143561": {
-      color1: "#184167",
-      color2: "#24638D",
-      color3: "#276C99",
+      color1: "#091546",
+      color2: "#0F2273",
+      color3: "#263B96",
     },
     "#8A61AC": {
       color1: "#321538",
       color2: "#4D2156",
       color3: "#54255E",
     },
-    "#FFFFFF": {
+    "#FBDFC0": {
       color1: "#4E4236",
       color2: "#746351",
       color3: "#806D59",

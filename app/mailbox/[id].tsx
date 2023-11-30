@@ -8,9 +8,8 @@ import {
   hotelIdState,
   letterSwitchState,
   letterUpdateState,
-  replyBoxSwitchState,
 } from "../../atom/letterAtom";
-import ReplyHeader from "../../components/replyHeader";
+import ReplyBoxHeader from "../../components/replyBoxHeader";
 import { useQuery } from "react-query";
 import { newLetterData } from "../../api/letterApi";
 import { useNavigation } from "expo-router";
@@ -18,7 +17,6 @@ import { useNavigation } from "expo-router";
 
 export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
-  const replyGo = useRecoilValue(replyBoxSwitchState);
   const hotelId = useRecoilValue(hotelIdState);
   const deleteCheck = useRecoilValue(letterUpdateState);
   const { data, isLoading, refetch } = useQuery(
@@ -33,24 +31,18 @@ export default function MailBox() {
   useEffect(() => {
     refetch();
   }, [deleteCheck])
+  if (isLoading) {
+    return <Text>로딩...</Text>
+  }
   return (
     <View style={styles.container}>
-      {replyGo ? (
-        <ReplyHeader marginTop={50} />
-      ) : (
-        <MailHeader marginTop={50} />
-      )}
-
+      <MailHeader marginTop={50} />
       <ScrollView>
         <View style={styles.mailbox_items}>
           {letterRender.new ? (
-            isLoading ? (
-              <Text>로딩...</Text>
-            ) : (
-              <NewLetterItem letters={data?.letters} />
-            )
+            <NewLetterItem letters={data?.letters} />
           ) : (
-            <ReplyLetterItem />
+            <ReplyLetterItem replies={data?.replies} />
           )}
         </View>
       </ScrollView>
