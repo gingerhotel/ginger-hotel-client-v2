@@ -4,6 +4,8 @@ import { colors } from "../constants/Colors";
 import { typography } from "../constants/Typo";
 import { MonoText } from "./styledText";
 import { router } from "expo-router";
+import { useRecoilValue } from "recoil";
+import { hotelIdState } from "../atom/letterAtom";
 type Props = {
   onClose?: any;
   visible?: boolean;
@@ -13,17 +15,14 @@ type Props = {
   img: string | any;
 };
 
-const GingerModal = ({
-  height,
-  visible,
-  onClose,
-  name,
-  img,
-  desc,
-}: Props) => {
+const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
+  const hotelId = useRecoilValue(hotelIdState);
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
-    router.push("/mailbox");
+    router.push(`/mailbox/${hotelId}`);
+  };
+  const setCloseModal = () => {
+    onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
   return (
     <Modal
@@ -34,40 +33,62 @@ const GingerModal = ({
         setModalVisible();
       }}
     >
-      <View style={styles(height).centeredView}>
-        <View style={styles(height).modalView}>
-          <MonoText style={styles(height).modal_title}>
-            오늘의 진저 투숙객
-          </MonoText>
-          <Text style={[styles(height).modal_desc, typography.display1_basic]}>
-            {name}
-          </Text>
-
-          {img && <Image source={img} style={{ width: 250, height: 270 }} />}
-
-          <View
-            style={{
-              height: 1,
-              width: "100%",
-              backgroundColor: colors.grey700,
-            }}
-          ></View>
-          <MonoText style={{ fontSize: 12, color: colors.grey500 }}>
-            {desc}
-          </MonoText>
-
-          <View style={styles(height).button_wrapper}>
-            <Pressable
-              style={[styles(height).button, styles(height).buttonOpen]}
-              onPress={() => setModalVisible()}
+      <Pressable
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
+          width: "100%",
+          height: "100%",
+        }}
+        onPress={() => setCloseModal()}
+      >
+        <View style={styles(height).centeredView}>
+          <View style={styles(height).modalView}>
+            <MonoText style={styles(height).modal_title}>
+              오늘의 진저 투숙객
+            </MonoText>
+            <Text
+              style={[styles(height).modal_desc, typography.display1_basic]}
             >
-              <MonoText style={styles(height).textStyle}>
-                오늘의 편지 보러가기
-              </MonoText>
-            </Pressable>
+              {name}
+            </Text>
+
+            {img && <Image source={img} style={{ width: 210, height: 230 }} />}
+
+            <View
+              style={{
+                height: 1,
+                width: "100%",
+                backgroundColor: colors.grey700,
+                marginTop: 16,
+              }}
+            ></View>
+            <MonoText
+              style={{
+                fontSize: 12,
+                color: colors.grey500,
+                lineHeight: 20,
+                textAlign: "left",
+                paddingRight: 30,
+                marginTop: 14,
+                marginBottom: 26,
+              }}
+            >
+              {desc}
+            </MonoText>
+
+            <View style={styles(height).button_wrapper}>
+              <Pressable
+                style={[styles(height).button, styles(height).buttonOpen]}
+                onPress={() => setModalVisible()}
+              >
+                <MonoText style={styles(height).textStyle}>
+                  오늘의 편지 보러가기
+                </MonoText>
+              </Pressable>
+            </View>
           </View>
         </View>
-      </View>
+      </Pressable>
     </Modal>
   );
 };
@@ -127,7 +148,7 @@ const styles = (height: number) =>
     },
     modal_desc: {
       fontSize: 12,
-      marginBottom: 20,
+      marginBottom: 10,
       color: colors.Whiteyello,
       textAlign: "center",
       lineHeight: 21,
