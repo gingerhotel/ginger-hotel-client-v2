@@ -12,7 +12,8 @@ import Buttons from "../components/buttons";
 import LetterHeader from "../components/letterHeader";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
-
+import { SvgImg } from "../components/svgImg";
+const i_reply_letter = require("../assets/images/i_reply_letter.svg");
 export default function LetterCompleted() {
   const navigation = useNavigation();
   useEffect(() => {
@@ -30,26 +31,25 @@ export default function LetterCompleted() {
           {isAnswer ? "답장을" : "편지를"} 보냈어요!
         </MonoText>
         <MonoText style={styles.text}>
-          답장이 오면 ‘알림’으로 알려드릴게요!
+          당신의 소중한 마음을 온전히 전달해 드릴게요 :)
         </MonoText>
-
-        <View style={styles.temp}>
-          <MonoText>일러스트</MonoText>
-        </View>
+        <SvgImg
+          url={i_reply_letter}
+        />
       </View>
 
       <View style={styles.footer}>
-        <Buttons
+        {/* <Buttons
           is_width={true}
           url={"village"}
           title="빌리지 가기"
           color="darkgray"
         />
-        &nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp; */}
         <Buttons
           //navigation={navigation}
           url={"hotel/1"}
-          title="진저호텔 홈으로"
+          title="확인"
           is_width={true}
           color="green"
         />
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     flex: 1,
+    gap: 30
   },
   footer: {
     width: "100%",
