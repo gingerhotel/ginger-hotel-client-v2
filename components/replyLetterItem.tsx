@@ -80,12 +80,14 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         />
                                     </View>
                                     {item.isBlocked ? (
-                                        <SvgImg
-                                            url={i_block}
-                                            width={30}
-                                            height={30}
-                                        // onPress={() => toggleModal(item.id)}
-                                        />
+                                        <View style={{ position: 'absolute', right: '3%' }}>
+                                            <SvgImg
+                                                url={i_block}
+                                                width={30}
+                                                height={30}
+                                            // onPress={() => toggleModal(item.id)}
+                                            />
+                                        </View>
                                     ) : (<View />)}
                                 </LetterInnerTitieView>
                             </LetterInnerInfoView>
