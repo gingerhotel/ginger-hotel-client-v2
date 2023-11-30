@@ -25,9 +25,10 @@ import BottomModal from "../../components/bottomModal";
 import Toast from "react-native-toast-message";
 import CenterModal from "../../components/centerModal";
 import { ScrollView } from "react-native-gesture-handler";
+import { PngImg } from "../../components/pngImg";
 const more = require("../../assets/icon/i_delete_2.svg");
 const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
-const building = require("../../assets/images/building.svg");
+const building = require("../../assets/images/building.png");
 
 export default function Village() {
   const navigation = useNavigation();
@@ -112,7 +113,7 @@ export default function Village() {
             내 빌리지는 나만 볼 수 있어요!
           </MonoText>
 
-          <SvgImg
+          <PngImg
             url={building}
             style={{
               width: 100,
