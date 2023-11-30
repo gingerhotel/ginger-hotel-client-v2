@@ -114,7 +114,7 @@ export default function Village() {
           height: "100%",
         }}
       >
-        <ScrollView>
+        <ScrollView style={{ paddingBottom: 70 }}>
           <View
             style={{
               borderRadius: 12,
@@ -263,7 +263,7 @@ export default function Village() {
           btn_text="삭제하기"
           callback={handelDeleteVillage}
         />
-          <LoginModal
+        <LoginModal
           height={300}
           visible={loginModalVisible}
           onClose={closeLoginModal}
