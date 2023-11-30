@@ -150,10 +150,12 @@ export default function HotelComp() {
   );
 
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
+  const [isMine, setIsMine] = useState(data?.isOwner);
 
   useEffect(() => {
     if (data) {
       setHotelWindow(data.hotelWindows);
+      setIsMine(data.isOwner);
     }
   }, [data]);
 
@@ -198,6 +200,7 @@ export default function HotelComp() {
           {/* <Link href={"/create"}> */}
           <View style={{ backgroundColor: "transparent" }}>
             <CustomCompleteUserHotel
+              isMy={data.isOwner}
               window={data.hotelWindows}
               // onPress={handleClickWindow}
               wallColor={data?.hotel?.bodyColor}

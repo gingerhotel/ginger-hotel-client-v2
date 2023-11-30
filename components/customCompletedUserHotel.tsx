@@ -1,10 +1,23 @@
-import React from "react";
-import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { structColors, wallColors } from "./customUserHotel";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
+import { useRecoilValue } from "recoil";
+import { hotelIdState } from "../atom/letterAtom";
+import { typography } from "../constants/Typo";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/front_bg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
@@ -34,6 +47,12 @@ const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
 const backgroundImg01 = require(`../assets/decorations/background01.svg`);
 const backgroundImg02 = require(`../assets/decorations/background02.svg`);
 const backgroundImg03 = require(`../assets/decorations/background03.svg`);
+type Props = {
+  onClose?: any;
+  visible?: boolean;
+  height?: number | any;
+  desc: string;
+};
 
 export default function CustomCompleteUserHotel({
   wallColor,
@@ -41,6 +60,8 @@ export default function CustomCompleteUserHotel({
   onPress,
   is_border,
   is_front_bg,
+  onClose,
+  isMy,
   window_v,
   window,
   gardenDecorator,
@@ -50,6 +71,27 @@ export default function CustomCompleteUserHotel({
   const web = { top: 36, left: 50 };
   const app = { top: 38, left: 55 };
   const _web = { top: 36, left: 50 };
+  const myHotelId = useRecoilValue(hotelIdState);
+  const [isNotMineModal, setIsNotMineModal] = useState(false);
+  const setModalVisible = () => {
+    onClose();
+  };
+  const setCloseModal = () => {
+    setIsNotMineModal(false);
+  };
+  const handleOwner = async () => {
+    const isLogin = await AsyncStorage.getItem("accessToken");
+    if (isLogin) {
+      if (isMy) {
+        router.push(`/mailbox/${myHotelId}`);
+      } else {
+        setIsNotMineModal(true);
+        console.log(isNotMineModal);
+      }
+    } else {
+      setIsNotMineModal(true);
+    }
+  };
 
   const windows = [
     {
@@ -513,10 +555,7 @@ export default function CustomCompleteUserHotel({
         }}
       >
         {windows?.map((item) => (
-          <TouchableOpacity
-            key={item.num}
-            onPress={onPress && onPress(item.num)}
-          >
+          <TouchableOpacity key={item.num} onPress={handleOwner}>
             <View
               key={item.num}
               style={{
@@ -613,6 +652,55 @@ export default function CustomCompleteUserHotel({
           </TouchableOpacity>
         ))}
       </View>
+      {isNotMineModal && (
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={isNotMineModal}
+          onRequestClose={() => {
+            setModalVisible();
+          }}
+        >
+          <Pressable
+            style={{
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              width: "100%",
+              height: "100%",
+            }}
+            onPress={(e) => {
+              e.stopPropagation();
+              if (e.target === e.currentTarget) {
+                setCloseModal();
+              }
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>
+                <MonoText style={styles.modal_title}>
+                  다른 사람의 호텔 창문은 볼 수 없어요
+                </MonoText>
+                <Text style={styles.modal_desc}>
+                  {`내 호텔로 가려면\n‘내 호텔 가기’ 버튼을 눌러주세요!`}
+                </Text>
+
+                {/* {img && (
+                  <Image source={img} style={{ width: 210, height: 230 }} />
+                )} */}
+                <View style={styles.button_wrapper}>
+                  <Pressable
+                    style={[styles.button, styles.buttonOpen]}
+                    onPress={() => {
+                      setCloseModal();
+                    }}
+                  >
+                    <MonoText style={styles.textStyle}>확인</MonoText>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+          </Pressable>
+        </Modal>
+      )}
     </>
   );
 }
@@ -627,5 +715,72 @@ const styles = StyleSheet.create({
     width: "98%",
     alignItems: "center",
     position: "relative",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: colors.grey900,
+    borderRadius: 10,
+    width: "84%",
+    height: 206,
+    paddingTop: 36,
+    display: "flex",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: colors.grey900,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    marginTop: 24,
+    borderRadius: 10,
+    padding: 13,
+    paddingLeft: 10,
+    paddingRight: 10,
+    elevation: 2,
+    width: "100%",
+  },
+  buttonOpen: {
+    backgroundColor: colors.green600,
+    color: colors.Whiteyello,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    flex: 1,
+  },
+  modal_title: {
+    marginBottom: 16,
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "700",
+    fontFamily: "NanumSquare Neo OTF",
+    color: colors.Whiteyello,
+  },
+  modal_desc: {
+    marginTop: 10,
+    fontSize: 16,
+    textAlign: "center",
+    fontWeight: "400",
+    fontFamily: "NanumSquare Neo OTF",
+    color: colors.grey500,
+  },
+  button_wrapper: {
+    width: 140,
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row",
   },
 });
