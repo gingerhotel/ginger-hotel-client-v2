@@ -20,7 +20,7 @@ import {
 import { useRecoilState, useRecoilValue } from "recoil";
 import { letterSwitchState, letterUpdateState, newLetterCountState } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useQuery } from "react-query";
 import { getHotel } from "../api/hotelApi";
 
@@ -29,6 +29,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
   const countCheck = useRecoilValue(letterUpdateState);
+  const { id } = useLocalSearchParams()
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
     {
@@ -73,7 +74,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   return (
     <SafeAreaView style={{ width: "100%" }}>
       <MailBoxView>
-        <SvgImg url={arrow} onPress={() => router.back()}></SvgImg>
+        <SvgImg url={arrow} onPress={() => router.push(`/hotel/${id}`)}></SvgImg>
         <MailTitleView>
           <MailTitleText>내 호텔 편지함</MailTitleText>
           <MailNumberText>{data?.letters?.length + data?.replies?.length}</MailNumberText>
