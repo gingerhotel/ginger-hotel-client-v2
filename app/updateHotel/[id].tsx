@@ -52,7 +52,7 @@ export default function UpdateHotel() {
     "#FFB950",
     "#C7DA82",
     "#82DAB9",
-    "#65BBD0",
+    "#FFA6BB",
     "#143561",
     "#8A61AC",
     "#FBDFC0",
