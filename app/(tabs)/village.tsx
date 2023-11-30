@@ -9,24 +9,24 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import Header from "../components/appHeader";
-import { MonoText } from "../components/styledText";
-import VillageHeader from "../components/villageHeader";
-import LoginModal from "../components/Modal/loginModal";
+import Header from "../../components/appHeader";
+import { MonoText } from "../../components/styledText";
+import VillageHeader from "../../components/villageHeader";
+import LoginModal from "../../components/Modal/loginModal";
 import { useEffect, useState } from "react";
 import { Link, router, useNavigation } from "expo-router";
 import { useQuery } from "react-query";
-import { deleteVillage, myVillage } from "../api/villageApi";
-import CustomSmallHotel from "../components/customSmallHotel";
-import { colors } from "../constants/Colors";
-import { typography } from "../constants/Typo";
-import { SvgImg } from "../components/svgImg";
-import BottomModal from "../components/bottomModal";
+import { deleteVillage, myVillage } from "../../api/villageApi";
+import CustomSmallHotel from "../../components/customSmallHotel";
+import { colors } from "../../constants/Colors";
+import { typography } from "../../constants/Typo";
+import { SvgImg } from "../../components/svgImg";
+import BottomModal from "../../components/bottomModal";
 import Toast from "react-native-toast-message";
-import CenterModal from "../components/centerModal";
-const more = require("../assets/icon/i_delete_2.svg");
-const bellboy = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
-const building = require("../assets/images/building.svg");
+import CenterModal from "../../components/centerModal";
+const more = require("../../assets/icon/i_delete_2.svg");
+const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
+const building = require("../../assets/images/building.svg");
 
 export default function Village() {
   const navigation = useNavigation();

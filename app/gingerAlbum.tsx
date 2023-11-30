@@ -1,22 +1,22 @@
 import { View, StyleSheet, ScrollView } from "react-native";
-import { colors } from "../../constants/Colors";
-import GingermanCard from "../../components/gingermanCard";
-import Header from "../../components/appHeader";
+import { colors } from "../constants/Colors";
+import GingermanCard from "../components/gingermanCard";
+import Header from "../components/appHeader";
 import { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation, useSegments } from "expo-router";
 import { useQuery } from "react-query";
-import { getHotel } from "../../api/hotelApi";
-import { hotelIdState } from "../../atom/letterAtom";
+import { getHotel } from "../api/hotelApi";
+import { hotelIdState } from "../atom/letterAtom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { Text } from "../../components/themed";
+import { Text } from "../components/themed";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AUTH_URL } from "../../api/url";
-import LoginModal from "../../components/Modal/\bloginModal";
+import { AUTH_URL } from "../api/url";
+import LoginModal from "../components/Modal/loginModal";
 
-const bellboy = require("../../assets/gingerman/Album_Ginger/a_bellboy.png");
+const bellboy = require("../assets/gingerman/Album_Ginger/a_bellboy.png");
 
-const bellboy2 = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
+const bellboy2 = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
