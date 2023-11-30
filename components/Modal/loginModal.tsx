@@ -182,10 +182,10 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
           </View>
           <Text style={[styles(height).modal_title]}>{name}</Text>
           <Text style={[styles(height).modal_desc]}>
-            로그인이 필요한 기능입니다.
+            간편하게 가입하고 진저호텔을 시작하세요!
           </Text>
           <Text style={[styles(height).modal_desc]}>
-            간편하게 가입하고 진저호텔을 시작하세요!
+            삼성/크롬 외부 브라우저 접속을 권장합니다.
           </Text>
 
           <View
