@@ -21,10 +21,9 @@ const bellboy2 = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
-  const [hotelId, setHotelId] = useRecoilState<string>(hotelIdState);
+  const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
   const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
   const [info, setInfo] = useState<any>([]);
-
 
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const closeLoginModal = () => {
@@ -50,7 +49,6 @@ const GingerAlbum = () => {
       checkLogin();
     }
   }, [segments]);
-
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -95,7 +93,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={`올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~`}
-              isOpened={true}
+              isOpened={info[`2023-12-01`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -292,13 +290,13 @@ const GingerAlbum = () => {
           </View>
         </View>
         <LoginModal
-        height={300}
-        visible={loginModalVisible}
-        onClose={closeLoginModal}
-        name="로그인"
-        desc=""
-        closeDisable={true}
-      />
+          height={300}
+          visible={loginModalVisible}
+          onClose={closeLoginModal}
+          name="로그인"
+          desc=""
+          closeDisable={true}
+        />
       </ScrollView>
     </>
   );
