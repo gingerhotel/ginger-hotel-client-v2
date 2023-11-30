@@ -532,61 +532,61 @@ export default function CustomCompleteUserHotel({
                 url={
                   item.num === 13
                     ? window[
-                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                      ]?.isOpen
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
                       ? window_design[window_v].rec_open
                       : window_design[window_v].rec
                     : item.num === 18
-                    ? window[
+                      ? window[
                         `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
-                      ? window_design[window_v].rec2_open
-                      : window_design[window_v].rec2
-                    : item.num === 25
-                    ? window[
-                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                      ]?.isOpen
-                      ? window_design[window_v].mainOpen
-                      : window_design[window_v].main
-                    : window[
-                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                      ]?.isOpen
-                    ? window_design[window_v].open
-                    : window_design[window_v].default
+                        ? window_design[window_v].rec2_open
+                        : window_design[window_v].rec2
+                      : item.num === 25
+                        ? window[
+                          `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                        ]?.isOpen
+                          ? window_design[window_v].mainOpen
+                          : window_design[window_v].main
+                        : window[
+                          `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                        ]?.isOpen
+                          ? window_design[window_v].open
+                          : window_design[window_v].default
                 }
                 style={{
                   width:
                     item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
+                      window[
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
                       ? 50
                       : item.width,
                   height:
                     item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
+                      window[
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
                       ? 72
                       : item.height,
                   top:
                     item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
+                      window[
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
                       ? -32
                       : item.num === 25
-                      ? 4
-                      : 0,
+                        ? 4
+                        : 0,
                   left:
                     item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
+                      window[
+                        `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                      ]?.isOpen
                       ? -14
                       : item.num === 25
-                      ? 2
-                      : 0,
+                        ? 2
+                        : 0,
                   zIndex: 4,
                   position: "absolute",
                 }}
