@@ -14,9 +14,11 @@ export default function _layout() {
           borderTopWidth: 0,
           marginBottom: 0,
           flexDirection: "column",
+          height: 70,
         },
         tabBarLabelStyle: {
-          fontSize: 10, // 텍스트 크기 조절
+          fontSize: 10,
+          marginBottom: 10, // 텍스트 크기 조절
         },
       }}
     >
@@ -34,7 +36,7 @@ export default function _layout() {
       <Tabs.Screen
         name="hotel/[id]"
         options={{
-          title: "진저호텔",
+          title: "내 호텔",
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="hotel" color={color} size={size} />
           ),
@@ -45,7 +47,7 @@ export default function _layout() {
         name="my"
         options={{
           headerShown: false,
-          title: "마이페이지",
+          title: "MY",
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="user" color={color} size={size} />
           ),

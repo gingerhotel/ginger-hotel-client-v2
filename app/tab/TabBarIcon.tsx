@@ -20,11 +20,11 @@ export function TabBarIcon(props: {
 
   return (
     <Svg
-      width={30}
-      height={30}
+      width={32}
+      height={32}
       viewBox="0 0 30 30"
       fill={props.color}
-      style={{ marginBottom: -3 }}
+      style={{ marginTop: 11 }}
     >
       <Path d={iconPaths[props.name]} />
     </Svg>
