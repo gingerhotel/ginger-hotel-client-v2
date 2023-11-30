@@ -72,8 +72,9 @@ const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
                 fontSize: 12,
                 color: colors.grey500,
                 lineHeight: 20,
-                textAlign: "left",
-                paddingRight: 30,
+                textAlign: "center",
+
+                // paddingRight: 30,
                 marginTop: 14,
                 marginBottom: 26,
               }}
