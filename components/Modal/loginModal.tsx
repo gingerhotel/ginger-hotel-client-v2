@@ -196,27 +196,6 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
               marginVertical: 15,
             }}
           ></View>
-
-          <View>
-            <Pressable
-              style={[styles(height).button, styles(height).google]}
-              onPress={() => setModalVisible()}
-            >
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={googleLogo} />
-              ) : (
-                <Image source={googleLogo} style={{ width: 30, height: 30 }} />
-              )}
-              <MonoText
-                style={[
-                  styles(height).textStyle,
-                  styles(height).textStyle_google,
-                ]}
-              >
-                구글 계정으로 로그인
-              </MonoText>
-            </Pressable>
-          </View>
           <View style={[styles(height).kakao]}>
             <a
               href={kakaoUrl}
@@ -239,6 +218,27 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
               </MonoText>
             </a>
           </View>
+          <View>
+            <Pressable
+              style={[styles(height).button, styles(height).google]}
+              onPress={() => setModalVisible()}
+            >
+              {Platform.OS === "ios" || Platform.OS === "android" ? (
+                <WithLocalSvg asset={googleLogo} />
+              ) : (
+                <Image source={googleLogo} style={{ width: 30, height: 30 }} />
+              )}
+              <MonoText
+                style={[
+                  styles(height).textStyle,
+                  styles(height).textStyle_google,
+                ]}
+              >
+                구글 계정으로 로그인
+              </MonoText>
+            </Pressable>
+          </View>
+
         </View>
       </View>
     </Modal>
