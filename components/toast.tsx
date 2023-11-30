@@ -29,7 +29,7 @@ export const toastConfig = {
     <View
       style={{
         height: 40,
-        width: "60%",
+        width: "70%",
         borderRadius: 65,
         backgroundColor: colors.grey200,
         display: "flex",
