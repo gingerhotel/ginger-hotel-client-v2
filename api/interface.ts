@@ -91,8 +91,12 @@ export interface BottomSheetProps {
   isVisible: boolean;
   onClose: () => void;
   letterId: number;
+  letterType: boolean;
 }
-export interface BottomSheetDeleteProps extends BottomSheetProps {
+export interface BottomSheetDeleteProps {
+  isVisible: boolean;
+  onClose: () => void;
+  letterId: number;
   blocked: boolean
 }
 export interface LetterArrayProps {
@@ -109,6 +113,7 @@ export interface ReplyArrayProps {
   content: string;
   createdAt: string;
   letterId: number;
+  id: number;
   imageUrl: any;
   isBlocked: boolean;
   senderNickname: string;
