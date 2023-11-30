@@ -59,7 +59,7 @@ export const letterUnBlock = async (letterId: number) => {
   }
 }
 
-export const repliesLetterData = async (letterId: string | string[]) => {
+export const repliesLetterData = async (letterId: string | string[] | undefined) => {
   console.error(letterId)
   try {
     const response = await axios.get(`${LETTERS_URL}/${letterId}/replies`);
