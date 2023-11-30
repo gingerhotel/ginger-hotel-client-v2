@@ -29,7 +29,8 @@ import {
 import moment from "moment";
 
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
-const album = require("../../../assets/icon/i_album.svg");
+const addVillageImg = require("../../../assets/images/add_village.svg");
+const addedVillageImg = require("../../../assets/images/added_village.svg");
 const share = require("../../../assets/icon/link.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 const plus = require("../../../assets/icon/i_plus_2.svg");
@@ -280,7 +281,6 @@ export default function HotelComp() {
                     color="green"
                     width={350}
                     callback={handelTodayLetters}
-                    // is_disable={data?.todayReceivedLetterCount < 5}
                   />
                 </View>
 
@@ -311,12 +311,22 @@ export default function HotelComp() {
                     title="편지 보내기"
                     url={`letter/${id}`}
                     color="green"
-                    width={350}
+                    width={288}
                     callback={() =>
                       !data?.isLoginMember ? setLoginModalVisible(true) : {}
                     }
                     auth={data?.isLoginMember}
                   />
+
+                  {data?.isFriend ? (
+                    <TouchableOpacity>
+                      <SvgImg width={40} height={38} url={addedVillageImg} />
+                    </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity onPress={() => setVillageModal(true)}>
+                      <SvgImg width={40} height={38} url={addVillageImg} />
+                    </TouchableOpacity>
+                  )}
                 </View>
                 {!data?.isLoginMember ? (
                   <View style={styles.hotel_today}>
@@ -337,17 +347,6 @@ export default function HotelComp() {
                         color="green"
                         width={350}
                         callback={() => setMyHotelModal(true)}
-                      />
-                    </View>
-                    <View style={styles.hotel_today}>
-                      <Buttons
-                        title="내 빌리지에 추가"
-                        color="gray_700"
-                        width={350}
-                        callback={() => {
-                          setVillageModal(true);
-                        }}
-                        icon={plus}
                       />
                     </View>
                   </>
