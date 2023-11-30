@@ -189,9 +189,7 @@ export default function HotelComp() {
   );
 
   const handelTodayLetters = () => {
-    const todayWindow =
-      data?.hotelWindows[moment("2023-12-01").format("YYYY-MM-DD")];
-
+    const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
     if (data?.todayReceivedLetterCount < 5 && !todayWindow.isOpen) {
       setKeyModal(true);
       return;
