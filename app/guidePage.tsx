@@ -83,20 +83,20 @@ const GuidePage = () => {
             열면 진저맨 카드가 자동으로 수집돼요.
           </Text>
         </View>
-        <View style={styles.content_box}>
+        {/* <View style={styles.content_box}>
           <Text style={styles.content_title}>새로운 기능</Text>
-          <Text style={styles.content_text}>
-            💌 <Text style={styles.text_tint_color}>답장하기</Text>: 나에게
-            편지를 써준 친구에게 답장을 보낼 수 있어요.{`\n`}
-            {/* TODO: 업데이트 준비중 주석처리
+          <Text style={styles.content_text}> */}
+        {/* 💌 <Text style={styles.text_tint_color}>답장하기</Text>: 나에게
+            편지를 써준 친구에게 답장을 보낼 수 있어요.{`\n`} */}
+        {/* TODO: 업데이트 준비중 주석처리
             2. <Text style={styles.text_tint_color}>엿보기</Text>: 나에게 편지를
             써준 친구가 누군지 물어볼 수 있어요.
             {`\n`}
             3. <Text style={styles.text_tint_color}>사진 첨부</Text>: 편지에
             사진을 넣어 함께 보낼 수 있어요.
             */}
-          </Text>
-        </View>
+        {/* </Text>
+        </View> */}
         <View style={styles.content_box}>
           <Text style={styles.content_title}>진저호텔을 만든 사람들</Text>
           <Text style={styles.content_text}>
