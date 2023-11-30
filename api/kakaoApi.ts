@@ -31,7 +31,7 @@ export const signInWithKakao = async (
 
     try {
       const response = await authKakao(_data);
-      const { status, data } = response;
+      const { status, data }: any = response;
       AsyncStorage.setItem("accessToken", data?.accessToken);
 
       if (status === 200) {

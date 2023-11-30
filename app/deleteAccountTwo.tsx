@@ -8,6 +8,7 @@ import { useMutation, useQuery } from "react-query";
 import { deleteUser } from "../api/myApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "../components/appHeader";
+import { MonoText } from "../components/styledText";
 
 const DeleteAccountTwo = () => {
   const navigation = useNavigation();
@@ -16,17 +17,6 @@ const DeleteAccountTwo = () => {
   }, [navigation]);
 
   const [checked, setChecked] = useState(false);
-
-  const { data, status, error } = useQuery(
-    "deleteUser",
-    async () => await deleteUser,
-    {
-      // refetchOnWindowFocus: false,
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
-      },
-    }
-  );
 
   const mutation = useMutation(
     deleteUser, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
@@ -51,26 +41,28 @@ const DeleteAccountTwo = () => {
       <View>
         <Header title="탈퇴하기" />
         <View style={styles.text_box}>
-          <Text style={styles.title}>진저호텔을 이용해주셔서 감사합니다.</Text>
-          <Text style={styles.subtitle}>
+          <MonoText style={styles.title}>
+            진저호텔을 이용해주셔서 감사합니다.
+          </MonoText>
+          <MonoText style={styles.subtitle}>
             진저호텔을 떠나시더라도 {`\n`}
             행복한 크리스마스 연말 보내시길 바랍니다. :)
-          </Text>
+          </MonoText>
         </View>
         <View style={styles.info_box}>
-          <Text style={styles.info_title}>탈퇴 안내</Text>
-          <Text style={styles.info_item}>
+          <MonoText style={styles.info_title}>탈퇴 안내</MonoText>
+          <MonoText style={styles.info_item}>
             ⋅ 현재 계정 ID가 영구 삭제됩니다.
-          </Text>
-          <Text style={styles.info_item}>
+          </MonoText>
+          <MonoText style={styles.info_item}>
             ⋅ 현재 계정으로 받은 편지와 답장이 모두 삭제됩니다.
-          </Text>
-          <Text style={styles.info_item}>
+          </MonoText>
+          <MonoText style={styles.info_item}>
             ⋅ 탈퇴 후 계정 복구가 불가합니다.
-          </Text>
-          <Text style={styles.info_item}>
+          </MonoText>
+          <MonoText style={styles.info_item}>
             ⋅ 탈퇴 후 동일 계정으로 재가입이 불가합니다.
-          </Text>
+          </MonoText>
         </View>
       </View>
       <View>

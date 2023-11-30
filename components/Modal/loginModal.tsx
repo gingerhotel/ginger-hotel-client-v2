@@ -37,7 +37,13 @@ WebBrowser.maybeCompleteAuthSession();
 
 
 export function isEmpty(str: string) {
-  if (typeof str == "undefined" || str == null || str == "") return true;
+  if (
+    typeof str == "undefined" ||
+    str == null ||
+    str == "" ||
+    str == "undefined"
+  )
+    return true;
   else return false;
 }
 

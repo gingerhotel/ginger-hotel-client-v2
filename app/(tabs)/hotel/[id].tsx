@@ -190,7 +190,9 @@ export default function HotelComp() {
           <Text style={styles.hotel_name}>
             {data?.hotel?.nickname}님의 진저호텔
           </Text>
-          <Text style={styles.hotel_desc}>{data?.hotel?.description}</Text>
+          <MonoText style={styles.hotel_desc}>
+            {data?.hotel?.description}
+          </MonoText>
 
           {/* <Link href={"/create"}> */}
           <View style={{ backgroundColor: "transparent" }}>
@@ -382,7 +384,7 @@ const styles = StyleSheet.create({
   hotel_today_container: {
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.greyblack,
+    // backgroundColor: colors.greyblack,
     gap: 12,
     marginBottom: 30,
     marginTop: 12,
@@ -391,9 +393,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.greyblack,
+    // backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52
+    height: 52,
   },
   hotel_today2: {
     flexDirection: "column",

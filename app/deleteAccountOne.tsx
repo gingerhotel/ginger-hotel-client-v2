@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { colors } from "../constants/Colors";
 import CheckBox from "../components/chekbox";
 import { useState, useEffect } from "react";
@@ -6,6 +6,7 @@ import Input from "../components/input";
 import Buttons from "../components/buttons";
 import { router, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
+import { MonoText } from "../components/styledText";
 
 const DeleteAccountOne = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -36,10 +37,18 @@ const DeleteAccountOne = () => {
       <View>
         <Header title="탈퇴하기" />
         <View style={styles.text_box}>
-          <Text style={styles.title}>탈퇴하시겠습니까?</Text>
-          <Text style={styles.subtitle}>
+          <MonoText
+            style={{
+              color: colors.Whiteyello,
+              fontSize: 23,
+              marginBottom: 10,
+            }}
+          >
+            탈퇴하시겠습니까?
+          </MonoText>
+          <MonoText style={styles.subtitle}>
             진저호텔을 떠나는 이유를 알려주세요!
-          </Text>
+          </MonoText>
         </View>
         <View style={styles.checkbox_wrapper}>
           <CheckBox
