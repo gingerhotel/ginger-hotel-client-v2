@@ -20,7 +20,7 @@ export default function UpdateHotel() {
     "loadHotel",
     async () => await getHotel(id as string),
     {
-      // refetchOnWindowFocus: false,
+      refetchOnWindowFocus: false,
       onError: (e) => {
         console.log(`useQuery error : ${e}`);
       },
@@ -55,7 +55,7 @@ export default function UpdateHotel() {
     "#65BBD0",
     "#143561",
     "#8A61AC",
-    "#FFFFFF",
+    "#FBDFC0",
     "#343434",
   ];
 

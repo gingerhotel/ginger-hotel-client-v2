@@ -46,6 +46,7 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
                   <SvgImg style={styles.container_3} url={feek_blur} />
                 </View>
                 
+
                 {/* 엿보기 개수 주석 처리 : 엿보기 기능 구현 전
                 <View style={styles.container_2}>
                   <SvgImg width={40} height={40} url={i_glasses} />

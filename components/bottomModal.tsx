@@ -6,17 +6,12 @@ import { colors } from "../constants/Colors";
 import CenterModal from "./centerModal";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
-import { router } from "expo-router";
-const icon = require("../assets/icon/i_history_edu.svg");
+import { Link, router } from "expo-router";
+const icon = require("../assets/icon/i_incognito.svg");
+const letter = require("../assets/icon/i_letter.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_history_edu_big.svg");
 
-const BottomModal = ({
-  height,
-  visible,
-  onClose,
-  modalTextList,
-  navigation,
-}: any) => {
+const BottomModal = ({ height, visible, onClose, id, callback }: any) => {
   const toggleBottomNavigationView = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
@@ -47,28 +42,49 @@ const BottomModal = ({
       onBackdropPress={toggleBottomNavigationView}
     >
       <View style={styles(height).bottomNavigationView}>
-        {modalTextList.map((text: string) => (
-          <TouchableOpacity key={text} onPress={() => onClickModal(text)}>
+        <TouchableOpacity onPress={callback}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <SvgImg style={{ width: 24 }} url={icon} />
+            <MonoText
+              style={{
+                color: colors.Whiteyello,
+                fontSize: 16,
+                marginLeft: 15,
+              }}
+            >
+              내 빌리지에서 삭제
+            </MonoText>
+          </View>
+        </TouchableOpacity>
+        <Link href={`/letter/${id}`}>
+          <TouchableOpacity onPress={onClose}>
             <View
               style={{
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                marginTop: 8,
               }}
             >
-              <SvgImg url={icon} />
+              <SvgImg style={{ width: 27 }} url={letter} />
               <MonoText
                 style={{
                   color: colors.Whiteyello,
                   fontSize: 16,
-                  marginLeft: 5,
+                  marginLeft: 15,
                 }}
               >
-                {text}
+                편지 쓰기
               </MonoText>
             </View>
           </TouchableOpacity>
-        ))}
+        </Link>
       </View>
 
       <CenterModal

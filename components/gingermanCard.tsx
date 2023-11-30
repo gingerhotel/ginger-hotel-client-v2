@@ -4,32 +4,69 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  Pressable,
 } from "react-native";
 import { colors } from "../constants/Colors";
 import { MonoText } from "./styledText";
 import { FontAwesome } from "@expo/vector-icons";
 import { WithLocalSvg } from "react-native-svg";
+import Toast from "react-native-toast-message";
+import { useState } from "react";
+import GingerModal from "./gingerModal";
 
+const icon: any = require("../assets/icon/i_no_check.svg");
 const frameImage = require("../assets/images/ginger_card_frame.svg");
-const defaultGingerman = require("../assets/gingerman/g_bellboy.png");
-
+const defaultGingerman = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
 type TGingermanCard = {
   isOpened?: boolean;
   pngImage?: { uri: string };
+  pngImage2?: { uri: string };
   name?: string;
   date?: string;
+  desc: string;
   onPress?: () => void;
 };
 
 const GingermanCard = ({
   name,
-  pngImage = { uri: defaultGingerman },
+  pngImage = { uri: "" },
+  pngImage2 = { uri: "" },
   date,
   isOpened,
+  desc,
   onPress,
 }: TGingermanCard) => {
+  const [isModalVisible, setModalVisible] = useState(false);
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const showToast = () => {
+    if (!isOpened) {
+      Toast.show({
+        type: "iconToast",
+        text1: "당일 창문을 열어야 볼 수 있어요!",
+        visibilityTime: 3000, // 토스트 메시지가 보이는 시간 (밀리초)
+        autoHide: true,
+        props: { icon },
+        position: "bottom",
+      });
+    } else {
+      setModalVisible(true);
+    }
+  };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity
+      onPress={() => {
+        onPress && onPress();
+        showToast();
+      }}
+    >
       <View style={styles.card_wrapper}>
         {isOpened ? (
           <>
@@ -58,6 +95,14 @@ const GingermanCard = ({
             <MonoText style={styles.date}>{date}</MonoText>
           </>
         )}
+        <GingerModal
+          height={530}
+          visible={isModalVisible}
+          onClose={closeModal}
+          name="벨보이 진저맨"
+          desc={desc}
+          img={pngImage2}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -83,8 +128,10 @@ const styles = StyleSheet.create({
 
   image: {
     position: "absolute",
-    width: "100%",
-    height: "100%",
+    top: 10,
+    left: 10,
+    width: 72,
+    height: 95,
   },
   question_mark: {
     position: "absolute",

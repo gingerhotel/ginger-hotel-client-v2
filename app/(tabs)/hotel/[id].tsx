@@ -26,10 +26,11 @@ import {
   useNavigation,
   useSegments,
 } from "expo-router";
-const ginger = require("../../../assets/gingerman/g_bellboy.png");
+const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
 const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
+const plus = require("../../../assets/icon/i_plus_2.svg");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -44,6 +45,7 @@ import CustomCompleteUserHotel from "../../../components/customCompletedUserHote
 import KakaoAdFit from "../../../advertisement/KakaoAdFit";
 import SnowfallContainer from "../../../components/snow/snowfallContainer";
 import Snowfall from "react-snowfall";
+import { addVillage } from "../../../api/villageApi";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -56,6 +58,8 @@ export default function HotelComp() {
   const setHotelId = useSetRecoilState<string | string[]>(hotelIdState);
   const [open, setOpen] = useState(true);
   const navigation = useNavigation();
+  const [villageModal, setVillageModal] = useState<boolean>(false);
+
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
@@ -71,6 +75,25 @@ export default function HotelComp() {
     setModalVisible(false);
   };
 
+  const handelAddVillage = async () => {
+    setVillageModal(false);
+    try {
+      const res = await addVillage(String(id));
+      if (res?.success) {
+        Toast.show({
+          type: "iconToast",
+          text1: "내 빌리지에 추가되었습니다!",
+          position: "top",
+        });
+      }
+    } catch (err: any) {
+      Toast.show({
+        type: "iconToast",
+        text1: err?.response?.data?.errorMessage,
+        position: "top",
+      });
+    }
+  };
   // useEffect(() => {
   //   // 페이지가 전환될 때마다 실행
   //   navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
@@ -180,15 +203,14 @@ export default function HotelComp() {
                     url="mailbox/1"
                     is_disable={data?.todayLetterCnt >= 5}
                   />
-                  <TouchableOpacity>
-                    <SvgImg
-                      width={40}
-                      height={40}
-                      url={album}
-                      onPress={() => router.push("/gingerAlbum")}
-                    />
-                  </TouchableOpacity>
+                  <SvgImg
+                    width={40}
+                    height={40}
+                    url={album}
+                    onPress={() => router.push("/gingerAlbum")}
+                  />
                 </View>
+
                 <View style={styles.hotel_today}>
                   <Buttons
                     title="내 호텔 공유하기"
@@ -223,8 +245,8 @@ export default function HotelComp() {
                     auth={data?.isLoginMember}
                   />
                 </View>
-                <View style={styles.hotel_today}>
-                  {!data?.isLoginMember ? (
+                {!data?.isLoginMember ? (
+                  <View style={styles.hotel_today}>
                     <Buttons
                       title="내 호텔 만들기"
                       url="letter"
@@ -232,21 +254,35 @@ export default function HotelComp() {
                       width={350}
                       callback={() => setLoginModalVisible(true)}
                     />
-                  ) : (
-                    <Buttons
-                      title="내 호텔로 가기"
-                      url="letter"
-                      color="green"
-                      width={350}
-                      callback={() => setLoginModalVisible(true)}
-                    />
-                  )}
-                </View>
+                  </View>
+                ) : (
+                  <>
+                    <View style={styles.hotel_today}>
+                      <Buttons
+                        title="내 호텔로 가기"
+                        url="letter"
+                        color="green"
+                        width={350}
+                        callback={() => setLoginModalVisible(true)}
+                      />
+                    </View>
+                    <View style={styles.hotel_today}>
+                      <Buttons
+                        title="내 빌리지에 추가"
+                        color="gray_700"
+                        width={350}
+                        callback={() => {
+                          setVillageModal(true);
+                        }}
+                        icon={plus}
+                      />
+                    </View>
+                  </>
+                )}
               </>
             )}
           </View>
         </View>
-
         <GingerModal
           height={530}
           visible={modalVisible}
@@ -254,6 +290,16 @@ export default function HotelComp() {
           name="벨보이 진저맨"
           desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
           img={ginger}
+        />
+        <CenterModal
+          height={180}
+          visible={villageModal}
+          onClose={() => setVillageModal(false)}
+          title="내 빌리지에 추가하시겠습니까?"
+          desc="빌리지에 추가하면 링크 없이도
+          친구 진저호텔에 방문할 수 있어요."
+          btn_text="추가하기"
+          callback={handelAddVillage}
         />
         <LoginModal
           height={300}
@@ -320,7 +366,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52,
+    height: 52
+  },
+  hotel_today2: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.greyblack,
+    gap: 10,
+    height: 104,
+    marginTop: 60,
   },
   gifImage: {
     width: 100,

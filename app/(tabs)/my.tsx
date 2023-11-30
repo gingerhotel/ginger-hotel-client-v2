@@ -236,7 +236,8 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <TouchableOpacity style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
+          
+          <View style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
             <View>
               <Text
                 style={{
@@ -265,8 +266,7 @@ export default function TabThreeScreen() {
             )}
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
             <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
-          </TouchableOpacity>
-          {/* 엿보기 블러 버전 끝 */}
+          </View>
 
           {/* 마이페이지 엿보기 버튼 주석 처리 : 엿보기 기능 구현 전
           <TouchableOpacity
@@ -438,7 +438,7 @@ export default function TabThreeScreen() {
           사업자등록번호 : 202-58-00723 대표 강민지
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          주소 : 서울특별시 중구 서대문로7길 16 508-3호
+          주소 : 서울특별시 중구 남대문로7길 16 508-3호
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
           이메일 : teamgingerkr@gmail.com
