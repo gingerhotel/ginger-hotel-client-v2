@@ -222,8 +222,7 @@ export default function HotelComp() {
                     title="오늘의 편지함 보기"
                     color="green"
                     width={350}
-                    callback={() => setModalVisible(true)}
-                    // url="mailbox/1"
+                    url={`mailbox/${id}`}
                     is_disable={data?.todayReceivedLetterCount < 5}
                   />
                 </View>
@@ -305,7 +304,7 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="벨보이 진저맨"
-          desc={"올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~"}
+          desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
           img={ginger}
         />
         <CenterModal
