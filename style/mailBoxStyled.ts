@@ -53,7 +53,7 @@ export const MailInfoView = styled.View`
   display: flex;
   flex-direction: row;
 `;
-export const MailChoseText = styled(Font_16)<{ f_color: string }>`
+export const MailChoseText = styled(Font_16) <{ f_color: string }>`
   color: ${(props) => props.f_color};
   padding: 10px;
   font-family: "NanumSquareNeo-Variable";
@@ -62,9 +62,11 @@ export const MailChoseText = styled(Font_16)<{ f_color: string }>`
   font-weight: 700;
 `;
 
-export const DateText = styled(Font_16)<{ f_color: string }>`
+export const DateText = styled(Font_16) <{ f_color: string }>`
   font-family: "Quicksand";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
+  color: ${(props) => props.f_color};
+  margin-right: 20px;
 `;
