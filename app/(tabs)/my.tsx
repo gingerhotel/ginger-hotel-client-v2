@@ -438,7 +438,7 @@ export default function TabThreeScreen() {
           사업자등록번호 : 202-58-00723 대표 강민지
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          주소 : 서울특별시 중구 서대문로7길 16 508-3호
+          주소 : 서울특별시 중구 남대문로7길 16 508-3호
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
           이메일 : teamgingerkr@gmail.com
