@@ -74,8 +74,14 @@ export default function Letter() {
       <View style={styles.container}>
         <LetterHeader />
         <View style={styles.mailbox_items}>
-          <View style={{ justifyContent: 'flex-start', width: 348 }}>
-            <MonoText style={{ color: colors.Whiteyello, marginBottom: 30, fontSize: 20 }}>
+          <View style={{ justifyContent: "flex-start", width: 348 }}>
+            <MonoText
+              style={{
+                color: colors.Whiteyello,
+                marginBottom: 30,
+                fontSize: 20,
+              }}
+            >
               친구의 호텔에 편지를 보내주세요!
             </MonoText>
           </View>
@@ -87,8 +93,8 @@ export default function Letter() {
               placeholder="전하고 싶은 말을 적어주세요!"
               placeholderTextColor={colors.grey500}
               onChangeText={(text) => {
-                setIsNotEmptyLetters(text.length > 0)
-                setValue("letters", text)
+                setIsNotEmptyLetters(text.length > 0);
+                setValue("letters", text);
               }}
               maxLength={300}
             />
@@ -100,8 +106,8 @@ export default function Letter() {
               placeholder="나의 닉네임을 입력하세요! (15자 이하)"
               placeholderTextColor={colors.grey500}
               onChangeText={(text) => {
-                setIsNotEmptyNickname(text.length > 0)
-                setValue("nickname", text)
+                setIsNotEmptyNickname(text.length > 0);
+                setValue("nickname", text);
               }}
               maxLength={15}
             />
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 50,
     backgroundColor: colors.greyblack,
-    paddingBottom: 60
+    paddingBottom: 60,
   },
 
   mailbox_items: {
@@ -180,13 +186,14 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     borderRadius: 6,
     textAlign: "left",
-    fontSize: 16,
+    fontSize: 14,
     color: colors.grey200,
     outlineStyle: "none",
+    fontFamily: "NanumSquareNeo-Variable",
   },
   footer: {
     display: "flex",
-    flexDirection: 'row',
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.greyblack,
