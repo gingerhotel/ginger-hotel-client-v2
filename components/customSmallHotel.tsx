@@ -12,8 +12,13 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
   return (
     <View
       style={{
-        backgroundColor: "rgba(30,31,35,1.00)",
         height: "100%",
+        // border: "
+        borderWidth: 1,
+        borderColor: colors.grey700,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        backgroundColor: colors.grey900,
       }}
     >
       <View style={[styles.img_wrapper]}>
@@ -88,12 +93,10 @@ const styles = StyleSheet.create({
   img_wrapper: {
     zIndex: 3,
     marginTop: 10,
-    borderRadius: 12,
     marginLeft: 5,
     alignItems: "center",
     position: "relative",
     width: 180,
     padding: 10,
-    border: "1px solid gray",
   },
 });
