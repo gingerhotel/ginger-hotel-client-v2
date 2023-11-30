@@ -12,6 +12,8 @@ import BlockModal from './Modal/blockModal';
 import UnBlockModal from './Modal/unBlockModal';
 import ReplyModal from './Modal/replyModal';
 import { colors } from "../constants/Colors";
+import { useRecoilValue } from 'recoil';
+import { letterTypeState } from '../atom/letterAtom';
 
 const i_drag = require("../assets/icon/i_drag_handle.svg");
 const i_incognito = require("../assets/icon/i_incognito.svg");
@@ -29,6 +31,7 @@ const BottomSheet = ({
   const [letterBlock, setLetterBlock] = useState(false);
   const [letterUnBlock, setLetterUnBlock] = useState(false);
   const [letterReply, setLetterReply] = useState(false);
+  const letterType = useRecoilValue(letterTypeState);
   const handleSwipeMove = (gestureState: any) => {
     console.log(gestureState.dy);
   };
@@ -121,21 +124,25 @@ const BottomSheet = ({
         isVisible={letterDelete}
         onClose={closeModal}
         letterId={letterId}
+        letterType={letterType}
       />
       <BlockModal
         isVisible={letterBlock}
         onClose={closeModal}
         letterId={letterId}
+        letterType={letterType}
       />
       <UnBlockModal
         isVisible={letterUnBlock}
         onClose={closeModal}
         letterId={letterId}
+        letterType={letterType}
       />
       <ReplyModal
         isVisible={letterReply}
         onClose={closeModal}
         letterId={letterId}
+        letterType={letterType}
       />
     </>
   );
