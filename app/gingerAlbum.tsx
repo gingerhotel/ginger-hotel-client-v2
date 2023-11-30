@@ -81,9 +81,7 @@ const GingerAlbum = () => {
 
   return (
     <>
-      <View style={styles.header}>
-        <Text style={styles.header_text}>진저맨 앨범</Text>
-      </View>
+      <Header title="진저맨 앨범" disabledIcon={false}/>
       <ScrollView>
         <View style={styles.containter}>
           <View style={styles.card_container}>
