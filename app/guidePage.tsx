@@ -41,7 +41,7 @@ const GuidePage = () => {
           </Text>
           <Text style={styles.subtitle_text}>
             더 다양한 기능으로
-            <Text style={styles.accent_text}>새롭게 돌아온</Text> 진저호텔!
+            <Text style={styles.accent_text}> 새롭게 돌아온</Text> 진저호텔!
           </Text>
         </View>
         <View style={styles.seperator}></View>
@@ -103,8 +103,8 @@ const GuidePage = () => {
           <Text style={styles.content_title}>진저호텔을 만든 사람들</Text>
           <Text style={styles.content_text}>
             진저호텔은 기획자 1명, 디자이너 1명, 개발자 5명이 함께 만든
-            크리스마스 시즌 서비스에요. 진저호텔은 2022 멋쟁이사자처럼 대학연합
-            해커톤 ‘단풍톤’에서 대상을 받았어요.
+            크리스마스 시즌 서비스에요. 진저호텔 팀은 2022 멋쟁이사자처럼
+            대학연합 해커톤 ‘단풍톤’에서 대상을 받았어요.
           </Text>
         </View>
         <View
