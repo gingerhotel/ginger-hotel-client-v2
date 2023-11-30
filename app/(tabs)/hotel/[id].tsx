@@ -172,6 +172,7 @@ export default function HotelComp() {
         <SnowfallContainer>
           <Snowfall color="white" snowflakeCount={50} />
         </SnowfallContainer>
+        <KakaoAdFit />
         <Header
           isOwner={data.isOwner}
           keyCount={data?.keyCount}
@@ -337,7 +338,6 @@ export default function HotelComp() {
           desc=""
           closeDisable={false}
         />
-        <KakaoAdFit />
       </View>
     </ScrollView>
   );
