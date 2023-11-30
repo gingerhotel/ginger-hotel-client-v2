@@ -6,6 +6,7 @@ import { wallColors, structColors } from "./customUserHotel";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
+const window = require("../assets/decorations/windowDeco01_com.svg");
 
 export default function CustomSmallHotel({ wallColor, structColor }: any) {
   const _web = { top: 18, left: 32 };
@@ -84,6 +85,25 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
             fill={structColors[structColor].color2}
           />
         </Svg>
+      </View>
+      <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={window}
+          style={{
+            width: 100,
+            height: 120,
+            marginTop: 20,
+            zIndex: 5,
+            top: 12.2,
+            left: 43.7,
+            position: "absolute",
+          }}
+        />
       </View>
     </View>
   );
