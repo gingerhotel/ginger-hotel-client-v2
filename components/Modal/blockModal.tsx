@@ -39,7 +39,7 @@ const BlockModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
                         />
                         {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
                         <Buttons
-                            title='삭제하기'
+                            title='차단하기'
                             width={141}
                             color='green'
                             callback={onBlock}
