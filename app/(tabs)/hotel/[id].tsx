@@ -106,6 +106,7 @@ export default function HotelComp() {
           text1: "내 빌리지에 추가되었습니다!",
           position: "top",
         });
+        router.push(`/village`);
       }
     } catch (err: any) {
       Toast.show({
