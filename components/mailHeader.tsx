@@ -15,6 +15,7 @@ import {
 } from "../style/mailBoxStyled";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
+  letterCountState,
   letterSwitchState,
   letterUpdateState,
   newLetterCountState,
@@ -29,6 +30,8 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
   const countCheck = useRecoilValue(letterUpdateState);
+  const [letterCount, setLetterCountState] = useRecoilState(letterCountState);
+  const { id } = useLocalSearchParams()
   const { data, isLoading, refetch } = useQuery("newLetters", {
     onError: (e) => {
       console.log(`useQuery error : ${e}`);
@@ -60,6 +63,15 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   useEffect(() => {
     refetch();
   }, [countCheck]);
+  useEffect(() => {
+    setLetterCountState(
+      {
+        lettersLen: data?.letters?.length,
+        repliesLen: data?.replies?.length
+
+      }
+    )
+  }, [countCheck])
   if (isLoading) {
     return <Text>...로딩</Text>;
   }
@@ -70,7 +82,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
         <MailTitleView>
           <MailTitleText>내 호텔 편지함</MailTitleText>
           <MailNumberText>
-            {data?.letters?.length + data?.replies?.length}
+            {letterCount.lettersLen + letterCount.repliesLen}
           </MailNumberText>
         </MailTitleView>
         <View />
@@ -80,14 +92,14 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
           <TouchableOpacity onPress={() => onLetterChange("1")}>
             <MailChoseView b_color={letterCheck.new ? "#34AB96" : "#000"}>
               <MailChoseText f_color={letterCheck.new ? "#fff" : "#6E6E73"}>
-                새로운 편지 {data?.letters?.length}
+                새로운 편지 {letterCount.lettersLen}
               </MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => onLetterChange("2")}>
             <MailChoseView b_color={!letterCheck.reply ? "#000" : "#34AB96"}>
               <MailChoseText f_color={!letterCheck.reply ? "#6E6E73" : "#fff"}>
-                답장 {data?.replies?.length}
+                답장 {letterCount.repliesLen}
               </MailChoseText>
             </MailChoseView>
           </TouchableOpacity>
