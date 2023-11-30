@@ -13,18 +13,16 @@ import {
 import ReplyBoxHeader from "../../components/replyBoxHeader";
 import { useQuery } from "react-query";
 import { newLetterData, repliesLetterData } from "../../api/letterApi";
-import { useNavigation } from "expo-router";
+import { useNavigation, useLocalSearchParams } from "expo-router";
 
 
 export default function ReplyBox() {
-    const letterRender = useRecoilValue(letterSwitchState);
-    const hotelId = useRecoilValue(hotelIdState);
     const deleteCheck = useRecoilValue(letterUpdateState);
+    const { id } = useLocalSearchParams();
     const { data, isLoading, refetch } = useQuery(
         "repliesLetter",
-        async () => await repliesLetterData({ hotelId })
+        async () => await repliesLetterData(id)
     );
-
     const navigation = useNavigation();
     useEffect(() => {
         navigation.setOptions({ headerShown: false });
@@ -32,15 +30,12 @@ export default function ReplyBox() {
     useEffect(() => {
         refetch();
     }, [deleteCheck])
+    console.log(data?.letter);
     return (
         <View style={styles.container}>
             <ReplyBoxHeader />
-
-            <ScrollView>
-                <View style={styles.mailbox_items}>
-                    <ReplyLetterItem />
-                </View>
-            </ScrollView>
+            <NewLetterItem letters={data?.letter} />
+            <ReplyLetterItem replies={data?.replies} />
         </View>
     );
 }

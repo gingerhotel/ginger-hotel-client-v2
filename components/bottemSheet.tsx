@@ -69,12 +69,11 @@ const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDelet
                                     <BottemSheetElementView onPress={handleReply}>
                                         <SvgImg url={i_reply_plus} width={32} height={32}></SvgImg>
                                         <MonoText>답장하기</MonoText>
-                                        <SvgImg url={i_pro} width={32} height={32}></SvgImg>
                                     </BottemSheetElementView>
-                                    <BottemSheetElementView>
+                                    {/* <BottemSheetElementView>
                                         <SvgImg url={i_peek} width={32} height={32}></SvgImg>
                                         <MonoText>엿보기</MonoText>
-                                    </BottemSheetElementView>
+                                    </BottemSheetElementView> */}
                                 </>
                             )}
                             <BottemSheetElementView onPress={handleDelete}>
@@ -82,15 +81,15 @@ const BottomSheet = ({ isVisible, onClose, letterId, blocked }: BottomSheetDelet
                                 <MonoText>편지 삭제하기</MonoText>
                             </BottemSheetElementView>
                         </BottemSheetBorderView>
-                        {blocked ? (
+                        {!blocked ? (
                             <BottemSheetElementView onPress={handleBlock}>
                                 <SvgImg url={i_incognito} ></SvgImg>
-                                <MonoText>사용자 차단 해제하기</MonoText>
+                                <MonoText>사용자 차단 하기</MonoText>
                             </BottemSheetElementView>
                         ) : (
                             <BottemSheetElementView onPress={handleUnBlock}>
                                 <SvgImg url={i_incognito} ></SvgImg>
-                                <MonoText>사용자 차단하기</MonoText>
+                                <MonoText>사용자 차단 해제하기</MonoText>
                             </BottemSheetElementView>
                         )}
                     </BottemSheetContentView>
