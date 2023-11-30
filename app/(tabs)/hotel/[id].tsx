@@ -167,7 +167,7 @@ export default function HotelComp() {
   }
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: colors.greyblack }}>
       <View style={{ backgroundColor: colors.greyblack }}>
         <SnowfallContainer>
           <Snowfall color="white" snowflakeCount={50} />
