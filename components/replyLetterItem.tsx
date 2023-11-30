@@ -37,6 +37,7 @@ const i_block = require("../assets/icon/i_block.svg");
 const ReplyLetterItem = ({ replies }: any) => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const [letterId, setLetterId] = useState(0);
+    const [replyId, setReplyId] = useState(0);
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
@@ -45,6 +46,7 @@ const ReplyLetterItem = ({ replies }: any) => {
         setLetterType(false);
         setBottomSheetVisible(true);
         setLetterId(props.letterId);
+        setReplyId(props.id);
         setBlocked(props.isBlocked);
         setSenderNickname(props.senderNickname);
     };
@@ -90,7 +92,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                             <LetterInnerTextBox f_color="#fff">
                                 {item?.content}
                             </LetterInnerTextBox>
-                            <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
+                            {/* <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
                                 <LetterReplyButtonView>
                                     <Buttons
                                         title="답장 모아보기"
@@ -99,12 +101,12 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         url={`replybox/${item.letterId}`}
                                     />
                                 </LetterReplyButtonView>
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </LetterInnerContainer>
                     </LetterOuterContainer>}
                 keyExtractor={item => item.id.toString()} />
 
-            <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
+            <BottemSheet isVisible={bottomSheetVisible} replyId={replyId} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
         </>
 
     );
