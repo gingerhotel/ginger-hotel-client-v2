@@ -14,12 +14,15 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSetRecoilState } from "recoil";
 import { hotelIdState } from "../../atom/letterAtom";
-import { router } from "expo-router";
+import { router, useSegments } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
 import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 import KeyModal from "../../components/Modal/keyModal";
 import PeekModal from "../../components/Modal/peekModal";
 import { SvgImg } from "../../components/svgImg";
+import { useQuery } from "react-query";
+import { checkAuth } from "../../api/authApi";
+import { AUTH_URL } from "../../api/url";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -56,6 +59,15 @@ interface UserApiResponse {
 }
 const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
+
+  const segments = useSegments();
+  useEffect(() => {
+    const isPath = segments[1] === "my";
+    if (isPath) {
+      checkLogin();
+    }
+  }, [segments]);
+
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
   const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
@@ -77,9 +89,18 @@ export default function TabThreeScreen() {
     setLoginModalVisible(false);
   };
 
-  useEffect(() => {
-    // setLoginModalVisible(true);
-  }, []);
+  const checkLogin = async () => {
+    try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      const response = await axios.get(`${AUTH_URL}`);
+      return response.data;
+    } catch (err: any) {
+      // console.log(err?.response?.data?.errorMessage);
+      setLoginModalVisible(true);
+    }
+  };
+
 
   const [userInfo, setUserInfo] = useState<User>({
     nickname: "",
@@ -94,6 +115,7 @@ export default function TabThreeScreen() {
   const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);
   useEffect(() => {
+    checkLogin();
     const handleUserData = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios
