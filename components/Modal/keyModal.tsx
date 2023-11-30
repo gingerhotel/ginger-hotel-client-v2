@@ -85,11 +85,14 @@ const KeyModal = ({ onClose, visible, code }: TProps) => {
               icon={copyIcon}
               callback={() => {
                 navigator.clipboard.writeText(code as string);
-                Toast.show({
-                  type: "iconToast",
-                  text1: "초대코드가 복사되었습니다!",
-                  position: "bottom",
-                });
+                close()
+                {
+                  Toast.show({
+                    type: "iconToast",
+                    text1: "초대코드가 복사되었습니다!",
+                    position: "bottom",
+                  })
+                };
               }}
             />
           </View>
@@ -189,6 +192,7 @@ const styles = StyleSheet.create({
     width: 247,
     height: 60,
     marginTop: 20,
+
   },
   captionText: {
     fontFamily: "NanumSquareNeo-Variable",
