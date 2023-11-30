@@ -71,7 +71,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
 
       }
     )
-  }, [])
+  }, [countCheck])
   if (isLoading) {
     return <Text>...로딩</Text>;
   }
