@@ -13,6 +13,7 @@ import { letterDelete } from "../../api/letterApi";
 import { useMutation, useQueryClient } from "react-query";
 import { useRecoilState } from "recoil";
 import { letterUpdateState } from "../../atom/letterAtom";
+import Buttons from "../buttons";
 const i_yes = require("../../assets/icon/i_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const DeleteModal = ({
@@ -49,8 +50,21 @@ const DeleteModal = ({
             </MonoText>
           </View>
           <DeleteModalButtonView>
-            <SvgImg url={i_no} width={141} height={46} onPress={onClose} />
-            <SvgImg url={i_yes} width={141} height={46} onPress={onDelelet} />
+            <Buttons
+              title='취소하기'
+              width={141}
+              color='gray_700'
+              callback={onClose}
+              auth={true}
+            />
+            {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
+            <Buttons
+              title='삭제하기'
+              width={141}
+              color='green'
+              callback={onDelelet}
+              auth={true}
+            />
           </DeleteModalButtonView>
         </DeleteModaContentlView>
       </DeleteModalView>

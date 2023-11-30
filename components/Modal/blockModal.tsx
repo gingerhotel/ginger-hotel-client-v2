@@ -9,6 +9,7 @@ import { letterBlock, letterDelete } from '../../api/letterApi';
 import { useMutation, useQueryClient } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
+import Buttons from '../buttons';
 const i_yes = require("../../assets/icon/i_block_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const BlockModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
@@ -29,8 +30,21 @@ const BlockModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
                     <MonoText style={{ fontSize: 16, fontWeight: 'bold' }}>사용자를 차단하시겠습니까?</MonoText>
                     <MonoText style={{ color: '#98989B' }}>차단한 사용자로부터는 편지를 받을 수 없어요.</MonoText>
                     <DeleteModalButtonView>
-                        <SvgImg url={i_no} width={141} height={46} onPress={onClose} />
-                        <SvgImg url={i_yes} width={141} height={46} onPress={onBlock} />
+                        <Buttons
+                            title='취소하기'
+                            width={141}
+                            color='gray_700'
+                            callback={onClose}
+                            auth={true}
+                        />
+                        {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
+                        <Buttons
+                            title='삭제하기'
+                            width={141}
+                            color='green'
+                            callback={onBlock}
+                            auth={true}
+                        />
                     </DeleteModalButtonView>
                 </DeleteModaContentlView>
             </DeleteModalView>

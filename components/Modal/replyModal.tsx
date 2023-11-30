@@ -34,6 +34,7 @@ const ReplyModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
                             width={141}
                             color='gray_700'
                             callback={onClose}
+                            auth={true}
                         />
                         {/* <SvgImg url={i_yes} width={141} height={46} onPress={onReply} /> */}
                         <Buttons
@@ -43,6 +44,7 @@ const ReplyModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
                             color='green'
                             callback={onReply}
                             props={letterId}
+                            auth={true}
                         />
                     </DeleteModalButtonView>
                 </DeleteModaContentlView>
