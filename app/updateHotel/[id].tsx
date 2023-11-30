@@ -20,7 +20,7 @@ export default function UpdateHotel() {
     "loadHotel",
     async () => await getHotel(id as string),
     {
-      // refetchOnWindowFocus: false,
+      refetchOnWindowFocus: false,
       onError: (e) => {
         console.log(`useQuery error : ${e}`);
       },
