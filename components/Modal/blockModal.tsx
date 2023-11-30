@@ -13,7 +13,7 @@ import Buttons from '../buttons';
 import { replyBlock } from '../../api/repliesApi';
 const i_yes = require("../../assets/icon/i_block_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
-const BlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
+const BlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: BottomSheetProps) => {
     const [blockCheck, setBlockCheck] = useRecoilState(letterUpdateState);
     const onBlock = async () => {
         if (letterType) {
@@ -21,7 +21,7 @@ const BlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetPro
             await letterBlock(letterId);
         }
         else {
-            await replyBlock(letterId);
+            await replyBlock(replyId);
         }
         setBlockCheck(!blockCheck);
         onClose();

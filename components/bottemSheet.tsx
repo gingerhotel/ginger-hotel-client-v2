@@ -26,6 +26,7 @@ const BottomSheet = ({
   onClose,
   letterId,
   blocked,
+  replyId
 }: BottomSheetDeleteProps) => {
   const [letterDelete, setLetterDelete] = useState(false);
   const [letterBlock, setLetterBlock] = useState(false);
@@ -124,24 +125,28 @@ const BottomSheet = ({
         onClose={closeModal}
         letterId={letterId}
         letterType={letterType}
+        replyId={replyId}
       />
       <BlockModal
         isVisible={letterBlock}
         onClose={closeModal}
         letterId={letterId}
         letterType={letterType}
+        replyId={replyId}
       />
       <UnBlockModal
         isVisible={letterUnBlock}
         onClose={closeModal}
         letterId={letterId}
         letterType={letterType}
+        replyId={replyId}
       />
       <ReplyModal
         isVisible={letterReply}
         onClose={closeModal}
         letterId={letterId}
         letterType={letterType}
+        replyId={replyId}
       />
     </>
   );

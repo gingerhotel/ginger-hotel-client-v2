@@ -12,7 +12,7 @@ import Buttons from '../buttons';
 import { replyUnBlock } from '../../api/repliesApi';
 const i_yes = require("../../assets/icon/i_clear.svg");
 const i_no = require("../../assets/icon/i_no.svg");
-const UnBlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
+const UnBlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: BottomSheetProps) => {
     const [unBlockCheck, setUnBlockCheck] = useRecoilState(letterUpdateState);
     const onUnBlock = async () => {
         if (letterType) {
@@ -20,7 +20,7 @@ const UnBlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetP
             await letterUnBlock(letterId);
         }
         else {
-            await replyUnBlock(letterId);
+            await replyUnBlock(replyId);
         }
         setUnBlockCheck(!unBlockCheck);
         onClose();

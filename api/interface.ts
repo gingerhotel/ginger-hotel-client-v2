@@ -98,7 +98,8 @@ export interface BottomSheetDeleteProps {
   isVisible: boolean;
   onClose: () => void;
   letterId: number;
-  blocked: boolean
+  blocked: boolean;
+  replyId: number;
 }
 export interface LetterArrayProps {
   content: string;
