@@ -48,6 +48,7 @@ export default function CustomCompleteUserHotel({
   background,
 }: any) {
   const web = { top: 38, left: 50 };
+  const app = { top: 38, left: 55 };
   const _web = { top: 37, left: 50 };
 
   const windows = [
