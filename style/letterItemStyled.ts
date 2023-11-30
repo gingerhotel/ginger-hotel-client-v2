@@ -7,14 +7,14 @@ export const LetterOuterContainer = styled.View<{ b_color?: string }>`
   background-color: ${(props) => props.b_color};
   max-width: 384px;
   width: 100%;
-  padding: 7px;
+  padding: 6px;
   margin-bottom: 15px;
 `;
 
 // Styled component with linear gradient
 export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   border-radius: 12px;
-  border-width: 4px;
+  border-width: 2.5px;
   border-color: #005142;
   background-color: ${(props) => props.b_color};
   border-style: dashed;
