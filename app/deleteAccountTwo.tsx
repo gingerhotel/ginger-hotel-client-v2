@@ -18,17 +18,6 @@ const DeleteAccountTwo = () => {
 
   const [checked, setChecked] = useState(false);
 
-  const { data, status, error } = useQuery(
-    "deleteUser",
-    async () => await deleteUser,
-    {
-      // refetchOnWindowFocus: false,
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
-      },
-    }
-  );
-
   const mutation = useMutation(
     deleteUser, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     {
