@@ -67,11 +67,16 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   return (
     <SafeAreaView style={{ width: "100%" }}>
       <MailBoxView>
-        <SvgImg url={arrow} onPress={() => router.push(`/hotel/${id}`)}></SvgImg>
+        <SvgImg
+          url={arrow}
+          onPress={() => router.push(`/hotel/${id}`)}
+        ></SvgImg>
         <MailTitleView>
           <MailTitleText>내 호텔 편지함</MailTitleText>
           <MailNumberText>
-            {data?.letters?.length + data?.replies?.length}
+            {!(data?.letters?.length + data?.replies?.length)
+              ? 0
+              : data?.letters?.length + data?.replies?.length}
           </MailNumberText>
         </MailTitleView>
         <View />

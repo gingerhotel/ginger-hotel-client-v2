@@ -23,10 +23,10 @@ export default function _layout() {
       }}
     >
       <Tabs.Screen
-        name="gingerAlbum"
+        name="village"
         options={{
           headerShown: false,
-          title: "앨범",
+          title: "빌리지",
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="album" color={color} size={size} />
           ),
