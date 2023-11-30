@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   hotel_name: {
-    color: "white",
+    color: "#FFFDF0",
     marginTop: 14,
     fontSize: typography.display1_basic.fontSize,
     fontFamily: typography.display1_basic.fontFamily,
