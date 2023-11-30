@@ -96,10 +96,10 @@ export default function HotelComp() {
     try {
       const res = await checkAuth();
       if (res?.success) {
-        router.push(`/hotel/${res.hotelId}`);
-        setTimeout(() => {
-          location.reload();
-        }, 1);
+        window.location.href = `/hotel/${res.hotelId}`;
+        // setTimeout(() => {
+        //   location.reload();
+        // }, 1);
       }
     } catch (err: any) {
       Toast.show({
