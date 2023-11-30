@@ -71,6 +71,7 @@ export interface User {
   birthDate: string | null;
   keyCount: number;
   feekCount: number;
+  email?: string;
 }
 
 

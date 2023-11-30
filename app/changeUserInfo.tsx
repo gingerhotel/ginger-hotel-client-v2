@@ -9,15 +9,34 @@ import CenterModal from "../components/centerModal";
 import { router, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useQuery } from "react-query";
+import { myDate, updateUser } from "../api/myApi";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "./styles.css";
+import Toast from "react-native-toast-message";
 
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
-  const [activeChip, setChip] = useState("선택안함");
-  const [year, setYear] = useState("");
-  const [month, setMonth] = useState("");
-  const [day, setDay] = useState("");
-  const [userEmail, setUserEmail] = useState("happyginger@naver.com");
+
+  const { data, status, error } = useQuery(
+    "myDate",
+    async () => await myDate(),
+    {
+      refetchOnWindowFocus: false,
+      onError: (e) => {
+        console.log(`useQuery error : ${e}`);
+      },
+    }
+  );
+
+  const [user, setUser] = useState({
+    email: data?.user?.email,
+    gender: data?.user?.gender === "MAN" ? "남성" : "여성",
+    birthDate: data?.user?.birthDate,
+  });
+  const [activeChip, setChip] = useState(user?.gender);
 
   const [logoutModalVisible, setLogoutModalVisible] = useState<boolean>(false);
 
@@ -40,9 +59,39 @@ const ChangeUserInfo = () => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  const input_size = {
-    web: 120,
-    app: 100,
+  const [birthday, setBirthday] = useState("");
+  const [selectedDate, setSelectedDate] = useState(
+    new Date(String(data?.user?.birthDate))
+  );
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date);
+    // 생년월일을 원하는 형식으로 표시
+    const formattedDate = date.toISOString().split("T")[0];
+    setBirthday(formattedDate);
+  };
+
+  const handelUpdate = async () => {
+    try {
+      const update = {
+        gender: sex_english[activeChip],
+        birthDate: birthday,
+      };
+      const res = await updateUser(update);
+      if (res.success) {
+        Toast.show({
+          type: "iconToast",
+          text1: "계정정보가 수정되었습니다.",
+          position: "bottom",
+        });
+        router.back();
+      }
+    } catch (err: any) {
+      Toast.show({
+        type: "iconToast",
+        text1: err?.response?.data?.errorMessage,
+        position: "bottom",
+      });
+    }
   };
 
   return (
@@ -63,7 +112,7 @@ const ChangeUserInfo = () => {
           <View style={styles.edit_wrapper}>
             <MonoText style={styles.title}>내 계정 정보</MonoText>
             <View style={styles.email_wrapper}>
-              <MonoText style={styles.email_text}>{userEmail}</MonoText>
+              <MonoText style={styles.email_text}>{user?.email}</MonoText>
               <TouchableOpacity
                 onPress={() => {
                   openLogoutModal();
@@ -88,36 +137,17 @@ const ChangeUserInfo = () => {
             </MonoText>
 
             <View style={styles.input_wrapper}>
-              <Input
-                placeholder="YYYY"
-                width={
-                  Platform.OS === "ios" || Platform.OS === "android"
-                    ? input_size.app
-                    : input_size.web
-                }
-                onChange={(text: string) => setYear(text)}
-              />
-              <View style={{ marginLeft: 8 }}></View>
-              <Input
-                placeholder="MM"
-                width={
-                  Platform.OS === "ios" || Platform.OS === "android"
-                    ? input_size.app
-                    : input_size.web
-                }
-                onChange={(text: string) => setMonth(text)}
-              />
-              <View style={{ marginLeft: 8 }}></View>
-              <Input
-                placeholder="DD"
-                width={
-                  Platform.OS === "ios" || Platform.OS === "android"
-                    ? input_size.app
-                    : input_size.web
-                }
-                onChange={(text: string) => setDay(text)}
+              <DatePicker
+                portalId="root-portal"
+                selected={selectedDate}
+                onChange={handleDateChange}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="YYYY-MM-DD"
+                showYearDropdown
+                popperPlacement="bottom"
               />
             </View>
+
             <TouchableOpacity
               accessible={true}
               accessibilityLabel="회원탈퇴 버튼"
@@ -130,14 +160,7 @@ const ChangeUserInfo = () => {
           </View>
         </View>
         <View style={styles.btn_wrapper}>
-          <Buttons
-            title="수정하기"
-            color="green"
-            callback={() => {
-              // TODO: 사용자 정보 (성별, 생년월일) 수정하는 API 호출 메서드로 변경
-              router.back();
-            }}
-          />
+          <Buttons title="수정하기" color="green" callback={handelUpdate} />
         </View>
       </View>
     </>
@@ -212,3 +235,4 @@ const styles = StyleSheet.create({
 });
 
 export default ChangeUserInfo;
+
