@@ -70,44 +70,45 @@ export default function Letter() {
   };
 
   return (
-    <View style={styles.container}>
-      <LetterHeader />
-      <View style={styles.mailbox_items}>
-        <View style={{ justifyContent: 'flex-start', width: 348 }}>
-          <MonoText style={{ color: colors.Whiteyello, marginBottom: 30, fontSize: 20 }}>
-            친구의 호텔에 편지를 보내주세요!
-          </MonoText>
+    <View style={{ flex: 1, backgroundColor: colors.greyblack }}>
+      <View style={styles.container}>
+        <LetterHeader />
+        <View style={styles.mailbox_items}>
+          <View style={{ justifyContent: 'flex-start', width: 348 }}>
+            <MonoText style={{ color: colors.Whiteyello, marginBottom: 30, fontSize: 20 }}>
+              친구의 호텔에 편지를 보내주세요!
+            </MonoText>
+          </View>
+          <View style={styles.letter_box}>
+            <TextInput
+              style={styles.letter}
+              multiline={true}
+              numberOfLines={20}
+              placeholder="전하고 싶은 말을 적어주세요!"
+              placeholderTextColor={colors.grey500}
+              onChangeText={(text) => {
+                setIsNotEmptyLetters(text.length > 0)
+                setValue("letters", text)
+              }}
+              maxLength={300}
+            />
+          </View>
+          <View style={styles.nickname_input}>
+            <TextInput
+              blurOnSubmit={true}
+              style={styles.input}
+              placeholder="나의 닉네임을 입력하세요! (15자 이하)"
+              placeholderTextColor={colors.grey500}
+              onChangeText={(text) => {
+                setIsNotEmptyNickname(text.length > 0)
+                setValue("nickname", text)
+              }}
+              maxLength={15}
+            />
+          </View>
         </View>
-        <View style={styles.letter_box}>
-          <TextInput
-            style={styles.letter}
-            multiline={true}
-            numberOfLines={20}
-            placeholder="전하고 싶은 말을 적어주세요!"
-            placeholderTextColor={colors.grey500}
-            onChangeText={(text) => {
-              setIsNotEmptyLetters(text.length > 0)
-              setValue("letters", text)
-            }}
-            maxLength={300}
-          />
-        </View>
-        <View style={styles.nickname_input}>
-          <TextInput
-            blurOnSubmit={true}
-            style={styles.input}
-            placeholder="나의 닉네임을 입력하세요! (15자 이하)"
-            placeholderTextColor={colors.grey500}
-            onChangeText={(text) => {
-              setIsNotEmptyNickname(text.length > 0)
-              setValue("nickname", text)
-            }}
-            maxLength={15}
-          />
-        </View>
-      </View>
-      <View style={styles.footer}>
-        {/* 이미지 첨부 버튼 주석
+        <View style={styles.footer}>
+          {/* 이미지 첨부 버튼 주석
         <Buttons
           is_width={true}
           url={"gingercard"}
@@ -115,25 +116,26 @@ export default function Letter() {
           color="darkgray"
         />
         */}
-        <Buttons
-          url={"letterCompleted"}
-          title="보내기"
-          is_width={true}
-          color="green"
-          width={330}
-          callback={handleSubmit(letterSubmit)}
-          is_disable={!isNotEmptyLetters || !isNotEmptyNickname}
+          <Buttons
+            url={"letterCompleted"}
+            title="보내기"
+            is_width={true}
+            color="green"
+            width={330}
+            callback={handleSubmit(letterSubmit)}
+            is_disable={!isNotEmptyLetters || !isNotEmptyNickname}
+          />
+        </View>
+        <ErrorModal
+          height={300}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
+          url={`hotel/${id}`}
         />
       </View>
-      <ErrorModal
-        height={300}
-        visible={ErrorModalVisible}
-        onClose={closeErrorModal}
-        name={errorTitle}
-        desc={errorMessage}
-        buttonMessage={errorButtonMessage}
-        url={`hotel/${id}`}
-      />
     </View>
   );
 }
@@ -144,9 +146,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 50,
     backgroundColor: colors.greyblack,
-    paddingBottom: 60,
-    height: '100%'
+    paddingBottom: 60
   },
+
   mailbox_items: {
     display: "flex",
     justifyContent: "center",

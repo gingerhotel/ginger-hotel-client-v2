@@ -71,33 +71,34 @@ export default function Reply() {
     };
 
     return (
-        <View style={styles.container}>
-            <ReplyHeader />
-            <View style={styles.mailbox_items}>
-                <MonoText style={{ color: colors.Whiteyello, marginBottom: 12 }}>
-                    따뜻한 편지를 보내 준 친구에게 마음을 전해요
-                </MonoText>
+        <View style={{ flex: 1, backgroundColor: colors.greyblack }}>
+            <View style={styles.container}>
+                <ReplyHeader />
+                <View style={styles.mailbox_items}>
+                    <MonoText style={{ color: colors.Whiteyello, marginBottom: 12 }}>
+                        따뜻한 편지를 보내 준 친구에게 마음을 전해요
+                    </MonoText>
 
-                <TextInput
-                    style={styles.letter}
-                    multiline={true}
-                    numberOfLines={20}
-                    placeholder="전하고 싶은 말을 적어주세요!"
-                    onChangeText={(text) => {
-                        setIsNotEmptyLetters(text.length > 0)
-                        setValue("letters", text)
-                    }}
-                    maxLength={300}
-                    placeholderTextColor={colors.grey500}
-                />
-                <View style={styles.nickname_input}>
-                    <MonoText style={styles.input_text}>받는 이</MonoText>
-                    <MonoText>{senderNickname}</MonoText>
-                    <View />
+                    <TextInput
+                        style={styles.letter}
+                        multiline={true}
+                        numberOfLines={20}
+                        placeholder="전하고 싶은 말을 적어주세요!"
+                        onChangeText={(text) => {
+                            setIsNotEmptyLetters(text.length > 0)
+                            setValue("letters", text)
+                        }}
+                        maxLength={300}
+                        placeholderTextColor={colors.grey500}
+                    />
+                    <View style={styles.nickname_input}>
+                        <MonoText style={styles.input_text}>받는 이</MonoText>
+                        <MonoText>{senderNickname}</MonoText>
+                        <View />
+                    </View>
                 </View>
-            </View>
-            <View style={styles.footer}>
-                {/* 이미지 첨부 버튼 주석
+                <View style={styles.footer}>
+                    {/* 이미지 첨부 버튼 주석
         <Buttons
           is_width={true}
           url={"gingercard"}
@@ -105,25 +106,26 @@ export default function Reply() {
           color="darkgray"
         />
         */}
-                <Buttons
-                    url={"letterCompleted"}
-                    title="보내기"
-                    is_width={true}
-                    color="green"
-                    callback={handleSubmit(letterSubmit)}
-                    is_disable={!isNotEmptyLetters}
-                    width={330}
+                    <Buttons
+                        url={"letterCompleted"}
+                        title="보내기"
+                        is_width={true}
+                        color="green"
+                        callback={handleSubmit(letterSubmit)}
+                        is_disable={!isNotEmptyLetters}
+                        width={330}
+                    />
+                </View>
+                <ErrorModal
+                    height={300}
+                    visible={ErrorModalVisible}
+                    onClose={closeErrorModal}
+                    name={errorTitle}
+                    desc={errorMessage}
+                    buttonMessage={errorButtonMessage}
+                    url={`hotel/${id}`}
                 />
             </View>
-            <ErrorModal
-                height={300}
-                visible={ErrorModalVisible}
-                onClose={closeErrorModal}
-                name={errorTitle}
-                desc={errorMessage}
-                buttonMessage={errorButtonMessage}
-                url={`hotel/${id}`}
-            />
         </View>
     );
 }
@@ -135,7 +137,6 @@ const styles = StyleSheet.create({
         gap: 50,
         backgroundColor: colors.greyblack,
         paddingBottom: 60,
-        height: '100%'
     },
     mailbox_items: {
         display: "flex",
