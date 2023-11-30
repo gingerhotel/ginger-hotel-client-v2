@@ -222,7 +222,7 @@ export default function HotelComp() {
                     color="green"
                     width={350}
                     url="mailbox/1"
-                    is_disable={data?.todayLetterCnt >= 5}
+                    is_disable={data?.todayReceivedLetterCount < 5}
                   />
                 </View>
 
