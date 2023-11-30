@@ -24,6 +24,7 @@ import { SvgImg } from "../../components/svgImg";
 import BottomModal from "../../components/bottomModal";
 import Toast from "react-native-toast-message";
 import CenterModal from "../../components/centerModal";
+import { ScrollView } from "react-native-gesture-handler";
 const more = require("../../assets/icon/i_delete_2.svg");
 const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const building = require("../../assets/images/building.svg");
@@ -71,6 +72,7 @@ export default function Village() {
   return (
     <>
       <Header title="진저빌리지" disabledIcon={true} />
+
       <View
         style={{
           display: "flex",
@@ -121,86 +123,91 @@ export default function Village() {
             }}
           />
         </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: 15,
-          }}
-        >
-          {data?.villages?.map((village: any) => (
-            <View key={village.id}>
-              <TouchableOpacity
-                onPress={() => router.push(`/hotel/${village.hotelId}`)}
-              >
-                <CustomSmallHotel
-                  wallColor={village.bodyColor}
-                  structColor={village.structColor}
-                />
-              </TouchableOpacity>
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  backgroundColor: colors.grey900,
-                  borderWidth: 1,
-                  borderColor: colors.grey700,
-                  padding: 10,
-                  borderBottomLeftRadius: 12,
-                  borderBottomRightRadius: 12,
-                  borderTopWidth: 0,
-                }}
-              >
-                <Text
-                  style={[
-                    typography.soyo,
-                    {
-                      color: colors.green500,
-                      textAlign: "center",
-                      marginLeft: 8,
-                      fontWeight: "bold",
-                      maxWidth: 120,
-                    },
-                  ]}
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
+        <ScrollView>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              marginTop: 15,
+              marginLeft: 5,
+            }}
+          >
+            {data?.villages?.map((village: any) => (
+              <View style={{ marginBottom: 10 }} key={village.id}>
+                <TouchableOpacity
+                  onPress={() =>
+                    (window.location.href = `/hotel/${village.hotelId}`)
+                  }
                 >
-                  {village?.nickname}
-                </Text>
-                <SvgImg
-                  url={more}
-                  style={{ width: 24, height: 24 }}
-                  onPress={() => handelModal(village?.hotelId)}
-                />
-              </View>
-            </View>
-          ))}
-          {!data ||
-            (data?.villages?.length < 1 && (
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  // padding: 50,
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <Image style={{ width: 200, height: 300 }} source={bellboy} />
-
-                <MonoText style={styles.text}>
-                  내 빌리지에 친구를 추가해보세요!
-                </MonoText>
+                  <CustomSmallHotel
+                    wallColor={village.bodyColor}
+                    structColor={village.structColor}
+                  />
+                </TouchableOpacity>
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    backgroundColor: colors.grey900,
+                    borderWidth: 1,
+                    borderColor: colors.grey700,
+                    padding: 10,
+                    borderBottomLeftRadius: 12,
+                    borderBottomRightRadius: 12,
+                    borderTopWidth: 0,
+                  }}
+                >
+                  <Text
+                    style={[
+                      typography.soyo,
+                      {
+                        color: colors.green500,
+                        textAlign: "center",
+                        marginLeft: 8,
+                        fontWeight: "bold",
+                        maxWidth: 120,
+                      },
+                    ]}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                  >
+                    {village?.nickname}
+                  </Text>
+                  <SvgImg
+                    url={more}
+                    style={{ width: 24, height: 24 }}
+                    onPress={() => handelModal(village?.hotelId)}
+                  />
+                </View>
               </View>
             ))}
-        </View>
+            {!data ||
+              (data?.villages?.length < 1 && (
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    // padding: 50,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <Image style={{ width: 200, height: 300 }} source={bellboy} />
 
+                  <MonoText style={styles.text}>
+                    내 빌리지에 친구를 추가해보세요!
+                  </MonoText>
+                </View>
+              ))}
+          </View>
+        </ScrollView>
         <CenterModal
           onClose={() => setDeleteModal(false)}
           height={180}
