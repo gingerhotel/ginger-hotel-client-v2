@@ -180,11 +180,10 @@ export default function TabThreeScreen() {
           <View style={styles.user_info}>
             <TouchableOpacity
               onPress={() => {
-                let nowUrl = window.location.href;
-                navigator.clipboard.writeText(nowUrl);
+                navigator.clipboard.writeText(userInfo.code);
                 Toast.show({
                   type: "iconToast",
-                  text1: "링크가 복사되었습니다!",
+                  text1: "초대코드가 복사되었습니다!",
                   position: "bottom",
                   props: { icon },
                 });
