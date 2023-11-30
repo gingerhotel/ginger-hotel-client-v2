@@ -40,7 +40,7 @@ const GuidePage = () => {
             진저호텔 <Text style={styles.accent_text}>이용가이드</Text>
           </Text>
           <Text style={styles.subtitle_text}>
-            더 다양한 기능으로{" "}
+            더 다양한 기능으로
             <Text style={styles.accent_text}>새롭게 돌아온</Text> 진저호텔!
           </Text>
         </View>
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 1,
     backgroundColor: colors.grey900,
-    marginVertical: 66,
+    marginVertical: 40,
   },
 
   content_box: {
