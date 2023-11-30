@@ -203,7 +203,7 @@ export default function Village() {
         initialLayout={{ width: layout.width }}
       />
       <BottomModal
-        modalTextList={["내 빌리지에서 삭제"]}
+        id={selected}
         visible={bottomSheetVisible}
         onClose={closeModal}
         callback={handelDeleteVillage}
