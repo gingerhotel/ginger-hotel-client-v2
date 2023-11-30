@@ -9,12 +9,19 @@ import { letterUnBlock } from '../../api/letterApi';
 import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
+import { replyUnBlock } from '../../api/repliesApi';
 const i_yes = require("../../assets/icon/i_clear.svg");
 const i_no = require("../../assets/icon/i_no.svg");
-const UnBlockModal = ({ isVisible, onClose, letterId }: BottomSheetProps) => {
+const UnBlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
     const [unBlockCheck, setUnBlockCheck] = useRecoilState(letterUpdateState);
     const onUnBlock = async () => {
-        await letterUnBlock(letterId);
+        if (letterType) {
+
+            await letterUnBlock(letterId);
+        }
+        else {
+            await replyUnBlock(letterId);
+        }
         setUnBlockCheck(!unBlockCheck);
         onClose();
     }

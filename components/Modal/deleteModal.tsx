@@ -14,16 +14,23 @@ import { useMutation, useQueryClient } from "react-query";
 import { useRecoilState } from "recoil";
 import { letterUpdateState } from "../../atom/letterAtom";
 import Buttons from "../buttons";
+import { replyDelete } from "../../api/repliesApi";
 const i_yes = require("../../assets/icon/i_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const DeleteModal = ({
   isVisible,
   onClose,
   letterId,
+  letterType
 }: BottomSheetProps) => {
   const [deleteCheck, setDeleteCheck] = useRecoilState(letterUpdateState);
   const onDelelet = async () => {
-    await letterDelete(letterId);
+    if (letterType) {
+      await letterDelete(letterId);
+    }
+    else {
+      await replyDelete(letterId);
+    }
     setDeleteCheck(!deleteCheck);
     onClose();
   };
