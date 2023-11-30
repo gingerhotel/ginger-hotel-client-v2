@@ -203,15 +203,14 @@ export default function HotelComp() {
                     url="mailbox/1"
                     is_disable={data?.todayLetterCnt >= 5}
                   />
-                  <TouchableOpacity>
-                    <SvgImg
-                      width={40}
-                      height={40}
-                      url={album}
-                      onPress={() => router.push("/gingerAlbum")}
-                    />
-                  </TouchableOpacity>
+                  <SvgImg
+                    width={40}
+                    height={40}
+                    url={album}
+                    onPress={() => router.push("/gingerAlbum")}
+                  />
                 </View>
+
                 <View style={styles.hotel_today}>
                   <Buttons
                     title="내 호텔 공유하기"
@@ -362,12 +361,12 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   hotel_today: {
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52,
+    height: 52
   },
   hotel_today2: {
     flexDirection: "column",
