@@ -14,7 +14,7 @@ import { MonoText } from "../../components/styledText";
 import VillageHeader from "../../components/villageHeader";
 import LoginModal from "../../components/Modal/loginModal";
 import { useEffect, useState } from "react";
-import { Link, router, useNavigation } from "expo-router";
+import { Link, router, useNavigation, useSegments } from "expo-router";
 import { useQuery } from "react-query";
 import { deleteVillage, myVillage } from "../../api/villageApi";
 import CustomSmallHotel from "../../components/customSmallHotel";
@@ -26,6 +26,9 @@ import Toast from "react-native-toast-message";
 import CenterModal from "../../components/centerModal";
 import { ScrollView } from "react-native-gesture-handler";
 import { PngImg } from "../../components/pngImg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { AUTH_URL } from "../../api/url";
 const more = require("../../assets/icon/i_delete_2.svg");
 const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const building = require("../../assets/images/building.png");
@@ -52,6 +55,33 @@ export default function Village() {
     setDeleteModal(true);
     setSelected(id);
   };
+
+
+  
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+  const closeLoginModal = () => {
+    setLoginModalVisible(false);
+  };
+  const checkLogin = async () => {
+    try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      const response = await axios.get(`${AUTH_URL}`);
+      return response.data;
+    } catch (err: any) {
+      // console.log(err?.response?.data?.errorMessage);
+      setLoginModalVisible(true);
+    }
+  };
+
+  const segments = useSegments();
+  useEffect(() => {
+    const isPath = segments[1] === "village";
+    if (isPath) {
+      checkLogin();
+    }
+  }, [segments]);
+
 
   const handelDeleteVillage = async () => {
     try {
@@ -217,6 +247,14 @@ export default function Village() {
           desc="상대방은 삭제된 사실을 알 수 없어요!"
           btn_text="삭제하기"
           callback={handelDeleteVillage}
+        />
+          <LoginModal
+          height={300}
+          visible={loginModalVisible}
+          onClose={closeLoginModal}
+          name="로그인"
+          desc=""
+          closeDisable={true}
         />
       </View>
     </>
