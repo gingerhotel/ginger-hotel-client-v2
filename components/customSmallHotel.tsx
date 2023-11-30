@@ -6,14 +6,20 @@ import { wallColors, structColors } from "./customUserHotel";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
+const window = require("../assets/decorations/windowDeco01_com.svg");
 
 export default function CustomSmallHotel({ wallColor, structColor }: any) {
   const _web = { top: 18, left: 32 };
   return (
     <View
       style={{
-        backgroundColor: "rgba(30,31,35,1.00)",
         height: "100%",
+        // border: "
+        borderWidth: 1,
+        borderColor: colors.grey700,
+        borderTopLeftRadius: 12,
+        borderTopRightRadius: 12,
+        backgroundColor: colors.grey900,
       }}
     >
       <View style={[styles.img_wrapper]}>
@@ -80,6 +86,25 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
           />
         </Svg>
       </View>
+      <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={window}
+          style={{
+            width: 100,
+            height: 120,
+            marginTop: 20,
+            zIndex: 5,
+            top: 12.2,
+            left: 43.7,
+            position: "absolute",
+          }}
+        />
+      </View>
     </View>
   );
 }
@@ -88,12 +113,10 @@ const styles = StyleSheet.create({
   img_wrapper: {
     zIndex: 3,
     marginTop: 10,
-    borderRadius: 12,
     marginLeft: 5,
     alignItems: "center",
     position: "relative",
     width: 180,
     padding: 10,
-    border: "1px solid gray",
   },
 });
