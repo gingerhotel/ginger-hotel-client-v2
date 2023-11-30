@@ -28,7 +28,7 @@ import {
 } from "expo-router";
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const album = require("../../../assets/icon/i_album.svg");
-const share = require("../../../assets/icon/share_FILL0_wght400_GRAD0_opsz244.svg");
+const share = require("../../../assets/icon/link.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 const plus = require("../../../assets/icon/i_plus_2.svg");
 
@@ -76,8 +76,6 @@ export default function HotelComp() {
   const closeModal = () => {
     setModalVisible(false);
   };
-  
-
 
   const handleGoMyHotel = async () => {
     setMyHotelModal(false);
@@ -97,7 +95,6 @@ export default function HotelComp() {
       });
     }
   };
-
 
   const handelAddVillage = async () => {
     setVillageModal(false);
@@ -223,19 +220,12 @@ export default function HotelComp() {
                   <Buttons
                     title="오늘의 편지함 보기"
                     color="green"
-                    width={288}
+                    width={350}
                     url="mailbox/1"
                     is_disable={data?.todayLetterCnt >= 5}
                   />
-                  <TouchableOpacity>
-                    <SvgImg
-                      width={40}
-                      height={40}
-                      url={album}
-                      onPress={() => router.push("/gingerAlbum")}
-                    />
-                  </TouchableOpacity>
                 </View>
+
                 <View style={styles.hotel_today}>
                   <Buttons
                     title="내 호텔 공유하기"
@@ -342,6 +332,7 @@ export default function HotelComp() {
           onClose={closeLoginModal}
           name="로그인"
           desc=""
+          closeDisable={false}
         />
         <KakaoAdFit />
       </View>
