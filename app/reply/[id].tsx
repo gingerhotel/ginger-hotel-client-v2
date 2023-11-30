@@ -23,7 +23,6 @@ export default function Reply() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
   const { id } = useLocalSearchParams();
-  console.log(id)
   const { register, handleSubmit, setValue } = useForm();
   const [isNotEmptyLetters, setIsNotEmptyLetters] = useState<boolean>(false);
   const [isNotEmptyNickname, setIsNotEmptyNickname] = useState<boolean>(false);

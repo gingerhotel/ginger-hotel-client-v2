@@ -90,7 +90,7 @@ export default function CustomCompleteUserHotel({
         router.push(`/mailbox/${myHotelId}`);
       } else {
         setIsNotMineModal(true);
-        console.log(isNotMineModal);
+        // console.log(isNotMineModal);
       }
     } else {
       setIsNotMineModal(true);

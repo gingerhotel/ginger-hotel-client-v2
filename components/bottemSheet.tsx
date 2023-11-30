@@ -61,7 +61,6 @@ const BottomSheet = ({
   const onBackButtonPress = () => {
     onClose();
   };
-  console.log(letterId);
   return (
     <>
       <Modal

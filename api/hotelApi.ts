@@ -51,7 +51,7 @@ export const updateHotel = async (props: any) => {
 };
 
 export const openWindow = async (props: any) => {
-  console.log(props?.date);
+  // console.log(props?.date);
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;

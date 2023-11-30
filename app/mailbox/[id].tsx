@@ -37,7 +37,7 @@ export default function MailBox() {
   useEffect(() => {
     refetch();
   }, [deleteCheck]);
-  console.log(data);
+  // console.log(data);
   if (isLoading) {
     return <Text>로딩...</Text>;
   }

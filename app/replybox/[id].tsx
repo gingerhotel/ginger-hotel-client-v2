@@ -31,7 +31,7 @@ export default function ReplyBox() {
     useEffect(() => {
         refetch();
     }, [deleteCheck])
-    console.log(data?.letter);
+    // console.log(data?.letter);
     if (isLoading) {
         return <Text>...로딩중</Text>
     }

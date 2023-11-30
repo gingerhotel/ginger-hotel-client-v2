@@ -64,7 +64,7 @@ const GingerAlbum = () => {
           },
         })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           const HotelWindowsData = res.data.hotelWindows;
           setInfo(HotelWindowsData);
         })
@@ -77,7 +77,7 @@ const GingerAlbum = () => {
   }, []);
 
   useEffect(() => {}, [info]);
-  console.log(info);
+  // console.log(info);
 
   return (
     <>

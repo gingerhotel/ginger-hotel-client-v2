@@ -52,7 +52,6 @@ const ReplyLetterItem = ({ replies }: any) => {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
-    console.log(letterId);
     return (
         <>
             <FlatList

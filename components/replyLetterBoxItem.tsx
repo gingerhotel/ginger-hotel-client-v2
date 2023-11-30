@@ -37,7 +37,6 @@ type Props = {
 };
 const i_block = require("../assets/icon/i_block.svg");
 const ReplyLetterBoxItem = (props: any) => {
-    console.log(props)
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
     const [letterId, setLetterId] = useState(0);
     const [blocked, setBlocked] = useState(false);
@@ -55,8 +54,6 @@ const ReplyLetterBoxItem = (props: any) => {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
-    console.log(letterId);
-    console.log(props.replies);
     return (
         <ScrollView>
             <FirstLetter letter={props.letter} />

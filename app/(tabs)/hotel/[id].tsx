@@ -210,7 +210,7 @@ export default function HotelComp() {
     }
   }, [data]);
 
-  console.log(data);
+  // console.log(data);
 
   if (status === "loading") {
     return <Text>Loading...</Text>;
