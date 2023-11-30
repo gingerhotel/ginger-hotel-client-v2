@@ -15,8 +15,8 @@ import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
-import { useRecoilValue } from "recoil";
-import { hotelIdState } from "../atom/letterAtom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { hotelIdState, windowDateState } from "../atom/letterAtom";
 import { typography } from "../constants/Typo";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/front_bg.svg");
@@ -73,6 +73,8 @@ export default function CustomCompleteUserHotel({
   const _web = { top: 36, left: 50 };
   const myHotelId = useRecoilValue(hotelIdState);
   const [isNotMineModal, setIsNotMineModal] = useState(false);
+  const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+  
   const setModalVisible = () => {
     onClose();
   };
@@ -82,12 +84,10 @@ export default function CustomCompleteUserHotel({
   const handleOwner = async (itemNo: number) => {
     const isLogin = await AsyncStorage.getItem("accessToken");
     if (isLogin) {
-      if (isMy) {
-        // console.log(window);
-        // console.log(itemNo);
 
-        //
-        router.push(`/mailbox/${myHotelId}-${itemNo}`);
+      if (isMy) {
+        setLetterCheck(itemNo);
+        router.push(`/mailbox/${myHotelId}`);
       } else {
         setIsNotMineModal(true);
         console.log(isNotMineModal);

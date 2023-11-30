@@ -8,6 +8,7 @@ import {
   hotelIdState,
   letterSwitchState,
   letterUpdateState,
+  windowDateState,
 } from "../../atom/letterAtom";
 import ReplyBoxHeader from "../../components/replyBoxHeader";
 import { useQuery } from "react-query";
@@ -24,9 +25,10 @@ export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
   const { id } = useLocalSearchParams();
   const deleteCheck = useRecoilValue(letterUpdateState);
+  const windowDate = useRecoilValue(windowDateState);
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
-    async () => await newLetterData(id)
+    async () => await newLetterData(id, windowDate.toString())
   );
   const navigation = useNavigation();
   useEffect(() => {

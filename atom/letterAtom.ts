@@ -59,3 +59,8 @@ export const letterTypeState = atom<boolean>({
     key: 'letterTypeState',
     default: true
 })
+
+export const windowDateState = atom<number>({
+    key: 'windowDateState',
+    default: 0
+})
