@@ -50,7 +50,7 @@ export const LetterInnerTitieTextView = styled.View`
 
 export const LetterInnerSendText = styled.Text<{ f_color?: string }>`
   color: ${(props) => props.f_color};
-  font-family: "NanumSquare Neo OTF";
+  font-family: "NanumSquareNeo-Variable";
   font-size: 10px;
   font-style: normal;
   font-weight: 800;
@@ -72,7 +72,7 @@ export const LetterInnerTextBox = styled.Text<{ f_color?: string }>`
   padding-right: 30px;
   padding-top: 5px;
   padding-bottom: 10px;
-  font-family: "NanumSquare Neo OTF";
+  font-family: "NanumSquareNeo-Variable";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
