@@ -269,7 +269,7 @@ export default function HotelComp() {
                     <Buttons
                       title="내 호텔 만들기"
                       url="letter"
-                      color="green"
+                      color="gray_700"
                       width={350}
                       callback={() => setLoginModalVisible(true)}
                     />
@@ -395,7 +395,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: colors.greyblack,
     gap: 10,
-    height: 52
+    height: 52,
   },
   hotel_today2: {
     flexDirection: "column",

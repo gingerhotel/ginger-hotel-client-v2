@@ -15,7 +15,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import Toast from "react-native-toast-message";
-
+const icon: any = require("../assets/icon/i_check_green.svg");
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
   const sex_chip = ["선택안함", "여성", "남성"];
@@ -82,8 +82,9 @@ const ChangeUserInfo = () => {
       if (res.success) {
         Toast.show({
           type: "iconToast",
-          text1: "계정정보가 수정되었습니다.",
+          text1: "계정 정보가 수정되었습니다.",
           position: "bottom",
+          props: { icon },
         });
         router.back();
       }

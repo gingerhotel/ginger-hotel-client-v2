@@ -13,6 +13,8 @@ import LetterHeader from "../components/letterHeader";
 import { MonoText } from "../components/styledText";
 import { colors } from "../constants/Colors";
 import { SvgImg } from "../components/svgImg";
+import { useRecoilState } from "recoil";
+import { hotelIdState } from "../atom/letterAtom";
 const i_reply_letter = require("../assets/images/i_reply_letter.svg");
 export default function LetterCompleted() {
   const navigation = useNavigation();
@@ -24,6 +26,7 @@ export default function LetterCompleted() {
   const routes = navigation.getState()?.routes;
   const prevRoute = routes[routes.length - 2];
   const isAnswer = prevRoute.name === "answer" ? true : false;
+  const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
   return (
     <View style={styles.container}>
       <View style={styles.mailbox_items}>
@@ -48,7 +51,7 @@ export default function LetterCompleted() {
         &nbsp;&nbsp;&nbsp; */}
         <Buttons
           //navigation={navigation}
-          url={"hotel/1"}
+          url={`hotel/${hotelId}`}
           title="확인"
           is_width={true}
           color="green"

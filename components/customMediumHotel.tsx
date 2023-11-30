@@ -7,12 +7,59 @@ import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 
-export default function CustomSmallHotel({ wallColor, structColor }: any) {
-  const _web = { top: 18, left: 32 };
+const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
+const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
+const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+
+const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
+const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
+const buildingDecoImg03 = require(`../assets/decorations/buildingDeco03.svg`);
+
+const backgroundImg01 = require(`../assets/decorations/background01.svg`);
+const backgroundImg02 = require(`../assets/decorations/background02.svg`);
+const backgroundImg03 = require(`../assets/decorations/background03.svg`);
+
+const windowImg01 = require(`../assets/decorations/windowDeco01_com.svg`);
+const windowImg02 = require(`../assets/decorations/windowDeco02_com.svg`);
+
+const frontBg = require("../assets/images/front_bg.svg");
+
+export default function CustomMediumHotel({
+  wallColor,
+  structColor,
+  gardenDecorator,
+  buildingDecorator,
+  background,
+  windowDecorator,
+}: any) {
+  const _web = { top: 13, left: 33 };
+
+  const gardenDeco: any = {
+    gardenDeco01: gardenDecoImg01,
+    gardenDeco02: gardenDecoImg02,
+    gardenDeco03: gardenDecoImg03,
+  };
+
+  const buildingDeco: any = {
+    buildingDeco01: buildingDecoImg01,
+    buildingDeco02: buildingDecoImg02,
+    buildingDeco03: buildingDecoImg03,
+  };
+
+  const backgroundDeco: any = {
+    background01: backgroundImg01,
+    background02: backgroundImg02,
+    background03: backgroundImg03,
+  };
+
+  const windowDeco: any = {
+    windowDeco01: windowImg01,
+    windowDeco02: windowImg02,
+  };
+
   return (
     <View
       style={{
-        backgroundColor: "rgba(30,31,35,1.00)",
         height: "100%",
       }}
     >
@@ -20,8 +67,8 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
         <SvgImg
           url={Hotel1}
           style={{
-            width: 148,
-            height: 171,
+            width: 250,
+            height: 320,
           }}
         />
       </View>
@@ -34,7 +81,7 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
           _web,
         ]}
       >
-        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
+        <Svg width="255" height="310" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -55,7 +102,7 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
         </Svg>
       </View>
       <View style={[{ position: "absolute", zIndex: 2 }, _web]}>
-        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
+        <Svg width="255" height="310" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -80,6 +127,109 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
           />
         </Svg>
       </View>
+
+      <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={gardenDeco[gardenDecorator]}
+          style={{
+            width: 100,
+            height: 90,
+            marginTop: 20,
+            zIndex: 5,
+            top: 230,
+            left: 24,
+            position: "absolute",
+          }}
+        />
+      </View>
+
+      <View
+        style={{
+          zIndex: 6,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={buildingDeco[buildingDecorator]}
+          style={{
+            width: 60,
+            height: 150,
+            marginTop: 20,
+            zIndex: 99,
+            top: 56,
+            left: 118,
+            position: "absolute",
+          }}
+        />
+      </View>
+      <View
+        style={{
+          zIndex: 0,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={backgroundDeco[background]}
+          style={{
+            width: 289,
+            height: 300,
+            marginTop: 20,
+            zIndex: 0,
+            top: 0,
+            left: 5,
+            position: "absolute",
+          }}
+        />
+      </View>
+
+      <View
+        style={{
+          zIndex: 5,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={windowDeco[windowDecorator]}
+          width={355}
+          height={390}
+          style={{
+            width: 193,
+            height: 230,
+            marginTop: 20,
+            zIndex: 5,
+            top: 20,
+            left: 52,
+            position: "absolute",
+          }}
+        />
+      </View>
+
+      <View
+        style={{
+          zIndex: 3,
+          position: "absolute",
+        }}
+      >
+        <SvgImg
+          url={frontBg}
+          width={150}
+          height={140}
+          style={{
+            width: 280,
+            height: 100,
+            marginTop: 20,
+            zIndex: 5,
+            top: 220,
+            left: 10,
+            position: "absolute",
+          }}
+        />
+      </View>
     </View>
   );
 }
@@ -89,11 +239,11 @@ const styles = StyleSheet.create({
     zIndex: 3,
     marginTop: 10,
     borderRadius: 12,
-    marginLeft: 5,
+    marginLeft: 25,
     alignItems: "center",
     position: "relative",
-    width: 180,
+    width: 250,
+    height: 320,
     padding: 10,
-    border: "1px solid gray",
   },
 });

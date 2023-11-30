@@ -5,16 +5,36 @@ import { colors } from "../constants/Colors";
 import { router, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
 import { useRecoilState } from "recoil";
-import { userCodeState } from "../atom/letterAtom";
+import { hotelIdState, userCodeState } from "../atom/letterAtom";
+import { SvgImg } from "../components/svgImg";
+import { PngImg } from "../components/pngImg";
+import { useQuery } from "react-query";
+import { myDate } from "../api/myApi";
+import { getHotel } from "../api/hotelApi";
+import CustomUserHotel from "../components/customUserHotel";
+import CustomSmallHotel from "../components/customSmallHotel";
+import CustomMediumHotel from "../components/customMediumHotel";
 
-const hotelFrame = require("../assets/images/frame_insta_shared.svg");
+const hotelFrame = require("../assets/images/frame_insta_shared.png");
 const hotelImage = require("../assets/images/StartHotel.svg");
-const bottomLogo = require("../assets/images/logo_insta_shared.svg");
+const sharedLogo = require("../assets/images/logo_insta_shared.svg");
 
 const InstaShared = () => {
   const navigation = useNavigation();
 
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
+  const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
+  const { data, status, error, refetch } = useQuery(
+    "loadHotel",
+    async () => await getHotel(hotelId as string),
+    {
+      refetchOnWindowFocus: false,
+      onError: (e) => {
+        console.log(`useQuery error : ${e}`);
+      },
+    }
+  );
+  console.log(data?.hotel);
 
   const [codeArray, setCodeArray] = useState<string[]>([
     "0",
@@ -38,6 +58,8 @@ const InstaShared = () => {
       <Header title="내 카드" />
       <View style={styles.container}>
         <View style={styles.content_wrapper}>
+          <SvgImg url={sharedLogo} width={30} height={30} />
+
           <View style={styles.title_wrapper}>
             <Text style={styles.name_text}>
               <Text style={styles.from}>From</Text>
@@ -47,21 +69,39 @@ const InstaShared = () => {
           </View>
           <View style={styles.hotel_wrapper}>
             <View style={styles.hotel_frame}>
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={hotelFrame} />
-              ) : (
-                <Image source={hotelFrame} />
-              )}
-            </View>
-            <View style={styles.hotel_image}>
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={hotelImage} width={300} height={380} />
-              ) : (
-                <Image
-                  source={hotelImage}
-                  style={{ width: 320, height: 380 }}
+              <PngImg
+                style={{
+                  zIndex: 999,
+                  width: 293,
+                  height: 370,
+                  left: 5,
+                  position: "absolute",
+                }}
+                url={hotelFrame}
+              />
+              {/* <SvgImg
+                style={{
+                  zIndex: 1,
+                  width: 293,
+                  height: 370,
+                  left: 5,
+                  position: "absolute",
+                }}
+                url={hotelImage}
+                width={30}
+                height={30}
+              /> */}
+
+              <View>
+                <CustomMediumHotel
+                  wallColor={data?.hotel.bodyColor}
+                  structColor={data?.hotel.structColor}
+                  gardenDecorator={data?.hotel.gardenDecorator}
+                  windowDecorator={data?.hotel.windowDecorator}
+                  buildingDecorator={data?.hotel.buildingDecorator}
+                  background={data?.hotel?.background}
                 />
-              )}
+              </View>
             </View>
           </View>
           <View style={styles.code_info_wrapper}>
@@ -90,10 +130,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyblack,
   },
   content_wrapper: {
-    backgroundColor: colors.grey900,
+    backgroundColor: colors.grey800,
     borderRadius: 20,
     width: 350,
-    height: 620,
+    height: 680,
     paddingVertical: 32,
     paddingHorizontal: 25,
     alignItems: "center",
@@ -101,6 +141,7 @@ const styles = StyleSheet.create({
   title_wrapper: {
     width: "100%",
     alignItems: "center",
+    marginTop: 4,
   },
   name_text: {
     color: colors.green300,
@@ -108,9 +149,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 10,
+    marginTop: 10,
   },
   from: {
     fontSize: 12,
+    marginTop: 20,
   },
   title_text: {
     fontFamily: "NanumSquareNeo-Variable",
@@ -126,13 +169,17 @@ const styles = StyleSheet.create({
     height: 380,
   },
   hotel_frame: {
-    position: "absolute",
+    position: "relative",
     zIndex: 2,
+    marginRight: 10,
   },
 
   hotel_image: {
     position: "absolute",
     zIndex: 1,
+    left: -10,
+    right: 0,
+    width: "100%",
   },
   code_info_wrapper: {
     width: 262,
@@ -151,7 +198,7 @@ const styles = StyleSheet.create({
   code_box: {
     width: 34,
     height: 40,
-    backgroundColor: colors.grey800,
+    backgroundColor: colors.grey900,
     borderRadius: 8,
     justifyContent: "center",
     alignContent: "center",

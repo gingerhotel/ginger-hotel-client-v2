@@ -256,7 +256,9 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <View style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}>
+          <View
+            style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
+          >
             <View>
               <Text
                 style={{
@@ -285,10 +287,12 @@ export default function TabThreeScreen() {
             )}
             <SvgImg style={styles.key_peek_box_blur} url={feek_blur} />
 
-            <SvgImg style={styles.key_peek_box_blur_text} url={feek_blur_text} />
+            <SvgImg
+              style={styles.key_peek_box_blur_text}
+              url={feek_blur_text}
+            />
           </View>
           {/* 엿보기 블러 버전 끝 */}
-
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>
           <TouchableOpacity
@@ -362,6 +366,11 @@ export default function TabThreeScreen() {
               alignItems: "center",
               justifyContent: "center",
               width: 60,
+            }}
+            onPress={() => {
+              window.open(
+                "https://probable-failing-2db.notion.site/FAQ-dcce714d115340728f740a8bd0591485?pvs=4"
+              );
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
