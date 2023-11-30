@@ -60,7 +60,7 @@ export default function Village() {
         Toast.show({
           type: "iconToast",
           text1: "내 빌리지에서 삭제되었습니다.",
-          position: "top",
+          position: "bottom",
         });
         setDeleteModal(false);
         refetch();
@@ -79,134 +79,149 @@ export default function Village() {
           display: "flex",
           flexDirection: "column",
           alignItems: "stretch",
-          padding: 20,
+          padding: 5,
           backgroundColor: colors.greyblack,
           height: "100%",
         }}
       >
-        <View
-          style={{
-            borderRadius: 12,
-            backgroundColor: colors.green50,
-            padding: 16,
-            paddingLeft: 12,
-            paddingRight: 12,
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          <Text
-            style={[
-              typography.soyo,
-              {
-                fontSize: 16,
-                color: colors.greyblack,
-                fontWeight: "bold",
-              },
-            ]}
-          >
-            빌리지에 넣고 빠르게 방문하세요
-          </Text>
-          <MonoText
-            style={{ fontSize: 12, color: colors.grey500, marginTop: 7 }}
-          >
-            내 빌리지는 나만 볼 수 있어요!
-          </MonoText>
-
-          <PngImg
-            url={building}
-            style={{
-              width: 100,
-              height: 62,
-              position: "absolute",
-              right: 10,
-              bottom: 0,
-            }}
-          />
-        </View>
         <ScrollView>
           <View
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-              marginTop: 15,
-              marginLeft: 5,
+              borderRadius: 12,
+              backgroundColor: colors.green50,
+              padding: 16,
+              paddingLeft: 12,
+              paddingRight: 12,
+              position: "relative",
+              margin: 10,
             }}
           >
-            {data?.villages?.map((village: any) => (
-              <View style={{ marginBottom: 10 }} key={village.id}>
-                <TouchableOpacity
-                  onPress={() =>
-                    (window.location.href = `/hotel/${village.hotelId}`)
-                  }
-                >
-                  <CustomSmallHotel
-                    wallColor={village.bodyColor}
-                    structColor={village.structColor}
-                  />
-                </TouchableOpacity>
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    backgroundColor: colors.grey900,
-                    borderWidth: 1,
-                    borderColor: colors.grey700,
-                    padding: 10,
-                    borderBottomLeftRadius: 12,
-                    borderBottomRightRadius: 12,
-                    borderTopWidth: 0,
-                  }}
-                >
-                  <Text
-                    style={[
-                      typography.soyo,
-                      {
-                        color: colors.green500,
-                        textAlign: "center",
-                        marginLeft: 8,
-                        fontWeight: "bold",
-                        maxWidth: 120,
-                      },
-                    ]}
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                  >
-                    {village?.nickname}
-                  </Text>
-                  <SvgImg
-                    url={more}
-                    style={{ width: 24, height: 24 }}
-                    onPress={() => handelModal(village?.hotelId)}
-                  />
-                </View>
-              </View>
-            ))}
-            {!data ||
-              (data?.villages?.length < 1 && (
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    // padding: 50,
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  <Image style={{ width: 200, height: 300 }} source={bellboy} />
+            <Text
+              style={[
+                typography.soyo,
+                {
+                  fontSize: 16,
+                  color: colors.greyblack,
+                  fontWeight: "bold",
+                },
+              ]}
+            >
+              빌리지에 넣고 빠르게 방문하세요
+            </Text>
+            <MonoText
+              style={{ fontSize: 12, color: colors.grey500, marginTop: 7 }}
+            >
+              내 빌리지는 나만 볼 수 있어요!
+            </MonoText>
 
-                  <MonoText style={styles.text}>
-                    내 빌리지에 친구를 추가해보세요!
-                  </MonoText>
+            <PngImg
+              url={building}
+              style={{
+                width: 100,
+                height: 62,
+                position: "absolute",
+                right: 10,
+                bottom: 0,
+              }}
+            />
+          </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                width: "100%",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                marginTop: 15,
+                marginLeft: 5,
+              }}
+            >
+              {data?.villages?.map((village: any) => (
+                <View style={{ marginBottom: 10 }} key={village.id}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      (window.location.href = `/hotel/${village.hotelId}`)
+                    }
+                  >
+                    <CustomSmallHotel
+                      wallColor={village.bodyColor}
+                      structColor={village.structColor}
+                    />
+                  </TouchableOpacity>
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      backgroundColor: colors.grey900,
+                      borderWidth: 1,
+                      borderColor: colors.grey700,
+                      padding: 10,
+                      borderBottomLeftRadius: 12,
+                      borderBottomRightRadius: 12,
+                      borderTopWidth: 0,
+                    }}
+                  >
+                    <Text
+                      style={[
+                        typography.soyo,
+                        {
+                          color: colors.green500,
+                          textAlign: "center",
+                          marginLeft: 8,
+                          fontWeight: "bold",
+                          maxWidth: 120,
+                        },
+                      ]}
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                    >
+                      {village?.nickname}
+                    </Text>
+                    <SvgImg
+                      url={more}
+                      style={{ width: 24, height: 24 }}
+                      onPress={() => handelModal(village?.hotelId)}
+                    />
+                  </View>
                 </View>
               ))}
+
+              {!data ||
+                (data?.villages?.length < 1 && (
+                  <View
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      // padding: 50,
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <Image
+                      style={{ width: 200, height: 300 }}
+                      source={bellboy}
+                    />
+
+                    <MonoText style={styles.text}>
+                      내 빌리지에 친구를 추가해보세요!
+                    </MonoText>
+                  </View>
+                ))}
+            </View>
           </View>
         </ScrollView>
         <CenterModal

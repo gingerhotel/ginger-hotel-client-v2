@@ -96,7 +96,7 @@ const cstyles = (color_code: string, color: string, width: number) =>
       borderWidth: color === "white" ? 1.5 : 0,
     },
     text: {
-      color: color === "white" ? Common_Colors.red : "white",
+      color: color === "white" ? Common_Colors.red : "#F1F1F2",
       fontSize: 16,
       paddingTop: 3,
     },
