@@ -62,8 +62,8 @@ const ReplyLetterBoxItem = (props: any) => {
             <FlatList
                 data={props.replies}
                 renderItem={({ item }) =>
-                    <LetterOuterContainer b_color="#36363B">
-                        <LetterInnerContainer b_color="#36363B">
+                    <LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
+                        <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                             <LetterInnerInfoView>
                                 <LetterInnerTitieView border_color="#4A4A4E">
                                     {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
