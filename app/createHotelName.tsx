@@ -73,7 +73,7 @@ export default function CreateHotelName() {
             />
 
             <MonoText style={styles.hotel_info}>
-              ※호텔 색상은 나중에도 수정할 수 있어요!
+              ※ 호텔 색상은 나중에도 수정할 수 있어요!
             </MonoText>
           </View>
         </View>

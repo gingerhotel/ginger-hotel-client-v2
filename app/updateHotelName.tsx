@@ -110,7 +110,7 @@ export default function UpdateHotelName() {
             />
           </View>
           <MonoText style={styles.hotel_info}>
-            호텔 이름은 나중에도 수정할 수 있어요!
+            ※ 호텔 이름은 나중에도 수정할 수 있어요!
           </MonoText>
         </View>
       </ScrollView>

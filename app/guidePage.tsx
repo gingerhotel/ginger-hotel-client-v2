@@ -81,8 +81,9 @@ const GuidePage = () => {
         <View style={styles.content_box}>
           <Text style={styles.content_title}>진저맨 앨범</Text>
           <Text style={styles.content_text}>
-            진저호텔에 머물고 있는 25종 진저맨 카드를 모두 모아보세요! 창문을
-            열면 진저맨 카드가 자동으로 수집돼요.
+            진저호텔에 머물고 있는 25종 진저맨 카드를 모두 모아보세요!
+            <br />
+            창문을 열면 진저맨 카드가 자동으로 수집돼요.
           </Text>
         </View>
         {/* <View style={styles.content_box}>
