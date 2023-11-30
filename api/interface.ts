@@ -97,10 +97,23 @@ export interface BottomSheetDeleteProps extends BottomSheetProps {
 export interface LetterArrayProps {
   content: string;
   createdAt: string;
-  feekComment: any
-  feekStatus: any
-  id: number
-  imageUrl: any
-  isBlocked: boolean
-  senderNickname: string
+  feekComment: any;
+  feekStatus: any;
+  id: number;
+  imageUrl: any;
+  isBlocked: boolean;
+  senderNickname: string;
+}
+export interface ReplyArrayProps {
+  content: string;
+  createdAt: string;
+  letterId: number;
+  imageUrl: any;
+  isBlocked: boolean;
+  senderNickname: string;
+}
+export interface NewReply {
+  content: string; // requird
+  image: string;
+  letterId: string;
 }
