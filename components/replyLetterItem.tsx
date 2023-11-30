@@ -22,19 +22,35 @@ import { SvgImg } from "./svgImg";
 import { useSetRecoilState } from "recoil";
 import Buttons from "./buttons";
 import { FlatList } from "react-native-gesture-handler";
+import { BottemSheetBorderView } from "../style/bottemSheetStyled";
+import { ReplyArrayProps } from "../api/interface";
+import { replyNameState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
-
+import BottemSheet from "./bottemSheet";
 type Props = {
     from: string; contents: string;
     is_active: boolean;
     navigation: any;
 };
-
+const i_block = require("../assets/icon/i_block.svg");
 const ReplyLetterItem = ({ replies }: any) => {
     const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
-    const modalTextList = ["답장하기", "엿보기", "사용자 차단", "편지 삭제"];
-    console.log(replies)
+    const [letterId, setLetterId] = useState(0);
+    const [blocked, setBlocked] = useState(false);
+    const setSenderNickname = useSetRecoilState(replyNameState);
+    const toggleModal = (props: ReplyArrayProps) => {
+        console.log(props)
+        setBottomSheetVisible(true);
+        setLetterId(props.letterId);
+        setBlocked(props.isBlocked);
+        setSenderNickname(props.senderNickname);
+    };
+
+    const closeModal = () => {
+        setBottomSheetVisible(false);
+    };
+    console.log(letterId);
     return (
         <>
             <FlatList
@@ -50,21 +66,28 @@ const ReplyLetterItem = ({ replies }: any) => {
                                     <View />
                                     <LetterInnerTitieTextView>
                                         <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
-                                        <LetterInnerUserText f_color="#FFFDF0">로운로운</LetterInnerUserText>
+                                        <LetterInnerUserText f_color="#FFFDF0">{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
                                     <View style={{ position: 'absolute', left: '98%' }}>
                                         <SvgImg
                                             url={iconMore}
                                             width={30}
-                                            height={30} />
+                                            height={30}
+                                            onPress={() => toggleModal(item)}
+                                        />
                                     </View>
-                                    <View />
+                                    {item.isBlocked ? (
+                                        <SvgImg
+                                            url={i_block}
+                                            width={30}
+                                            height={30}
+                                        // onPress={() => toggleModal(item.id)}
+                                        />
+                                    ) : (<View />)}
                                 </LetterInnerTitieView>
                             </LetterInnerInfoView>
                             <LetterInnerTextBox f_color="#fff">
-                                메리 크리스마스~~! 잘 지내고 계신가요. 바빠 보이시는데 기력두 잘 챙기면서
-                                23년 마무리 같이 으쌰으쌰 해봅시다 앞으로도 잘부탁해용 테스트용 편지테스트용
-                                편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용 편지테스트용
+                                {item?.content}
                             </LetterInnerTextBox>
                             <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
                                 <LetterReplyButtonView>
@@ -72,17 +95,19 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         title="답장 모아보기"
                                         color="green"
                                         width={247}
-                                        url="replybox/1"
+                                        url={`replybox/${item.letterId}`}
                                     />
                                 </LetterReplyButtonView>
                             </TouchableOpacity>
                         </LetterInnerContainer>
                     </LetterOuterContainer>}
-            />
+                keyExtractor={item => item.id.toString()} />
+
+            <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
         </>
 
     );
-};
+}
 
 const styles = StyleSheet.create({
     wrapper: {
