@@ -55,3 +55,7 @@ export const letterCountState = atom<letterCountType>({
     },
     effects_UNSTABLE: [persistAtom],
 })
+export const letterTypeState = atom<boolean>({
+    key: 'letterTypeState',
+    default: true
+})
