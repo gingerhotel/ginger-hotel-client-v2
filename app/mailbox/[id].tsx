@@ -13,11 +13,16 @@ import ReplyBoxHeader from "../../components/replyBoxHeader";
 import { useQuery } from "react-query";
 import { newLetterData } from "../../api/letterApi";
 import { useLocalSearchParams, useNavigation } from "expo-router";
+import { colors } from "../../constants/Colors";
+import { MonoText } from "../../components/styledText";
+import { typography } from "../../constants/Typo";
+import { SvgImg } from "../../components/svgImg";
 
+const letter = require("../../assets/images/letter.svg");
 
 export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
-  const { id } = useLocalSearchParams()
+  const { id } = useLocalSearchParams();
   const deleteCheck = useRecoilValue(letterUpdateState);
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
@@ -29,10 +34,10 @@ export default function MailBox() {
   }, [navigation]);
   useEffect(() => {
     refetch();
-  }, [deleteCheck])
+  }, [deleteCheck]);
   console.log(data);
   if (isLoading) {
-    return <Text>로딩...</Text>
+    return <Text>로딩...</Text>;
   }
   return (
     <View style={styles.container}>
@@ -40,7 +45,49 @@ export default function MailBox() {
       <ScrollView>
         <View style={styles.mailbox_items}>
           {letterRender.new ? (
-            <NewLetterItem letters={data?.letters} />
+            <>
+              <View
+                style={{
+                  borderRadius: 12,
+                  backgroundColor: colors.green50,
+                  padding: 16,
+                  paddingLeft: 12,
+                  paddingRight: 12,
+                  width: "100%",
+                  position: "relative",
+                }}
+              >
+                <Text
+                  style={[
+                    typography.soyo,
+                    {
+                      fontSize: 16,
+                      color: colors.greyblack,
+                      fontWeight: "bold",
+                    },
+                  ]}
+                >
+                  오늘의 편지함을 열었어요
+                </Text>
+                <MonoText
+                  style={{ fontSize: 12, color: colors.grey500, marginTop: 7 }}
+                >
+                  하루에 최대 편지 20개를 받을 수 있어요!
+                </MonoText>
+
+                <SvgImg
+                  url={letter}
+                  style={{
+                    width: 88,
+                    height: 55,
+                    position: "absolute",
+                    right: 0,
+                    bottom: 10,
+                  }}
+                />
+              </View>
+              <NewLetterItem letters={data?.letters} />
+            </>
           ) : (
             <ReplyLetterItem replies={data?.replies} />
           )}

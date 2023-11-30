@@ -30,7 +30,7 @@ const ReplyModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetPro
             style={{
               fontSize: 16,
               fontWeight: "bold",
-              color: colors.Whiteyello,
+              color: '#FFFDF0'
             }}
           >
             답장을 보낼까요?

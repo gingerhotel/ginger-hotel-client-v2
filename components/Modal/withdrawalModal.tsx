@@ -28,7 +28,7 @@ const WithdrawalModal = ({
         >
             <DeleteModalView>
                 <DeleteModaContentlView>
-                    <MonoText style={{ fontSize: 16, fontWeight: "bold" }}>
+                    <MonoText style={{ fontSize: 16, fontWeight: "bold", color: '#FFFDF0' }}>
                         답장을 보낼 수 없어요!
                     </MonoText>
                     <MonoText style={{ color: "#98989B" }}>

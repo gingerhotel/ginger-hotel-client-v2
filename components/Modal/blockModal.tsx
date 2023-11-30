@@ -34,7 +34,7 @@ const BlockModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetPro
         >
             <DeleteModalView>
                 <DeleteModaContentlView>
-                    <MonoText style={{ fontSize: 16, fontWeight: 'bold' }}>사용자를 차단하시겠습니까?</MonoText>
+                    <MonoText style={{ fontSize: 16, fontWeight: 'bold', color: '#FFFDF0' }}>사용자를 차단하시겠습니까?</MonoText>
                     <MonoText style={{ color: '#98989B' }}>차단한 사용자로부터는 편지를 받을 수 없어요.</MonoText>
                     <DeleteModalButtonView>
                         <Buttons

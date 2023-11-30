@@ -42,7 +42,7 @@ const DeleteModal = ({
     >
       <DeleteModalView>
         <DeleteModaContentlView>
-          <MonoText style={{ fontSize: 16, fontWeight: "bold" }}>
+          <MonoText style={{ fontSize: 16, fontWeight: "bold", color: '#FFFDF0' }}>
             편지를 삭제하시겠습니까?
           </MonoText>
           <MonoText style={{ color: "#98989B" }}>
