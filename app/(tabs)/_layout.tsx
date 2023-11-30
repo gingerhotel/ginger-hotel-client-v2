@@ -36,7 +36,7 @@ export default function _layout() {
       <Tabs.Screen
         name="hotel/[id]"
         options={{
-          title: "내 호텔",
+          title: "최근 호텔",
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="hotel" color={color} size={size} />
           ),
