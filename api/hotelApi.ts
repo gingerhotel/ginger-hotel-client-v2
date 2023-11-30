@@ -26,6 +26,7 @@ export const getHotel = async (id: string) => {
     return response.data;
   } catch (err: any) {
     alert(err?.response?.data?.errorMessage);
+    window.location.href = `/hotel/1`;
   }
 };
 
