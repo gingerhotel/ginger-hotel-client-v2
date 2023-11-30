@@ -5,6 +5,7 @@ import {
     Image,
     TouchableOpacity,
     TouchableHighlight,
+    ScrollView,
 } from "react-native";
 import {
     LetterInnerContainer,
@@ -57,7 +58,7 @@ const ReplyLetterBoxItem = (props: any) => {
     console.log(letterId);
     console.log(props.replies);
     return (
-        <>
+        <ScrollView>
             <FirstLetter letter={props.letter} />
             <FlatList
                 data={props.replies}
@@ -101,7 +102,7 @@ const ReplyLetterBoxItem = (props: any) => {
                 keyExtractor={item => item.id.toString()} />
 
             <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
-        </>
+        </ScrollView>
 
     );
 }
