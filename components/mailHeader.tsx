@@ -19,6 +19,7 @@ import {
   letterSwitchState,
   letterUpdateState,
   newLetterCountState,
+  windowDateState,
 } from "../atom/letterAtom";
 import { getCurrentDateDot } from "../data/data";
 import { router, useLocalSearchParams } from "expo-router";
@@ -30,7 +31,8 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
   const [letterCheck, setLetterCheck] = useRecoilState(letterSwitchState);
   const [date, setDate] = useState<string>("");
   const countCheck = useRecoilValue(letterUpdateState);
-  const { id } = useLocalSearchParams()
+  const windowDate = useRecoilValue(windowDateState);
+  const { id } = useLocalSearchParams();
   const { data, isLoading, refetch } = useQuery("newLetters", {
     onError: (e) => {
       console.log(`useQuery error : ${e}`);
@@ -99,7 +101,9 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
           </TouchableOpacity>
         </MailInfoView>
         <MailChoseView b_color="#000">
-          <DateText f_color="#DDDDDE">{date}</DateText>
+          <DateText f_color="#DDDDDE">{`2023-12-${
+            windowDate < 10 ? "0" + windowDate : windowDate
+          }`}</DateText>
         </MailChoseView>
       </MailChoseContainer>
     </SafeAreaView>
