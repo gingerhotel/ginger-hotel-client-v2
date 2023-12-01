@@ -109,7 +109,7 @@ const styles = (height: number) =>
       margin: 20,
       backgroundColor: colors.grey900,
       borderRadius: 10,
-      width: 360,
+      width: 300,
       padding: 28,
       height,
       display: "flex",
