@@ -58,6 +58,8 @@ import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
 import { checkAuth } from "../../../api/authApi";
 import KeyModal from "../../../components/Modal/keyModal";
+import ErrorModal from "../../../components/Modal/errorModal";
+import { ErrorMessageConverter } from "../../../data/error-message-converter";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -75,10 +77,10 @@ export default function HotelComp() {
   const [keyModal, setKeyModal] = useState<boolean>(false);
   const [noKeyModal, setNoKeyModal] = useState<boolean>(false);
 
-  const [newLetterCount, setNewLetterCount] =useRecoilState(newLetterCountState);
+  const [newLetterCount, setNewLetterCount] =
+    useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
-
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -101,12 +103,14 @@ export default function HotelComp() {
         //   location.reload();
         // }, 1);
       }
-    } catch (err: any) {
-      Toast.show({
-        type: "iconToast",
-        text1: err?.response?.data?.errorMessage,
-        position: "top",
-      });
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -122,12 +126,14 @@ export default function HotelComp() {
         });
         router.push(`/village`);
       }
-    } catch (err: any) {
-      Toast.show({
-        type: "iconToast",
-        text1: err?.response?.data?.errorMessage,
-        position: "bottom",
-      });
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -155,8 +161,14 @@ export default function HotelComp() {
         setKeyModal(false);
         router.push(`/mailbox/${id}`);
       }
-    } catch (err: any) {
-      alert(err?.response?.data?.errorMessage);
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -164,20 +176,7 @@ export default function HotelComp() {
     setNoKeyModal(false);
     setKeyModalVisible(true);
   };
-  // useEffect(() => {
-  //   // 페이지가 전환될 때마다 실행
-  //   navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
 
-  //   // 현재 URL과 목표 URL이 다른 경우에만 새로 고침
-  //   if (
-  //     window.location.pathname !==
-  //     `/hotel/${id === undefined || id === "undefined" || !id ? 1 : id}`
-  //   ) {
-  //     window.location.href = `/hotel/${
-  //       id === undefined || id === "undefined" || !id ? 1 : id
-  //     }`;
-  //   }
-  // }, [id, navigation]);
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
   const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
 
@@ -193,8 +192,14 @@ export default function HotelComp() {
     async () => await getHotel(id as string),
     {
       refetchOnWindowFocus: false,
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
+      onError: (error: any) => {
+        const obj = ErrorMessageConverter.convert(
+          error?.response?.data?.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("내 호텔로 돌아가기");
+        setErrorModalVisible(true);
       },
     }
   );
@@ -211,6 +216,14 @@ export default function HotelComp() {
 
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
   const [isMine, setIsMine] = useState(data?.isOwner);
+
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
 
   useEffect(() => {
     if (data) {
@@ -439,6 +452,16 @@ export default function HotelComp() {
           visible={keyModalVisible}
           onClose={() => setKeyModalVisible(false)}
           code={userInfo?.code}
+        />
+
+        <ErrorModal
+          height={200}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
+          url={`hotel/${id}`}
         />
       </View>
     </ScrollView>

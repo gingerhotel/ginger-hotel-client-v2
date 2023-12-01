@@ -25,6 +25,8 @@ import { checkAuth } from "../../api/authApi";
 import { AUTH_URL } from "../../api/url";
 import Toast from "react-native-toast-message";
 import KakaoAdFit from "../../advertisement/KakaoAdFit";
+import { ErrorMessageConverter } from "../../data/error-message-converter";
+import ErrorModal from "../../components/Modal/errorModal";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -103,6 +105,13 @@ export default function TabThreeScreen() {
   };
 
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
 
   const [hotel, setHotelinfo] = useState<any>(0);
   const setHotelId = useSetRecoilState(hotelIdState);
@@ -130,8 +139,20 @@ export default function TabThreeScreen() {
 
           setHotelinfo(hotel.id);
         })
-        .catch((error) => {
-          console.error(error);
+        .catch((error: any) => {
+          if (
+            error.response.status === 400 ||
+            error.response.status === 401 ||
+            error.response.status === 403
+          ) {
+            const obj = ErrorMessageConverter.convert(
+              error.response.data.errorCode
+            );
+            setErrorTitle(obj[0]);
+            setErrorMessage(obj[1]);
+            setErrorButtonMessage("닫기");
+            setErrorModalVisible(true);
+          }
         });
     };
     handleUserData();
@@ -476,6 +497,14 @@ export default function TabThreeScreen() {
         visible={keyModalVisible}
         onClose={closeKeyModal}
         code={userInfo?.code}
+      />
+      <ErrorModal
+        height={200}
+        visible={ErrorModalVisible}
+        onClose={closeErrorModal}
+        name={errorTitle}
+        desc={errorMessage}
+        buttonMessage={errorButtonMessage}
       />
       <PeekModal visible={peekModalVisible} onClose={closePeekModal} />
     </View>

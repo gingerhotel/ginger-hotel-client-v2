@@ -11,6 +11,8 @@ import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
 import { updateHotel } from "../api/hotelApi";
 import { useMutation } from "react-query";
+import { ErrorMessageConverter } from "../data/error-message-converter";
+import ErrorModal from "../components/Modal/errorModal";
 
 export default function UpdateHotelName() {
   const props = useLocalSearchParams();
@@ -37,6 +39,14 @@ export default function UpdateHotelName() {
     }
   );
 
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
+
   const handleFormSubmit = async () => {
     try {
       // 뮤테이션 실행
@@ -51,8 +61,20 @@ export default function UpdateHotelName() {
         buildingDecorator: props?.buildingDecorator,
         background: props?.background,
       });
-    } catch (error) {
-      console.error("Mutation failed:", error);
+    } catch (error: any) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
+        const obj = ErrorMessageConverter.convert(
+          error.response.data.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("친구 호텔로 돌아가기");
+        setErrorModalVisible(true);
+      }
     }
   };
 
@@ -113,6 +135,15 @@ export default function UpdateHotelName() {
             ※ 호텔 이름은 나중에도 수정할 수 있어요!
           </MonoText>
         </View>
+
+        <ErrorModal
+          height={200}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
+        />
       </ScrollView>
     </>
   );
