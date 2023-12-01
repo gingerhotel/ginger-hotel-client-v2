@@ -139,7 +139,7 @@ export default function Letter() {
           />
         </View>
         <ErrorModal
-          height={340}
+          height={200}
           visible={ErrorModalVisible}
           onClose={closeErrorModal}
           name={errorTitle}

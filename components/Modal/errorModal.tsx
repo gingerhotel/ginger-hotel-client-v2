@@ -160,11 +160,13 @@ const styles = (height: number) =>
       textAlign: "center",
       color: colors.Whiteyello,
       fontWeight: "600",
+      marginTop: 20,
     },
     modal_desc: {
       fontSize: 12,
       color: colors.grey500,
       textAlign: "center",
+      marginTop: 20,
     },
     kakao: {
       backgroundColor: "#FDDC3F",
