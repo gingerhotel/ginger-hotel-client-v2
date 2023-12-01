@@ -16,6 +16,8 @@ import LoginModal from "../components/Modal/loginModal";
 
 const bellboy = require("../assets/gingerman/Album_Ginger/a_bellboy.png");
 const bellboy2 = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
+const bellboy4 = require("../assets/gingerman/Album_Ginger/g_2_nutcracker.png");
+const bellboy3 = require("../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -80,7 +82,7 @@ const GingerAlbum = () => {
 
   return (
     <>
-      <Header title="진저맨 앨범" disabledIcon={false}/>
+      <Header title="진저맨 앨범" disabledIcon={false} />
       <ScrollView>
         <View style={styles.containter}>
           <View style={styles.card_container}>
@@ -95,8 +97,8 @@ const GingerAlbum = () => {
             <GingermanCard
               name="벨보이 진저맨"
               date="12/02"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
+              pngImage={bellboy3}
+              pngImage2={bellboy4}
               desc={``}
               isOpened={info[`2023-12-02`]?.isOpen}
             />
