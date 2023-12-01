@@ -98,7 +98,7 @@ const GingerModal = ({
             <View style={styles(height).button_wrapper}>
               <Pressable
                 style={[styles(height).button, styles(height).buttonOpen]}
-                onPress={setCloseModal}
+                onPress={callback ? callback : setCloseModal}
               >
                 <MonoText style={styles(height).textStyle}>
                   {btnText ? btnText : "확인"}

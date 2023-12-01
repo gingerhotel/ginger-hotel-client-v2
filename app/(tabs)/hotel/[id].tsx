@@ -211,7 +211,6 @@ export default function HotelComp() {
 
   const handelTodayLetters = () => {
     AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
-    setModalVisible(true);
     setLetterCheck(new Date().getDate());
     router.push(`/mailbox/${id}`);
     setModalVisible(false);
@@ -225,10 +224,13 @@ export default function HotelComp() {
     }
 
     const gingerCheck = await AsyncStorage.getItem("gingerModal");
+
     if (gingerCheck && String(gingerCheck) === moment().format("YYYY-MM-DD")) {
       // 열렸다면 바로 편지함 로직으로
       handelTodayLetters();
       return;
+    } else {
+      setModalVisible(true);
     }
   };
 
