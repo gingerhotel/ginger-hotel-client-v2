@@ -129,7 +129,13 @@ export default function Reply() {
           buttonMessage={errorButtonMessage}
           url={`hotel/${id}`}
         /> */}
-        <WithdrawalModal isVisible={ErrorModalVisible} onClose={closeErrorModal} letterId={0} letterType={false} />
+        <WithdrawalModal
+          isVisible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          letterId={0}
+          letterType={false}
+          replyId={0}
+        />
       </View>
     </View>
   );

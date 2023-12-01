@@ -16,6 +16,8 @@ import { ko, enUS } from "date-fns/esm/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "./styles.css";
 import Toast from "react-native-toast-message";
+import ErrorModal from "../components/Modal/errorModal";
+import { ErrorMessageConverter } from "../data/error-message-converter";
 const icon: any = require("../assets/icon/i_check_green.svg");
 const ChangeUserInfo = () => {
   const sex_english: any = { 선택안함: "", 남성: "MAN", 여성: "WOMAN" };
@@ -73,6 +75,14 @@ const ChangeUserInfo = () => {
     setBirthday(formattedDate);
   };
 
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
+
   const handelUpdate = async () => {
     try {
       const update = {
@@ -89,12 +99,20 @@ const ChangeUserInfo = () => {
         });
         router.back();
       }
-    } catch (err: any) {
-      Toast.show({
-        type: "iconToast",
-        text1: err?.response?.data?.errorMessage,
-        position: "bottom",
-      });
+    } catch (error: any) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
+        const obj = ErrorMessageConverter.convert(
+          error.response.data.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("닫기");
+        setErrorModalVisible(true);
+      }
     }
   };
 
@@ -167,6 +185,14 @@ const ChangeUserInfo = () => {
         <View style={styles.btn_wrapper}>
           <Buttons title="수정하기" color="green" callback={handelUpdate} />
         </View>
+        <ErrorModal
+          height={200}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
+        />
       </View>
     </>
   );
