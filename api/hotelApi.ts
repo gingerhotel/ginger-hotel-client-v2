@@ -60,7 +60,7 @@ export const openWindow = async (props: any) => {
     );
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
+    throw err;
   }
 };
 

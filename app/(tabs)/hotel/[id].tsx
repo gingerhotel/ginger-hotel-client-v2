@@ -150,7 +150,7 @@ export default function HotelComp() {
     // 창문 열기 로직 추가
     try {
       const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
-      if (!todayWindow?.isOpen) {
+      if (!todayWindow) {
         alert("열 수 있는 창문이 없어요! 창문은 편지를 받아야 열 수 있어요 :)");
         setKeyModal(false);
         return;
@@ -168,6 +168,8 @@ export default function HotelComp() {
       const obj = ErrorMessageConverter.convert(
         error?.response?.data?.errorCode
       );
+      setNoKeyModal(false);
+      setKeyModal(false);
       setErrorTitle(obj[0]);
       setErrorMessage(obj[1]);
       setErrorButtonMessage("내 호텔로 돌아가기");
@@ -209,26 +211,25 @@ export default function HotelComp() {
 
   const handelTodayLetters = () => {
     AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
-
-    const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
-    if (data?.todayReceivedLetterCount < 5 && !todayWindow?.isOpen) {
-      setKeyModal(true);
-      return;
-    }
+    setModalVisible(true);
     setLetterCheck(new Date().getDate());
     router.push(`/mailbox/${id}`);
     setModalVisible(false);
   };
 
   const openTodayGinger = async () => {
+    const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
+    if (data?.todayReceivedLetterCount < 5 && !todayWindow?.isOpen) {
+      setKeyModal(true);
+      return;
+    }
+
     const gingerCheck = await AsyncStorage.getItem("gingerModal");
     if (gingerCheck && String(gingerCheck) === moment().format("YYYY-MM-DD")) {
       // 열렸다면 바로 편지함 로직으로
       handelTodayLetters();
       return;
     }
-
-    setModalVisible(true);
   };
 
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);

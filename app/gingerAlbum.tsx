@@ -99,7 +99,7 @@ const GingerAlbum = () => {
               date="12/02"
               pngImage={bellboy3}
               pngImage2={bellboy4}
-              desc={``}
+              desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고있을테니\n 안심하고 휴가를 보내도록 하게! `}
               isOpened={info[`2023-12-02`]?.isOpen}
             />
             <GingermanCard
