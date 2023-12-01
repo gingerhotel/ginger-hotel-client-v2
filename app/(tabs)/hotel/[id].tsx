@@ -208,6 +208,8 @@ export default function HotelComp() {
   );
 
   const handelTodayLetters = () => {
+    AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
+
     const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
     if (data?.todayReceivedLetterCount < 5 && !todayWindow?.isOpen) {
       setKeyModal(true);
@@ -415,7 +417,6 @@ export default function HotelComp() {
           img={g_2_nutcracker}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
-          check={true}
         />
 
         <CenterModal

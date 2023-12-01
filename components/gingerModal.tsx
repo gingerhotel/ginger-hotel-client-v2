@@ -30,12 +30,7 @@ const GingerModal = ({
   desc,
   callback,
   btnText,
-  check,
 }: Props) => {
-  if (check) {
-    AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
-  }
-
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
@@ -103,7 +98,7 @@ const GingerModal = ({
             <View style={styles(height).button_wrapper}>
               <Pressable
                 style={[styles(height).button, styles(height).buttonOpen]}
-                onPress={callback}
+                onPress={setCloseModal}
               >
                 <MonoText style={styles(height).textStyle}>
                   {btnText ? btnText : "확인"}
