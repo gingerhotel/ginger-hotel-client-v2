@@ -32,9 +32,9 @@ export default function Letter() {
   }, [register]);
 
   const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
-  const [errorTitle, setErrorTitle] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [errorButtonMessage, setErrorButtonMessage] = useState<string>('');
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
   const closeErrorModal = () => {
     setErrorModalVisible(false);
   };
@@ -43,7 +43,7 @@ export default function Letter() {
     newLetter, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     {
       onSuccess: (data) => {
-        router.push("/letterCompleted") // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.push("/letterCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -54,16 +54,22 @@ export default function Letter() {
         content: data.letters,
         senderNickname: data.nickname,
         image: "",
-        hotelId: id.toString()
+        hotelId: id.toString(),
       };
       // 뮤테이션 실행
       await mutation.mutateAsync(letterData);
     } catch (error: any) {
-      if (error.response.status === 400 || error.response.status === 401 || error.response.status === 403) {
-        const obj = ErrorMessageConverter.convert(error.response.data.errorCode);
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
+        const obj = ErrorMessageConverter.convert(
+          error.response.data.errorCode
+        );
         setErrorTitle(obj[0]);
         setErrorMessage(obj[1]);
-        setErrorButtonMessage('친구 호텔로 돌아가기');
+        setErrorButtonMessage("친구 호텔로 돌아가기");
         setErrorModalVisible(true);
       }
     }
@@ -133,7 +139,7 @@ export default function Letter() {
           />
         </View>
         <ErrorModal
-          height={300}
+          height={340}
           visible={ErrorModalVisible}
           onClose={closeErrorModal}
           name={errorTitle}
