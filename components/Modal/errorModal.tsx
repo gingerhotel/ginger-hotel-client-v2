@@ -132,7 +132,7 @@ const styles = (height: number) =>
       paddingLeft: 10,
       paddingRight: 10,
       elevation: 2,
-      width: 300,
+      width: "100%",
       flexDirection: "row",
       justifyContent: "center",
       alignItems: "center",
@@ -188,6 +188,7 @@ const styles = (height: number) =>
       display: "flex",
       justifyContent: "center",
       flexDirection: "row",
+      margin: 20,
     },
     buttonOpen: {
       backgroundColor: colors.green600,

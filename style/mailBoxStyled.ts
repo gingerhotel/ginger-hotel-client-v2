@@ -69,4 +69,5 @@ export const DateText = styled(Font_16) <{ f_color: string }>`
   font-weight: 600;
   color: ${(props) => props.f_color};
   margin-right: 20px;
+  font-family: "SOYOMaple-Regular";
 `;
