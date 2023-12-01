@@ -36,6 +36,7 @@ const share = require("../../../assets/icon/link.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 const plus = require("../../../assets/icon/i_plus_2.svg");
 const key = require("../../../assets/icon/i_key_big.svg");
+const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -60,6 +61,7 @@ import { checkAuth } from "../../../api/authApi";
 import KeyModal from "../../../components/Modal/keyModal";
 import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -212,6 +214,18 @@ export default function HotelComp() {
     }
     setLetterCheck(new Date().getDate());
     router.push(`/mailbox/${id}`);
+    setModalVisible(false);
+  };
+
+  const openTodayGinger = async () => {
+    const gingerCheck = await AsyncStorage.getItem("gingerModal");
+    if (gingerCheck && String(gingerCheck) === moment().format("YYYY-MM-DD")) {
+      // 열렸다면 바로 편지함 로직으로
+      handelTodayLetters();
+      return;
+    }
+
+    setModalVisible(true);
   };
 
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
@@ -301,7 +315,7 @@ export default function HotelComp() {
                     title="오늘의 편지함 보기"
                     color="green"
                     width={288}
-                    callback={handelTodayLetters}
+                    callback={openTodayGinger}
                   />
 
                   <TouchableOpacity>
@@ -396,9 +410,13 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="벨보이 진저맨"
-          desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
-          img={ginger}
+          desc={`올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~`}
+          img={bellboy2}
+          callback={handelTodayLetters}
+          btnText={"오늘의 편지 보러가기"}
+          check={true}
         />
+
         <CenterModal
           height={180}
           visible={villageModal}

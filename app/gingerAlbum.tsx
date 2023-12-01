@@ -15,7 +15,6 @@ import { AUTH_URL } from "../api/url";
 import LoginModal from "../components/Modal/loginModal";
 
 const bellboy = require("../assets/gingerman/Album_Ginger/a_bellboy.png");
-
 const bellboy2 = require("../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 const GingerAlbum = () => {

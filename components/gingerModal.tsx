@@ -6,6 +6,9 @@ import { MonoText } from "./styledText";
 import { router } from "expo-router";
 import { useRecoilValue } from "recoil";
 import { hotelIdState } from "../atom/letterAtom";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import moment from "moment";
+
 type Props = {
   onClose?: any;
   visible?: boolean;
@@ -13,11 +16,26 @@ type Props = {
   name: string;
   desc: string;
   img: string | any;
+  callback?: any;
+  btnText?: any;
+  check?: boolean;
 };
 
-const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
-  const hotelId = useRecoilValue(hotelIdState);
-  //
+const GingerModal = ({
+  height,
+  visible,
+  onClose,
+  name,
+  img,
+  desc,
+  callback,
+  btnText,
+  check,
+}: Props) => {
+  if (check) {
+    AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
+  }
+
   const setModalVisible = () => {
     onClose(); // 부모 컴포넌트에 닫기 이벤트를 전달
   };
@@ -85,11 +103,11 @@ const GingerModal = ({ height, visible, onClose, name, img, desc }: Props) => {
             <View style={styles(height).button_wrapper}>
               <Pressable
                 style={[styles(height).button, styles(height).buttonOpen]}
-                onPress={() => {
-                  setCloseModal();
-                }}
+                onPress={callback}
               >
-                <MonoText style={styles(height).textStyle}>확인</MonoText>
+                <MonoText style={styles(height).textStyle}>
+                  {btnText ? btnText : "확인"}
+                </MonoText>
               </Pressable>
             </View>
           </View>
