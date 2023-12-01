@@ -140,6 +140,13 @@ export default function HotelComp() {
 
     // 창문 열기 로직 추가
     try {
+      const todayWindow = data?.hotelWindows[moment().format("YYYY-MM-DD")];
+      if (!todayWindow?.isOpen) {
+        alert("열 수 있는 창문이 없어요! 창문은 편지를 받아야 열 수 있어요 :)");
+        setKeyModal(false);
+        return;
+      }
+
       const res = await openWindow({
         id,
         date: moment().format("YYYY-MM-DD"),
