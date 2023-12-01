@@ -26,6 +26,7 @@ export default function MailBox() {
   const { id } = useLocalSearchParams();
   const deleteCheck = useRecoilValue(letterUpdateState);
   const windowDate = useRecoilValue(windowDateState);
+
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
     async () => await newLetterData(id, windowDate.toString())
