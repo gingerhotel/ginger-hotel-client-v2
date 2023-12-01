@@ -29,6 +29,8 @@ import { PngImg } from "../../components/pngImg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { AUTH_URL } from "../../api/url";
+import ErrorModal from "../../components/Modal/errorModal";
+import { ErrorMessageConverter } from "../../data/error-message-converter";
 const more = require("../../assets/icon/i_delete_2.svg");
 const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const building = require("../../assets/images/building.png");
@@ -56,8 +58,14 @@ export default function Village() {
     setSelected(id);
   };
 
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
 
-  
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const closeLoginModal = () => {
     setLoginModalVisible(false);
@@ -82,7 +90,6 @@ export default function Village() {
     }
   }, [segments]);
 
-
   const handelDeleteVillage = async () => {
     try {
       const res = await deleteVillage(String(selected));
@@ -95,8 +102,20 @@ export default function Village() {
         setDeleteModal(false);
         refetch();
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error: any) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
+        const obj = ErrorMessageConverter.convert(
+          error.response.data.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("닫기");
+        setErrorModalVisible(true);
+      }
     }
   };
 
@@ -270,6 +289,15 @@ export default function Village() {
           name="로그인"
           desc=""
           closeDisable={true}
+        />
+
+        <ErrorModal
+          height={200}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
         />
       </View>
     </>

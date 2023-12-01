@@ -36,6 +36,7 @@ const share = require("../../../assets/icon/link.svg");
 const icon: any = require("../../../assets/icon/i_check_green.svg");
 const plus = require("../../../assets/icon/i_plus_2.svg");
 const key = require("../../../assets/icon/i_key_big.svg");
+const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -58,6 +59,9 @@ import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
 import { checkAuth } from "../../../api/authApi";
 import KeyModal from "../../../components/Modal/keyModal";
+import ErrorModal from "../../../components/Modal/errorModal";
+import { ErrorMessageConverter } from "../../../data/error-message-converter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -75,10 +79,10 @@ export default function HotelComp() {
   const [keyModal, setKeyModal] = useState<boolean>(false);
   const [noKeyModal, setNoKeyModal] = useState<boolean>(false);
 
-  const [newLetterCount, setNewLetterCount] =useRecoilState(newLetterCountState);
+  const [newLetterCount, setNewLetterCount] =
+    useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
-
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -101,12 +105,14 @@ export default function HotelComp() {
         //   location.reload();
         // }, 1);
       }
-    } catch (err: any) {
-      Toast.show({
-        type: "iconToast",
-        text1: err?.response?.data?.errorMessage,
-        position: "top",
-      });
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -122,12 +128,14 @@ export default function HotelComp() {
         });
         router.push(`/village`);
       }
-    } catch (err: any) {
-      Toast.show({
-        type: "iconToast",
-        text1: err?.response?.data?.errorMessage,
-        position: "bottom",
-      });
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -155,8 +163,14 @@ export default function HotelComp() {
         setKeyModal(false);
         router.push(`/mailbox/${id}`);
       }
-    } catch (err: any) {
-      alert(err?.response?.data?.errorMessage);
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(
+        error?.response?.data?.errorCode
+      );
+      setErrorTitle(obj[0]);
+      setErrorMessage(obj[1]);
+      setErrorButtonMessage("내 호텔로 돌아가기");
+      setErrorModalVisible(true);
     }
   };
 
@@ -164,20 +178,7 @@ export default function HotelComp() {
     setNoKeyModal(false);
     setKeyModalVisible(true);
   };
-  // useEffect(() => {
-  //   // 페이지가 전환될 때마다 실행
-  //   navigation.setOptions({ headerShown: false }); // 이 부분이 필요한지 확인하세요.
 
-  //   // 현재 URL과 목표 URL이 다른 경우에만 새로 고침
-  //   if (
-  //     window.location.pathname !==
-  //     `/hotel/${id === undefined || id === "undefined" || !id ? 1 : id}`
-  //   ) {
-  //     window.location.href = `/hotel/${
-  //       id === undefined || id === "undefined" || !id ? 1 : id
-  //     }`;
-  //   }
-  // }, [id, navigation]);
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
   const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
 
@@ -193,8 +194,14 @@ export default function HotelComp() {
     async () => await getHotel(id as string),
     {
       refetchOnWindowFocus: false,
-      onError: (e) => {
-        console.log(`useQuery error : ${e}`);
+      onError: (error: any) => {
+        const obj = ErrorMessageConverter.convert(
+          error?.response?.data?.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("내 호텔로 돌아가기");
+        setErrorModalVisible(true);
       },
     }
   );
@@ -207,10 +214,30 @@ export default function HotelComp() {
     }
     setLetterCheck(new Date().getDate());
     router.push(`/mailbox/${id}`);
+    setModalVisible(false);
+  };
+
+  const openTodayGinger = async () => {
+    const gingerCheck = await AsyncStorage.getItem("gingerModal");
+    if (gingerCheck && String(gingerCheck) === moment().format("YYYY-MM-DD")) {
+      // 열렸다면 바로 편지함 로직으로
+      handelTodayLetters();
+      return;
+    }
+
+    setModalVisible(true);
   };
 
   const [hotelWindow, setHotelWindow] = useState(data?.hotelWindows);
   const [isMine, setIsMine] = useState(data?.isOwner);
+
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+  const closeErrorModal = () => {
+    setErrorModalVisible(false);
+  };
 
   useEffect(() => {
     if (data) {
@@ -288,7 +315,7 @@ export default function HotelComp() {
                     title="오늘의 편지함 보기"
                     color="green"
                     width={288}
-                    callback={handelTodayLetters}
+                    callback={openTodayGinger}
                   />
 
                   <TouchableOpacity>
@@ -383,9 +410,13 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="벨보이 진저맨"
-          desc="진저맨 설명 진저맨 설명 벨보이 진저맨 어쩌고 저쩌군 "
-          img={ginger}
+          desc={`올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~`}
+          img={bellboy2}
+          callback={handelTodayLetters}
+          btnText={"오늘의 편지 보러가기"}
+          check={true}
         />
+
         <CenterModal
           height={180}
           visible={villageModal}
@@ -439,6 +470,16 @@ export default function HotelComp() {
           visible={keyModalVisible}
           onClose={() => setKeyModalVisible(false)}
           code={userInfo?.code}
+        />
+
+        <ErrorModal
+          height={200}
+          visible={ErrorModalVisible}
+          onClose={closeErrorModal}
+          name={errorTitle}
+          desc={errorMessage}
+          buttonMessage={errorButtonMessage}
+          url={`hotel/${id}`}
         />
       </View>
     </ScrollView>

@@ -14,10 +14,16 @@ import Header from "../components/appHeader";
 import { useNavigation } from "expo-router/src/useNavigation";
 import { router, useLocalSearchParams } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ErrorMessageConverter } from "../data/error-message-converter";
 
 export default function createHotelAgree() {
   const props: any = useLocalSearchParams();
   const navigation = useNavigation();
+  const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
+
   React.useEffect(() => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
@@ -63,9 +69,7 @@ export default function createHotelAgree() {
       onSuccess: (data) => {
         window.location.href = `/hotel/${data.hotelId}`;
       },
-      onError: (data: any) => {
-        alert(data?.message);
-      },
+      onError: (error: any) => {},
     }
   );
 
@@ -75,8 +79,20 @@ export default function createHotelAgree() {
       await mutation.mutateAsync({
         ...props,
       });
-    } catch (error) {
-      console.error("Mutation failed:", error);
+    } catch (error: any) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
+        const obj = ErrorMessageConverter.convert(
+          error.response.data.errorCode
+        );
+        setErrorTitle(obj[0]);
+        setErrorMessage(obj[1]);
+        setErrorButtonMessage("닫기");
+        setErrorModalVisible(true);
+      }
     }
   };
 
