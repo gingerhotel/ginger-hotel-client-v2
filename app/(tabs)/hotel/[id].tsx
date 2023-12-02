@@ -38,6 +38,7 @@ const plus = require("../../../assets/icon/i_plus_2.svg");
 const key = require("../../../assets/icon/i_key_big.svg");
 const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const g_2_nutcracker = require("../../../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
+const g_painter = require("../../../assets/gingerman/Modal_Ginger/g_painter.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -415,9 +416,11 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="병정 진저맨"
-          desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고 있을 테니\n 안심하고 휴가를 보내도록 하게! `}
-          img={g_2_nutcracker}
+          name="화가 진저맨"
+          desc={`흠흠흠~ 진저호텔의 아름다운 외관에 놀랐다고?\n
+          바로 이 몸의 작품이지~ 흠흠흠~\n
+          크리에이티브 아티스트, 그게 바로 나야! `}
+          img={g_painter}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
