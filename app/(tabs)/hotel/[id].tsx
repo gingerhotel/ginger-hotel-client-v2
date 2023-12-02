@@ -415,8 +415,8 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="호두까기 진저맨"
-          desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고있을테니\n 안심하고 휴가를 보내도록 하게! `}
+          name="병정 진저맨"
+          desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고 있을 테니\n 안심하고 휴가를 보내도록 하게! `}
           img={g_2_nutcracker}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
