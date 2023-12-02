@@ -29,7 +29,6 @@ export default function LetterCompleted() {
   const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
   return (
     <View style={styles.container}>
-      <KakaoAdFit />
       <View style={styles.mailbox_items}>
         <MonoText style={styles.title}>
           {isAnswer ? "답장을" : "편지를"} 보냈어요!
