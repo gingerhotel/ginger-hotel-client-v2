@@ -160,7 +160,6 @@ export default function TabThreeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
-      <KakaoAdFit />
       <View style={styles.header}>
         <Text style={styles.header_text}>마이페이지</Text>
       </View>
