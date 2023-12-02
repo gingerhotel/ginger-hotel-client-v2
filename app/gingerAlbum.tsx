@@ -95,11 +95,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-01`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="병정 진저맨"
               date="12/02"
-              pngImage={bellboy3}
-              pngImage2={bellboy4}
-              desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고있을테니\n 안심하고 휴가를 보내도록 하게! `}
+              pngImage={bellboy4}
+              pngImage2={bellboy3}
+              desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고 있을 테니\n 안심하고 휴가를 보내도록 하게! `}
               isOpened={info[`2023-12-02`]?.isOpen}
             />
             <GingermanCard

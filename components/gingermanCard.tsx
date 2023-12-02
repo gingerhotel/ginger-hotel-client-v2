@@ -99,7 +99,7 @@ const GingermanCard = ({
           height={530}
           visible={isModalVisible}
           onClose={closeModal}
-          name="벨보이 진저맨"
+          name={String(name)}
           desc={desc}
           img={pngImage2}
         />
