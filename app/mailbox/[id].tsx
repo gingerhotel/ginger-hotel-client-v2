@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, View, Text } from "react-native";
 import NewLetterItem from "../../components/newLetterItem";
 import MailHeader from "../../components/mailHeader";
 import ReplyLetterItem from "../../components/replyLetterItem";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   hotelIdState,
   letterSwitchState,
@@ -25,11 +25,11 @@ export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
   const { id } = useLocalSearchParams();
   const deleteCheck = useRecoilValue(letterUpdateState);
-  const windowDate = useRecoilValue(windowDateState);
 
+  const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
-    async () => await newLetterData(id, windowDate.toString())
+    async () => await newLetterData(id, letterCheck.toString())
   );
   const navigation = useNavigation();
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function MailBox() {
   }, [navigation]);
   useEffect(() => {
     refetch();
-  }, [deleteCheck]);
+  }, [deleteCheck, letterCheck]);
   if (isLoading) {
     return <Text>로딩...</Text>;
   }
