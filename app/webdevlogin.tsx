@@ -173,15 +173,6 @@ export default function Login({ navigation }: any) {
         desc=""
         closeDisable={false}
       />
-      <View style={styles.social_btn_group}>
-        <SocialButton name={"apple"} />
-        <SocialButton name={"google"} />
-        <SocialButton name={"kakao"} />
-        <SocialButton name={"naver"} />
-      </View>
-
-
-
 
         <Button
           title="Sign in with Google"
