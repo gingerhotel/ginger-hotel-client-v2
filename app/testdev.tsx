@@ -8,28 +8,22 @@ import { HOTEL_URL } from "../api/url";
 
 export default function testDev() {
   
-      const getHotel = async (id: string) => {
-    try {
-      const accessToken = await AsyncStorage.getItem("accessToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-      const response = await axios.get(`${HOTEL_URL}/${id}`);
-      console.log(response.data);
-      return response.data;
-    } catch (e) {
-      console.error(e);
-      throw e;
-    }
-  };
+  const [ ip , setIp ] = React.useState();
+ 
+  React.useEffect( () => {
+    const URL = 'https://geolocation-db.com/json'
+      axios.get(URL)
+      .then((res) => {
+        console.log(res);
+        setIp(res.data.IPv4)
+      })
 
-  React.useEffect(()=>{
-    const data = getHotel("1");
-  }, 
-  [])
+    },[])
 
   return (
     <>
       <View>
-        <Text>test dev page</Text>
+        <Text>{ip}</Text>
       </View>
     </>
   );
