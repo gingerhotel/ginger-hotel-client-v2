@@ -25,7 +25,6 @@ export default function MailBox() {
   const letterRender = useRecoilValue(letterSwitchState);
   const { id } = useLocalSearchParams();
   const deleteCheck = useRecoilValue(letterUpdateState);
-
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
   const { data, isLoading, refetch } = useQuery(
     "newLetters",
@@ -40,6 +39,9 @@ export default function MailBox() {
   }, [deleteCheck, letterCheck]);
   if (isLoading) {
     return <Text>로딩...</Text>;
+  }
+  else {
+    refetch();
   }
   return (
     <View style={styles.container}>
