@@ -35,12 +35,14 @@ export default function MailBox() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
   useEffect(() => {
-    refetch();
+    //refetch();
   }, [deleteCheck, letterCheck]);
+  const [isFetched, setIsFetched] = useState<boolean>(false);
   if (isLoading) {
     return <Text>로딩...</Text>;
   }
-  else {
+  else if (!isFetched) {
+    setIsFetched(true)
     refetch();
   }
   return (
