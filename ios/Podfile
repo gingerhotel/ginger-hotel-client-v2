@@ -39,6 +39,7 @@ end
 
 target 'gingerhotelclientv2' do
   use_expo_modules!
+  pod 'GoogleUtilities', :modular_headers => true
   config = use_native_modules!
 
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
