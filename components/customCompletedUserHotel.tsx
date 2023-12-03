@@ -19,8 +19,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { hotelIdState, windowDateState } from "../atom/letterAtom";
 import { typography } from "../constants/Typo";
 import { isEmpty } from "./Modal/\bloginModal";
+import { PngImg } from "./pngImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const frontBg = require("../assets/images/front_bg.svg");
+const Hotel2 = require("../assets/images/Hotel2.svg");
+const frontBg = require("../assets/images/frontBg_ios.png");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
@@ -70,12 +72,12 @@ export default function CustomCompleteUserHotel({
   background,
 }: any) {
   const web = { top: 36, left: 50 };
-  const app = { top: 38, left: 55 };
+  const app = { top: 49, left: 18 };
   const _web = { top: 36, left: 50 };
   const myHotelId = useRecoilValue(hotelIdState);
   const [isNotMineModal, setIsNotMineModal] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
-  
+
   const setModalVisible = () => {
     onClose();
   };
@@ -85,13 +87,11 @@ export default function CustomCompleteUserHotel({
   const handleOwner = async (itemNo: number) => {
     const isLogin = await AsyncStorage.getItem("accessToken");
     if (isLogin) {
-
       if (isMy) {
-        if (window[`2023-12-${itemNo.toString().padStart(2, '0')}`]?.isOpen) {
+        if (window[`2023-12-${itemNo.toString().padStart(2, "0")}`]?.isOpen) {
           setLetterCheck(itemNo);
           router.push(`/mailbox/${myHotelId}`);
         } else {
-
         }
       } else {
         setIsNotMineModal(true);
@@ -107,9 +107,9 @@ export default function CustomCompleteUserHotel({
       num: 1,
       date: "2023-12-01",
       width: 35,
-      height: 45,
-      top: 92,
-      left: 83,
+      height: 42,
+      top: 102,
+      left: 53,
       font_top: 16,
       font_left: 14,
     },
@@ -117,29 +117,29 @@ export default function CustomCompleteUserHotel({
       num: 2,
       date: "2023-12-02",
       width: 35,
-      height: 45,
-      top: 92,
-      left: 134,
+      height: 42,
+      top: 102,
+      left: 104,
       font_top: 16,
       font_left: 13,
     },
     {
       num: 3,
       date: "2023-12-03",
-      width: 32,
-      height: 44,
-      top: 64,
-      left: 214,
+      width: 30,
+      height: 40,
+      top: 75,
+      left: 171,
       font_top: 16,
-      font_left: 12,
+      font_left: 11,
     },
     {
       num: 4,
       date: "2023-12-04",
       width: 35,
       height: 42,
-      top: 92,
-      left: 280,
+      top: 102,
+      left: 240,
       font_top: 16,
       font_left: 13,
     },
@@ -148,78 +148,78 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-05",
       width: 35,
       height: 42,
-      top: 92,
-      left: 330,
+      top: 102,
+      left: 290,
       font_top: 16,
       font_left: 13,
     },
     {
       num: 6,
       date: "2023-12-06",
-      width: 38,
-      height: 50,
-      top: 161,
-      left: 83,
+      width: 36,
+      height: 48,
+      top: 164,
+      left: 48,
       font_top: 18,
       font_left: 15,
     },
     {
       num: 7,
       date: "2023-12-07",
-      width: 38,
-      height: 50,
-      top: 161,
-      left: 134,
+      width: 36,
+      height: 48,
+      top: 164,
+      left: 99,
       font_top: 18,
-      font_left: 16,
+      font_left: 15,
     },
     {
       num: 8,
       date: "2023-12-08",
       width: 35,
       height: 47,
-      top: 156,
-      left: 211,
+      top: 158,
+      left: 168,
       font_top: 17,
       font_left: 13,
     },
     {
       num: 9,
       date: "2023-12-09",
-      width: 38,
-      height: 50,
-      top: 161,
-      left: 285,
+      width: 36,
+      height: 48,
+      top: 164,
+      left: 235,
       font_top: 18,
       font_left: 15,
     },
     {
       num: 10,
       date: "2023-12-10",
-      width: 38,
-      height: 50,
-      top: 161,
-      left: 335,
+      width: 36,
+      height: 48,
+      top: 164,
+      left: 283,
       font_top: 18,
       font_left: 12,
     },
     {
       num: 11,
       date: "2023-12-11",
-      width: 38,
-      height: 50,
+      width: 36,
+      height: 48,
       top: 229,
-      left: 83,
+      left: 48,
       font_top: 19,
       font_left: 13,
     },
     {
       num: 12,
       date: "2023-12-12",
-      width: 38,
-      height: 50,
+      width: 36,
+      height: 48,
       top: 229,
-      left: 134,
+      left: 99,
       font_top: 19,
       font_left: 11,
     },
@@ -228,48 +228,48 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-13",
       width: 47,
       height: 45,
-      top: 232,
-      left: 206,
+      top: 231,
+      left: 163,
       font_top: 14,
       font_left: 16,
     },
     {
       num: 14,
       date: "2023-12-14",
-      width: 38,
-      height: 50,
+      width: 36,
+      height: 48,
       top: 229,
-      left: 285,
+      left: 235,
       font_top: 19,
       font_left: 12,
     },
     {
       num: 15,
       date: "2023-12-15",
-      width: 38,
-      height: 50,
+      width: 36,
+      height: 48,
       top: 229,
-      left: 335,
+      left: 283,
       font_top: 19,
       font_left: 12,
     },
     {
       num: 16,
       date: "2023-12-16",
-      width: 38,
-      height: 50,
-      top: 296,
-      left: 83,
+      width: 36,
+      height: 48,
+      top: 291,
+      left: 48,
       font_top: 19,
       font_left: 12,
     },
     {
       num: 17,
       date: "2023-12-17",
-      width: 38,
-      height: 50,
-      top: 296,
-      left: 134,
+      width: 36,
+      height: 48,
+      top: 291,
+      left: 99,
       font_top: 19,
       font_left: 12,
     },
@@ -278,28 +278,28 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-18",
       width: 47,
       height: 35,
-      top: 282,
-      left: 206,
+      top: 276,
+      left: 163,
       font_top: 11,
       font_left: 16,
     },
     {
       num: 19,
       date: "2023-12-19",
-      width: 38,
-      height: 50,
-      top: 296,
-      left: 285,
+      width: 36,
+      height: 48,
+      top: 291,
+      left: 235,
       font_top: 19,
       font_left: 12,
     },
     {
       num: 20,
       date: "2023-12-20",
-      width: 38,
-      height: 50,
-      top: 296,
-      left: 335,
+      width: 36,
+      height: 48,
+      top: 291,
+      left: 283,
       font_top: 19,
       font_left: 11,
     },
@@ -308,8 +308,8 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-21",
       width: 40,
       height: 53,
-      top: 366,
-      left: 83,
+      top: 353,
+      left: 48,
       font_top: 21,
       font_left: 13,
     },
@@ -318,8 +318,8 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-22",
       width: 40,
       height: 53,
-      top: 366,
-      left: 134,
+      top: 353,
+      left: 99,
       font_top: 21,
       font_left: 12,
     },
@@ -328,8 +328,8 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-23",
       width: 40,
       height: 53,
-      top: 366,
-      left: 285,
+      top: 353,
+      left: 235,
       font_top: 21,
       font_left: 12,
     },
@@ -338,16 +338,16 @@ export default function CustomCompleteUserHotel({
       date: "2023-12-24",
       width: 40,
       height: 53,
-      top: 366,
-      left: 335,
+      top: 353,
+      left: 283,
       font_top: 21,
       font_left: 12,
     },
     {
       num: 25,
       date: "2023-12-25",
-      top: 380,
-      left: 218,
+      top: 353,
+      left: 283,
       font_top: 18,
       font_left: 12,
     },
@@ -405,13 +405,10 @@ export default function CustomCompleteUserHotel({
         ]}
       >
         <SvgImg
-          url={Hotel1}
-          width={375}
-          height={400}
+          url={Hotel2}
+          width={340}
+          height={450}
           style={{
-            width: 435,
-            height: 480,
-            marginTop: 20,
             zIndex: 3,
           }}
         />
@@ -425,7 +422,7 @@ export default function CustomCompleteUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg width={407} height={547} viewBox="0 0 365 480" fill="none">
+        <Svg width={350} height={480} viewBox="0 0 340 450" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -445,13 +442,17 @@ export default function CustomCompleteUserHotel({
           />
         </Svg>
       </View>
+
       <View
         style={[
-          { position: "absolute", zIndex: 2 },
-          Platform.OS === "ios" || Platform.OS === "android" ? app : web,
+          {
+            position: "absolute",
+            zIndex: 2,
+          },
+          Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg width={407} height={547} viewBox="0 0 365 480" fill="none">
+        <Svg width={350} height={480} viewBox="0 0 340 450" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -483,14 +484,13 @@ export default function CustomCompleteUserHotel({
         }}
       >
         <SvgImg
+          width={93}
+          height={290}
           url={buildingDeco[buildingDecorator]}
           style={{
-            width: 103,
-            height: 260,
-            marginTop: 20,
             zIndex: 99,
-            top: 84,
-            left: 178,
+            top: 89,
+            left: 138,
             position: "absolute",
           }}
         />
@@ -503,9 +503,9 @@ export default function CustomCompleteUserHotel({
       >
         <SvgImg
           url={backgroundDeco[background]}
+          width={643}
+          height={400}
           style={{
-            width: 643,
-            height: 400,
             marginTop: 20,
             zIndex: 3,
             top: 0,
@@ -516,7 +516,7 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 5,
+          zIndex: 7,
           position: "absolute",
         }}
       >
@@ -528,9 +528,9 @@ export default function CustomCompleteUserHotel({
             width: 150,
             height: 140,
             marginTop: 20,
-            zIndex: 5,
-            top: 370,
-            left: 24,
+            zIndex: 3,
+            top: 340,
+            left: 0,
             position: "absolute",
           }}
         />
@@ -541,17 +541,16 @@ export default function CustomCompleteUserHotel({
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={frontBg}
-          width={150}
-          height={140}
+          width={103}
+          height={104}
           style={{
-            width: 440,
-            height: 150,
-            marginTop: 20,
+            width: 403,
+            height: 124,
             zIndex: 5,
-            top: 360,
-            left: 10,
+            top: 370,
+            left: -16,
             position: "absolute",
           }}
         />
@@ -559,7 +558,7 @@ export default function CustomCompleteUserHotel({
 
       <View
         style={{
-          zIndex: 5,
+          zIndex: 6,
           position: "absolute",
         }}
       >

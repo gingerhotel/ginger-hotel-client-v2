@@ -89,7 +89,7 @@ export default function createHotelSelect() {
 
           {/* <Chip text={"선택안함"} active={activeBirth} /> */}
           <View style={styles.input_wrapper}>
-            <DatePicker
+            {/* <DatePicker
               portalId="root-portal"
               selected={selectedDate}
               onChange={handleDateChange}
@@ -97,7 +97,7 @@ export default function createHotelSelect() {
               placeholderText="YYYY-MM-DD"
               showYearDropdown
               popperPlacement="bottom"
-            />
+            /> */}
           </View>
 
           <MonoText style={styles.input_title}>친구코드 입력</MonoText>
