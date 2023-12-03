@@ -198,8 +198,8 @@ export default function Village() {
               {data?.villages?.map((village: any) => (
                 <View style={{ marginBottom: 10 }} key={village.id}>
                   <TouchableOpacity
-                    onPress={() =>
-                      (window.location.href = `/hotel/${village.hotelId}`)
+                    onPress={() => router.push(`/hotel/${village.hotelId}`)
+                      // (window.location.href = `/hotel/${village.hotelId}`)
                     }
                   >
                     <CustomSmallHotel
