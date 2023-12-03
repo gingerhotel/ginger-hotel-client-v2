@@ -56,7 +56,19 @@ type Props = {
 
 const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Props) => {
   const { id } = useLocalSearchParams();
+  const [result, setResult] = useState<string>("");
 
+  const signInWithKakao = async (): Promise<void> => {
+    try {
+      const token = await login();
+      console.log(token);
+      setResult(JSON.stringify(token));
+    } catch (err) {
+      console.error("login err", err);
+    }
+  };
+
+  
   const [userInfo, setUserInfo] = React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId:
@@ -309,3 +321,7 @@ const styles = (height: number) =>
   });
 
 export default LoginModal;
+function login() {
+  throw new Error("Function not implemented.");
+}
+
