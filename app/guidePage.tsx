@@ -73,7 +73,7 @@ const GuidePage = () => {
               하루에 하나, 오늘 날짜가 적힌 창문
             </Text>
             만 열 수 있어요!
-            <br />
+            {/* <br /> */}
             걱정마세요! 오늘 창문을 못 열었더라도 편지는 창문 안에 안전하게
             보관되어 크리스마스 당일이 되면 읽을 수 있으니까요.
           </Text>
@@ -82,7 +82,7 @@ const GuidePage = () => {
           <Text style={styles.content_title}>진저맨 앨범</Text>
           <Text style={styles.content_text}>
             진저호텔에 머물고 있는 25종 진저맨 카드를 모두 모아보세요!
-            <br />
+            {/* <br /> */}
             창문을 열면 진저맨 카드가 자동으로 수집돼요.
           </Text>
         </View>
