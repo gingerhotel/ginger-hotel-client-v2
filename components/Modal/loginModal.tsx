@@ -29,10 +29,12 @@ import {
   login,
   getProfile as getKakaoProfile,
 } from "@react-native-seoul/kakao-login";
+// import { GoogleSignin } from "@react-native-google-signin/google-signin";
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
 const closeIcon = require("../../assets/icon/i_close_line.svg");
+
 
 // console.log(RestApiKey);
 
@@ -123,6 +125,8 @@ const LoginModal = ({
       "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
     iosClientId:
       "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+    androidClientId:
+      "251638133705-5r0r2kasfu3gnvfla7ad4kk4d4sr16ru.apps.googleusercontent.com",
   });
 
   React.useEffect(() => {

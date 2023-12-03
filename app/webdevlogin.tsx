@@ -9,8 +9,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { WithLocalSvg } from "react-native-svg";
 import SocialButton from "../components/socialButton";
 
-import axios from 'axios';
-
+import axios from "axios";
 // import * as AppleAuthentication from "expo-apple-authentication";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";

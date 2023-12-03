@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { useFonts } from "expo-font";
 import Toast from "react-native-toast-message";
 import { toastConfig } from "../components/toast";
+// import { GoogleOAuthProvider } from "@react-oauth/google";
+
 
 export default function _layout() {
   const queryClient = new QueryClient();

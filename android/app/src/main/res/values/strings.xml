@@ -4,4 +4,5 @@
   <string name="expo_splash_screen_status_bar_translucent" translatable="false">false</string>
   <string name="expo_system_ui_user_interface_style" translatable="false">automatic</string>
   <string name="expo_runtime_version">1.0.1</string>
+  <string name="kakao_app_key">9ac294d2ce5192ddcfa96b9d289a8657</string>
 </resources>
