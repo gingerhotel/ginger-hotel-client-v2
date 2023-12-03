@@ -2,7 +2,6 @@ import { View, Text, Button, Image } from "react-native";
 import React, { useEffect } from "react";
 import { Link, Redirect, router } from "expo-router";
 import { SvgImg } from "../components/svgImg";
-import KakaoAdFit from "../advertisement/KakaoAdFit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { UserApiResponse } from "../api/interface";

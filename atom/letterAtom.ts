@@ -1,7 +1,7 @@
 
 import { atom } from "recoil";
 import { User } from "../api/interface";
-import { recoilPersist } from 'recoil-persist';
+// import { recoilPersist } from 'recoil-persist';
 interface letterCountType {
     lettersLen: number,
     repliesLen: number
@@ -10,7 +10,7 @@ interface letterSwitchType {
     new: boolean,
     reply: boolean
 }
-const { persistAtom } = recoilPersist();
+// const { persistAtom } = recoilPersist();
 export const letterSwitchState = atom<letterSwitchType>({
     key: 'letterSwitchState',
     default: {
@@ -45,7 +45,7 @@ export const userCodeState = atom<User>({
         keyCount: 0,
         feekCount: 0,
     },
-    effects_UNSTABLE: [persistAtom],
+    // effects_UNSTABLE: [persistAtom],
 })
 export const letterCountState = atom<letterCountType>({
     key: 'userCodeState',
@@ -53,7 +53,7 @@ export const letterCountState = atom<letterCountType>({
         lettersLen: 0,
         repliesLen: 0
     },
-    effects_UNSTABLE: [persistAtom],
+    // effects_UNSTABLE: [persistAtom],
 })
 export const letterTypeState = atom<boolean>({
     key: 'letterTypeState',
@@ -63,5 +63,5 @@ export const letterTypeState = atom<boolean>({
 export const windowDateState = atom<number>({
     key: 'windowDateState',
     default: 0,
-    effects_UNSTABLE: [persistAtom],
+    // effects_UNSTABLE: [persistAtom],
 })

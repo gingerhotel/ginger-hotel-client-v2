@@ -16,7 +16,6 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { hotelIdState, userCodeState } from "../../atom/letterAtom";
 import { router, useSegments } from "expo-router";
 import LoginModal from "../../components/Modal/\bloginModal";
-import KakaoAdFit_relative from "../../advertisement/KakaoAdFit_relative";
 import KeyModal from "../../components/Modal/keyModal";
 import PeekModal from "../../components/Modal/peekModal";
 import { SvgImg } from "../../components/svgImg";
@@ -24,7 +23,6 @@ import { useQuery } from "react-query";
 import { checkAuth } from "../../api/authApi";
 import { AUTH_URL } from "../../api/url";
 import Toast from "react-native-toast-message";
-import KakaoAdFit from "../../advertisement/KakaoAdFit";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
 

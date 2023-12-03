@@ -23,7 +23,6 @@ import { UserApiResponse } from "../../api/interface";
 import { MEMBER_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
-import { signInWithKakao, RestApiKey, redirectUrl } from "../../api/kakaoApi";
 import { WithLocalSvg } from "react-native-svg";
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
@@ -31,7 +30,6 @@ const googleLogo = require("../../assets/logos/google.png");
 const closeIcon = require("../../assets/icon/i_close_line.svg");
 
 // console.log(RestApiKey);
-const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${RestApiKey}&redirect_uri=${redirectUrl}&response_type=code`;
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -144,24 +142,6 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
     onClose();
   };
 
-  useEffect(() => {
-    if (route.params && route.params.code) {
-      signInWithKakao(
-        // id as string,
-        route.params.code,
-        (successData: any) => {
-          // console.log(successData);
-          // router.push("/create");
-          //location.reload();
-          // router.push(`/hotel/${id}`);
-        },
-        (error: any) => {
-          // 처리 실패 시 로직
-          console.error(error);
-        }
-      );
-    }
-  }, [route.params]);
 
   return (
     <Modal
@@ -202,17 +182,7 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
             }}
           ></View>
           <View style={[styles(height).kakao]}>
-            <a
-              href={kakaoUrl}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textDecoration: "none",
-                width: "100%",
-              }}
-              onClick={() => AsyncStorage.setItem("kakaoUserId", String(id))}
-            >
+
               {Platform.OS === "ios" || Platform.OS === "android" ? (
                 <WithLocalSvg asset={kakaoLogo} />
               ) : (
@@ -221,7 +191,6 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
               <MonoText style={styles(height).kakao_text}>
                 카카오 계정으로 로그인
               </MonoText>
-            </a>
           </View>
           <View>
             <Pressable

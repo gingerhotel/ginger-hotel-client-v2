@@ -15,7 +15,6 @@ import { colors } from "../constants/Colors";
 import { SvgImg } from "../components/svgImg";
 import { useRecoilState } from "recoil";
 import { hotelIdState } from "../atom/letterAtom";
-import KakaoAdFit from "../advertisement/KakaoAdFit";
 const i_reply_letter = require("../assets/images/i_reply_letter.svg");
 export default function LetterCompleted() {
   const navigation = useNavigation();

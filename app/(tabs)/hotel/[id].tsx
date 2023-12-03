@@ -55,7 +55,6 @@ import ProgressBar from "../../../components/progressBar";
 import CenterModal from "../../../components/centerModal";
 import LoginModal from "../../../components/Modal/\bloginModal";
 import CustomCompleteUserHotel from "../../../components/customCompletedUserHotel";
-import KakaoAdFit from "../../../advertisement/KakaoAdFit";
 import SnowfallContainer from "../../../components/snow/snowfallContainer";
 import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
@@ -265,10 +264,6 @@ export default function HotelComp() {
   return (
     <ScrollView style={{ backgroundColor: colors.greyblack }}>
       <View style={{ backgroundColor: colors.greyblack }}>
-        <SnowfallContainer>
-          <Snowfall color="white" snowflakeCount={50} />
-        </SnowfallContainer>
-        <KakaoAdFit />
         <Header
           isOwner={data.isOwner}
           keyCount={data?.keyCount}
