@@ -417,9 +417,7 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="화가 진저맨"
-          desc={`흠흠흠~ 진저호텔의 아름다운 외관에 놀랐다고?\n
-          바로 이 몸의 작품이지~ 흠흠흠~\n
-          크리에이티브 아티스트, 그게 바로 나야! `}
+          desc={`흠흠흠~ 진저호텔의 아름다운 외관에 놀랐다고?\n바로 이 몸의 작품이지~ 흠흠흠~\n크리에이티브 아티스트, 그게 바로 나야! `}
           img={g_painter}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
