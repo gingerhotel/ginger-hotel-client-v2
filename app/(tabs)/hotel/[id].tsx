@@ -198,13 +198,14 @@ export default function HotelComp() {
     {
       refetchOnWindowFocus: false,
       onError: (error: any) => {
-        const obj = ErrorMessageConverter.convert(
-          error?.response?.data?.errorCode
-        );
-        setErrorTitle(obj[0]);
-        setErrorMessage(obj[1]);
-        setErrorButtonMessage("내 호텔로 돌아가기");
-        setErrorModalVisible(true);
+        console.log(error);
+        // const obj = ErrorMessageConverter.convert(
+        //   error?.response?.data?.errorCode
+        // );
+        // setErrorTitle(obj[0]);
+        // setErrorMessage(obj[1]);
+        // setErrorButtonMessage("내 호텔로 돌아가기");
+        // setErrorModalVisible(true);
       },
     }
   );

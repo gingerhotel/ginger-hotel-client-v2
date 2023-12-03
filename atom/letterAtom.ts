@@ -35,18 +35,18 @@ export const replyNameState = atom<string>({
     default: ''
 })
 export const userCodeState = atom<User>({
-    key: 'userCodeState',
-    default: {
-        nickname: "",
-        code: "",
-        membership: "",
-        gender: null,
-        birthDate: null,
-        keyCount: 0,
-        feekCount: 0,
-    },
-    // effects_UNSTABLE: [persistAtom],
-})
+  key: "userCodeState2",
+  default: {
+    nickname: "",
+    code: "",
+    membership: "",
+    gender: null,
+    birthDate: null,
+    keyCount: 0,
+    feekCount: 0,
+  },
+  // effects_UNSTABLE: [persistAtom],
+});
 export const letterCountState = atom<letterCountType>({
     key: 'userCodeState',
     default: {

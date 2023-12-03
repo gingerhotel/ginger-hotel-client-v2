@@ -13,7 +13,7 @@ export const newHotel = async (props: NewHotel) => {
     const response = await axios.post(`${AUTH_URL}/hotel`, props);
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
+    // alert(err?.response?.data?.errorMessage);
     window.location.href = `/hotel/1`;
   }
 };
@@ -25,8 +25,8 @@ export const getHotel = async (id: string) => {
     const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
-    window.location.href = `/hotel/1`;
+    // alert(err?.response?.data?.errorMessage);
+    // window.location.href = `/hotel/1`;
   }
 };
 
@@ -46,7 +46,7 @@ export const updateHotel = async (props: any) => {
     });
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
+    // alert(err?.response?.data?.errorMessage);
   }
 };
 

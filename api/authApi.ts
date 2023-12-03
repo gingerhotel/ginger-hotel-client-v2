@@ -10,17 +10,17 @@ export const authGoogle = async (props: Auth) => {
     const response = await axios.post(`${AUTH_URL}/google`, props);
     return response;
   } catch (e: any) {
-    alert(e?.response?.data?.errorMessage);
+    // alert(e?.response?.data?.errorMessage);
   }
 };
 
-export const authKakao = async (props: KakaoAuth) => {
+export const authKakao = async (props: any) => {
   try {
     const response = await axios.post(`${AUTH_URL}/kakao`, props);
     return response;
   } catch (e: any) {
     console.error(e);
-    alert(e?.response?.data?.errorMessage);
+    // alert(e?.response?.data?.errorMessage);
   }
 };
 
@@ -35,7 +35,7 @@ export const checkMemberCode = async (code: string) => {
     });
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
+    // alert(err?.response?.data?.errorMessage);
   }
 };
 export const checkAuth = async () => {
@@ -46,6 +46,6 @@ export const checkAuth = async () => {
     return response.data;
   } catch (err: any) {
     // alert(err?.response?.data?.errorMessage);
-    console.log(err?.response?.data?.errorMessage);
+    // console.log(err?.response?.data?.errorMessage);
   }
 };

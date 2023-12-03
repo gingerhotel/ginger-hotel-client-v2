@@ -18,12 +18,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import SocialButton from "../socialButton";
 import axios from "axios";
 import { useMutation } from "react-query";
-import { authGoogle } from "../../api/authApi";
+import { authGoogle, authKakao } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
 import { MEMBER_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
 import { WithLocalSvg } from "react-native-svg";
+
+import {
+  login,
+  getProfile as getKakaoProfile,
+} from "@react-native-seoul/kakao-login";
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
@@ -32,7 +37,6 @@ const closeIcon = require("../../assets/icon/i_close_line.svg");
 // console.log(RestApiKey);
 
 WebBrowser.maybeCompleteAuthSession();
-
 
 export function isEmpty(str: string) {
   if (
@@ -51,24 +55,68 @@ type Props = {
   height?: number | any;
   name: string;
   desc: string;
-  closeDisable : boolean;
+  closeDisable: boolean;
 };
 
-const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Props) => {
+const LoginModal = ({
+  height,
+  visible,
+  onClose,
+  name,
+  desc,
+  closeDisable,
+}: Props) => {
   const { id } = useLocalSearchParams();
   const [result, setResult] = useState<string>("");
 
   const signInWithKakao = async (): Promise<void> => {
     try {
       const token = await login();
-      console.log(token);
       setResult(JSON.stringify(token));
+      if (token) {
+        const profile = await getKakaoProfile();
+        console.log(profile);
+        const _data = {
+          id: profile.id,
+          name: profile.nickname,
+          ci: token,
+        };
+
+        try {
+          const response = await authKakao(_data);
+          const { status, data }: any = response;
+          AsyncStorage.setItem("accessToken", data?.accessToken);
+
+          if (status === 200) {
+            router.push("/create");
+          } else if (status === 201) {
+            const id: any = await AsyncStorage.getItem("kakaoUserId");
+            if (!isEmpty(id as string)) {
+              window.location.href = `/hotel/${id}`;
+              AsyncStorage.removeItem("kakaoUserId");
+            } else {
+              axios
+                .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                  headers: {
+                    Authorization: `Bearer ${data.accessToken}`,
+                  },
+                })
+                .then((response) => {
+                  const { hotel } = response.data;
+                  window.location.href = `/hotel/${hotel.id}`;
+                });
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      // setResult(JSON.stringify(token));
     } catch (err) {
       console.error("login err", err);
     }
   };
 
-  
   const [userInfo, setUserInfo] = React.useState(null);
   const [request, response, promptAsync] = Google.useAuthRequest({
     webClientId:
@@ -96,7 +144,7 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
   }
 
   const mutation = useMutation(authGoogle, {
-    onSuccess: (res : any) => {
+    onSuccess: (res: any) => {
       AsyncStorage.setItem("accessToken", res.data.accessToken);
 
       if (res.status == 200) {
@@ -154,6 +202,7 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
     onClose();
   };
 
+  const kakaoTest = () => {};
 
   return (
     <Modal
@@ -167,15 +216,17 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
       <View style={styles(height).centeredView}>
         <View style={styles(height).modalView}>
           <View style={styles(height).close_btn}>
-          {closeDisable ? <></> : 
-            <Pressable onPress={close}>
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={closeIcon} />
-              ) : (
-                <Image source={closeIcon} />
-              )}
-            </Pressable>
-          }
+            {closeDisable ? (
+              <></>
+            ) : (
+              <Pressable onPress={close}>
+                {Platform.OS === "ios" || Platform.OS === "android" ? (
+                  <WithLocalSvg asset={closeIcon} />
+                ) : (
+                  <Image source={closeIcon} />
+                )}
+              </Pressable>
+            )}
           </View>
           <Text style={[styles(height).modal_title]}>{name}</Text>
           <Text style={[styles(height).modal_desc]}>
@@ -193,16 +244,24 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
               marginVertical: 15,
             }}
           ></View>
-          <View style={[styles(height).kakao]}>
+          <Pressable
+            style={[styles(height).button, styles(height).google]}
+            onPress={signInWithKakao}
+          >
+            <MonoText style={styles(height).kakao_text}>
+              카카오 계정으로 로그인
+            </MonoText>
+          </Pressable>
 
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={kakaoLogo} />
-              ) : (
-                <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
-              )}
-              <MonoText style={styles(height).kakao_text}>
-                카카오 계정으로 로그인
-              </MonoText>
+          <View style={[styles(height).kakao]}>
+            {Platform.OS === "ios" || Platform.OS === "android" ? (
+              <WithLocalSvg asset={kakaoLogo} />
+            ) : (
+              <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
+            )}
+            <MonoText style={styles(height).kakao_text}>
+              카카오 계정으로 로그인
+            </MonoText>
           </View>
           <View>
             <Pressable
@@ -224,7 +283,6 @@ const LoginModal = ({ height, visible, onClose, name, desc , closeDisable}: Prop
               </MonoText>
             </Pressable>
           </View>
-
         </View>
       </View>
     </Modal>
@@ -321,7 +379,3 @@ const styles = (height: number) =>
   });
 
 export default LoginModal;
-function login() {
-  throw new Error("Function not implemented.");
-}
-
