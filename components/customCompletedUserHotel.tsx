@@ -525,8 +525,6 @@ export default function CustomCompleteUserHotel({
           width={150}
           height={140}
           style={{
-            width: 150,
-            height: 140,
             marginTop: 20,
             zIndex: 3,
             top: 340,

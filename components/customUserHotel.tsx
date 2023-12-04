@@ -2,10 +2,13 @@ import React from "react";
 import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
+import { PngImg } from "./pngImg";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const frontBg = require("../assets/images/front_bg.svg");
+const Hotel2 = require("../assets/images/Hotel2.svg");
+
+const frontBg = require("../assets/images/frontBg_ios.png");
 
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
@@ -19,8 +22,8 @@ const backgroundImg01 = require(`../assets/decorations/background01.svg`);
 const backgroundImg02 = require(`../assets/decorations/background02.svg`);
 const backgroundImg03 = require(`../assets/decorations/background03.svg`);
 
-const windowImg01 = require(`../assets/decorations/windowDeco01_com.svg`);
-const windowImg02 = require(`../assets/decorations/windowDeco02_com.svg`);
+const windowImg01 = require(`../assets/decorations/windowDeco01_com.png`);
+const windowImg02 = require(`../assets/decorations/windowDeco02_com.png`);
 
 const gardenDeco: any = {
   gardenDeco01: gardenDecoImg01,
@@ -170,27 +173,25 @@ export default function CustomUserHotel({
 }: any) {
   const web = { top: 42, left: 43 };
   const _web = { top: 42, left: 42 };
-  const app = { top: 63, left: 5 };
+  const app = { top: 47, left: 19 };
 
   return (
     <>
       <View
         style={[
           styles.img_wrapper,
-          is_border && {
-            borderWidth: 0.3,
-            borderColor: colors.grey500,
-          },
+          is_border &&
+            {
+              // borderWidth: 0.3,
+              // borderColor: colors.grey500,
+            },
         ]}
       >
         <SvgImg
-          url={Hotel1}
-          width={355}
-          height={390}
+          url={Hotel2}
+          width={340}
+          height={450}
           style={{
-            width: 355,
-            height: 390,
-            marginTop: 20,
             zIndex: 3,
           }}
         />
@@ -204,7 +205,7 @@ export default function CustomUserHotel({
           Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg width="327" height="355" viewBox="0 0 355 390" fill="none">
+        <Svg width="350" height="482" viewBox="0 0 340 450" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -226,11 +227,14 @@ export default function CustomUserHotel({
       </View>
       <View
         style={[
-          { position: "absolute", zIndex: 2 },
-          Platform.OS === "ios" || Platform.OS === "android" ? app : web,
+          {
+            position: "absolute",
+            zIndex: 2,
+          },
+          Platform.OS === "ios" || Platform.OS === "android" ? app : _web,
         ]}
       >
-        <Svg width="327" height="355" viewBox="0 0 355 390" fill="none">
+        <Svg width="350" height="482" viewBox="0 0 340 450" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -255,7 +259,6 @@ export default function CustomUserHotel({
           />
         </Svg>
       </View>
-
       <View
         style={{
           zIndex: 3,
@@ -263,14 +266,13 @@ export default function CustomUserHotel({
         }}
       >
         <SvgImg
+          width={93}
+          height={290}
           url={buildingDeco[buildingDecorator]}
           style={{
-            width: 82,
-            height: 220,
-            marginTop: 20,
             zIndex: 99,
-            top: 68,
-            left: 152,
+            top: 93,
+            left: 138,
             position: "absolute",
           }}
         />
@@ -284,15 +286,13 @@ export default function CustomUserHotel({
       >
         <SvgImg
           url={gardenDeco[gardenDecorator]}
-          width={150}
-          height={140}
+          width={135}
+          height={125}
           style={{
-            width: 150,
-            height: 140,
             marginTop: 20,
-            zIndex: 5,
-            top: 290,
-            left: 18,
+            zIndex: 3,
+            top: 360,
+            left: 0,
             position: "absolute",
           }}
         />
@@ -304,17 +304,17 @@ export default function CustomUserHotel({
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={windowDeco[windowDecorator]}
-          width={355}
-          height={390}
+          width={260}
+          height={310}
           style={{
-            width: 245,
-            height: 293,
-            marginTop: 20,
+            width: 280,
+            height: 332,
+            // marginTop: 20,
             zIndex: 5,
-            top: 36,
-            left: 68,
+            top: 73,
+            left: 46,
             position: "absolute",
           }}
         />
@@ -328,15 +328,13 @@ export default function CustomUserHotel({
       >
         <SvgImg
           url={backgroundDeco[background]}
-          width={340}
-          height={416}
+          width={643}
+          height={400}
           style={{
-            width: 373,
-            height: 375,
             marginTop: 20,
             zIndex: 4,
-            top: -20,
-            left: 5,
+            top: 0,
+            left: -82,
             position: "absolute",
           }}
         />
@@ -348,17 +346,17 @@ export default function CustomUserHotel({
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={frontBg}
-          width={150}
-          height={140}
+          width={103}
+          height={104}
           style={{
-            width: 365,
-            height: 130,
+            width: 358,
+            height: 114,
             marginTop: 20,
             zIndex: 5,
-            top: 290,
-            left: 10,
+            top: 370,
+            left: 6,
             position: "absolute",
           }}
         />

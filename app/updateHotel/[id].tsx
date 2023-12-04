@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingLeft: 20,
     paddingRight: 20,
-    marginTop: 30,
+    marginTop: 50,
   },
   title_wrapper: {
     display: "flex",
