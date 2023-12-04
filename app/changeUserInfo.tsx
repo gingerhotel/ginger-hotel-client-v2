@@ -158,7 +158,7 @@ const ChangeUserInfo = () => {
               생년월일을 형식에 맞게 입력해주세요.
             </MonoText>
 
-            <View style={styles.input_wrapper}>
+            {/* <View style={styles.input_wrapper}>
               <DatePicker
                 locale={ko}
                 portalId="root-portal"
@@ -169,7 +169,7 @@ const ChangeUserInfo = () => {
                 showYearDropdown
                 popperPlacement="bottom"
               />
-            </View>
+            </View> */}
 
             <TouchableOpacity
               accessible={true}
