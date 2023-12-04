@@ -73,11 +73,11 @@ const LoginModal = ({
 
   const signInWithKakao = async (): Promise<void> => {
     try {
+      close();
       const token = await login();
       setResult(JSON.stringify(token));
       if (token) {
         const profile = await getKakaoProfile();
-        console.log(profile);
         const _data = {
           id: profile.id,
           name: profile.nickname,
@@ -90,11 +90,11 @@ const LoginModal = ({
           AsyncStorage.setItem("accessToken", data?.accessToken);
 
           if (status === 200) {
-            router.push("/create");
+            router.replace("/create");
           } else if (status === 201) {
             const id: any = await AsyncStorage.getItem("kakaoUserId");
             if (!isEmpty(id as string)) {
-              window.location.href = `/hotel/${id}`;
+              router.replace(`/hotel/${id}`);
               AsyncStorage.removeItem("kakaoUserId");
             } else {
               axios
@@ -105,7 +105,7 @@ const LoginModal = ({
                 })
                 .then((response) => {
                   const { hotel } = response.data;
-                  window.location.href = `/hotel/${hotel.id}`;
+                  router.replace(`/hotel/${hotel.id}`);
                 });
             }
           }
@@ -152,10 +152,10 @@ const LoginModal = ({
       AsyncStorage.setItem("accessToken", res.data.accessToken);
 
       if (res.status == 200) {
-        router.push("/create");
+        router.replace("/create");
       } else if (res.status == 201) {
         if (!isEmpty(id as string)) {
-          router.push(`/hotel/${id}`);
+          router.replace(`/hotel/${id}`);
           location.reload();
         } else {
           // Todo : Need a Funcional code
@@ -167,7 +167,7 @@ const LoginModal = ({
             })
             .then((response) => {
               const { hotel } = response.data;
-              router.push(`/hotel/${hotel.id}`);
+              router.replace(`/hotel/${hotel.id}`);
               location.reload();
             });
         }

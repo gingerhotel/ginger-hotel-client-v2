@@ -24,7 +24,7 @@ const BottomModal = ({ height, visible, onClose, id, callback }: any) => {
   const onClickModal = (text: string) => {
     switch (text) {
       case "답장하기":
-        router.push("/answer");
+        router.replace("/answer");
         onClose();
         break;
       case "엿보기":

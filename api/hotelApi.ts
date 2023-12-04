@@ -14,7 +14,7 @@ export const newHotel = async (props: NewHotel) => {
     return response.data;
   } catch (err: any) {
     // alert(err?.response?.data?.errorMessage);
-    window.location.href = `/hotel/1`;
+    // window.location.href = `/hotel/1`;
   }
 };
 

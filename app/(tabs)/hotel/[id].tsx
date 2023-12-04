@@ -106,7 +106,7 @@ export default function HotelComp() {
     try {
       const res = await checkAuth();
       if (res?.success) {
-        router.push(`/hotel/${res.hotelId}`);
+        router.replace(`/hotel/${res.hotelId}`);
       }
     } catch (error: any) {
       const obj = ErrorMessageConverter.convert(
@@ -164,7 +164,7 @@ export default function HotelComp() {
       });
       if (res?.success) {
         setKeyModal(false);
-        router.push(`/mailbox/${id}`);
+        router.replace(`/mailbox/${id}`);
       }
     } catch (error: any) {
       const obj = ErrorMessageConverter.convert(
@@ -189,14 +189,8 @@ export default function HotelComp() {
 
   const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
 
-
   const segments = useSegments();
-  useEffect(() => {
-    const isHotelPath = segments[1] === "hotel";
-    if (isHotelPath) {
-      refetch();
-    }
-  }, [segments]);
+
   const { data, status, error, refetch } = useQuery(
     "loadHotel",
     async () => await getHotel(id as string),
@@ -214,6 +208,13 @@ export default function HotelComp() {
       },
     }
   );
+
+  useEffect(() => {
+    const isHotelPath = segments[1] === "hotel";
+    if (isHotelPath) {
+      refetch();
+    }
+  }, [segments]);
 
   const handelTodayLetters = () => {
     AsyncStorage.setItem("gingerModal", moment().format("YYYY-MM-DD"));
@@ -271,7 +272,7 @@ export default function HotelComp() {
     <ScrollView style={{ backgroundColor: colors.greyblack }}>
       <View style={{ backgroundColor: colors.greyblack }}>
         <Header
-          isOwner={data.isOwner}
+          isOwner={data?.isOwner}
           keyCount={data?.keyCount}
           feekCount={data?.feekCount}
         />
@@ -295,8 +296,8 @@ export default function HotelComp() {
           {/* <Link href={"/create"}> */}
           <View style={{ backgroundColor: "transparent" }}>
             <CustomCompleteUserHotel
-              isMy={data.isOwner}
-              window={data.hotelWindows}
+              isMy={data?.isOwner}
+              window={data?.hotelWindows}
               // onPress={handleClickWindow}
               wallColor={data?.hotel?.bodyColor}
               structColor={data?.hotel?.structColor}
@@ -317,16 +318,16 @@ export default function HotelComp() {
 
           {/* </Link> */}
           <View style={styles.hotel_today_container}>
-            {data.isOwner ? (
+            {data?.isOwner ? (
               <>
                 <View style={styles.hotel_today}>
                   {/* TODO : 빼야합니다 (테스트를 위해서) */}
-                  <Buttons
+                  {/* <Buttons
                     title="1번으로 이동"
                     color="green"
                     width={288}
-                    callback={() => router.push("/hotel/1")}
-                  />
+                    callback={() => router.replace("/hotel/2")}
+                  /> */}
 
                   <Buttons
                     title="오늘의 편지함 보기"
@@ -337,8 +338,8 @@ export default function HotelComp() {
 
                   <TouchableOpacity>
                     <SvgImg
-                      width={40}
-                      height={40}
+                      width={45}
+                      height={45}
                       url={album}
                       onPress={() => router.push("/gingerAlbum")}
                     />
@@ -373,7 +374,7 @@ export default function HotelComp() {
 
                   {data?.isFriend ? (
                     <TouchableOpacity>
-                      <SvgImg width={40} height={38} url={addedVillageImg} />
+                      <SvgImg width={50} height={50} url={addedVillageImg} />
                     </TouchableOpacity>
                   ) : (
                     <TouchableOpacity
@@ -383,7 +384,7 @@ export default function HotelComp() {
                           : setVillageModal(true)
                       }
                     >
-                      <SvgImg width={40} height={38} url={addVillageImg} />
+                      <SvgImg width={50} height={50} url={addVillageImg} />
                     </TouchableOpacity>
                   )}
                 </View>
@@ -498,8 +499,11 @@ export default function HotelComp() {
         />
       </View>
 
-      <BottemShareSheet isVisible={bottemShareVisible} onClose={closeBottomShare} hotelId={Number(id)} ></BottemShareSheet>
-
+      <BottemShareSheet
+        isVisible={bottemShareVisible}
+        onClose={closeBottomShare}
+        hotelId={Number(id)}
+      ></BottemShareSheet>
     </ScrollView>
   );
 }

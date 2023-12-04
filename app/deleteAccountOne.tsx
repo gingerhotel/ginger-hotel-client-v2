@@ -119,7 +119,7 @@ const DeleteAccountOne = () => {
           color="green"
           is_disable={isButtonDisabled}
           callback={() => {
-            router.push("/deleteAccountTwo");
+            router.replace("/deleteAccountTwo");
           }}
         />
       </View>

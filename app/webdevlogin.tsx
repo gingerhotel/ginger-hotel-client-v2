@@ -51,7 +51,7 @@ export default function Login({ navigation }: any) {
       .then((res) => {
         console.log(res);
         AsyncStorage.setItem('accessToken', res.data.accessToken);
-        router.push('/hotelcreate')
+        router.replace("/hotelcreate");
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ export default function Login({ navigation }: any) {
           AsyncStorage.setItem("accessToken", res.data.accessToken);
           console.log(res.status);
           if (res.status == 200) {
-            router.push("/create");
+            router.replace("/create");
           } else if (res.status == 201) {
             // Todo : Need a Funcional code
             axios
@@ -140,7 +140,7 @@ export default function Login({ navigation }: any) {
         console.log(res);
         AsyncStorage.setItem('accessToken', res.data.accessToken);
         console.log(res.data.accessToken);
-        router.push('/create')
+        router.replace("/create");
       })
       .catch((err) => {
         console.log(err);

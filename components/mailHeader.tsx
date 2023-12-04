@@ -71,7 +71,7 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
       <MailBoxView>
         <SvgImg
           url={arrow}
-          onPress={() => router.push(`/hotel/${id}`)}
+          onPress={() => router.replace(`/hotel/${id}`)}
         ></SvgImg>
         <MailTitleView>
           <MailTitleText>내 호텔 편지함</MailTitleText>

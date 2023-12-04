@@ -29,9 +29,9 @@ export default function UpdateHotelName() {
     // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     updateHotel,
     {
-      onSuccess: (data) => {
-        window.location.href = `/hotel/${data.hotelId}`;
-        // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+      onSuccess: async (data) => {
+        console.log("here", data?.hotelId);
+        await router.push(`/hotel/${data?.hotelId}`);
       },
       onError: (error) => {
         console.error(error);
@@ -103,7 +103,7 @@ export default function UpdateHotelName() {
           <View
             style={{
               padding: 3,
-              paddingTop: 10,
+              paddingTop: 30,
               justifyContent: "flex-start",
               width: "100%",
             }}
@@ -121,6 +121,7 @@ export default function UpdateHotelName() {
               onChange={(text: string) => setDescription(text)}
               placeholder="내 호텔을 소개해주세요 (최대 25글자)"
               maxLength={25}
+              height={80}
             />
           </View>
           <View style={styles.btn_wrapper}>

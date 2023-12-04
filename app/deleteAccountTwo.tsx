@@ -23,7 +23,7 @@ const DeleteAccountTwo = () => {
     {
       onSuccess: (data) => {
         AsyncStorage.removeItem("accessToken");
-        router.push("/deleteCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.replace("/deleteCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );

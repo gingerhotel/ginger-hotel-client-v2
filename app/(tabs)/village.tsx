@@ -86,6 +86,7 @@ export default function Village() {
   useEffect(() => {
     const isPath = segments[1] === "village";
     if (isPath) {
+      refetch();
       checkLogin();
     }
   }, [segments]);
@@ -195,7 +196,7 @@ export default function Village() {
                 >
                   <TouchableOpacity
                     onPress={
-                      () => router.push(`/hotel/${village.hotelId}`)
+                      () => router.replace(`/hotel/${village.hotelId}`)
                       // (window.location.href = `/hotel/${village.hotelId}`)
                     }
                   >

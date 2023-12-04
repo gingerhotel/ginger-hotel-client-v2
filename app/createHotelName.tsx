@@ -45,7 +45,7 @@ export default function CreateHotelName() {
           <View
             style={{
               padding: 3,
-              paddingTop: 10,
+              paddingTop: 30,
               justifyContent: "flex-start",
               width: "100%",
             }}
@@ -61,6 +61,7 @@ export default function CreateHotelName() {
               onChange={(text: string) => setDescription(text)}
               placeholder="내 호텔을 소개해주세요 (최대 25글자)"
               maxLength={25}
+              height={80}
             />
           </View>
           <View style={styles.btn_wrapper}>

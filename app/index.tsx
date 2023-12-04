@@ -10,45 +10,43 @@ import { TouchableOpacity } from "react-native";
 const splash = require("../assets/gingerman/splash.png");
 
 export default function Page() {
-  function isEmpty(str:string){
-  
-    if(typeof str == "undefined" || str == null || str == "")
-      return true;
-    else
-      return false ;
+  function isEmpty(str: string) {
+    if (typeof str == "undefined" || str == null || str == "") return true;
+    else return false;
   }
   const moveHotel = async () => {
     const accessToken = await AsyncStorage.getItem("accessToken");
-  if (!accessToken) {
-    router.push("/hotel/1");
-  } else {
-    // Todo : Need a Funcional code
-    axios
-    .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-    .then((response) => {
-      const { hotel } = response.data;
-      router.push(`/hotel/${hotel.id}`);
-    }).catch((e) => {
-        router.push("/hotel/1");
-      }); // need to 401 test
-  }
-}
-  useEffect(() => {
-    setTimeout(() => {
-      //router.push("/hotel/1");
-      moveHotel();
-    }, 1);
-  }, []);
+    if (!accessToken) {
+      router.replace("/hotel/1");
+    } else {
+      // Todo : Need a Funcional code
+      axios
+        .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          const { hotel } = response.data;
+          router.replace(`/hotel/${hotel.id}`);
+        })
+        .catch((e) => {
+          router.replace("/hotel/1");
+        }); // need to 401 test
+    }
+  };
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //router.replace("/hotel/1");
+  moveHotel();
+  //   }, 1);
+  // }, []);
   return (
-      <TouchableOpacity onPress={moveHotel}>
-        {/* <KakaoAdFit /> */}
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <Image source={splash} />
-        </View>
-      </TouchableOpacity>
+    <TouchableOpacity onPress={moveHotel}>
+      {/* <KakaoAdFit /> */}
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Image source={splash} />
+      </View>
+    </TouchableOpacity>
   );
 }

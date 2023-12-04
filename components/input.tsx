@@ -9,10 +9,11 @@ export default function Input({
   maxLength = 1000,
   multiline = 0,
   width = 0,
+  height = 50,
 }: any) {
   return (
     <TextInput
-      style={[styles.input, { width: width ? width : null }]}
+      style={[styles.input, { width: width ? width : null, height }]}
       placeholder={placeholder}
       value={value}
       onChangeText={onChange}

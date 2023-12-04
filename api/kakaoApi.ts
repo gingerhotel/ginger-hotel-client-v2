@@ -35,7 +35,7 @@ export const signInWithKakao = async (
       AsyncStorage.setItem("accessToken", data?.accessToken);
 
       if (status === 200) {
-        router.push("/create");
+        router.replace("/create");
         onSuccess(data);
       } else if (status === 201) {
         const id: any = await AsyncStorage.getItem("kakaoUserId");
@@ -52,7 +52,7 @@ export const signInWithKakao = async (
             })
             .then((response) => {
               const { hotel } = response.data;
-              window.location.href = `/hotel/${hotel.id}`;
+              router.replace(`/hotel/${hotel.id}`);
             });
         }
       }

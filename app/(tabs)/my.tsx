@@ -177,7 +177,7 @@ export default function TabThreeScreen() {
                     router.push("/changeUserInfo");
                   }}
                 >
-                  <WithLocalSvg asset={pencilSvg} />
+                  <WithLocalSvg asset={gearSvg} style={{ marginTop: 5 }} />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
@@ -391,7 +391,9 @@ export default function TabThreeScreen() {
               width: 60,
             }}
             onPress={() => {
-              WebBrowser.openBrowserAsync('https://probable-failing-2db.notion.site/FAQ-dcce714d115340728f740a8bd0591485?pvs=4')
+              WebBrowser.openBrowserAsync(
+                "https://probable-failing-2db.notion.site/FAQ-dcce714d115340728f740a8bd0591485?pvs=4"
+              );
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
@@ -418,7 +420,9 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              WebBrowser.openBrowserAsync("https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4");
+              WebBrowser.openBrowserAsync(
+                "https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4"
+              );
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
@@ -429,7 +433,9 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              WebBrowser.openBrowserAsync("https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4");
+              WebBrowser.openBrowserAsync(
+                "https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4"
+              );
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
@@ -440,7 +446,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              router.push("/csCenter");
+              router.replace("/csCenter");
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
@@ -451,7 +457,9 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              WebBrowser.openBrowserAsync("https://www.instagram.com/gingerhotel_official")
+              WebBrowser.openBrowserAsync(
+                "https://www.instagram.com/gingerhotel_official"
+              );
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>

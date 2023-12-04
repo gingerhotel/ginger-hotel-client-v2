@@ -39,7 +39,7 @@ const ErrorModal = ({ height, visible, onClose, name, desc, buttonMessage, url, 
 
   const handlePress = () => {
     if (url) {
-      router.push({ pathname: `/${url}`, params: props });
+      router.replace({ pathname: `/${url}`, params: props });
     }
     onClose();
   };

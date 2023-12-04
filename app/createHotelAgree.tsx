@@ -67,7 +67,7 @@ export default function createHotelAgree() {
     newHotel,
     {
       onSuccess: (data) => {
-        window.location.href = `/hotel/${data.hotelId}`;
+        router.replace(`/hotel/${data.hotelId}`);
       },
       onError: (error: any) => {},
     }

@@ -53,14 +53,14 @@ const Header = ({ isOwner, keyCount, feekCount }: any) => {
             <SvgImg
               width={30}
               height={30}
-              onPress={() => router.push("/guidePage")}
+              onPress={() => router.replace("/guidePage")}
               url={i_info}
             />
             {/* 알림 아이콘 주석 처리 : 알림 기능 구현 전
             <SvgImg
               width={30}
               height={30}
-              onPress={() => router.push("/push")}
+              onPress={() => router.replace("/push")}
               url={icon}
             />
             */}

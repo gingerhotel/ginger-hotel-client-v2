@@ -35,7 +35,7 @@ export default function LetterCompleted() {
         <MonoText style={styles.text}>
           당신의 소중한 마음을 온전히 전달해 드릴게요 :)
         </MonoText>
-        <SvgImg url={i_reply_letter} />
+        <SvgImg width={250} height={250} url={i_reply_letter} />
       </View>
 
       <View style={styles.footer}>

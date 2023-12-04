@@ -43,7 +43,7 @@ export default function Letter() {
     newLetter, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     {
       onSuccess: (data) => {
-        router.push("/letterCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.replace("/letterCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -203,6 +203,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.greyblack,
+    padding: 20,
   },
   letter_box: {
     backgroundColor: colors.Whiteyello,
