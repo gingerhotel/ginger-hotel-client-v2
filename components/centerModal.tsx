@@ -103,6 +103,9 @@ const styles = (height: number) =>
       paddingRight: 10,
       elevation: 2,
       width: "50%",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
     },
     buttonOpen: {
       backgroundColor: colors.green600,
