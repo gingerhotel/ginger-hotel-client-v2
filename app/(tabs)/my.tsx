@@ -27,6 +27,7 @@ import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
 
 import * as WebBrowser from 'expo-web-browser';
+import * as Clipboard from 'expo-clipboard';
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -192,7 +193,7 @@ export default function TabThreeScreen() {
           <View style={styles.user_info}>
             <TouchableOpacity
               onPress={() => {
-                navigator.clipboard.writeText(userInfo.code);
+                Clipboard.setStringAsync(userInfo.code);
                 Toast.show({
                   type: "iconToast",
                   text1: "초대코드가 복사되었습니다!",

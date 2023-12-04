@@ -13,6 +13,8 @@ import { WithLocalSvg } from "react-native-svg";
 import Buttons from "../buttons";
 import Toast from "react-native-toast-message";
 
+import * as Clipboard from 'expo-clipboard';
+
 const closeIcon = require("../../assets/icon/i_close_line.svg");
 const keySvg = require("../../assets/icon/i_key.svg");
 const copyIcon = require("../../assets/icon/i_copy.svg");
@@ -85,7 +87,7 @@ const KeyModal = ({ onClose, visible, code }: TProps) => {
               color="green"
               icon={copyIcon}
               callback={() => {
-                navigator.clipboard.writeText(code as string);
+                Clipboard.setStringAsync(code as string);
                 close();
                 {
                   Toast.show({
