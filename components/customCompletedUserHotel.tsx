@@ -478,7 +478,7 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 6,
+          zIndex: 5,
           position: "absolute",
         }}
       >
