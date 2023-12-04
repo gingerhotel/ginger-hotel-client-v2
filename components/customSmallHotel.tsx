@@ -3,28 +3,30 @@ import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { wallColors, structColors } from "./customUserHotel";
+import { PngImg } from "./pngImg";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const Hotel1 = require("../assets/images/Hotel1.svg");
-const window = require("../assets/decorations/windowDeco01_com.svg");
+const Hotel2 = require("../assets/images/Hotel2.svg");
+const window = require("../assets/decorations/windowDeco01_com.png");
 
 export default function CustomSmallHotel({ wallColor, structColor }: any) {
-  const _web = { top: 18, left: 32 };
+  const _web = { top: 15, left: 16 };
   return (
     <View
       style={{
-        height: "100%",
-        // border: "
         borderWidth: 1,
         borderColor: colors.grey700,
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
         backgroundColor: colors.grey900,
+        position: "relative",
+        height: 171,
       }}
     >
       <View style={[styles.img_wrapper]}>
         <SvgImg
-          url={Hotel1}
+          url={Hotel2}
           style={{
             width: 148,
             height: 171,
@@ -40,7 +42,7 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
           _web,
         ]}
       >
-        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
+        <Svg width="158" height="156" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -61,7 +63,7 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
         </Svg>
       </View>
       <View style={[{ position: "absolute", zIndex: 2 }, _web]}>
-        <Svg width="138" height="161" viewBox="0 0 355 390" fill="none">
+        <Svg width="158" height="156" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -92,15 +94,15 @@ export default function CustomSmallHotel({ wallColor, structColor }: any) {
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={window}
           style={{
-            width: 100,
-            height: 120,
+            width: 107,
+            height: 128,
             marginTop: 20,
             zIndex: 5,
-            top: 12.2,
-            left: 43.7,
+            top: 1.6,
+            left: 34.4,
             position: "absolute",
           }}
         />
@@ -113,10 +115,10 @@ const styles = StyleSheet.create({
   img_wrapper: {
     zIndex: 3,
     marginTop: 10,
-    marginLeft: 5,
+    marginBottom: 5,
     alignItems: "center",
     position: "relative",
-    width: 180,
-    padding: 10,
+    width: 175,
+    // padding: 10,
   },
 });

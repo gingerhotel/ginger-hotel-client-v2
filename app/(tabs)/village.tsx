@@ -126,8 +126,6 @@ export default function Village() {
       <View
         style={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "stretch",
           padding: 5,
           backgroundColor: colors.greyblack,
           height: "100%",
@@ -177,10 +175,7 @@ export default function Village() {
           <View
             style={{
               display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
+              flexDirection: "row",
             }}
           >
             <View
@@ -188,17 +183,19 @@ export default function Village() {
                 display: "flex",
                 width: "100%",
                 flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
                 flexWrap: "wrap",
                 marginTop: 15,
                 marginLeft: 5,
               }}
             >
               {data?.villages?.map((village: any) => (
-                <View style={{ marginBottom: 10 }} key={village.id}>
+                <View
+                  style={{ marginBottom: 10, marginRight: 10 }}
+                  key={village.id}
+                >
                   <TouchableOpacity
-                    onPress={() => router.push(`/hotel/${village.hotelId}`)
+                    onPress={
+                      () => router.push(`/hotel/${village.hotelId}`)
                       // (window.location.href = `/hotel/${village.hotelId}`)
                     }
                   >
@@ -220,6 +217,7 @@ export default function Village() {
                       borderBottomLeftRadius: 12,
                       borderBottomRightRadius: 12,
                       borderTopWidth: 0,
+                      height: 40,
                     }}
                   >
                     <Text

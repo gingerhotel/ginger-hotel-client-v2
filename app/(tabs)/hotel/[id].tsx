@@ -307,11 +307,20 @@ export default function HotelComp() {
               style={styles.gifImage}
             />
           </View>
+
           {/* </Link> */}
           <View style={styles.hotel_today_container}>
             {data.isOwner ? (
               <>
                 <View style={styles.hotel_today}>
+                  {/* TODO : 빼야합니다 (테스트를 위해서) */}
+                  <Buttons
+                    title="1번으로 이동"
+                    color="green"
+                    width={288}
+                    callback={() => router.push("/hotel/1")}
+                  />
+
                   <Buttons
                     title="오늘의 편지함 보기"
                     color="green"
@@ -335,8 +344,10 @@ export default function HotelComp() {
                     color="gray_700"
                     width={350}
                     callback={() => {
-                      Clipboard.setStringAsync(`https://www.ginger-hotel.site/hotel/${id}`);
-                      
+                      Clipboard.setStringAsync(
+                        `https://www.ginger-hotel.site/hotel/${id}`
+                      );
+
                       Toast.show({
                         type: "iconToast",
                         text1: "링크가 복사되었습니다!",
