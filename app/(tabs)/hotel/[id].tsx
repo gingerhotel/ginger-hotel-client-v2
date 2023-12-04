@@ -101,7 +101,7 @@ export default function HotelComp() {
     try {
       const res = await checkAuth();
       if (res?.success) {
-        window.location.href = `/hotel/${res.hotelId}`;
+        router.push(`/hotel/${res.hotelId}`);
         // setTimeout(() => {
         //   location.reload();
         // }, 1);
@@ -396,7 +396,6 @@ export default function HotelComp() {
                     <View style={styles.hotel_today}>
                       <Buttons
                         title="내 호텔로 가기"
-                        url="letter"
                         color="gray_700"
                         width={350}
                         callback={() => setMyHotelModal(true)}
