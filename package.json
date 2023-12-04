@@ -68,7 +68,8 @@
     "recoil": "^0.7.7",
     "recoil-persist": "^5.1.0",
     "styled-components": "^6.1.1",
-    "typeface-nanum-square-neo": "^0.0.6"
+    "typeface-nanum-square-neo": "^0.0.6",
+    "expo-clipboard": "~4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

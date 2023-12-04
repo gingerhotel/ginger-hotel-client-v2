@@ -63,6 +63,7 @@ import KeyModal from "../../../components/Modal/keyModal";
 import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Clipboard from 'expo-clipboard';
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -102,9 +103,6 @@ export default function HotelComp() {
       const res = await checkAuth();
       if (res?.success) {
         router.push(`/hotel/${res.hotelId}`);
-        // setTimeout(() => {
-        //   location.reload();
-        // }, 1);
       }
     } catch (error: any) {
       const obj = ErrorMessageConverter.convert(
@@ -337,9 +335,8 @@ export default function HotelComp() {
                     color="gray_700"
                     width={350}
                     callback={() => {
-                      // web only
-                      let nowUrl = window.location.href;
-                      navigator.clipboard.writeText(nowUrl);
+                      Clipboard.setStringAsync(`https://www.ginger-hotel.site/hotel/${id}`);
+                      
                       Toast.show({
                         type: "iconToast",
                         text1: "링크가 복사되었습니다!",
