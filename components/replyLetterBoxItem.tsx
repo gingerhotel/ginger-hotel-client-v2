@@ -98,14 +98,7 @@ const ReplyLetterBoxItem = (data: any) => {
                         </LetterInnerContainer>
                     </LetterOuterContainer>
                 }
-                keyExtractor={item => {
-                    // if (item.isMe) {
-                    //     setLetterId(item.id);
-                    // }
-
-                    return item.id.toString()
-                }
-                }
+                keyExtractor={item => item.id.toString()}
 
             />
 
