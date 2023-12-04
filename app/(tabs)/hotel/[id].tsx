@@ -40,6 +40,7 @@ const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png")
 const g_2_nutcracker = require("../../../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 const g_painter = require("../../../assets/gingerman/Modal_Ginger/g_painter.png");
 const bellboy7 = require("../../../assets/gingerman/Modal_Ginger/quarterback.png");
+const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -417,9 +418,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="쿼터백 진저맨"
-          desc={`올해도 우리 진저하이스쿨이 무조건 1등이지!!\n왜냐고? 우리 팀은 최고니까!\n 우우우-! 하나 둘 셋 화이팅-!`}
-          img={bellboy7}
+          name="파일럿 진저맨"
+          desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
+          img={bellboy9}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
