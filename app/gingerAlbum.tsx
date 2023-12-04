@@ -22,6 +22,8 @@ const bellboy5 = require("../assets/gingerman/Modal_Ginger/g_painter.png");
 const bellboy6 = require("../assets/gingerman/Album_Ginger/a_painter.png");
 const bellboy7 = require("../assets/gingerman/Modal_Ginger/quarterback.png");
 const bellboy8 = require("../assets/gingerman/Album_Ginger/a_quarterback.png");
+const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy10 = require("../assets/gingerman/Album_Ginger/album_topgun.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -123,11 +125,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-04`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="파일럿 진저맨"
               date="12/05"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy10}
+              pngImage2={bellboy9}
+              desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
               isOpened={info[`2023-12-05`]?.isOpen}
             />
             <GingermanCard
