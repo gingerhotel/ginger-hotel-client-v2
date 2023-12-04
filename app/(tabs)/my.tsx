@@ -26,6 +26,8 @@ import Toast from "react-native-toast-message";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
 
+import * as WebBrowser from 'expo-web-browser';
+
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
 const pencilSvg = require("../../assets/icon/i_pencil.svg");
@@ -388,9 +390,7 @@ export default function TabThreeScreen() {
               width: 60,
             }}
             onPress={() => {
-              window.open(
-                "https://probable-failing-2db.notion.site/FAQ-dcce714d115340728f740a8bd0591485?pvs=4"
-              );
+              WebBrowser.openBrowserAsync('https://probable-failing-2db.notion.site/FAQ-dcce714d115340728f740a8bd0591485?pvs=4')
             }}
           >
             {Platform.OS === "ios" || Platform.OS === "android" ? (
@@ -417,9 +417,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              window.open(
-                "https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4"
-              );
+              WebBrowser.openBrowserAsync("https://probable-failing-2db.notion.site/4bcd9a04d98443489412e52fa6bf5b68?pvs=4");
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
@@ -430,9 +428,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              window.open(
-                "https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4"
-              );
+              WebBrowser.openBrowserAsync("https://probable-failing-2db.notion.site/72817f9a68c24c87ba4a42a16499d933?pvs=4");
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
@@ -454,7 +450,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              window.open("https://www.instagram.com/gingerhotel_official");
+              WebBrowser.openBrowserAsync("https://www.instagram.com/gingerhotel_official")
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
