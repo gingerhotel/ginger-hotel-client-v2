@@ -92,7 +92,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                             <LetterInnerTextBox f_color="#fff">
                                 {item?.content}
                             </LetterInnerTextBox>
-                            {/* <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
+                            <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
                                 <LetterReplyButtonView>
                                     <Buttons
                                         title="답장 모아보기"
@@ -101,7 +101,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         url={`replybox/${item.letterId}`}
                                     />
                                 </LetterReplyButtonView>
-                            </TouchableOpacity> */}
+                            </TouchableOpacity>
                         </LetterInnerContainer>
                     </LetterOuterContainer>}
                 keyExtractor={item => item.id.toString()} />
