@@ -498,7 +498,7 @@ export default function HotelComp() {
         />
       </View>
 
-      <BottemShareSheet isVisible={bottemShareVisible} replyId={1} onClose={closeBottomShare} letterId={1} blocked={false} ></BottemShareSheet>
+      <BottemShareSheet isVisible={bottemShareVisible} onClose={closeBottomShare} hotelId={Number(id)} ></BottemShareSheet>
 
     </ScrollView>
   );

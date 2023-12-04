@@ -94,6 +94,11 @@ export interface BottomSheetProps {
   letterType: boolean;
   replyId: number;
 }
+export interface BottomShareProps {
+  isVisible: boolean;
+  onClose: () => void;
+  hotelId: number;
+}
 export interface BottomSheetDeleteProps {
   isVisible: boolean;
   onClose: () => void;
