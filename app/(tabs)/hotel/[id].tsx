@@ -60,15 +60,16 @@ import Snowfall from "react-snowfall";
 import { addVillage } from "../../../api/villageApi";
 import { checkAuth } from "../../../api/authApi";
 import KeyModal from "../../../components/Modal/keyModal";
+import BottemShareSheet from "../../../components/bottemShareSheet";
 import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Clipboard from 'expo-clipboard';
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
   const { id } = useLocalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [bottemShareVisible, setBottemShareVisible] = useState<boolean>(false);
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
   const [hotel, setHotel] = useState<Hotel>();
   const [todayLetterCnt, setTodayLetterCnt] = useState<Number>();
@@ -95,6 +96,9 @@ export default function HotelComp() {
   };
   const closeModal = () => {
     setModalVisible(false);
+  };
+  const closeBottomShare = () => {
+    setBottemShareVisible(false);
   };
 
   const handleGoMyHotel = async () => {
@@ -182,6 +186,9 @@ export default function HotelComp() {
 
   const [userInfo, setUserInfo] = useRecoilState(userCodeState);
   const [keyModalVisible, setKeyModalVisible] = useState<boolean>(false);
+
+  const [bottomSheetVisible, setBottomSheetVisible] = useState(false);
+
 
   const segments = useSegments();
   useEffect(() => {
@@ -344,16 +351,7 @@ export default function HotelComp() {
                     color="gray_700"
                     width={350}
                     callback={() => {
-                      Clipboard.setStringAsync(
-                        `https://www.ginger-hotel.site/hotel/${id}`
-                      );
-
-                      Toast.show({
-                        type: "iconToast",
-                        text1: "링크가 복사되었습니다!",
-                        position: "bottom",
-                        props: { icon },
-                      });
+                      setBottemShareVisible(true);
                     }}
                     icon={share}
                   />
@@ -499,6 +497,9 @@ export default function HotelComp() {
           url={`hotel/${id}`}
         />
       </View>
+
+      <BottemShareSheet isVisible={bottemShareVisible} replyId={1} onClose={closeBottomShare} letterId={1} blocked={false} ></BottemShareSheet>
+
     </ScrollView>
   );
 }
