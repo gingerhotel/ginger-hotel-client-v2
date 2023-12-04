@@ -3,9 +3,10 @@ import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
 import { colors } from "../constants/Colors";
 import { wallColors, structColors } from "./customUserHotel";
+import { PngImg } from "./pngImg";
 import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
-const Hotel1 = require("../assets/images/Hotel1.svg");
+const Hotel1 = require("../assets/images/Hotel2.svg");
 
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
@@ -19,10 +20,10 @@ const backgroundImg01 = require(`../assets/decorations/background01.svg`);
 const backgroundImg02 = require(`../assets/decorations/background02.svg`);
 const backgroundImg03 = require(`../assets/decorations/background03.svg`);
 
-const windowImg01 = require(`../assets/decorations/windowDeco01_com.svg`);
-const windowImg02 = require(`../assets/decorations/windowDeco02_com.svg`);
+const windowImg01 = require(`../assets/decorations/windowDeco01_com.png`);
+const windowImg02 = require(`../assets/decorations/windowDeco02_com.png`);
 
-const frontBg = require("../assets/images/front_bg.svg");
+const frontBg = require("../assets/images/frontBg_ios.png");
 
 export default function CustomMediumHotel({
   wallColor,
@@ -32,7 +33,7 @@ export default function CustomMediumHotel({
   background,
   windowDecorator,
 }: any) {
-  const _web = { top: 13, left: 33 };
+  const _web = { top: 30, left: 36 };
 
   const gardenDeco: any = {
     gardenDeco01: gardenDecoImg01,
@@ -81,7 +82,7 @@ export default function CustomMediumHotel({
           _web,
         ]}
       >
-        <Svg width="255" height="310" viewBox="0 0 355 390" fill="none">
+        <Svg width="250" height="300" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -102,7 +103,7 @@ export default function CustomMediumHotel({
         </Svg>
       </View>
       <View style={[{ position: "absolute", zIndex: 2 }, _web]}>
-        <Svg width="255" height="310" viewBox="0 0 355 390" fill="none">
+        <Svg width="250" height="300" viewBox="0 0 355 390" fill="none">
           <Path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -136,12 +137,12 @@ export default function CustomMediumHotel({
       >
         <SvgImg
           url={gardenDeco[gardenDecorator]}
+          width={100}
+          height={90}
           style={{
-            width: 100,
-            height: 90,
             marginTop: 20,
             zIndex: 5,
-            top: 230,
+            top: 240,
             left: 24,
             position: "absolute",
           }}
@@ -156,13 +157,13 @@ export default function CustomMediumHotel({
       >
         <SvgImg
           url={buildingDeco[buildingDecorator]}
+          width={60}
+          height={150}
           style={{
-            width: 60,
-            height: 150,
             marginTop: 20,
             zIndex: 99,
-            top: 56,
-            left: 118,
+            top: 70,
+            left: 120,
             position: "absolute",
           }}
         />
@@ -175,12 +176,14 @@ export default function CustomMediumHotel({
       >
         <SvgImg
           url={backgroundDeco[background]}
+          width={289}
+          height={300}
           style={{
             width: 289,
             height: 300,
             marginTop: 20,
             zIndex: 0,
-            top: 0,
+            top: 40,
             left: 5,
             position: "absolute",
           }}
@@ -189,21 +192,19 @@ export default function CustomMediumHotel({
 
       <View
         style={{
-          zIndex: 5,
+          zIndex: 100,
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={windowDeco[windowDecorator]}
-          width={355}
-          height={390}
           style={{
-            width: 193,
-            height: 230,
+            width: 186,
+            height: 221,
             marginTop: 20,
             zIndex: 5,
-            top: 20,
-            left: 52,
+            top: 36,
+            left: 57,
             position: "absolute",
           }}
         />
@@ -215,17 +216,13 @@ export default function CustomMediumHotel({
           position: "absolute",
         }}
       >
-        <SvgImg
+        <PngImg
           url={frontBg}
-          width={150}
-          height={140}
           style={{
-            width: 280,
-            height: 100,
-            marginTop: 20,
-            zIndex: 5,
-            top: 220,
-            left: 10,
+            width: 285,
+            height: 84,
+            top: 260,
+            left: 9,
             position: "absolute",
           }}
         />

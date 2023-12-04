@@ -238,6 +238,8 @@ export default function Village() {
                     </Text>
                     <SvgImg
                       url={more}
+                      width={20}
+                      height={20}
                       style={{ width: 24, height: 24 }}
                       onPress={() => handelModal(village?.hotelId)}
                     />

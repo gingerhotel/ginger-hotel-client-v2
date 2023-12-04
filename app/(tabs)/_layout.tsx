@@ -14,11 +14,11 @@ export default function _layout() {
           borderTopWidth: 0,
           marginBottom: 0,
           flexDirection: "column",
-          height: 70,
+          height: 80,
         },
         tabBarLabelStyle: {
-          fontSize: 10,
-          marginBottom: 11,
+          fontSize: 8,
+          // marginBottom: 5,
         },
       }}
     >

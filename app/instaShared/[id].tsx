@@ -57,7 +57,7 @@ const InstaShared = () => {
       <Header title="내 카드" />
       <View style={styles.container}>
         <View style={styles.content_wrapper}>
-          <SvgImg url={sharedLogo} width={30} height={30} />
+          <SvgImg url={sharedLogo} width={260} height={30} />
 
           <View style={styles.title_wrapper}>
             <Text style={styles.name_text}>

@@ -549,6 +549,7 @@ const styles = StyleSheet.create({
     gap: 12,
     marginBottom: 30,
     marginTop: 12,
+    padding: 20,
   },
   hotel_today: {
     flexDirection: "row",
@@ -572,7 +573,7 @@ const styles = StyleSheet.create({
     height: 100,
     position: "absolute",
     opacity: 0.4,
-    right: -160,
-    top: -596,
+    right: -159,
+    top: -536,
   },
 });
