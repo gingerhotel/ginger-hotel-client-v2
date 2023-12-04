@@ -35,7 +35,7 @@ export default function MailBox() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
   useEffect(() => {
-    //refetch();
+    refetch();
   }, [deleteCheck, letterCheck]);
   const [isFetched, setIsFetched] = useState<boolean>(false);
   if (isLoading) {
