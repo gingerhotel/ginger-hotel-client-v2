@@ -5,14 +5,26 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL":"https://gingerhotel-server-dev.site",
+        "EXPO_GOOGLE_WEB_API_KEY":"251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+        "EXPO_GOOGLE_IOS_API_KEY":"251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+        "EXPO_PUBLIC_KAKAO_WEB_API_KEY":"ccf444058b5892b763fa84c8eded1cc5"
+      }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview"
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_API_URL":"https://gingerhotel-server-dev.site",
+        "EXPO_GOOGLE_WEB_API_KEY":"251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+        "EXPO_GOOGLE_IOS_API_KEY":"251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+        "EXPO_PUBLIC_KAKAO_WEB_API_KEY":"ccf444058b5892b763fa84c8eded1cc5"
+      }
     }
   },
   "submit": {
