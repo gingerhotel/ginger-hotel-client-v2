@@ -43,9 +43,7 @@ function FirstLetter({ letter }: any) {
                 <LetterInnerContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
                     <LetterInnerInfoView>
                         <LetterInnerTitieView border_color="#4A4A4E">
-                            {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
-            <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-          </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
+
                             <View />
                             <LetterInnerTitieTextView>
                                 <LetterInnerSendText f_color={letter.isMe ? ("#4A4A4E") : ("#77C7B9")}>{letter.isMe ? ("나의 편지") : ("보내는 이")} </LetterInnerSendText>

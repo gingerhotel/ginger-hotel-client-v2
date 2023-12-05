@@ -63,9 +63,6 @@ const ReplyLetterItem = ({ replies }: any) => {
                         <LetterInnerContainer b_color="#36363B">
                             <LetterInnerInfoView>
                                 <LetterInnerTitieView border_color="#4A4A4E">
-                                    {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
-                                <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-                              </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
                                     <View />
                                     <LetterInnerTitieTextView>
                                         <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
@@ -92,16 +89,6 @@ const ReplyLetterItem = ({ replies }: any) => {
                             <LetterInnerTextBox f_color="#fff">
                                 {item?.content}
                             </LetterInnerTextBox>
-                            {/* <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
-                                <LetterReplyButtonView>
-                                    <Buttons
-                                        title="답장 모아보기"
-                                        color="green"
-                                        width={247}
-                                        url={`replybox/${item.letterId}`}
-                                    />
-                                </LetterReplyButtonView>
-                            </TouchableOpacity> */}
                         </LetterInnerContainer>
                     </LetterOuterContainer>}
                 keyExtractor={item => item.id.toString()} />

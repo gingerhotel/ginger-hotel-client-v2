@@ -59,9 +59,6 @@ export const NewLetterItem = ({ letters }: any) => {
             <LetterInnerContainer b_color="#FFFDF0">
               <LetterInnerInfoView>
                 <LetterInnerTitieView border_color="#4A4A4E">
-                  {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
-                    <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-                  </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
                   <View />
                   <LetterInnerTitieTextView>
                     <LetterInnerSendText f_color="#4A4A4E">보내는 이</LetterInnerSendText>
