@@ -170,7 +170,7 @@ const styles = (height: number) =>
       marginBottom: 10,
       color: colors.Whiteyello,
       textAlign: "center",
-      lineHeight: 21,
+      lineHeight: 31,
       fontWeight: "700",
     },
     button_wrapper: {
@@ -178,6 +178,7 @@ const styles = (height: number) =>
       display: "flex",
       justifyContent: "center",
       flexDirection: "row",
+      height:40
     },
   });
 
