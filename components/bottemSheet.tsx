@@ -104,14 +104,14 @@ const BottomSheet = ({
             </BottemSheetBorderView>
             {!blocked ? (
               <BottemSheetElementView onPress={handleBlock}>
-                <SvgImg url={i_incognito}></SvgImg>
+                <SvgImg url={i_incognito} width={32} height={32}></SvgImg>
                 <MonoText style={{ color: colors.Whiteyello }}>
                   사용자 차단 하기
                 </MonoText>
               </BottemSheetElementView>
             ) : (
               <BottemSheetElementView onPress={handleUnBlock}>
-                <SvgImg url={i_incognito}></SvgImg>
+                <SvgImg url={i_incognito} width={32} height={32}></SvgImg>
                 <MonoText style={{ color: colors.Whiteyello }}>
                   사용자 차단 해제하기
                 </MonoText>
