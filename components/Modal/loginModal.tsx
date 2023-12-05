@@ -29,7 +29,9 @@ import {
   login,
   getProfile as getKakaoProfile,
 } from "@react-native-seoul/kakao-login";
-// import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
+import * as AppleAuthentication from "expo-apple-authentication";
+
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
@@ -276,6 +278,44 @@ const LoginModal = ({
               </MonoText>
             </Pressable>
           </View>
+              
+      <AppleAuthentication.AppleAuthenticationButton
+        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+        cornerRadius={5}
+        style={{
+          width:300,
+          height:55 ,
+          borderColor : "#000",
+        }}
+        onPress={async () => {
+          try {
+            const credential = await AppleAuthentication.signInAsync({
+              requestedScopes: [
+                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                AppleAuthentication.AppleAuthenticationScope.EMAIL,
+              ],
+            });
+            
+            const response = await axios.post(
+              'http://127.0.0.1:8080/auth/apple',
+              {
+                token: credential.identityToken,
+              }
+            );
+
+            AsyncStorage.setItem('isLogin', "true");
+            AsyncStorage.setItem('accessToken', response.data.accessToken);
+
+          } catch (e) {
+            /*if (e.code === 'ERR_REQUEST_CANCELED') {
+              // handle that the user canceled the sign-in flow
+            } else {
+              // handle other errors
+            }*/
+          }
+        }}
+      />
         </View>
       </View>
     </Modal>
@@ -325,6 +365,7 @@ const styles = (height: number) =>
     },
     google: {
       backgroundColor: "white",
+      margin:10
     },
     textStyle: {
       color: "white",
