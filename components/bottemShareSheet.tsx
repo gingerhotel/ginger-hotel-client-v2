@@ -14,6 +14,8 @@ import { FontAwesome } from '@expo/vector-icons';
 
 import * as Clipboard from 'expo-clipboard';
 import Toast from "react-native-toast-message";
+import { push } from 'expo-router/src/global-state/routing';
+import { router } from 'expo-router';
 
 const icon: any = require("../assets/icon/i_check_green.svg");
 const i_drag = require("../assets/icon/i_drag_handle.svg");
@@ -40,7 +42,8 @@ const BottemShareSheet = ({
   const close = () => {
     onClose();
   };
-  const handleReply = () => {
+  const goMyHotelCard = () => {
+    router.push(`/instaShared/${hotelId}`);
     onClose();
   };
   const onBackButtonPress = () => {
@@ -65,9 +68,9 @@ const BottemShareSheet = ({
               <SvgImg url={i_drag} width={32} height={4} onPress={onClose} />
             </BottemSheetDraeView>
             <BottemSheetBorderView>
-            <BottemSheetElementView onPress={handleReply}>
+            <BottemSheetElementView onPress={goMyHotelCard}>
               <MonoText style={{ color: colors.Whiteyello, fontSize: 15 }}>
-              인스타 공유 <FontAwesome name="instagram" size={16} />
+              내 호텔 카드 {/*  <FontAwesome name="instagram" size={16} /> */}
               </MonoText>
             </BottemSheetElementView>
             <BottemSheetElementView onPress={handleLinkCopy}>
