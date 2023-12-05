@@ -42,9 +42,9 @@ export default function Page() {
   //   }, 1);
   // }, []);
   return (
-    <TouchableOpacity onPress={moveHotel}>
+    <TouchableOpacity style={{ flex: 1, justifyContent: "center", alignItems: "center" }} onPress={moveHotel}>
       {/* <KakaoAdFit /> */}
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View >
         <Image source={splash} />
       </View>
     </TouchableOpacity>
