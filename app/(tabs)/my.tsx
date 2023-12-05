@@ -28,6 +28,10 @@ import KakaoAdFit from "../../advertisement/KakaoAdFit";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
 
+// Translations
+import { useTranslation } from "react-i18next";
+import "../../translation/i18n";
+
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
 const pencilSvg = require("../../assets/icon/i_pencil.svg");
@@ -70,6 +74,13 @@ export default function TabThreeScreen() {
       checkLogin();
     }
   }, [segments]);
+
+  const { t, i18n } = useTranslation();
+
+  // 영어 혹은 한글로 바꾸기 위한 함수
+  const setLocale = (lang: string) => {
+    i18n.changeLanguage(lang);
+  };
 
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
@@ -161,7 +172,7 @@ export default function TabThreeScreen() {
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
       <View style={styles.header}>
-        <Text style={styles.header_text}>마이페이지</Text>
+        <Text style={styles.header_text}>{t("mypage.마이페이지")}</Text>
       </View>
       <View style={styles.profileContainer}>
         <View style={styles.user_info_box}>
@@ -218,7 +229,7 @@ export default function TabThreeScreen() {
                       height: 20,
                     }}
                   >
-                    초대코드{" "}
+                    {t("mypage.초대코드")}{" "}
                   </Text>
                   {Platform.OS === "ios" || Platform.OS === "android" ? (
                     <WithLocalSvg
@@ -258,7 +269,7 @@ export default function TabThreeScreen() {
                   fontFamily: "NanumSquareNeo-Variable",
                 }}
               >
-                내 열쇠 <FontAwesome name={"chevron-right"} />
+                {t("mypage.내 열쇠")} <FontAwesome name={"chevron-right"} />
               </Text>
               <Text
                 style={{
@@ -267,7 +278,8 @@ export default function TabThreeScreen() {
                   fontFamily: "NanumSquareNeo-Variable",
                 }}
               >
-                {userInfo.keyCount}개
+                {userInfo.keyCount}
+                {t("mypage.개")}
               </Text>
             </View>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
@@ -290,7 +302,7 @@ export default function TabThreeScreen() {
                   fontFamily: "NanumSquareNeo-Variable",
                 }}
               >
-                내 엿보기 <FontAwesome name={"chevron-right"} />
+                {t("mypage.내 엿보기")} <FontAwesome name={"chevron-right"} />
               </Text>
               <Text
                 style={{
@@ -299,7 +311,7 @@ export default function TabThreeScreen() {
                   fontFamily: "NanumSquareNeo-Variable",
                 }}
               >
-                0개
+                0{t("mypage.개")}
               </Text>
             </View>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
@@ -341,7 +353,7 @@ export default function TabThreeScreen() {
                 fontSize: 12,
               }}
             >
-              호텔수정
+              {t("mypage.호텔수정")}
             </Text>
           </TouchableOpacity>
           <View
@@ -374,7 +386,7 @@ export default function TabThreeScreen() {
                 fontFamily: "NanumSquareNeo-Variable",
               }}
             >
-              내 카드
+              {t("mypage.내 카드")}
             </Text>
           </TouchableOpacity>
           <View
@@ -425,7 +437,7 @@ export default function TabThreeScreen() {
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              이용약관
+              {t("mypage.이용약관")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -438,7 +450,7 @@ export default function TabThreeScreen() {
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              개인정보 처리방침
+              {t("mypage.개인정보 처리방침")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -449,7 +461,7 @@ export default function TabThreeScreen() {
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              고객센터
+              {t("mypage.고객센터")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -460,7 +472,7 @@ export default function TabThreeScreen() {
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
-              <FontAwesome name="instagram" size={16} /> 진저호텔
+              <FontAwesome name="instagram" size={16} /> {t("mypage.진저호텔")}
             </Text>
           </TouchableOpacity>
         </View>
@@ -475,13 +487,13 @@ export default function TabThreeScreen() {
         <Text
           style={[styles.footer_text, { color: colors.grey500, marginTop: 8 }]}
         >
-          사업자등록번호 : 202-58-00723 대표 강민지
+          {t("mypage.사업자등록번호")} : 202-58-00723 {t("mypage.대표")}
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          주소 : 서울특별시 중구 남대문로7길 16 508-3호
+          {t("mypage.주소")} : {t("mypage.주소값")}
         </Text>
         <Text style={[styles.footer_text, { color: colors.grey500 }]}>
-          이메일 : teamgingerkr@gmail.com
+          {t("mypage.이메일")} : teamgingerkr@gmail.com
         </Text>
       </View>
       <LoginModal
