@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
+import { StyleSheet, ScrollView, View, Text, SafeAreaView } from "react-native";
 import NewLetterItem from "../../components/newLetterItem";
 import MailHeader from "../../components/mailHeader";
 import ReplyLetterItem from "../../components/replyLetterItem";
@@ -42,70 +42,66 @@ export default function MailBox() {
     return <Text>로딩...</Text>;
   }
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <MailHeader marginTop={50} />
-      <ScrollView>
-        <View style={styles.mailbox_items}>
-          <View
-            style={{
-              borderRadius: 12,
-              backgroundColor: colors.green50,
-              padding: 16,
-              paddingLeft: 12,
-              paddingRight: 12,
-              width: "100%",
-              minWidth: 340,
-              position: "relative",
-            }}
+      <View style={styles.mailbox_items}>
+        <View
+          style={{
+            borderRadius: 12,
+            backgroundColor: colors.green50,
+            padding: 16,
+            paddingLeft: 12,
+            paddingRight: 12,
+            width: "100%",
+            minWidth: 340,
+            position: "relative",
+          }}
+        >
+          <Text
+            style={[
+              typography.soyo,
+              {
+                fontSize: 16,
+                color: colors.greyblack,
+                fontWeight: "bold",
+              },
+            ]}
           >
-            <Text
-              style={[
-                typography.soyo,
-                {
-                  fontSize: 16,
-                  color: colors.greyblack,
-                  fontWeight: "bold",
-                },
-              ]}
-            >
-              오늘의 편지함을 열었어요
-            </Text>
-            <MonoText
-              style={{ fontSize: 12, color: colors.grey500, marginTop: 7 }}
-            >
-              하루에 최대 편지 20개를 받을 수 있어요!
-            </MonoText>
+            오늘의 편지함을 열었어요
+          </Text>
+          <MonoText
+            style={{ fontSize: 12, color: colors.grey500, marginTop: 7 }}
+          >
+            하루에 최대 편지 20개를 받을 수 있어요!
+          </MonoText>
 
-            <SvgImg
-              url={letter}
-              style={{
-                width: 88,
-                height: 55,
-                position: "absolute",
-                right: 0,
-                bottom: 10,
-              }}
-            />
-          </View>
-
-          {letterRender.new ? (
-            <>
-              <NewLetterItem letters={data?.letters} />
-            </>
-          ) : (
-            <ReplyLetterItem replies={data?.replies} />
-          )}
+          <SvgImg
+            url={letter}
+            style={{
+              width: 88,
+              height: 55,
+              position: "absolute",
+              right: 0,
+              bottom: 10,
+            }}
+          />
         </View>
-      </ScrollView>
-    </View>
+
+        {letterRender.new ? (
+          <>
+            <NewLetterItem letters={data?.letters} />
+          </>
+        ) : (
+          <ReplyLetterItem replies={data?.replies} />
+        )}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+
     height: "100%",
     backgroundColor: "#000",
   },
