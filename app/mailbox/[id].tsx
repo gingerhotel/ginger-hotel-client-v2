@@ -53,7 +53,6 @@ export default function MailBox() {
             paddingLeft: 12,
             paddingRight: 12,
             width: "100%",
-            minWidth: 340,
             position: "relative",
           }}
         >
@@ -78,11 +77,11 @@ export default function MailBox() {
           <SvgImg
             url={letter}
             style={{
-              width: 88,
-              height: 55,
+              width: 140,
+              height: 65,
               position: "absolute",
-              right: 0,
-              bottom: 10,
+              right: -120,
+              bottom: 15,
             }}
           />
         </View>
@@ -101,9 +100,8 @@ export default function MailBox() {
 
 const styles = StyleSheet.create({
   container: {
-
     height: "100%",
-    backgroundColor: "#000",
+    backgroundColor: colors.greyblack,
   },
   mailbox_items: {
     padding: 15,

@@ -53,18 +53,23 @@ export const NewLetterItem = ({ letters }: any) => {
   return (
     <>
       <FlatList
+        contentContainerStyle={{ paddingBottom: 100 }}
         data={letters}
-        renderItem={({ item }) =>
+        renderItem={({ item }) => (
           <LetterOuterContainer b_color="#FFFDF0">
             <LetterInnerContainer b_color="#FFFDF0">
               <LetterInnerInfoView>
                 <LetterInnerTitieView border_color="#4A4A4E">
                   <View />
                   <LetterInnerTitieTextView>
-                    <LetterInnerSendText f_color="#4A4A4E">보내는 이</LetterInnerSendText>
-                    <LetterInnerUserText f_color="#25796B">{item.senderNickname}</LetterInnerUserText>
+                    <LetterInnerSendText f_color="#4A4A4E">
+                      보내는 이
+                    </LetterInnerSendText>
+                    <LetterInnerUserText f_color="#25796B">
+                      {item.senderNickname}
+                    </LetterInnerUserText>
                   </LetterInnerTitieTextView>
-                  <View style={{ position: 'absolute', left: '98%' }}>
+                  <View style={{ position: "absolute", left: "98%" }}>
                     <SvgImg
                       url={iconMore}
                       width={30}
@@ -77,9 +82,11 @@ export const NewLetterItem = ({ letters }: any) => {
                       url={i_block}
                       width={30}
                       height={30}
-                    // onPress={() => toggleModal(item.id)}
+                      // onPress={() => toggleModal(item.id)}
                     />
-                  ) : (<View />)}
+                  ) : (
+                    <View />
+                  )}
                 </LetterInnerTitieView>
               </LetterInnerInfoView>
               <LetterInnerTextBox f_color="#36363B">
@@ -87,9 +94,15 @@ export const NewLetterItem = ({ letters }: any) => {
               </LetterInnerTextBox>
             </LetterInnerContainer>
           </LetterOuterContainer>
-        }
-        keyExtractor={item => item.id.toString()} />
-      <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
+      <BottemSheet
+        isVisible={bottomSheetVisible}
+        onClose={closeModal}
+        letterId={letterId}
+        blocked={blocked}
+      ></BottemSheet>
     </>
   );
 };
