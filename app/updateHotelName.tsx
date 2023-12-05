@@ -1,5 +1,12 @@
 import * as React from "react";
-import { View, StyleSheet, TextInput, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  Keyboard,
+  Pressable,
+} from "react-native";
 import Buttons from "../components/buttons";
 import CreateHeader from "../components/createHeader";
 import { MonoText } from "../components/styledText";
@@ -81,71 +88,73 @@ export default function UpdateHotelName() {
   return (
     <>
       <Header title="호텔 수정하기" />
-      <CreateHeader isActiveNumber={3} />
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.edit_wrapper}>
-            <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
+      <Pressable onPress={() => Keyboard.dismiss()}>
+        <CreateHeader isActiveNumber={3} />
+        <ScrollView>
+          <View style={styles.container}>
+            <View style={styles.edit_wrapper}>
+              <MonoText style={styles.title}>누구의 호텔인가요?</MonoText>
+            </View>
+
+            <View>
+              <CustomUserHotel
+                is_border={true}
+                wallColor={params.bodyColor}
+                structColor={params.structColor}
+                gardenDecorator={params.gardenDecorator}
+                windowDecorator={params.windowDecorator}
+                buildingDecorator={params.buildingDecorator}
+                background={params.background}
+              />
+            </View>
+
+            <View
+              style={{
+                padding: 3,
+                paddingTop: 30,
+                justifyContent: "flex-start",
+                width: "100%",
+              }}
+            >
+              <Input
+                value={newNickname}
+                onChange={(text: string) => setNickname(text)}
+                placeholder="내 닉네임 (최대 8글자)"
+                maxLength={8}
+              />
+              <View style={{ marginTop: 8 }}></View>
+              <Input
+                value={newDescription}
+                multiline={5}
+                onChange={(text: string) => setDescription(text)}
+                placeholder="내 호텔을 소개해주세요 (최대 25글자)"
+                maxLength={25}
+                height={80}
+              />
+            </View>
+            <View style={styles.btn_wrapper}>
+              <Buttons
+                is_disable={!newNickname || !newDescription}
+                title="수정하기"
+                color="green"
+                callback={handleFormSubmit}
+              />
+            </View>
+            <MonoText style={styles.hotel_info}>
+              ※ 호텔 이름은 나중에도 수정할 수 있어요!
+            </MonoText>
           </View>
 
-          <View>
-            <CustomUserHotel
-              is_border={true}
-              wallColor={params.bodyColor}
-              structColor={params.structColor}
-              gardenDecorator={params.gardenDecorator}
-              windowDecorator={params.windowDecorator}
-              buildingDecorator={params.buildingDecorator}
-              background={params.background}
-            />
-          </View>
-
-          <View
-            style={{
-              padding: 3,
-              paddingTop: 30,
-              justifyContent: "flex-start",
-              width: "100%",
-            }}
-          >
-            <Input
-              value={newNickname}
-              onChange={(text: string) => setNickname(text)}
-              placeholder="내 닉네임 (최대 8글자)"
-              maxLength={8}
-            />
-            <View style={{ marginTop: 8 }}></View>
-            <Input
-              value={newDescription}
-              multiline={5}
-              onChange={(text: string) => setDescription(text)}
-              placeholder="내 호텔을 소개해주세요 (최대 25글자)"
-              maxLength={25}
-              height={80}
-            />
-          </View>
-          <View style={styles.btn_wrapper}>
-            <Buttons
-              is_disable={!newNickname || !newDescription}
-              title="수정하기"
-              color="green"
-              callback={handleFormSubmit}
-            />
-          </View>
-          <MonoText style={styles.hotel_info}>
-            ※ 호텔 이름은 나중에도 수정할 수 있어요!
-          </MonoText>
-        </View>
-
-        <ErrorModal
-          height={200}
-          visible={ErrorModalVisible}
-          onClose={closeErrorModal}
-          name={errorTitle}
-          desc={errorMessage}
-          buttonMessage={errorButtonMessage}
-        />
-      </ScrollView>
+          <ErrorModal
+            height={200}
+            visible={ErrorModalVisible}
+            onClose={closeErrorModal}
+            name={errorTitle}
+            desc={errorMessage}
+            buttonMessage={errorButtonMessage}
+          />
+        </ScrollView>
+      </Pressable>
     </>
   );
 }
