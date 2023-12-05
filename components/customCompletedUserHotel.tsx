@@ -790,6 +790,7 @@ const styles = StyleSheet.create({
   },
   button_wrapper: {
     width: 140,
+    height: 65,
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",
