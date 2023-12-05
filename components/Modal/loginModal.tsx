@@ -254,11 +254,7 @@ const LoginModal = ({
             onPress={signInWithKakao}
             >
           <View style={[styles(height).kakao]}>
-            {Platform.OS === "ios" || Platform.OS === "android" ? (
-              <WithLocalSvg asset={kakaoLogo} />
-              ) : (
-                <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
-                )}
+            <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
             <MonoText style={styles(height).kakao_text}>
               카카오 계정으로 로그인
             </MonoText>
@@ -269,11 +265,7 @@ const LoginModal = ({
               style={[styles(height).button, styles(height).google]}
               onPress={() => setModalVisible()}
             >
-              {Platform.OS === "ios" || Platform.OS === "android" ? (
-                <WithLocalSvg asset={googleLogo} />
-              ) : (
-                <Image source={googleLogo} style={{ width: 30, height: 30 }} />
-              )}
+              <Image source={googleLogo} style={{ width: 30, height: 30 }} />
               <MonoText
                 style={[
                   styles(height).textStyle,
