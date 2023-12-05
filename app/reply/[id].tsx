@@ -16,6 +16,8 @@ import { replyNameState } from "../../atom/letterAtom";
 import ReplyHeader from "../../components/replyHeader";
 import { newReply } from "../../api/repliesApi";
 import WithdrawalModal from "../../components/Modal/withdrawalModal";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 export default function Reply() {
   const navigation = useNavigation();
@@ -73,6 +75,7 @@ export default function Reply() {
   };
 
   return (
+    <KeyboardAwareScrollView>
     <View style={{ flex: 1, backgroundColor: colors.greyblack }}>
       <View style={styles.container}>
         <ReplyHeader />
@@ -138,6 +141,7 @@ export default function Reply() {
         />
       </View>
     </View>
+    </KeyboardAwareScrollView>
   );
 }
 
