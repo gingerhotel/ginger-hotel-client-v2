@@ -20,6 +20,7 @@ import ErrorModal from "../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import { useNavigation } from "expo-router";
 import LetterHeader from "../../components/letterHeader";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
 export default function Letter() {
@@ -83,6 +84,7 @@ export default function Letter() {
   };
 
   return (
+    <KeyboardAwareScrollView>
     <View style={{ flex: 1, backgroundColor: colors.greyblack }}>
       <Pressable onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
@@ -158,6 +160,7 @@ export default function Letter() {
         </View>
       </Pressable>
     </View>
+    </KeyboardAwareScrollView>
   );
 }
 
