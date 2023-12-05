@@ -67,11 +67,13 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
     return <Text>...로딩</Text>;
   }
   return (
-    <SafeAreaView style={{ width: "100%" }}>
+    <SafeAreaView style={{ width: '100%' }}>
       <MailBoxView>
         <SvgImg
           url={arrow}
           onPress={() => router.replace(`/hotel/${id}`)}
+          width={30}
+          height={30}
         ></SvgImg>
         <MailTitleView>
           <MailTitleText>내 호텔 편지함</MailTitleText>
@@ -101,9 +103,8 @@ const MailHeader = ({ marginTop, isTitle = true, navigation }: any) => {
           </TouchableOpacity>
         </MailInfoView>
         <MailChoseView b_color="#000">
-          <DateText f_color="#DDDDDE">{`2023-12-${
-            windowDate < 10 ? "0" + windowDate : windowDate
-          }`}</DateText>
+          <DateText f_color="#DDDDDE">{`2023-12-${windowDate < 10 ? "0" + windowDate : windowDate
+            }`}</DateText>
         </MailChoseView>
       </MailChoseContainer>
     </SafeAreaView>
