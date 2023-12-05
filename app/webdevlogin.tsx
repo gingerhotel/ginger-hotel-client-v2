@@ -165,7 +165,7 @@ export default function Login({ navigation }: any) {
       )}
 
       <LoginModal
-        height={300}
+        height={350}
         visible={oneBtnModalVisible}
         onClose={closeoneBtnModal}
         name="로그인"

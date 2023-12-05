@@ -20,7 +20,7 @@ import axios from "axios";
 import { useMutation } from "react-query";
 import { authGoogle, authKakao } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
-import { MEMBER_URL } from "../../api/url";
+import { AUTH_URL, MEMBER_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
 import { WithLocalSvg } from "react-native-svg";
@@ -298,16 +298,37 @@ const LoginModal = ({
             });
             
             const response = await axios.post(
-              'http://127.0.0.1:8080/auth/apple',
+              `${AUTH_URL}/apple`,
               {
                 token: credential.identityToken,
               }
             );
 
-            AsyncStorage.setItem('isLogin', "true");
             AsyncStorage.setItem('accessToken', response.data.accessToken);
+            if (response.status == 200) {
+              router.replace("/create");
+            } else if (response.status == 201) {
+              if (!isEmpty(id as string)) {
+                router.replace(`/hotel/${id}`);
+                location.reload();
+              } else {
+                // Todo : Need a Funcional code
+                axios
+                  .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                    headers: {
+                      Authorization: `Bearer ${response.data.accessToken}`,
+                    },
+                  })
+                  .then((response) => {
+                    const { hotel } = response.data;
+                    router.replace(`/hotel/${hotel.id}`);
+                    location.reload();
+                  });
+              }
+            }
 
           } catch (e) {
+            alert(e);
             /*if (e.code === 'ERR_REQUEST_CANCELED') {
               // handle that the user canceled the sign-in flow
             } else {

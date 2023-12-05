@@ -291,7 +291,7 @@ const GingerAlbum = () => {
           </View>
         </View>
         <LoginModal
-          height={300}
+          height={350}
           visible={loginModalVisible}
           onClose={closeLoginModal}
           name="로그인"
