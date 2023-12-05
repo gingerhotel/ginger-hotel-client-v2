@@ -70,7 +70,7 @@ const KeyModal = ({ onClose, visible, code }: TProps) => {
                 친구가 나의 초대 코드로 가입하면
               </Text>
               <Text style={styles.contentText}>
-                친우와 나 모두 열쇠를 1개씩 받을 수 있어요.
+                친구와 나 모두 열쇠를 1개씩 받을 수 있어요.
               </Text>
             </View>
           </View>
