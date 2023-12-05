@@ -2,7 +2,14 @@ import { Tabs } from "expo-router/tabs";
 import { TabBarIcon } from "../tab/TabBarIcon";
 import { colors } from "../../constants/Colors";
 
+// Translations
+import "../../translation/i18n";
+import { useTranslation } from "react-i18next";
+
 export default function _layout() {
+  // Translations
+  const { t, i18n } = useTranslation();
+
   return (
     <Tabs
       initialRouteName="hotel/[id]"
@@ -26,7 +33,7 @@ export default function _layout() {
         name="village"
         options={{
           headerShown: false,
-          title: "빌리지",
+          title: t("bottom_nav.빌리지"),
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="album" color={color} size={size} />
           ),
@@ -36,7 +43,7 @@ export default function _layout() {
       <Tabs.Screen
         name="hotel/[id]"
         options={{
-          title: "최근 호텔",
+          title: t("bottom_nav.최근 호텔"),
           tabBarIcon: ({ color, size }) => (
             <TabBarIcon name="hotel" color={color} size={size} />
           ),

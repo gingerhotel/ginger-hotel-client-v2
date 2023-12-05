@@ -1,5 +1,9 @@
 {
   "common": {},
+  "bottom_nav": {
+    "빌리지": "Village",
+    "최근 호텔": "Recent Hotel"
+  },
   "mypage": {
     "마이페이지": "My Page",
     "내 열쇠": "Key",
