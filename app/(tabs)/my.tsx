@@ -446,7 +446,7 @@ export default function TabThreeScreen() {
         <View>
           <TouchableOpacity
             onPress={() => {
-              router.replace("/csCenter");
+              router.push("/csCenter");
             }}
           >
             <Text style={[styles.links_text, { color: colors.grey300 }]}>
