@@ -248,25 +248,22 @@ const LoginModal = ({
               marginVertical: 15,
             }}
           ></View>
-          <Pressable
-            style={[styles(height).button, styles(height).google]}
-            onPress={signInWithKakao}
-          >
-            <MonoText style={styles(height).kakao_text}>
-              카카오 계정으로 로그인
-            </MonoText>
-          </Pressable>
 
+
+          <Pressable
+            onPress={signInWithKakao}
+            >
           <View style={[styles(height).kakao]}>
             {Platform.OS === "ios" || Platform.OS === "android" ? (
               <WithLocalSvg asset={kakaoLogo} />
-            ) : (
-              <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
-            )}
+              ) : (
+                <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
+                )}
             <MonoText style={styles(height).kakao_text}>
               카카오 계정으로 로그인
             </MonoText>
           </View>
+          </Pressable>
           <View>
             <Pressable
               style={[styles(height).button, styles(height).google]}
