@@ -279,7 +279,7 @@ export default function TabThreeScreen() {
           </TouchableOpacity>
 
           {/* 엿보기 블러 버전 시작 */}
-          <View
+          {/* <View
             style={[styles.key_peek_box, { backgroundColor: colors.grey900 }]}
           >
             <View>
@@ -314,7 +314,7 @@ export default function TabThreeScreen() {
               style={styles.key_peek_box_blur_text}
               url={feek_blur_text}
             />
-          </View>
+          </View> */}
           {/* 엿보기 블러 버전 끝 */}
         </View>
         <View style={[styles.btn_group, { backgroundColor: colors.grey900 }]}>

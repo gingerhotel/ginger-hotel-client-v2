@@ -412,14 +412,14 @@ export default function HotelComp() {
                 )}
               </>
             )}
-            <View style={styles.hotel_today}>
+            {/* <View style={styles.hotel_today}>
               <Buttons
                 title="로그인페이지1"
                 url="webdevlogin"
                 color="gray_700"
                 width={350}
               />
-            </View>
+            </View> */}
           </View>
         </View>
         <GingerModal

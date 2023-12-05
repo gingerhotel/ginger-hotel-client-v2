@@ -133,7 +133,7 @@ const ChangeUserInfo = () => {
 
           <View style={styles.edit_wrapper}>
             <MonoText style={styles.title}>내 계정 정보</MonoText>
-            <View style={styles.email_wrapper}>
+            {/* <View style={styles.email_wrapper}>
               <MonoText style={styles.email_text}>{user?.email}</MonoText>
               <TouchableOpacity
                 onPress={() => {
@@ -156,7 +156,7 @@ const ChangeUserInfo = () => {
             <MonoText style={styles.input_title}>생년월일</MonoText>
             <MonoText style={styles.input_label}>
               생년월일을 형식에 맞게 입력해주세요.
-            </MonoText>
+            </MonoText> */}
 
             {/* <View style={styles.input_wrapper}>
               <DatePicker
@@ -173,6 +173,15 @@ const ChangeUserInfo = () => {
 
             <TouchableOpacity
               accessible={true}
+              accessibilityLabel="로그아웃버튼"
+              onPress={() => {
+                openLogoutModal();
+              }}
+            >
+              <MonoText style={styles.input_title}>로그아웃</MonoText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              accessible={true}
               accessibilityLabel="회원탈퇴 버튼"
               onPress={() => {
                 router.replace("/deleteAccountTwo");
@@ -182,9 +191,9 @@ const ChangeUserInfo = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.btn_wrapper}>
+        {/* <View style={styles.btn_wrapper}>
           <Buttons title="수정하기" color="green" callback={handelUpdate} />
-        </View>
+        </View> */}
         <ErrorModal
           height={200}
           visible={ErrorModalVisible}
