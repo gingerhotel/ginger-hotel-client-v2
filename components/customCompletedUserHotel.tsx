@@ -346,8 +346,10 @@ export default function CustomCompleteUserHotel({
     {
       num: 25,
       date: "2023-12-25",
-      top: 353,
-      left: 283,
+      width: 20,
+      height: 33,
+      top: 360,
+      left: 173,
       font_top: 18,
       font_left: 12,
     },
@@ -579,6 +581,20 @@ export default function CustomCompleteUserHotel({
               }}
             >
               <SvgImg
+                width={
+                  item.num === 25 &&
+                  window[`2023-12-${item.num < 10 ? "0" + item.num : item.num}`]
+                    ?.isOpen
+                    ? 50
+                    : item.width
+                }
+                height={
+                  item.num === 25 &&
+                  window[`2023-12-${item.num < 10 ? "0" + item.num : item.num}`]
+                    ?.isOpen
+                    ? 72
+                    : item.height
+                }
                 url={
                   item.num === 13
                     ? window[
@@ -605,20 +621,6 @@ export default function CustomCompleteUserHotel({
                     : window_design[window_v].default
                 }
                 style={{
-                  width:
-                    item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
-                      ? 50
-                      : item.width,
-                  height:
-                    item.num === 25 &&
-                    window[
-                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
-                    ]?.isOpen
-                      ? 72
-                      : item.height,
                   top:
                     item.num === 25 &&
                     window[
