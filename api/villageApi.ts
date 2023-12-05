@@ -23,7 +23,7 @@ export const myVillage = async () => {
     const response = await axios.get(`${VILLAGE_URL}/my`);
     return response.data;
   } catch (err: any) {
-    alert(err?.response?.data?.errorMessage);
+    // alert(err?.response?.data?.errorMessage);
   }
 };
 
