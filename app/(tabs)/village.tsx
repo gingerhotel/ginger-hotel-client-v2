@@ -132,7 +132,10 @@ export default function Village() {
           height: "100%",
         }}
       >
-        <ScrollView style={{ paddingBottom: 70 }}>
+        <ScrollView
+          style={{ paddingBottom: 70 }}
+          contentContainerStyle={{ paddingBottom: 100 }}
+        >
           <View
             style={{
               borderRadius: 12,

@@ -24,8 +24,8 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
 export const LetterInnerInfoView = styled.View`
   display: flex;
   margin: 10px;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   max-width: 290px;
   min-width: 290px;
 `;
