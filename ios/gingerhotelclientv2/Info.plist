@@ -95,11 +95,5 @@
 	<string>Automatic</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>instagram</string>
-		<string>instagramstories</string>
-		<string>instagram-stories</string>
-	</array>
 </dict>
 </plist>
