@@ -421,7 +421,7 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="철학자 진저맨"
-          desc={`어이 자네~\n이따 아고라 광장에서 만나기로 했지?\n오늘은 아르케에 대해 논할 테니 기대하고 와도 좋아!`}
+          desc={`어이 자네~\n이따 아고라 광장에서 만나기로 했지?\n오늘은 아르케에 대해 논하니 기대하고 와도 좋아!`}
           img={bellboy13}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
