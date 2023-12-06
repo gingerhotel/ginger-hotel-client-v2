@@ -49,7 +49,7 @@ function FirstLetter({ letter }: any) {
                                 <LetterInnerSendText f_color={letter.isMe ? ("#4A4A4E") : ("#77C7B9")}>{letter.isMe ? ("나의 편지") : ("보내는 이")} </LetterInnerSendText>
                                 <LetterInnerUserText f_color={letter.isMe ? ("#25796B") : ("#FFFDF0")}>{letter.senderNickname}</LetterInnerUserText>
                             </LetterInnerTitieTextView>
-                            {letter.isMe ? (null) : (<View style={{ position: 'absolute', left: '98%', backgroundColor: 'transparent' }}>
+                            {letter.isMe ? (null) : (<View style={{ position: 'absolute', left: '108%', backgroundColor: 'transparent' }}>
                                 <SvgImg
                                     url={iconMore}
                                     width={30}

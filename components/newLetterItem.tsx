@@ -69,7 +69,7 @@ export const NewLetterItem = ({ letters }: any) => {
                       {item.senderNickname}
                     </LetterInnerUserText>
                   </LetterInnerTitieTextView>
-                  <View style={{ position: "absolute", left: "98%" }}>
+                  <View style={{ position: "absolute", left: "108%" }}>
                     <SvgImg
                       url={iconMore}
                       width={30}
@@ -82,7 +82,7 @@ export const NewLetterItem = ({ letters }: any) => {
                       url={i_block}
                       width={30}
                       height={30}
-                      // onPress={() => toggleModal(item.id)}
+                    // onPress={() => toggleModal(item.id)}
                     />
                   ) : (
                     <View />

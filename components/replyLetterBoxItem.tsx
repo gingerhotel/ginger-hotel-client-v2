@@ -71,7 +71,7 @@ const ReplyLetterBoxItem = (data: any) => {
                                         <LetterInnerUserText f_color={item.isMe ? ("#25796B") : ("#FFFDF0")} >{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
                                     {item.isMe ? (null) :
-                                        (<View style={{ position: 'absolute', left: '98%' }}>
+                                        (<View style={{ position: 'absolute', left: '108%' }}>
                                             <SvgImg
                                                 url={iconMore}
                                                 width={30}
