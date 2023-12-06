@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import {
     StyleSheet,
     View,
-    Image,
     TouchableOpacity,
-    TouchableHighlight,
 } from "react-native";
 import {
     LetterInnerContainer,
@@ -15,7 +13,6 @@ import {
     LetterInnerTitieView,
     LetterInnerUserText,
     LetterOuterContainer,
-    LetterReplyButtonText,
     LetterReplyButtonView
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
@@ -71,7 +68,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
                                         <LetterInnerUserText f_color="#FFFDF0">{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
-                                    <View style={{ position: 'absolute', left: '98%' }}>
+                                    <View style={{ position: 'absolute', left: '98%', top: '14%' }}>
                                         <SvgImg
                                             url={iconMore}
                                             width={30}

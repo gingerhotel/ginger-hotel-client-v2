@@ -8,6 +8,7 @@ import {
     ScrollView,
 } from "react-native";
 import {
+    LetterBlurContainer,
     LetterInnerContainer,
     LetterInnerInfoView,
     LetterInnerSendText,
@@ -30,6 +31,7 @@ const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 import BottemSheet from "./bottemSheet";
 import FirstLetter from "./firstLetter";
+import { MonoText } from "./styledText";
 type Props = {
     from: string; contents: string;
     is_active: boolean;
@@ -74,11 +76,11 @@ const ReplyLetterBoxItem = (data: any) => {
                                         <LetterInnerUserText f_color={item.isMe ? ("#25796B") : ("#FFFDF0")} >{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
                                     {item.isMe ? (null) :
-                                        (<View style={{ position: 'absolute', left: '98%' }}>
+                                        (<View style={{ position: 'absolute', left: '98%', top: '14%' }}>
                                             <SvgImg
                                                 url={iconMore}
-                                                width={30}
-                                                height={30}
+                                                width={24}
+                                                height={26}
                                                 onPress={() => toggleModal(item)}
                                             />
                                         </View>)}
