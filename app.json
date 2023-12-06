@@ -23,20 +23,16 @@
       "infoPlist": {
         "CFBundleURLTypes": [
           {
-            "CFBundleURLSchemes": [
-              "com.googleusercontent.apps.251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr"
-            ]
+            "CFBundleURLSchemes": ["com.googleusercontent.apps.251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr"]
           }
         ]
-      },
-      "bundleIdentifier": "com.teamginger.gingerhotel"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.teamginger.gingerhotel"
     },
     "web": {
       "bundler": "metro",
@@ -63,9 +59,8 @@
       "eas": {
         "projectId": "e7e1c4f2-8bdd-4e02-a711-974d0d3b45b7"
       },
-      "plugins": [
-        {}
-      ]
+      "plugins" : [{
+      }]
     },
     "runtimeVersion": "1.0.1",
     "updates": {

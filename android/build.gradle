@@ -17,7 +17,6 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-          classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10'
         classpath('com.android.tools.build:gradle:7.4.2')
         classpath('com.facebook.react:react-native-gradle-plugin')
     }
@@ -38,14 +37,4 @@ allprojects {
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
     }
-}
-
-project.ext {
-    set('react-native', [
-        versions: [
-            kakao: [
-                sdk: "2.9.0",
-            ],
-        ],
-    ])
 }
