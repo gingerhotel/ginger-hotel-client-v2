@@ -7,7 +7,7 @@
     "version": "2.2.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "com.teamginger.gingerhoteltest2",
+    "scheme": "com.teamginger.gingerhotel",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
