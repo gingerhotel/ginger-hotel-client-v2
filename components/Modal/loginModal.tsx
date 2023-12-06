@@ -278,65 +278,7 @@ const LoginModal = ({
               </MonoText>
             </Pressable>
           </View>
-              
-      <AppleAuthentication.AppleAuthenticationButton
-        buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-        buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-        cornerRadius={5}
-        style={{
-          width:300,
-          height:55 ,
-          borderColor : "#000",
-        }}
-        onPress={async () => {
-          try {
-            const credential = await AppleAuthentication.signInAsync({
-              requestedScopes: [
-                AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                AppleAuthentication.AppleAuthenticationScope.EMAIL,
-              ],
-            });
-            
-            const response = await axios.post(
-              `${AUTH_URL}/apple`,
-              {
-                token: credential.identityToken,
-              }
-            );
-
-            AsyncStorage.setItem('accessToken', response.data.accessToken);
-            if (response.status == 200) {
-              router.replace("/create");
-            } else if (response.status == 201) {
-              if (!isEmpty(id as string)) {
-                router.replace(`/hotel/${id}`);
-                location.reload();
-              } else {
-                // Todo : Need a Funcional code
-                axios
-                  .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-                    headers: {
-                      Authorization: `Bearer ${response.data.accessToken}`,
-                    },
-                  })
-                  .then((response) => {
-                    const { hotel } = response.data;
-                    router.replace(`/hotel/${hotel.id}`);
-                    location.reload();
-                  });
-              }
-            }
-
-          } catch (e) {
-            alert(e);
-            /*if (e.code === 'ERR_REQUEST_CANCELED') {
-              // handle that the user canceled the sign-in flow
-            } else {
-              // handle other errors
-            }*/
-          }
-        }}
-      />
+       
         </View>
       </View>
     </Modal>
