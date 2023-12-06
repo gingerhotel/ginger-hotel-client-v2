@@ -1,8 +1,8 @@
 // BottomSheet.tsx
 
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modal';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
+// import Modal from 'react-native-modal';
 import { SvgImg } from './svgImg';
 import { BottemSheetBorderView, BottemSheetContentView, BottemSheetDraeView, BottemSheetElementView, BottemSheetView } from '../style/bottemSheetStyled';
 import { MonoText } from './styledText';
@@ -65,15 +65,12 @@ const BottomSheet = ({
   return (
     <>
       <Modal
-        isVisible={isVisible}
-        onBackButtonPress={onBackButtonPress}
-        onBackdropPress={onBackButtonPress}
-        onSwipeComplete={onClose}
-        swipeDirection={["down", "up"]}
-        onSwipeMove={handleSwipeMove}
-        onSwipeStart={() => console.log("Swipe started")}
-        style={{ margin: 0, backgroundColor: "transparent" }}
-        backdropOpacity={0.2}
+        visible={isVisible}
+        onRequestClose={() => {
+          onBackButtonPress();
+        }}
+        animationType="fade"
+        transparent={true}
       >
         <BottemSheetView>
           <BottemSheetContentView>
@@ -90,9 +87,9 @@ const BottomSheet = ({
                     </MonoText>
                   </BottemSheetElementView>
                   {/* <BottemSheetElementView>
-                                        <SvgImg url={i_peek} width={32} height={32}></SvgImg>
-                                        <MonoText>엿보기</MonoText>
-                                    </BottemSheetElementView> */}
+                        <SvgImg url={i_peek} width={32} height={32}></SvgImg>
+                        <MonoText>엿보기</MonoText>
+                      </BottemSheetElementView> */}
                 </>
               )}
               <BottemSheetElementView onPress={handleDelete}>
