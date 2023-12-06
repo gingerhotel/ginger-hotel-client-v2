@@ -44,14 +44,14 @@ export default function Login({ navigation }: any) {
   const handleLoginProd = async (data: FieldValues) => {
     //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
     axios
-      .post(`https://gingerhotel-server.site/auth/test`, {
+      .post(`https://gingerhotel-server-dev.site/auth/test`, {
         socialId: data.socialId,
         vendor: "NAVER",
       })
       .then((res) => {
         console.log(res);
         AsyncStorage.setItem('accessToken', res.data.accessToken);
-        router.replace("/hotelcreate");
+        router.replace("/create");
       })
       .catch((err) => {
         console.log(err);
