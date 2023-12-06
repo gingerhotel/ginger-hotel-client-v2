@@ -24,8 +24,8 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
 export const LetterInnerInfoView = styled.View`
   display: flex;
   margin: 10px;
-  /* align-items: center;
-  justify-content: center; */
+  align-items: center;
+  justify-content: center;
   max-width: 290px;
   min-width: 290px;
 `;
@@ -38,7 +38,8 @@ export const LetterInnerTitieView = styled.View<{ border_color?: string }>`
   border-bottom-width: 1px;
   border-color: ${(props) => props.border_color};
   padding: 10px;
-  min-width: 240px;
+  min-width: 230px;
+  width: 70%;
 `;
 
 export const LetterInnerTitieTextView = styled.View`
