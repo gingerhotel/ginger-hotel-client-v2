@@ -33,6 +33,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "package": "com.teamginger1.gingerhotelclientv2"
     },
     "web": {
       "bundler": "metro",
@@ -57,9 +58,10 @@
         "origin": false
       },
       "eas": {
-        "projectId": "e7e1c4f2-8bdd-4e02-a711-974d0d3b45b7"
+        "projectId": "7d6387ca-94a7-4358-962e-66d464ab5be6"
       },
       "plugins" : [{
+        "username" : "gingertest1"
       }]
     },
     "runtimeVersion": "1.0.1",
