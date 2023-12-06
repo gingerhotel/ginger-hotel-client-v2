@@ -28,7 +28,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>myapp</string>
-				<string>com.teamginger2.gingerhotelclientv2</string>
+				<string>com.teamginger1.gingerhotelclientv2</string>
 			</array>
 		</dict>
 		<dict>

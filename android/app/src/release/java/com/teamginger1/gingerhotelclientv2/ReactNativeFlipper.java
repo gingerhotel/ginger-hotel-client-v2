@@ -4,7 +4,7 @@
  * <p>This source code is licensed under the MIT license found in the LICENSE file in the root
  * directory of this source tree.
  */
-package com.teamginger2.gingerhotelclientv2;
+package com.teamginger1.gingerhotelclientv2;
 
 import android.content.Context;
 import com.facebook.react.ReactInstanceManager;
