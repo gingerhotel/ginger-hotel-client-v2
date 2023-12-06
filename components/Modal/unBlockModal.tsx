@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { DeleteModaContentlView, DeleteModalButtonView, DeleteModalView } from '../../style/deleteModalStyled'
 import { Text, View } from '../themed'
-import Modal from 'react-native-modal';
 import { BottomSheetProps } from '../../api/interface';
 import { MonoText } from '../styledText';
 import { SvgImg } from '../svgImg';
@@ -10,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
 import { replyUnBlock } from '../../api/repliesApi';
+import { Modal } from 'react-native';
 const i_yes = require("../../assets/icon/i_clear.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const UnBlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: BottomSheetProps) => {
@@ -27,9 +27,12 @@ const UnBlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: Bot
     }
     return (
         <Modal
-            isVisible={isVisible}
-            style={{ margin: 0, backgroundColor: 'transparent' }}
-            backdropOpacity={0.2}
+            visible={isVisible}
+            onRequestClose={() => {
+                onClose();
+            }}
+            animationType="fade"
+            transparent={true}
         >
             <DeleteModalView>
                 <DeleteModaContentlView>

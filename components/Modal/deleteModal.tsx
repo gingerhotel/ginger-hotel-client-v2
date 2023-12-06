@@ -5,7 +5,7 @@ import {
   DeleteModalView,
 } from "../../style/deleteModalStyled";
 import { Text, View } from "../themed";
-import Modal from "react-native-modal";
+import { Modal } from "react-native";
 import { BottomSheetProps } from "../../api/interface";
 import { MonoText } from "../styledText";
 import { SvgImg } from "../svgImg";
@@ -37,9 +37,12 @@ const DeleteModal = ({
   };
   return (
     <Modal
-      isVisible={isVisible}
-      style={{ margin: 0, backgroundColor: "transparent" }}
-      backdropOpacity={0.2}
+      visible={isVisible}
+      onRequestClose={() => {
+        onClose();
+      }}
+      animationType="fade"
+      transparent={true}
     >
       <DeleteModalView>
         <DeleteModaContentlView>
@@ -49,7 +52,7 @@ const DeleteModal = ({
           <MonoText style={{ color: "#98989B" }}>
             한번 삭제한 편지는 복구가 불가해요.
           </MonoText>
-          <View style={{ backgroundColor: "transparent" }}>
+          <View style={{ backgroundColor: "transparent", alignItems: 'center' }}>
             <MonoText style={{ color: "#98989B" }}>
               해당 편지로부터 시작된 답장이 있다면
             </MonoText>
@@ -74,6 +77,9 @@ const DeleteModal = ({
               auth={true}
             />
           </DeleteModalButtonView>
+          <MonoText style={{ color: "#98989B", fontSize: 10 }}>
+            차단된 편지를 삭제할 경우, 이후 차단해제가 불가합니다.
+          </MonoText>
         </DeleteModaContentlView>
       </DeleteModalView>
     </Modal>

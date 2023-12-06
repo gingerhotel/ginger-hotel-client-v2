@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 import { DeleteModaContentlView, DeleteModalButtonView, DeleteModalView } from '../../style/deleteModalStyled'
-import { Text, View } from '../themed'
-import Modal from 'react-native-modal';
 import { BottomSheetProps } from '../../api/interface';
 import { MonoText } from '../styledText';
-import { SvgImg } from '../svgImg';
-import { letterBlock, letterDelete } from '../../api/letterApi';
-import { useMutation, useQueryClient } from 'react-query';
+import { letterBlock } from '../../api/letterApi';
 import { useRecoilState } from 'recoil';
 import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
 import { replyBlock } from '../../api/repliesApi';
+import { Modal } from 'react-native';
 const i_yes = require("../../assets/icon/i_block_yes.svg");
 const i_no = require("../../assets/icon/i_no.svg");
 const BlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: BottomSheetProps) => {
@@ -28,9 +25,12 @@ const BlockModal = ({ isVisible, onClose, letterId, letterType, replyId }: Botto
     }
     return (
         <Modal
-            isVisible={isVisible}
-            style={{ margin: 0, backgroundColor: 'transparent' }}
-            backdropOpacity={0.2}
+            visible={isVisible}
+            onRequestClose={() => {
+                onClose();
+            }}
+            animationType="fade"
+            transparent={true}
         >
             <DeleteModalView>
                 <DeleteModaContentlView>

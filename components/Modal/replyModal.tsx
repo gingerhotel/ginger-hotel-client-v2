@@ -1,16 +1,10 @@
 import React, { useState } from 'react'
 import { DeleteModaContentlView, DeleteModalButtonView, DeleteModalView } from '../../style/deleteModalStyled'
-import { Text, View } from '../themed'
-import Modal from 'react-native-modal';
 import { BottomSheetProps } from '../../api/interface';
 import { MonoText } from '../styledText';
-import { SvgImg } from '../svgImg';
-import { letterBlock, letterDelete } from '../../api/letterApi';
-import { useMutation, useQueryClient } from 'react-query';
-import { useRecoilState } from 'recoil';
-import { letterUpdateState } from '../../atom/letterAtom';
 import Buttons from '../buttons';
 import { colors } from "../../constants/Colors";
+import { Modal } from 'react-native';
 const ReplyModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetProps) => {
   // const [replyCheck, setReplykCheck] = useRecoilState(letterUpdateState);
   const onReply = () => {
@@ -20,9 +14,12 @@ const ReplyModal = ({ isVisible, onClose, letterId, letterType }: BottomSheetPro
   };
   return (
     <Modal
-      isVisible={isVisible}
-      style={{ margin: 0, backgroundColor: "transparent", height: 500 }}
-      backdropOpacity={0.2}
+      visible={isVisible}
+      onRequestClose={() => {
+        onClose();
+      }}
+      animationType="fade"
+      transparent={true}
     >
       <DeleteModalView>
         <DeleteModaContentlView>
