@@ -81,13 +81,13 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace 'com.teamginger1.gingerhotelclientv2'
+    namespace "com.2023"
     defaultConfig {
-        applicationId 'com.teamginger1.gingerhotelclientv2'
+        applicationId 'com.teamginger.gingerhotel'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "2.2.2"
 
         buildConfigField("boolean", "REACT_NATIVE_UNSTABLE_USE_RUNTIME_SCHEDULER_ALWAYS", (findProperty("reactNative.unstable_useRuntimeSchedulerAlways") ?: true).toString())
     }
