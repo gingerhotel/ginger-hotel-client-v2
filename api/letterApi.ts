@@ -1,14 +1,13 @@
 import axios from "axios";
-import { LETTERS_HOTEL_URL, LETTERS_URL } from "./url";
+import { LETTERS_HOTEL_URL, LETTERS_URL, ORIGIN_URL } from "./url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getCurrentDate } from "../data/data";
 import { NewLetter } from "./interface";
 import { axiosConfig } from "./commonApi";
 
-
 export const newLetterData = async (id: any, day: string) => {
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.get(
       `${LETTERS_HOTEL_URL}/${id}?date=2023-12-${day.padStart(2, "0")}`
     );
@@ -22,7 +21,7 @@ export const newLetterData = async (id: any, day: string) => {
 
 export const newLetter = async (props: NewLetter) => {
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.post(
       `${LETTERS_HOTEL_URL}/${props.hotelId}`,
       props
@@ -35,7 +34,7 @@ export const newLetter = async (props: NewLetter) => {
 };
 export const letterDelete = async (letterId: number) => {
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.delete(`${LETTERS_URL}/${letterId}`);
     console.error(response);
     return response.data;
@@ -46,7 +45,7 @@ export const letterDelete = async (letterId: number) => {
 };
 export const letterBlock = async (letterId: number) => {
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.post(`${LETTERS_URL}/${letterId}/block`);
     console.error(response);
     return response.data;
@@ -57,7 +56,7 @@ export const letterBlock = async (letterId: number) => {
 };
 export const letterUnBlock = async (letterId: number) => {
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.post(`${LETTERS_URL}/${letterId}/unblock`);
     console.error(response);
     return response.data;
@@ -72,7 +71,7 @@ export const repliesLetterData = async (
 ) => {
   console.error(letterId);
   try {
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.get(
       `${LETTERS_URL}/${letterId}/replies?sort=ASC`
     );

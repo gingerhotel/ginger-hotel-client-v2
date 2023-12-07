@@ -39,9 +39,8 @@ export const signInWithKakao = async (
         onSuccess(data);
       } else if (status === 201) {
         const id: any = await AsyncStorage.getItem("kakaoUserId");
-
         if (!isEmpty(id as string)) {
-          window.location.href = `/hotel/${id}`;
+          router.replace(`/hotel/${id}`);
           AsyncStorage.removeItem("kakaoUserId");
         } else {
           axios

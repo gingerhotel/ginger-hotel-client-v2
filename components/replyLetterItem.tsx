@@ -55,47 +55,61 @@ const ReplyLetterItem = ({ replies }: any) => {
         setBottomSheetVisible(false);
     };
     return (
-        <>
-            <FlatList
-                data={replies}
-                renderItem={({ item }) =>
-                    <LetterOuterContainer b_color="#36363B">
-                        <LetterInnerContainer b_color="#36363B">
-                            <LetterInnerInfoView>
-                                <LetterInnerTitieView border_color="#4A4A4E">
-                                    <View />
-                                    <LetterInnerTitieTextView>
-                                        <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
-                                        <LetterInnerUserText f_color="#FFFDF0">{item?.senderNickname}</LetterInnerUserText>
-                                    </LetterInnerTitieTextView>
-                                    <View style={{ position: 'absolute', left: '108%' }}>
-                                        <SvgImg
-                                            url={iconMore}
-                                            width={30}
-                                            height={30}
-                                            onPress={() => toggleModal(item)}
-                                        />
-                                    </View>
-                                    {item.isBlocked ? (
-                                        <SvgImg
-                                            url={i_block}
-                                            width={30}
-                                            height={30}
-                                        // onPress={() => toggleModal(item.id)}
-                                        />
-                                    ) : (<View />)}
-                                </LetterInnerTitieView>
-                            </LetterInnerInfoView>
-                            <LetterInnerTextBox f_color="#fff">
-                                {item?.content}
-                            </LetterInnerTextBox>
-                        </LetterInnerContainer>
-                    </LetterOuterContainer>}
-                keyExtractor={item => item.id.toString()} />
+      <>
+        <FlatList
+          contentContainerStyle={{ paddingBottom: 100 }}
+          data={replies}
+          renderItem={({ item }) => (
+            <LetterOuterContainer b_color="#36363B">
+              <LetterInnerContainer b_color="#36363B">
+                <LetterInnerInfoView>
+                  <LetterInnerTitieView border_color="#4A4A4E">
+                    <View />
+                    <LetterInnerTitieTextView>
+                      <LetterInnerSendText f_color="#77C7B9">
+                        보내는 이
+                      </LetterInnerSendText>
+                      <LetterInnerUserText f_color="#FFFDF0">
+                        {item?.senderNickname}
+                      </LetterInnerUserText>
+                    </LetterInnerTitieTextView>
+                    <View style={{ position: "absolute", left: "108%" }}>
+                      <SvgImg
+                        url={iconMore}
+                        width={30}
+                        height={30}
+                        onPress={() => toggleModal(item)}
+                      />
+                    </View>
+                    {item.isBlocked ? (
+                      <SvgImg
+                        url={i_block}
+                        width={30}
+                        height={30}
+                        // onPress={() => toggleModal(item.id)}
+                      />
+                    ) : (
+                      <View />
+                    )}
+                  </LetterInnerTitieView>
+                </LetterInnerInfoView>
+                <LetterInnerTextBox f_color="#fff">
+                  {item?.content}
+                </LetterInnerTextBox>
+              </LetterInnerContainer>
+            </LetterOuterContainer>
+          )}
+          keyExtractor={(item) => item.id.toString()}
+        />
 
-            <BottemSheet isVisible={bottomSheetVisible} replyId={replyId} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
-        </>
-
+        <BottemSheet
+          isVisible={bottomSheetVisible}
+          replyId={replyId}
+          onClose={closeModal}
+          letterId={letterId}
+          blocked={blocked}
+        ></BottemSheet>
+      </>
     );
 }
 

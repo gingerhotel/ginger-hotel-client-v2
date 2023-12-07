@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AUTH_URL, HOTEL_URL } from "./url";
+import { AUTH_URL, HOTEL_URL, ORIGIN_URL } from "./url";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NewHotel, NewLetter } from "./interface";
 import { axiosConfig } from "./commonApi";
@@ -10,7 +10,7 @@ export const newHotel = async (props: NewHotel) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
 
     const response = await axios.post(`${AUTH_URL}/hotel`, props);
     return response.data;
@@ -24,8 +24,9 @@ export const getHotel = async (id: string) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = "https://www.ginger-hotel.site";
     const response = await axios.get(`${HOTEL_URL}/${id}`);
+    console.log("response", response);
     return response.data;
   } catch (err: any) {
     // alert(err?.response?.data?.errorMessage);
@@ -37,7 +38,7 @@ export const updateHotel = async (props: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.patch(`${HOTEL_URL}/${props.id}`, {
       nickname: props?.nickname,
       description: props?.description,
@@ -59,7 +60,7 @@ export const openWindow = async (props: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.post(
       `${HOTEL_URL}/${props.id}/open/window?date=${props?.date}`
     );

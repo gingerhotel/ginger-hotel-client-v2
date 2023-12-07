@@ -1,7 +1,7 @@
 import axios from "axios";
 import { User, UserApiResponse } from "./interface";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { MEMBER_URL } from "./url";
+import { MEMBER_URL, ORIGIN_URL } from "./url";
 
 export const myDate = async () => {
   const accessToken = await AsyncStorage.getItem("accessToken");
@@ -9,7 +9,7 @@ export const myDate = async () => {
     .get<UserApiResponse>(`${MEMBER_URL}/my`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        Origin: "http://localhost:8081",
+        Origin: ORIGIN_URL,
       },
     })
     .then((response) => {
@@ -27,7 +27,7 @@ export const deleteUser = async () => {
     .delete<UserApiResponse>(`${MEMBER_URL}/me`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        Origin: "http://localhost:8081",
+        Origin: ORIGIN_URL,
       },
     })
     .then((response) => {
@@ -42,7 +42,7 @@ export const updateUser = async (update: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.patch(`${MEMBER_URL}/me`, update);
     return response.data;
   } catch (e) {
