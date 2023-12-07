@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>gingerhotel-client-v2</string>
+	<string>진저호텔</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -46,9 +46,9 @@
 	<string>9ac294d2ce5192ddcfa96b9d289a8657</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>kakaokompassauth</string>
-		<string>storykompassauth</string>
-		<string>kakaolink</string>
+		<string>instagram</string>
+		<string>instagramstories</string>
+		<string>instagram-stories</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -97,11 +97,5 @@
 	<false/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>instagram</string>
-		<string>instagramstories</string>
-		<string>instagram-stories</string>
-	</array>
 </dict>
 </plist>
