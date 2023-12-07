@@ -5,7 +5,7 @@ import { SvgImg } from "../components/svgImg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { UserApiResponse } from "../api/interface";
-import { MEMBER_URL } from "../api/url";
+import { MEMBER_URL, ORIGIN_URL } from "../api/url";
 import { TouchableOpacity } from "react-native";
 const splash = require("../assets/gingerman/splash.png");
 
@@ -20,10 +20,12 @@ export default function Page() {
       router.replace("/hotel/1");
     } else {
       // Todo : Need a Funcional code
+      console.log("check1");
       axios
         .get<UserApiResponse>(`${MEMBER_URL}/my`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
+            Origin: ORIGIN_URL,
           },
         })
         .then((response) => {
@@ -42,9 +44,12 @@ export default function Page() {
   //   }, 1);
   // }, []);
   return (
-    <TouchableOpacity style={{ flex: 1, justifyContent: "center", alignItems: "center" }} onPress={moveHotel}>
+    <TouchableOpacity
+      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      onPress={moveHotel}
+    >
       {/* <KakaoAdFit /> */}
-      <View >
+      <View>
         <Image source={splash} />
       </View>
     </TouchableOpacity>

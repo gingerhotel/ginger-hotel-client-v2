@@ -153,6 +153,7 @@ export default function TabThreeScreen() {
             setErrorMessage(obj[1]);
             setErrorButtonMessage("닫기");
             setErrorModalVisible(true);
+            return;
           }
         });
     };

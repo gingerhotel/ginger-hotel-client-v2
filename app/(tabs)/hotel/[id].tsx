@@ -91,17 +91,16 @@ export default function HotelComp() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await checkAuth();
-      if (res?.success) {
-        router.push(`/hotel/${res.hotelId}`);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await checkAuth();
+  //     if (res?.success) {
+  //       router.push(`/hotel/${res.hotelId}`);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
-
+  //   fetchData();
+  // }, []);
 
   const closeLoginModal = () => {
     setLoginModalVisible(false);
@@ -189,6 +188,7 @@ export default function HotelComp() {
       setErrorMessage(obj[1]);
       setErrorButtonMessage("내 호텔로 돌아가기");
       setErrorModalVisible(true);
+      return;
     }
   };
 
