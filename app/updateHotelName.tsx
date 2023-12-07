@@ -20,6 +20,7 @@ import { updateHotel } from "../api/hotelApi";
 import { useMutation } from "react-query";
 import { ErrorMessageConverter } from "../data/error-message-converter";
 import ErrorModal from "../components/Modal/errorModal";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function UpdateHotelName() {
   const props = useLocalSearchParams();
@@ -86,7 +87,7 @@ export default function UpdateHotelName() {
   };
 
   return (
-    <>
+    <KeyboardAwareScrollView>
       <Header title="호텔 수정하기" />
       <Pressable onPress={() => Keyboard.dismiss()}>
         <CreateHeader isActiveNumber={3} />
@@ -155,7 +156,7 @@ export default function UpdateHotelName() {
           />
         </ScrollView>
       </Pressable>
-    </>
+    </KeyboardAwareScrollView>
   );
 }
 

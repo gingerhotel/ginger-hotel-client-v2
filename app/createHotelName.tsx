@@ -16,6 +16,7 @@ import { useState } from "react";
 import CustomUserHotel from "../components/customUserHotel";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import Header from "../components/appHeader";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function CreateHotelName() {
   const [nickname, setNickname] = useState("");
@@ -28,7 +29,7 @@ export default function CreateHotelName() {
   }, [navigation]);
 
   return (
-    <>
+    <KeyboardAwareScrollView>
       <Header title="호텔 만들기" />
       <CreateHeader isActiveNumber={2} />
       <ScrollView>
@@ -88,7 +89,7 @@ export default function CreateHotelName() {
           </View>
         </Pressable>
       </ScrollView>
-    </>
+    </KeyboardAwareScrollView>
   );
 }
 
