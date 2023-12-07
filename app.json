@@ -23,7 +23,9 @@
       "infoPlist": {
         "CFBundleURLTypes": [
           {
-            "CFBundleURLSchemes": ["com.googleusercontent.apps.251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr"]
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr"
+            ]
           }
         ]
       }
@@ -57,12 +59,14 @@
       "router": {
         "origin": false
       },
+      "plugins": [
+        {
+          "username": "gingertest1"
+        }
+      ],
       "eas": {
-        "projectId": "7d6387ca-94a7-4358-962e-66d464ab5be6"
-      },
-      "plugins" : [{
-        "username" : "gingertest1"
-      }]
+        "projectId": "e7e1c4f2-8bdd-4e02-a711-974d0d3b45b7"
+      }
     },
     "runtimeVersion": "1.0.1",
     "updates": {
