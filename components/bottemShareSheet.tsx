@@ -31,7 +31,7 @@ const BottemShareSheet = ({
     // console.log(gestureState.dy);
   };
   const handleLinkCopy = () => {
-  Clipboard.setStringAsync(`https://release.d144dxif1q3m24.amplifyapp.com/hotel/${hotelId}`); 
+  Clipboard.setStringAsync(`https://www.ginger-hotel.site/hotel/${hotelId}`); 
   Toast.show({
     type: "iconToast",
     text1: "링크가 복사되었습니다!",
