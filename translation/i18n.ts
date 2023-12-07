@@ -19,7 +19,7 @@ console.log(getLocales());
 
 i18n.use(initReactI18next).init({
   resources: resources,
-  lng: getLocales()[1].languageCode,
+  lng: getLocales()[0].languageCode,
   fallbackLng: "ko",
   supportedLngs: ["en", "ko"],
   compatibilityJSON: "v3",
