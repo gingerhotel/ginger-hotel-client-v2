@@ -14,8 +14,10 @@ import { ErrorMessageConverter } from "../../data/error-message-converter";
 import { useNavigation } from "expo-router";
 import LetterHeader from "../../components/letterHeader";
 
+import { useTranslation } from "react-i18next";
 
 export default function Letter() {
+  const { t, i18n } = useTranslation();
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -88,7 +90,7 @@ export default function Letter() {
                 fontSize: 20,
               }}
             >
-              친구의 호텔에 편지를 보내주세요!
+              {t("letter.친구의 호텔에 편지를 보내주세요!")}
             </MonoText>
           </View>
           <View style={styles.letter_box}>
@@ -96,7 +98,7 @@ export default function Letter() {
               style={styles.letter}
               multiline={true}
               numberOfLines={20}
-              placeholder="전하고 싶은 말을 적어주세요!"
+              placeholder={t("letter.전하고 싶은 말을 적어주세요!")}
               placeholderTextColor={colors.grey500}
               onChangeText={(text) => {
                 setIsNotEmptyLetters(text.length > 0);
@@ -109,7 +111,7 @@ export default function Letter() {
             <TextInput
               blurOnSubmit={true}
               style={styles.input}
-              placeholder="나의 닉네임을 입력하세요! (15자 이하)"
+              placeholder={t("letter.나의 닉네임을 입력하세요! (15자 이하)")}
               placeholderTextColor={colors.grey500}
               onChangeText={(text) => {
                 setIsNotEmptyNickname(text.length > 0);
@@ -130,7 +132,7 @@ export default function Letter() {
         */}
           <Buttons
             url={"letterCompleted"}
-            title="보내기"
+            title={t("letter.보내기")}
             is_width={true}
             color="green"
             width={330}

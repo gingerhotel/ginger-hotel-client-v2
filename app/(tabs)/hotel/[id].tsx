@@ -27,6 +27,7 @@ import {
   useSegments,
 } from "expo-router";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 const album = require("../../../assets/icon/i_album.svg");
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
@@ -87,6 +88,8 @@ export default function HotelComp() {
     useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -278,7 +281,9 @@ export default function HotelComp() {
         />
         <View style={styles.container}>
           <ProgressBarView style={{ width: 230 }}>
-            <MonoText style={styles.hotel_desc2}>도착한 편지</MonoText>
+            <MonoText style={styles.hotel_desc2}>
+              {t("hotel.도착한 편지")}
+            </MonoText>
 
             <ProgressBar
               todayLetterCnt={data?.todayReceivedLetterCount}
@@ -287,7 +292,8 @@ export default function HotelComp() {
           </ProgressBarView>
 
           <Text style={styles.hotel_name}>
-            {data?.hotel?.nickname}님의 진저호텔
+            {data?.hotel?.nickname}
+            {t("hotel.님의 진저호텔")}
           </Text>
           <MonoText style={styles.hotel_desc}>
             {data?.hotel?.description}
@@ -321,7 +327,7 @@ export default function HotelComp() {
               <>
                 <View style={styles.hotel_today}>
                   <Buttons
-                    title="오늘의 편지함 보기"
+                    title={t("hotel.오늘의 편지함 보기")}
                     color="green"
                     width={288}
                     callback={openTodayGinger}
@@ -339,7 +345,7 @@ export default function HotelComp() {
 
                 <View style={styles.hotel_today}>
                   <Buttons
-                    title="내 호텔 공유하기"
+                    title={t("hotel.내 호텔 공유하기")}
                     color="gray_700"
                     width={350}
                     callback={() => {
@@ -361,7 +367,7 @@ export default function HotelComp() {
               <>
                 <View style={styles.hotel_today}>
                   <Buttons
-                    title="편지 보내기"
+                    title={t("hotel.편지 보내기")}
                     url={`letter/${id}`}
                     color="green"
                     width={288}
@@ -390,7 +396,7 @@ export default function HotelComp() {
                 {!data?.isLoginMember ? (
                   <View style={styles.hotel_today}>
                     <Buttons
-                      title="내 호텔 만들기"
+                      title={t("hotel.내 호텔 만들기")}
                       url="letter"
                       color="gray_700"
                       width={350}

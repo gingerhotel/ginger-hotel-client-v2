@@ -15,9 +15,11 @@ const resources = {
   },
 };
 
+console.log(getLocales());
+
 i18n.use(initReactI18next).init({
   resources: resources,
-  lng: getLocales()[0].languageCode,
+  lng: getLocales()[1].languageCode,
   fallbackLng: "ko",
   supportedLngs: ["en", "ko"],
   compatibilityJSON: "v3",

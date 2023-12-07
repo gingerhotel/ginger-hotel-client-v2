@@ -17,7 +17,10 @@ import ReplyHeader from "../../components/replyHeader";
 import { newReply } from "../../api/repliesApi";
 import WithdrawalModal from "../../components/Modal/withdrawalModal";
 
+import { useTranslation } from "react-i18next";
+
 export default function Reply() {
+  const { t, i18n } = useTranslation();
   const navigation = useNavigation();
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -34,9 +37,9 @@ export default function Reply() {
   }, [register]);
 
   const [ErrorModalVisible, setErrorModalVisible] = useState<boolean>(false);
-  const [errorTitle, setErrorTitle] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [errorButtonMessage, setErrorButtonMessage] = useState<string>('');
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorButtonMessage, setErrorButtonMessage] = useState<string>("");
   const closeErrorModal = () => {
     setErrorModalVisible(false);
   };
@@ -45,7 +48,7 @@ export default function Reply() {
     newReply, // 이 함수가 서버로 데이터를 전송하는 역할을 합니다.
     {
       onSuccess: (data) => {
-        router.push("/letterCompleted") // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.push("/letterCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -55,12 +58,16 @@ export default function Reply() {
       const letterData = {
         content: data.letters,
         image: "",
-        letterId: id.toString()
+        letterId: id.toString(),
       };
       // 뮤테이션 실행
       await mutation.mutateAsync(letterData);
     } catch (error: any) {
-      if (error.response.status === 400 || error.response.status === 401 || error.response.status === 403) {
+      if (
+        error.response.status === 400 ||
+        error.response.status === 401 ||
+        error.response.status === 403
+      ) {
         // const obj = ErrorMessageConverter.convert(error.response.data.errorCode);
         // console.log(obj);
         // setErrorTitle(obj[0]);
@@ -78,14 +85,14 @@ export default function Reply() {
         <ReplyHeader />
         <View style={styles.mailbox_items}>
           <MonoText style={{ color: colors.Whiteyello, marginBottom: 12 }}>
-            따뜻한 편지를 보내 준 친구에게 마음을 전해요
+            {t("reply.따뜻한 편지를 보내 준 친구에게 마음을 전해요")}
           </MonoText>
 
           <TextInput
             style={styles.letter}
             multiline={true}
             numberOfLines={20}
-            placeholder="전하고 싶은 말을 적어주세요!"
+            placeholder={t("reply.전하고 싶은 말을 적어주세요!")}
             onChangeText={(text) => {
               setIsNotEmptyLetters(text.length > 0);
               setValue("letters", text);
@@ -94,7 +101,7 @@ export default function Reply() {
             placeholderTextColor={colors.grey500}
           />
           <View style={styles.nickname_input}>
-            <MonoText style={styles.input_text}>받는 이</MonoText>
+            <MonoText style={styles.input_text}>{t("reply.받는 이")}</MonoText>
             <MonoText style={{ color: colors.Whiteyello }}>
               {senderNickname}
             </MonoText>
@@ -112,7 +119,7 @@ export default function Reply() {
         */}
           <Buttons
             url={"letterCompleted"}
-            title="보내기"
+            title={t("reply.보내기")}
             is_width={true}
             color="green"
             callback={handleSubmit(letterSubmit)}
@@ -167,7 +174,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "left",
     marginBottom: 20,
-    gap: 20
+    gap: 20,
   },
   input_text: {
     fontSize: 12,
@@ -187,7 +194,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     display: "flex",
-    flexDirection: 'row',
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.greyblack,
@@ -203,7 +210,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     border: "5px dashed #005142",
     borderRadius: 12,
-    color: '#FFFDF0',
+    color: "#FFFDF0",
     outlineStyle: "none",
     fontFamily: "NanumSquareNeo-Variable",
     lineHeight: 18,
