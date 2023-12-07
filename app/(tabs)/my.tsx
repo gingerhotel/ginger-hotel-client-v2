@@ -102,7 +102,7 @@ export default function TabThreeScreen() {
       return response.data;
     } catch (err: any) {
       setLoginModalVisible(true);
-      // return;
+      return;
     }
   };
 
@@ -143,20 +143,20 @@ export default function TabThreeScreen() {
           setHotelinfo(hotel.id);
         })
         .catch((error: any) => {
-          if (
-            error.response.status === 400 ||
-            error.response.status === 401 ||
-            error.response.status === 403
-          ) {
-            const obj = ErrorMessageConverter.convert(
-              error.response.data.errorCode
-            );
-            setErrorTitle(obj[0]);
-            setErrorMessage(obj[1]);
-            setErrorButtonMessage("닫기");
-            setErrorModalVisible(true);
-            return;
-          }
+          // if (
+          //   error.response.status === 400 ||
+          //   error.response.status === 401 ||
+          //   error.response.status === 403
+          // ) {
+          //   const obj = ErrorMessageConverter.convert(
+          //     error.response.data.errorCode
+          //   );
+          //   setErrorTitle(obj[0]);
+          //   setErrorMessage(obj[1]);
+          //   setErrorButtonMessage("닫기");
+          //   setErrorModalVisible(true);
+          //   return;
+          // }
         });
     };
     handleUserData();

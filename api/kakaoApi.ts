@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { authKakao } from "./authApi";
 import { UserApiResponse } from "./interface";
-import { MEMBER_URL } from "./url";
+import { MEMBER_URL, ORIGIN_URL } from "./url";
 import { isEmpty } from "../components/Modal/\bloginModal";
 
 export const RestApiKey = process.env.EXPO_PUBLIC_KAKAO_WEB_API_KEY;
@@ -47,6 +47,7 @@ export const signInWithKakao = async (
             .get<UserApiResponse>(`${MEMBER_URL}/my`, {
               headers: {
                 Authorization: `Bearer ${data.accessToken}`,
+                Origin: ORIGIN_URL,
               },
             })
             .then((response) => {

@@ -28,7 +28,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { PngImg } from "../../components/pngImg";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { AUTH_URL } from "../../api/url";
+import { AUTH_URL, ORIGIN_URL } from "../../api/url";
 import ErrorModal from "../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 const more = require("../../assets/icon/i_delete_2.svg");
@@ -74,6 +74,7 @@ export default function Village() {
     try {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      axios.defaults.headers.common["Origin"] = ORIGIN_URL;
       const response = await axios.get(`${AUTH_URL}`);
       return response.data;
     } catch (err: any) {
