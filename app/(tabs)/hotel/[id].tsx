@@ -422,7 +422,7 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="모범생 진저맨"
-          desc={`내가 제일 좋아하는 건\n나무 아래 그늘에서 커피 한 잔과 독서를 즐기는 거야.\n너는 어때?`}
+          desc={`내가 제일 좋아하는 건\n나무 그늘 아래서 커피와 독서를 즐기는 거야.\n너는 어때?`}
           img={bellboy15}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}

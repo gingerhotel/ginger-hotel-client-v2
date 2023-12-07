@@ -159,7 +159,7 @@ const GingerAlbum = () => {
               date="12/08"
               pngImage={bellboy16}
               pngImage2={bellboy15}
-              desc={`내가 제일 좋아하는 건\n나무 아래 그늘에서 커피 한 잔과 독서를 즐기는 거야.\n너는 어때?`}
+              desc={`내가 제일 좋아하는 건\n나무 그늘 아래서 커피와 독서를 즐기는 거야.\n너는 어때?`}
               isOpened={info[`2023-12-08`]?.isOpen}
             />
             <GingermanCard
