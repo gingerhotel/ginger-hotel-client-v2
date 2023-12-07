@@ -45,6 +45,7 @@ const GingerAlbum = () => {
     try {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      axios.defaults.headers.common["Origin"] = ORIGIN_URL;
       const response = await axios.get(`${AUTH_URL}`);
       return response.data;
     } catch (err: any) {

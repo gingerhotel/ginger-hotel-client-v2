@@ -4,14 +4,14 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { getHotel } from "../api/hotelApi";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { HOTEL_URL } from "../api/url";
+import { HOTEL_URL, ORIGIN_URL } from "../api/url";
 
 export default function testDev() {
-  
-      const getHotel = async (id: string) => {
+  const getHotel = async (id: string) => {
     try {
       const accessToken = await AsyncStorage.getItem("accessToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      axios.defaults.headers.common["Origin"] = ORIGIN_URL;
       const response = await axios.get(`${HOTEL_URL}/${id}`);
       console.log(response.data);
       return response.data;
@@ -21,10 +21,9 @@ export default function testDev() {
     }
   };
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const data = getHotel("1");
-  }, 
-  [])
+  }, []);
 
   return (
     <>
