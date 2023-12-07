@@ -21,7 +21,7 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   justify-content: center;
 `;
 
-export const LetterInnerInfoView = styled.View<{ blur?: string }>`
+export const LetterInnerInfoView = styled.View<{ blur?: string | undefined }>`
   display: flex;
   margin: 10px;
   padding-left: 20px;
