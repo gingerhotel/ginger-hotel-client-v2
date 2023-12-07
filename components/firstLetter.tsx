@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import {
+    LetterBlurText,
+    LetterBlurTextView,
     LetterInnerContainer,
     LetterInnerInfoView,
     LetterInnerSendText,
+    LetterInnerText,
     LetterInnerTextBox,
     LetterInnerTitieTextView,
     LetterInnerTitieView,
@@ -11,8 +14,8 @@ import {
 } from '../style/letterItemStyled'
 import { View } from './themed'
 import { SvgImg } from './svgImg'
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { letterTypeState, replyNameState } from '../atom/letterAtom';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { letterTypeState, replyNameState, windowDateState } from '../atom/letterAtom';
 import { LetterArrayProps } from '../api/interface';
 import { StyleSheet } from 'react-native';
 import BottemSheet from "./bottemSheet";
@@ -26,6 +29,7 @@ function FirstLetter({ letter }: any) {
     const [blocked, setBlocked] = useState(false);
     const setSenderNickname = useSetRecoilState(replyNameState);
     const setLetterType = useSetRecoilState(letterTypeState);
+    const windowDate = useRecoilValue(windowDateState);
     const toggleModal = (props: LetterArrayProps) => {
         setLetterType(true);
         setBottomSheetVisible(true);
@@ -41,7 +45,12 @@ function FirstLetter({ letter }: any) {
         <>
             <LetterOuterContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
                 <LetterInnerContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
-                    <LetterInnerInfoView>
+                    {(letter.isMe === true && letter.isOpen) || (letter.isMe === false && letter.isOpen) ? (null) : (
+                        <LetterBlurTextView>
+                            <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                        </LetterBlurTextView>
+                    )}
+                    <LetterInnerInfoView blur={(letter.isMe === true && letter.isOpen) || (letter.isMe === false && letter.isOpen) ? ('0') : ('3')}>
                         <LetterInnerTitieView border_color="#4A4A4E">
                             {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
             <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
@@ -68,10 +77,12 @@ function FirstLetter({ letter }: any) {
                                 />
                             ) : (<View />)}
                         </LetterInnerTitieView>
+                        <LetterInnerTextBox>
+                            <LetterInnerText f_color={letter.isMe ? ("#36363B") : ("#FFFDF0")}>
+                                {letter?.content}
+                            </LetterInnerText>
+                        </LetterInnerTextBox>
                     </LetterInnerInfoView>
-                    <LetterInnerTextBox f_color={letter.isMe ? ("#36363B") : ("#FFFDF0")} >
-                        {letter.content}
-                    </LetterInnerTextBox>
                 </LetterInnerContainer>
             </LetterOuterContainer>
             <BottemSheet isVisible={bottomSheetVisible} onClose={closeModal} letterId={letterId} blocked={blocked} ></BottemSheet>
