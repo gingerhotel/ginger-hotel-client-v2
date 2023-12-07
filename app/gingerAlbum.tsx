@@ -20,6 +20,14 @@ const bellboy4 = require("../assets/gingerman/Album_Ginger/g_2_nutcracker.png");
 const bellboy3 = require("../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 const bellboy5 = require("../assets/gingerman/Modal_Ginger/g_painter.png");
 const bellboy6 = require("../assets/gingerman/Album_Ginger/a_painter.png");
+const bellboy7 = require("../assets/gingerman/Modal_Ginger/quarterback.png");
+const bellboy8 = require("../assets/gingerman/Album_Ginger/a_quarterback.png");
+const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy10 = require("../assets/gingerman/Album_Ginger/album_topgun.png");
+const bellboy11 = require("../assets/gingerman/Modal_Ginger/modal_diva.png");
+const bellboy12 = require("../assets/gingerman/Album_Ginger/album_diva.png");
+const bellboy13 = require("../assets/gingerman/Modal_Ginger/modal_ch.png");
+const bellboy14 = require("../assets/gingerman/Album_Ginger/album_ch.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -113,35 +121,35 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-03`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="쿼터백 진저맨"
               date="12/04"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy8}
+              pngImage2={bellboy7}
+              desc={`올해도 우리 진저하이스쿨이 무조건 1등이지!!\n왜냐고? 우리 팀은 최고니까!\n 우우우-! 하나 둘 셋 화이팅-!`}
               isOpened={info[`2023-12-04`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="파일럿 진저맨"
               date="12/05"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy10}
+              pngImage2={bellboy9}
+              desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
               isOpened={info[`2023-12-05`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="디바 진저맨"
               date="12/06"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy12}
+              pngImage2={bellboy11}
+              desc={`안녕! 나는 디바 진저맨~\n내 공연은 언제나 매진이지~\n언제 한번 내 노래 들으러 오라구~`}
               isOpened={info[`2023-12-06`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="철학자 진저맨"
               date="12/07"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy14}
+              pngImage2={bellboy13}
+              desc={`어이 자네~\n이따 아고라 광장에서 만나기로 했지?\n오늘은 아르케에 대해 논하니 기대하고 와도 좋아!`}
               isOpened={info[`2023-12-07`]?.isOpen}
             />
             <GingermanCard
@@ -291,7 +299,7 @@ const GingerAlbum = () => {
           </View>
         </View>
         <LoginModal
-          height={350}
+          height={300}
           visible={loginModalVisible}
           onClose={closeLoginModal}
           name="로그인"

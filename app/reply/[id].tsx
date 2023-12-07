@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: "left",
     marginBottom: 20,
-    gap: 20
+    gap: 20,
   },
   input_text: {
     fontSize: 12,
@@ -191,10 +191,11 @@ const styles = StyleSheet.create({
   },
   footer: {
     display: "flex",
-    flexDirection: 'row',
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.greyblack,
+    padding: 20,
   },
   letter: {
     width: 287,
@@ -207,7 +208,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     border: "5px dashed #005142",
     borderRadius: 12,
-    color: '#FFFDF0',
+    color: "#FFFDF0",
     outlineStyle: "none",
     fontFamily: "NanumSquareNeo-Variable",
     lineHeight: 18,

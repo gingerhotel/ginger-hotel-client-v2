@@ -109,13 +109,13 @@ export default function HotelComp() {
         router.replace(`/hotel/${res.hotelId}`);
       }
     } catch (error: any) {
-      const obj = ErrorMessageConverter.convert(
-        error?.response?.data?.errorCode
-      );
-      setErrorTitle(obj[0]);
-      setErrorMessage(obj[1]);
-      setErrorButtonMessage("내 호텔로 돌아가기");
-      setErrorModalVisible(true);
+      // const obj = ErrorMessageConverter.convert(
+      //   error?.response?.data?.errorCode
+      // );
+      // setErrorTitle(obj[0]);
+      // setErrorMessage(obj[1]);
+      // setErrorButtonMessage("내 호텔로 돌아가기");
+      // setErrorModalVisible(true);
     }
   };
 
