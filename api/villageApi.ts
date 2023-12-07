@@ -8,6 +8,7 @@ export const addVillage = async (hotelId: string) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.post(`${VILLAGE_URL}/hotel/${hotelId}`);
     return response.data;
   } catch (e) {
@@ -20,6 +21,7 @@ export const myVillage = async () => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.get(`${VILLAGE_URL}/my`);
     return response.data;
   } catch (err: any) {
@@ -31,6 +33,7 @@ export const deleteVillage = async (hotelId: string) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.delete(`${VILLAGE_URL}/hotel/${hotelId}`);
     return response.data;
   } catch (e) {

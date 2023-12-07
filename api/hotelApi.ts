@@ -10,6 +10,8 @@ export const newHotel = async (props: NewHotel) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
+
     const response = await axios.post(`${AUTH_URL}/hotel`, props);
     return response.data;
   } catch (err: any) {
@@ -22,6 +24,7 @@ export const getHotel = async (id: string) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.get(`${HOTEL_URL}/${id}`);
     return response.data;
   } catch (err: any) {
@@ -34,6 +37,7 @@ export const updateHotel = async (props: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.patch(`${HOTEL_URL}/${props.id}`, {
       nickname: props?.nickname,
       description: props?.description,
@@ -55,6 +59,7 @@ export const openWindow = async (props: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.post(
       `${HOTEL_URL}/${props.id}/open/window?date=${props?.date}`
     );

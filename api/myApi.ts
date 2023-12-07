@@ -5,11 +5,11 @@ import { MEMBER_URL } from "./url";
 
 export const myDate = async () => {
   const accessToken = await AsyncStorage.getItem("accessToken");
-
   return await axios
     .get<UserApiResponse>(`${MEMBER_URL}/my`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        Origin: "http://localhost:8081",
       },
     })
     .then((response) => {
@@ -27,6 +27,7 @@ export const deleteUser = async () => {
     .delete<UserApiResponse>(`${MEMBER_URL}/me`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        Origin: "http://localhost:8081",
       },
     })
     .then((response) => {
@@ -41,6 +42,7 @@ export const updateUser = async (update: any) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = "http://localhost:8081";
     const response = await axios.patch(`${MEMBER_URL}/me`, update);
     return response.data;
   } catch (e) {
