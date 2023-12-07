@@ -68,12 +68,16 @@ const ReplyLetterBoxItem = (data: any) => {
                 renderItem={({ item }) =>
                     <LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                         <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
-                            {(item.isMe === true && item.isOpen) || (item.isMe === false && item.isOpen) ? (null) : (
-                                <LetterBlurTextView>
-                                    <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
-                                </LetterBlurTextView>
-                            )}
-                            <LetterInnerInfoView blur={(item.isMe === true && item.isOpen) || (item.isMe === false && item.isOpen) ? ('0') : ('3')}>
+                            {!item.isMe ? (
+                                !item.isOpen ? (
+                                    <LetterBlurTextView>
+                                        <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                                    </LetterBlurTextView>
+                                ) : (null)
+                            ) :
+                                (null)
+                            }
+                            <LetterInnerInfoView blur={!item.isMe ? (item.isOpen ? ('0') : ('3')) : (undefined)}>
                                 <LetterInnerTitieView border_color="#4A4A4E">
                                     {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
                                 <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />

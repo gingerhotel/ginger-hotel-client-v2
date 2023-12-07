@@ -45,12 +45,16 @@ function FirstLetter({ letter }: any) {
         <>
             <LetterOuterContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
                 <LetterInnerContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
-                    {(letter.isMe === true && letter.isOpen) || (letter.isMe === false && letter.isOpen) ? (null) : (
-                        <LetterBlurTextView>
-                            <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
-                        </LetterBlurTextView>
-                    )}
-                    <LetterInnerInfoView blur={(letter.isMe === true && letter.isOpen) || (letter.isMe === false && letter.isOpen) ? ('0') : ('3')}>
+                    {!letter.isMe ? (
+                        !letter.isOpen ? (
+                            <LetterBlurTextView>
+                                <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                            </LetterBlurTextView>
+                        ) : (null)
+                    ) :
+                        (null)
+                    }
+                    <LetterInnerInfoView blur={!letter.isMe ? (letter.isOpen ? ('0') : ('3')) : (undefined)}>
                         <LetterInnerTitieView border_color="#4A4A4E">
                             {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
             <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
