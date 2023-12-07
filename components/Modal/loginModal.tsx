@@ -20,7 +20,7 @@ import axios from "axios";
 import { useMutation } from "react-query";
 import { authGoogle, authKakao } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
-import { AUTH_URL, MEMBER_URL } from "../../api/url";
+import { AUTH_URL, MEMBER_URL, ORIGIN_URL } from "../../api/url";
 
 import { useRoute } from "@react-navigation/native";
 import { WithLocalSvg } from "react-native-svg";
@@ -32,11 +32,9 @@ import {
 
 import * as AppleAuthentication from "expo-apple-authentication";
 
-
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
 const closeIcon = require("../../assets/icon/i_close_line.svg");
-
 
 // console.log(RestApiKey);
 
@@ -103,6 +101,7 @@ const LoginModal = ({
                 .get<UserApiResponse>(`${MEMBER_URL}/my`, {
                   headers: {
                     Authorization: `Bearer ${data.accessToken}`,
+                    Origin: ORIGIN_URL,
                   },
                 })
                 .then((response) => {
@@ -165,6 +164,7 @@ const LoginModal = ({
             .get<UserApiResponse>(`${MEMBER_URL}/my`, {
               headers: {
                 Authorization: `Bearer ${res.data.accessToken}`,
+                Origin: ORIGIN_URL,
               },
             })
             .then((response) => {
@@ -251,16 +251,13 @@ const LoginModal = ({
             }}
           ></View>
 
-
-          <Pressable
-            onPress={signInWithKakao}
-            >
-          <View style={[styles(height).kakao]}>
-            <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
-            <MonoText style={styles(height).kakao_text}>
-              카카오 계정으로 로그인
-            </MonoText>
-          </View>
+          <Pressable onPress={signInWithKakao}>
+            <View style={[styles(height).kakao]}>
+              <Image source={kakaoLogo} style={{ width: 35, height: 35 }} />
+              <MonoText style={styles(height).kakao_text}>
+                카카오 계정으로 로그인
+              </MonoText>
+            </View>
           </Pressable>
           <View>
             <Pressable
@@ -278,7 +275,6 @@ const LoginModal = ({
               </MonoText>
             </Pressable>
           </View>
-       
         </View>
       </View>
     </Modal>

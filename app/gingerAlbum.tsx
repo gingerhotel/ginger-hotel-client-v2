@@ -11,7 +11,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Text } from "../components/themed";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AUTH_URL } from "../api/url";
+import { AUTH_URL, ORIGIN_URL } from "../api/url";
 import LoginModal from "../components/Modal/loginModal";
 
 const bellboy = require("../assets/gingerman/Album_Ginger/a_bellboy.png");
@@ -72,6 +72,7 @@ const GingerAlbum = () => {
         .get(`${BASE_URL}/hotel/${hotelId}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
+            Origin: ORIGIN_URL,
           },
         })
         .then((res) => {

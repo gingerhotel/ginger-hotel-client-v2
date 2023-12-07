@@ -15,7 +15,7 @@ import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
 import { router } from "expo-router";
 import LoginModal, { isEmpty } from "../components/Modal/\bloginModal";
-import { MEMBER_URL } from "../api/url";
+import { MEMBER_URL, ORIGIN_URL } from "../api/url";
 import { UserApiResponse } from "../api/interface";
 
 //import { useRecoilValue, RecoilRoot, useSetRecoilState } from "recoil";
@@ -25,8 +25,10 @@ const SVG = require("../assets/images/StartHotel.svg");
 
 export default function Login({ navigation }: any) {
   const [request, response, promptAsync] = Google.useAuthRequest({
-    webClientId: "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
-    iosClientId: "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
+    webClientId:
+      "251638133705-q41nmhb0a21vrbj2vp5rmnn8n1bv2tjh.apps.googleusercontent.com",
+    iosClientId:
+      "251638133705-sp0utm65q7m50m68g788ftj9rpaa08fr.apps.googleusercontent.com",
   });
 
   const [token, setToken] = React.useState("");
@@ -36,7 +38,8 @@ export default function Login({ navigation }: any) {
     register("socialId");
   }, [register]);
 
-  const [oneBtnModalVisible, setOneBtnModalVisible] = React.useState<boolean>(false);
+  const [oneBtnModalVisible, setOneBtnModalVisible] =
+    React.useState<boolean>(false);
   const closeoneBtnModal = () => {
     setOneBtnModalVisible(false);
   };
@@ -54,24 +57,24 @@ export default function Login({ navigation }: any) {
         if (res.status == 200) {
           router.replace("/create");
         } else if (res.status == 201) {
-            // Todo : Need a Funcional code
-            axios
-              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-                headers: {
-                  Authorization: `Bearer ${res.data.accessToken}`,
-                },
-              })
-              .then((response) => {
-                const { hotel } = response.data;
-                router.replace(`/hotel/${hotel.id}`);
-                location.reload();
-              });
+          // Todo : Need a Funcional code
+          axios
+            .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+              headers: {
+                Authorization: `Bearer ${res.data.accessToken}`,
+                Origin: ORIGIN_URL,
+              },
+            })
+            .then((response) => {
+              const { hotel } = response.data;
+              router.replace(`/hotel/${hotel.id}`);
+              location.reload();
+            });
         }
       })
       .catch((err) => {
-        console.log(err);   
+        console.log(err);
       });
-
   };
 
   const handleLoginTest = async (data: FieldValues) => {
@@ -82,33 +85,32 @@ export default function Login({ navigation }: any) {
         vendor: "NAVER",
       })
       .then((res) => {
-          //
-          AsyncStorage.setItem("accessToken", res.data.accessToken);
-          console.log(res.status);
-          if (res.status == 200) {
-            router.replace("/create");
-          } else if (res.status == 201) {
-            // Todo : Need a Funcional code
-            axios
-              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-                headers: {
-                  Authorization: `Bearer ${res.data.accessToken}`,
-                },
-              })
-              .then((response) => {
-                const { hotel } = response.data;
-                router.replace(`/`);
-                router.replace(`/hotel/${hotel.id}`);
-              });
-          }
-          //
+        //
+        AsyncStorage.setItem("accessToken", res.data.accessToken);
+        console.log(res.status);
+        if (res.status == 200) {
+          router.replace("/create");
+        } else if (res.status == 201) {
+          // Todo : Need a Funcional code
+          axios
+            .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+              headers: {
+                Authorization: `Bearer ${res.data.accessToken}`,
+                Origin: ORIGIN_URL,
+              },
+            })
+            .then((response) => {
+              const { hotel } = response.data;
+              router.replace(`/`);
+              router.replace(`/hotel/${hotel.id}`);
+            });
+        }
+        //
       })
       .catch((err) => {
         console.log(err);
       });
-
   };
-
 
   React.useEffect(() => {
     handleEffect();
@@ -135,7 +137,7 @@ export default function Login({ navigation }: any) {
     return JSON.parse(data);
   };
 
-  const getUserInfo = async (token:string) => {
+  const getUserInfo = async (token: string) => {
     if (!token) return;
     try {
       const response = await fetch(
@@ -147,27 +149,27 @@ export default function Login({ navigation }: any) {
 
       const user = await response.json();
       console.log(user);
-      axios.post(`http://localhost:8080/auth/google`, {
-        email: user.email,
-        sub: user.id,
-      })
-      .then((res) => {
-        console.log(res);
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        console.log(res.data.accessToken);
-        router.replace("/create");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      
+      axios
+        .post(`http://localhost:8080/auth/google`, {
+          email: user.email,
+          sub: user.id,
+        })
+        .then((res) => {
+          console.log(res);
+          AsyncStorage.setItem("accessToken", res.data.accessToken);
+          console.log(res.data.accessToken);
+          router.replace("/create");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
       //await AsyncStorage.setItem("@user", JSON.stringify(user));
       //setUserInfo(user);
     } catch (error) {
       // Add your own error handler here
     }
   };
-
 
   return (
     <View style={styles.container}>
@@ -188,22 +190,21 @@ export default function Login({ navigation }: any) {
         closeDisable={false}
       />
 
-        <Button
-          title="Sign in with Google"
-          disabled={!request}
-          onPress={() => {
-            setOneBtnModalVisible(true);
-          }}
-        />
-        <View style={styles.card}>
-          
-          {/* <Text style={styles.text}>Email: {userInfo.email}</Text>
+      <Button
+        title="Sign in with Google"
+        disabled={!request}
+        onPress={() => {
+          setOneBtnModalVisible(true);
+        }}
+      />
+      <View style={styles.card}>
+        {/* <Text style={styles.text}>Email: {userInfo.email}</Text>
           <Text style={styles.text}>
             Verified: {userInfo.verified_email ? "yes" : "no"}
           </Text>
           <Text style={styles.text}>Name: {userInfo.name}</Text> */}
-          {/* <Text style={styles.text}>{JSON.stringify(userInfo, null, 2)}</Text> */}
-        </View>
+        {/* <Text style={styles.text}>{JSON.stringify(userInfo, null, 2)}</Text> */}
+      </View>
 
       {/* <Button title="logout" onPress={() => handleLogout()} /> */}
 
@@ -211,9 +212,14 @@ export default function Login({ navigation }: any) {
         placeholder="login test"
         onChangeText={(text) => setValue("socialId", text)}
       />
-      <Button title="운영로그인 테스트" onPress={handleSubmit(handleLoginProd)} />
-      <Button title="로컬로그인 테스트" onPress={handleSubmit(handleLoginTest)} />
-
+      <Button
+        title="운영로그인 테스트"
+        onPress={handleSubmit(handleLoginProd)}
+      />
+      <Button
+        title="로컬로그인 테스트"
+        onPress={handleSubmit(handleLoginTest)}
+      />
     </View>
   );
 }

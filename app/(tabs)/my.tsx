@@ -21,13 +21,13 @@ import PeekModal from "../../components/Modal/peekModal";
 import { SvgImg } from "../../components/svgImg";
 import { useQuery } from "react-query";
 import { checkAuth } from "../../api/authApi";
-import { AUTH_URL } from "../../api/url";
+import { AUTH_URL, ORIGIN_URL } from "../../api/url";
 import Toast from "react-native-toast-message";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
 
-import * as WebBrowser from 'expo-web-browser';
-import * as Clipboard from 'expo-clipboard';
+import * as WebBrowser from "expo-web-browser";
+import * as Clipboard from "expo-clipboard";
 
 const keySvg = require("../../assets/icon/i_key.svg");
 const glassesSvg = require("../../assets/icon/i_glasses_question_mark.svg");
@@ -124,6 +124,7 @@ export default function TabThreeScreen() {
         .get<UserApiResponse>(`${BASE_URL}/members/my`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
+            Origin: ORIGIN_URL,
           },
         })
         .then((response) => {
