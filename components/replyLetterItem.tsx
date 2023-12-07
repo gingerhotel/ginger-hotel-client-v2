@@ -8,6 +8,7 @@ import {
     LetterInnerContainer,
     LetterInnerInfoView,
     LetterInnerSendText,
+    LetterInnerText,
     LetterInnerTextBox,
     LetterInnerTitieTextView,
     LetterInnerTitieView,
@@ -85,10 +86,12 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         />
                                     ) : (<View />)}
                                 </LetterInnerTitieView>
+                                <LetterInnerTextBox>
+                                    <LetterInnerText f_color="#fff">
+                                        {item?.content}
+                                    </LetterInnerText>
+                                </LetterInnerTextBox>
                             </LetterInnerInfoView>
-                            <LetterInnerTextBox f_color="#fff">
-                                {item?.content}
-                            </LetterInnerTextBox>
                             <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
                                 <LetterReplyButtonView>
                                     <Buttons
