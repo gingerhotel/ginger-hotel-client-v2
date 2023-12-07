@@ -42,6 +42,7 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      "expo-updates",
       "expo-router",
       "expo-apple-authentication",
       [
@@ -61,7 +62,7 @@
       },
       "plugins": [
         {
-          "username": "gingertest1"
+          "username": "releaseteamginger2"
         }
       ],
       "eas": {
