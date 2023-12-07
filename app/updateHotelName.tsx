@@ -82,6 +82,7 @@ export default function UpdateHotelName() {
         setErrorMessage(obj[1]);
         setErrorButtonMessage("친구 호텔로 돌아가기");
         setErrorModalVisible(true);
+        return;
       }
     }
   };

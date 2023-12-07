@@ -50,6 +50,7 @@ const GingerAlbum = () => {
     } catch (err: any) {
       // console.log(err?.response?.data?.errorMessage);
       setLoginModalVisible(true);
+      return;
     }
   };
 

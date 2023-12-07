@@ -70,6 +70,7 @@ export default function Reply() {
         // setErrorButtonMessage('친구 호텔로 돌아가기');
 
         setErrorModalVisible(true);
+        return;
       }
     }
   };

@@ -79,6 +79,7 @@ export default function Village() {
     } catch (err: any) {
       // console.log(err?.response?.data?.errorMessage);
       setLoginModalVisible(true);
+      return;
     }
   };
 
@@ -116,6 +117,7 @@ export default function Village() {
         setErrorMessage(obj[1]);
         setErrorButtonMessage("닫기");
         setErrorModalVisible(true);
+        return;
       }
     }
   };
