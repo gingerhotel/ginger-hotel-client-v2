@@ -14,7 +14,7 @@ import axios from "axios";
 import { ResponseType } from "expo-auth-session";
 import { FieldValues, useForm } from "react-hook-form";
 import { router } from "expo-router";
-import LoginModal from "../components/Modal/\bloginModal";
+import LoginModal, { isEmpty } from "../components/Modal/\bloginModal";
 import { MEMBER_URL } from "../api/url";
 import { UserApiResponse } from "../api/interface";
 
@@ -44,17 +44,32 @@ export default function Login({ navigation }: any) {
   const handleLoginProd = async (data: FieldValues) => {
     //const url:string = isRelease ? "http://localhost:8080" : "https://gingerhotel-server.site"
     axios
-      .post(`https://gingerhotel-server-dev.site/auth/test`, {
+      .post(`https://gingerhotel-server.site/auth/test`, {
         socialId: data.socialId,
         vendor: "NAVER",
       })
       .then((res) => {
-        console.log(res);
-        AsyncStorage.setItem('accessToken', res.data.accessToken);
-        router.replace("/create");
+        AsyncStorage.setItem("accessToken", res.data.accessToken);
+
+        if (res.status == 200) {
+          router.replace("/create");
+        } else if (res.status == 201) {
+            // Todo : Need a Funcional code
+            axios
+              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                headers: {
+                  Authorization: `Bearer ${res.data.accessToken}`,
+                },
+              })
+              .then((response) => {
+                const { hotel } = response.data;
+                router.replace(`/hotel/${hotel.id}`);
+                location.reload();
+              });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err);   
       });
 
   };
