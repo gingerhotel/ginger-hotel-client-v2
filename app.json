@@ -44,10 +44,6 @@
     "plugins": [
       "expo-router",
       "expo-apple-authentication",
-      "expo-updates",
-      {
-        "username": "releaseteamginger2"
-      },
       [
         "@react-native-seoul/kakao-login",
         {
