@@ -22,6 +22,7 @@ import { typography } from "../../../constants/Typo";
 import { useQuery } from "react-query";
 import {
   router,
+  useGlobalSearchParams,
   useLocalSearchParams,
   useNavigation,
   useSegments,
@@ -67,7 +68,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
-  const { id } = useLocalSearchParams();
+  const { id } = useGlobalSearchParams();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [bottemShareVisible, setBottemShareVisible] = useState<boolean>(false);
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
