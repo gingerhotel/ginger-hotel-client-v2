@@ -101,12 +101,8 @@ export default function TabThreeScreen() {
       const response = await axios.get(`${AUTH_URL}`);
       return response.data;
     } catch (err: any) {
-      const obj = ErrorMessageConverter.convert(err.response.data.errorCode);
-      setErrorTitle(obj[0]);
-      setErrorMessage(obj[1]);
-      setErrorButtonMessage("닫기");
-      setErrorModalVisible(true);
-      return;
+      setLoginModalVisible(true);
+      // return;
     }
   };
 
