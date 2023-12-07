@@ -91,6 +91,18 @@ export default function HotelComp() {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await checkAuth();
+      if (res?.success) {
+        router.push(`/hotel/${res.hotelId}`);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   const closeLoginModal = () => {
     setLoginModalVisible(false);
   };

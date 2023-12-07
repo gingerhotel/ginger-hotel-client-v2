@@ -26,7 +26,6 @@ export const getHotel = async (id: string) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
     axios.defaults.headers.common["Origin"] = "https://www.ginger-hotel.site";
     const response = await axios.get(`${HOTEL_URL}/${id}`);
-    console.log("response", response);
     return response.data;
   } catch (err: any) {
     // alert(err?.response?.data?.errorMessage);

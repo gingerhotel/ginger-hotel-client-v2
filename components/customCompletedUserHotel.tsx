@@ -692,9 +692,9 @@ export default function CustomCompleteUserHotel({
                 <MonoText style={styles.modal_title}>
                   다른 사람의 호텔 창문은 볼 수 없어요
                 </MonoText>
-                <Text style={styles.modal_desc}>
+                <MonoText style={styles.modal_desc}>
                   {`내 호텔로 가려면\n‘내 호텔 가기’ 버튼을 눌러주세요!`}
-                </Text>
+                </MonoText>
 
                 {/* {img && (
                   <Image source={img} style={{ width: 210, height: 230 }} />
@@ -784,11 +784,12 @@ const styles = StyleSheet.create({
   },
   modal_desc: {
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 15,
     textAlign: "center",
     fontWeight: "400",
     fontFamily: "NanumSquare Neo OTF",
     color: colors.grey500,
+    lineHeight: 22,
   },
   button_wrapper: {
     width: 140,
