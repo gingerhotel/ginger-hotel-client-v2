@@ -151,6 +151,7 @@ export default function HotelComp() {
       setErrorMessage(obj[1]);
       setErrorButtonMessage("내 호텔로 돌아가기");
       setErrorModalVisible(true);
+      return;
     }
   };
 
