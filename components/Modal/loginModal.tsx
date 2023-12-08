@@ -124,6 +124,7 @@ const LoginModal = ({
     try {
       close();
       try {
+        alert("ios 버튼 눌렸다");
         const credential = await AppleAuthentication.signInAsync({
           requestedScopes: [
             AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -131,6 +132,10 @@ const LoginModal = ({
           ],
         });
 
+        alert(
+          "ios 토큰 값 받아와야된다 " +
+            JSON.stringify(credential?.identityToken)
+        );
         if (credential?.identityToken) {
           const response = await authApple({
             token: credential.identityToken,
