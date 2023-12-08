@@ -122,6 +122,7 @@ const LoginModal = ({
 
   const signInWithApple = async (): Promise<void> => {
     try {
+      close();
       try {
         const credential = await AppleAuthentication.signInAsync({
           requestedScopes: [
