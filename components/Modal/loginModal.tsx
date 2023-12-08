@@ -122,7 +122,6 @@ const LoginModal = ({
 
   const signInWithApple = async (): Promise<void> => {
     try {
-      alert("1. 애플 로그인 눌렀습니다");
       try {
         const credential = await AppleAuthentication.signInAsync({
           requestedScopes: [
@@ -131,39 +130,26 @@ const LoginModal = ({
           ],
         });
 
-        alert(
-          "2. 애플 로그인 토큰 받아와야됩니다. 토큰값 => " +
-            JSON.stringify(credential)
-        );
-
         if (credential?.identityToken) {
           const response = await authApple({
             token: credential.identityToken,
           });
           const { status, data }: any = response;
-
-          alert("다 됐다!!!!! 서버에 응답까지 잘 받았음. " + status);
-
+          AsyncStorage.setItem("accessToken", data?.accessToken);
           if (status === 200) {
             router.replace("/create");
           } else if (status === 201) {
-            const id: any = await AsyncStorage.getItem("kakaoUserId");
-            if (!isEmpty(id as string)) {
-              router.replace(`/hotel/${id}`);
-              AsyncStorage.removeItem("kakaoUserId");
-            } else {
-              axios
-                .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-                  headers: {
-                    Authorization: `Bearer ${data.accessToken}`,
-                    Origin: ORIGIN_URL,
-                  },
-                })
-                .then((response) => {
-                  const { hotel } = response.data;
-                  router.replace(`/hotel/${hotel.id}`);
-                });
-            }
+            axios
+              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                headers: {
+                  Authorization: `Bearer ${data.accessToken}`,
+                  Origin: ORIGIN_URL,
+                },
+              })
+              .then((response) => {
+                const { hotel } = response.data;
+                router.replace(`/hotel/${hotel.id}`);
+              });
           }
         }
         // const response = await axios.post(
@@ -176,7 +162,6 @@ const LoginModal = ({
         // AsyncStorage.setItem("isLogin", "true");
         // AsyncStorage.setItem("accessToken", response.data.accessToken);
       } catch (e: any) {
-        alert("에러 1.. " + JSON.stringify(e));
         if (e.code === "ERR_REQUEST_CANCELED") {
           // handle that the user canceled the sign-in flow
         } else {
@@ -184,7 +169,6 @@ const LoginModal = ({
         }
       }
     } catch (err) {
-      console.error("login err", err);
       alert("에러 2.. " + JSON.stringify(err));
     }
   };
