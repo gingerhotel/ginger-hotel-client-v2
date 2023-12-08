@@ -132,10 +132,7 @@ const LoginModal = ({
           ],
         });
 
-        alert(
-          "ios 토큰 값 받아와야된다 " +
-            JSON.stringify(credential?.identityToken)
-        );
+        alert("ios 토큰 값 받아와야된다 " + JSON.stringify(credential));
         if (credential?.identityToken) {
           const response = await authApple({
             token: credential.identityToken,
