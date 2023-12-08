@@ -11,7 +11,6 @@ export const LetterOuterContainer = styled.View<{ b_color?: string }>`
   margin-bottom: 15px;
 `;
 
-// Styled component with linear gradient
 export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   border-radius: 12px;
   border-width: 2.5px;
@@ -21,15 +20,35 @@ export const LetterInnerContainer = styled.View<{ b_color?: string }>`
   max-width: 310px;
   justify-content: center;
 `;
-export const LetterInnerInfoView = styled.View`
+
+export const LetterInnerInfoView = styled.View<{ blur?: string | undefined }>`
   display: flex;
   margin: 10px;
-  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* align-items: center; */
   justify-content: center;
   max-width: 290px;
   min-width: 290px;
+  filter: blur(${(props) => props.blur}px);
+  ${(props) => props.blur == '3' ? ('pointer-events:none') : ('')}
 `;
-
+export const LetterBlurTextView = styled.View`
+  position: absolute;
+  left: 0;
+  top: 40%;
+  right: 0;
+  bottom: 0;
+`
+export const LetterBlurText = styled.Text`
+  font-family: "NanumSquareNeo-Variable";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; 
+  text-align: center;
+  color:#FFFDF0;
+`
 export const LetterInnerTitieView = styled.View<{ border_color?: string }>`
   display: flex;
   flex-direction: row;
@@ -65,13 +84,13 @@ export const LetterInnerUserText = styled.Text<{ f_color?: string }>`
   font-weight: 700;
   line-height: 24px;
 `;
-export const LetterInnerTextBox = styled.Text<{ f_color?: string }>`
+export const LetterInnerTextBox = styled.View`
+  max-width: 300px;
+  padding-top: 14px;
+`;
+export const LetterInnerText = styled.Text<{ f_color?: string }>`
   color: ${(porps) => porps.f_color};
   max-width: 300px;
-  padding-left: 33px;
-  padding-right: 30px;
-  padding-top: 5px;
-  padding-bottom: 10px;
   font-family: "NanumSquareNeo-Variable";
   font-size: 12px;
   font-style: normal;

@@ -14,6 +14,7 @@ import {
   LetterInnerContainer,
   LetterInnerInfoView,
   LetterInnerSendText,
+  LetterInnerText,
   LetterInnerTextBox,
   LetterInnerTitieTextView,
   LetterInnerTitieView,
@@ -84,10 +85,12 @@ export const NewLetterItem = ({ letters }: any) => {
                     />
                   ) : (<View />)}
                 </LetterInnerTitieView>
+                <LetterInnerTextBox>
+                  <LetterInnerText f_color="#36363B">
+                    {item?.content}
+                  </LetterInnerText>
+                </LetterInnerTextBox>
               </LetterInnerInfoView>
-              <LetterInnerTextBox f_color="#36363B">
-                {item.content}
-              </LetterInnerTextBox>
             </LetterInnerContainer>
           </LetterOuterContainer>
         }
