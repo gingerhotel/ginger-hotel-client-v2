@@ -131,7 +131,7 @@ const LoginModal = ({
         ],
       });
 
-      alert("ios 토큰 값 받아와야된다 " + JSON.stringify(credential));
+      alert("ios 토큰 값 받아와야된다2 " + JSON.stringify(credential));
       if (credential?.identityToken) {
         const response = await authApple({
           token: credential.identityToken,
@@ -168,7 +168,7 @@ const LoginModal = ({
         alert("에러 체크 => " + JSON.stringify(e));
         // handle that the user canceled the sign-in flow
       } else {
-        alert("에러 체크 => " + JSON.stringify(e));
+        alert("에러 체크2 => " + JSON.stringify(e));
 
         // handle other errors
       }
