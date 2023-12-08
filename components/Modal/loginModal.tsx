@@ -121,59 +121,59 @@ const LoginModal = ({
   };
 
   const signInWithApple = async (): Promise<void> => {
+
     try {
       close();
-      try {
-        alert("ios 버튼 눌렸다");
-        const credential = await AppleAuthentication.signInAsync({
-          requestedScopes: [
-            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-            AppleAuthentication.AppleAuthenticationScope.EMAIL,
-          ],
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [
+          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+        ],
+      });
+
+      alert("ios 토큰 값 받아와야된다 " + JSON.stringify(credential));
+      if (credential?.identityToken) {
+        const response = await authApple({
+          token: credential.identityToken,
         });
-
-        alert("ios 토큰 값 받아와야된다 " + JSON.stringify(credential));
-        if (credential?.identityToken) {
-          const response = await authApple({
-            token: credential.identityToken,
-          });
-          const { status, data }: any = response;
-          AsyncStorage.setItem("accessToken", data?.accessToken);
-          if (status === 200) {
-            router.replace("/create");
-          } else if (status === 201) {
-            axios
-              .get<UserApiResponse>(`${MEMBER_URL}/my`, {
-                headers: {
-                  Authorization: `Bearer ${data.accessToken}`,
-                  Origin: ORIGIN_URL,
-                },
-              })
-              .then((response) => {
-                const { hotel } = response.data;
-                router.replace(`/hotel/${hotel.id}`);
-              });
-          }
-        }
-        // const response = await axios.post(
-        //   "http://127.0.0.1:8080/auth/apple",
-        //   {
-        //     token: credential.identityToken,
-        //   }
-        // );
-
-        // AsyncStorage.setItem("isLogin", "true");
-        // AsyncStorage.setItem("accessToken", response.data.accessToken);
-      } catch (e: any) {
-        if (e.code === "ERR_REQUEST_CANCELED") {
-          // handle that the user canceled the sign-in flow
-        } else {
-          // handle other errors
+        const { status, data }: any = response;
+        AsyncStorage.setItem("accessToken", data?.accessToken);
+        if (status === 200) {
+          router.replace("/create");
+        } else if (status === 201) {
+          axios
+            .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+              headers: {
+                Authorization: `Bearer ${data.accessToken}`,
+                Origin: ORIGIN_URL,
+              },
+            })
+            .then((response) => {
+              const { hotel } = response.data;
+              router.replace(`/hotel/${hotel.id}`);
+            });
         }
       }
-    } catch (err) {
-      alert("에러 2.. " + JSON.stringify(err));
+      // const response = await axios.post(
+      //   "http://127.0.0.1:8080/auth/apple",
+      //   {
+      //     token: credential.identityToken,
+      //   }
+      // );
+
+      // AsyncStorage.setItem("isLogin", "true");
+      // AsyncStorage.setItem("accessToken", response.data.accessToken);
+    } catch (e: any) {
+      if (e.code === "ERR_REQUEST_CANCELED") {
+        alert("에러 체크 => " + JSON.stringify(e));
+        // handle that the user canceled the sign-in flow
+      } else {
+        alert("에러 체크 => " + JSON.stringify(e));
+
+        // handle other errors
+      }
     }
+
   };
 
   const [userInfo, setUserInfo] = React.useState(null);
