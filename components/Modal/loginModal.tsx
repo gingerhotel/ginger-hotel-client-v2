@@ -18,7 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import SocialButton from "../socialButton";
 import axios from "axios";
 import { useMutation } from "react-query";
-import { authGoogle, authKakao } from "../../api/authApi";
+import { authApple, authGoogle, authKakao } from "../../api/authApi";
 import { UserApiResponse } from "../../api/interface";
 import { AUTH_URL, MEMBER_URL, ORIGIN_URL } from "../../api/url";
 
@@ -117,6 +117,75 @@ const LoginModal = ({
       // setResult(JSON.stringify(token));
     } catch (err) {
       console.error("login err", err);
+    }
+  };
+
+  const signInWithApple = async (): Promise<void> => {
+    try {
+      alert("1. 애플 로그인 눌렀습니다");
+      try {
+        const credential = await AppleAuthentication.signInAsync({
+          requestedScopes: [
+            AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+            AppleAuthentication.AppleAuthenticationScope.EMAIL,
+          ],
+        });
+
+        alert(
+          "2. 애플 로그인 토큰 받아와야됩니다. 토큰값 => " +
+            JSON.stringify(credential)
+        );
+
+        if (credential?.identityToken) {
+          const response = await authApple({
+            token: credential.identityToken,
+          });
+          const { status, data }: any = response;
+
+          alert("다 됐다!!!!! 서버에 응답까지 잘 받았음. " + status);
+
+          if (status === 200) {
+            router.replace("/create");
+          } else if (status === 201) {
+            const id: any = await AsyncStorage.getItem("kakaoUserId");
+            if (!isEmpty(id as string)) {
+              router.replace(`/hotel/${id}`);
+              AsyncStorage.removeItem("kakaoUserId");
+            } else {
+              axios
+                .get<UserApiResponse>(`${MEMBER_URL}/my`, {
+                  headers: {
+                    Authorization: `Bearer ${data.accessToken}`,
+                    Origin: ORIGIN_URL,
+                  },
+                })
+                .then((response) => {
+                  const { hotel } = response.data;
+                  router.replace(`/hotel/${hotel.id}`);
+                });
+            }
+          }
+        }
+        // const response = await axios.post(
+        //   "http://127.0.0.1:8080/auth/apple",
+        //   {
+        //     token: credential.identityToken,
+        //   }
+        // );
+
+        // AsyncStorage.setItem("isLogin", "true");
+        // AsyncStorage.setItem("accessToken", response.data.accessToken);
+      } catch (e: any) {
+        alert("에러 1.. " + JSON.stringify(e));
+        if (e.code === "ERR_REQUEST_CANCELED") {
+          // handle that the user canceled the sign-in flow
+        } else {
+          // handle other errors
+        }
+      }
+    } catch (err) {
+      console.error("login err", err);
+      alert("에러 2.. " + JSON.stringify(err));
     }
   };
 
@@ -275,6 +344,22 @@ const LoginModal = ({
               </MonoText>
             </Pressable>
           </View>
+
+          <AppleAuthentication.AppleAuthenticationButton
+            buttonType={
+              AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN
+            }
+            buttonStyle={
+              AppleAuthentication.AppleAuthenticationButtonStyle.BLACK
+            }
+            cornerRadius={5}
+            style={{
+              width: 300,
+              height: 55,
+              borderColor: "#000",
+            }}
+            onPress={signInWithApple}
+          />
         </View>
       </View>
     </Modal>

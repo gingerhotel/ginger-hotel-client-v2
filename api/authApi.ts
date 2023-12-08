@@ -30,6 +30,20 @@ export const authKakao = async (props: any) => {
   }
 };
 
+export const authApple = async (props: any) => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
+    const response = await axios.post(`${AUTH_URL}/apple`, props);
+    return response;
+  } catch (e: any) {
+    console.error(e);
+    // alert(e?.response?.data?.errorMessage);
+  }
+};
+
+
 export const checkMemberCode = async (code: string) => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken");
