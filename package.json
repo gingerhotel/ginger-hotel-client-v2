@@ -73,7 +73,10 @@
     "recoil-persist": "^5.1.0",
     "start": "^5.1.0",
     "styled-components": "^6.1.1",
-    "typeface-nanum-square-neo": "^0.0.6"
+    "typeface-nanum-square-neo": "^0.0.6",
+    "expo-notifications": "~0.20.1",
+    "expo-permissions": "~14.2.1",
+    "expo-device": "~5.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

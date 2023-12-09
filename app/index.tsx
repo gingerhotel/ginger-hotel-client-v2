@@ -10,17 +10,11 @@ import { TouchableOpacity } from "react-native";
 const splash = require("../assets/gingerman/splash.png");
 
 export default function Page() {
-  function isEmpty(str: string) {
-    if (typeof str == "undefined" || str == null || str == "") return true;
-    else return false;
-  }
   const moveHotel = async () => {
     const accessToken = await AsyncStorage.getItem("accessToken");
     if (!accessToken) {
       router.replace("/hotel/1");
     } else {
-      // Todo : Need a Funcional code
-      console.log("check1");
       axios
         .get<UserApiResponse>(`${MEMBER_URL}/my`, {
           headers: {

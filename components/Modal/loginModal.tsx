@@ -31,6 +31,7 @@ import {
 } from "@react-native-seoul/kakao-login";
 
 import * as AppleAuthentication from "expo-apple-authentication";
+import { registerForPushNotificationsAsync } from "../../utils/pushSetting";
 
 const kakaoLogo = require("../../assets/logos/kakao.png");
 const googleLogo = require("../../assets/logos/google.png");
@@ -107,6 +108,7 @@ const LoginModal = ({
                 .then((response) => {
                   const { hotel } = response.data;
                   router.replace(`/hotel/${hotel.id}`);
+                  afterLogin();
                 });
             }
           }
@@ -121,7 +123,6 @@ const LoginModal = ({
   };
 
   const signInWithApple = async (): Promise<void> => {
-
     try {
       close();
       const credential = await AppleAuthentication.signInAsync({
@@ -130,8 +131,6 @@ const LoginModal = ({
           AppleAuthentication.AppleAuthenticationScope.EMAIL,
         ],
       });
-
-      alert("ios 토큰 값 받아와야된다2 " + JSON.stringify(credential));
       if (credential?.identityToken) {
         const response = await authApple({
           token: credential.identityToken,
@@ -151,6 +150,7 @@ const LoginModal = ({
             .then((response) => {
               const { hotel } = response.data;
               router.replace(`/hotel/${hotel.id}`);
+              afterLogin();
             });
         }
       }
@@ -173,7 +173,6 @@ const LoginModal = ({
         // handle other errors
       }
     }
-
   };
 
   const [userInfo, setUserInfo] = React.useState(null);
@@ -226,6 +225,7 @@ const LoginModal = ({
             .then((response) => {
               const { hotel } = response.data;
               router.replace(`/hotel/${hotel.id}`);
+              afterLogin();
               location.reload();
             });
         }
@@ -264,7 +264,9 @@ const LoginModal = ({
     onClose();
   };
 
-  const kakaoTest = () => {};
+  const afterLogin = async () => {
+    await registerForPushNotificationsAsync();
+  };
 
   return (
     <Modal
