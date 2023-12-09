@@ -70,7 +70,7 @@ const ReplyLetterBoxItem = (data: any) => {
                     return (<LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                         <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                             {!item.isMe ? (
-                                item.isOpen ? (
+                                !item.isOpen ? (
                                     <LetterBlurTextView>
                                         <LetterBlurText>12일 {date.getDate().toString().replace(/^0/, '')} 일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
                                     </LetterBlurTextView>
@@ -78,7 +78,7 @@ const ReplyLetterBoxItem = (data: any) => {
                             ) :
                                 (null)
                             }
-                            <LetterInnerInfoView blur={!item.isMe ? (!item.isOpen ? ('0') : ('3')) : (undefined)}>
+                            <LetterInnerInfoView blur={!item.isMe ? (item.isOpen ? ('0') : ('3')) : (undefined)}>
                                 <LetterInnerTitieView border_color="#4A4A4E">
                                     {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
                             <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />

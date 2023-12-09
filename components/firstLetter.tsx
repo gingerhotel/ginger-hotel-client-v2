@@ -41,6 +41,7 @@ function FirstLetter({ letter }: any) {
     const closeModal = () => {
         setBottomSheetVisible(false);
     };
+    const date = new Date(letter.date)
     return (
         <>
             <LetterOuterContainer b_color={letter.isMe ? ("#FFFDF0") : ("#36363B")}>
@@ -48,7 +49,7 @@ function FirstLetter({ letter }: any) {
                     {!letter.isMe ? (
                         !letter.isOpen ? (
                             <LetterBlurTextView>
-                                <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                                <LetterBlurText>12일 {date.getDate().toString().replace(/^0/, '')} 일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
                             </LetterBlurTextView>
                         ) : (null)
                     ) :
