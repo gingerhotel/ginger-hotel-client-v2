@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { colors } from "../constants/Colors";
 import { typography } from "../constants/Typo";
+import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const arrow = require("../assets/icon/i_arrow_back.svg");
 
@@ -29,7 +30,7 @@ export default function Header({ title, disabledIcon }: any) {
           <View style={{ width: 30, height: 30, marginLeft: -5 }}></View>
         )}
 
-        <Text style={[styles.title, typography.soyo]}>{title}</Text>
+        <MonoText style={[styles.title, typography.soyo]}>{title}</MonoText>
         <View style={styles.empty}></View>
       </View>
     </SafeAreaView>

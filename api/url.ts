@@ -9,3 +9,4 @@ export const AUTH_URL = `${BASE_URL}/auth`;
 export const HOTEL_URL = `${BASE_URL}/hotel`;
 export const REPLIES_URL = `${BASE_URL}/replies`;
 export const VILLAGE_URL = `${BASE_URL}/villages`;
+export const NOTI_URL = `${BASE_URL}/notifications`;

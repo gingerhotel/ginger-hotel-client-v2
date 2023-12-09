@@ -4,6 +4,10 @@ import { useThemeColor } from "./themed";
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { MonoText } from "./styledText";
 import { colors } from "../constants/Colors";
+import { SvgImg } from "./svgImg";
+import moment from "moment";
+
+const message = require("../assets/icon/i_message.svg");
 
 type TNoticeItem = {
   id: number;
@@ -15,6 +19,7 @@ type TNoticeItem = {
   deleteMode?: boolean;
   deleteChecked?: boolean;
   updatedDeleteChecked?: () => void;
+  callback?: () => void;
 };
 
 const NoticeItem = ({
@@ -25,7 +30,7 @@ const NoticeItem = ({
   actionButton = false,
   deleteMode = false,
   deleteChecked,
-  updatedDeleteChecked,
+  callback,
 }: TNoticeItem) => {
   const textColor = useThemeColor({}, "text");
 
@@ -37,14 +42,16 @@ const NoticeItem = ({
     } else if (deleteMode && !deleteChecked) {
       return <FontAwesome name="square-o" size={28} color={textColor} />;
     } else if (actionButton) {
-      return <FontAwesome name="chevron-right" size={28} color={textColor} />;
+      return (
+        <FontAwesome name="chevron-right" size={28} color={colors.Whiteyello} />
+      );
     } else {
       return null;
     }
   };
 
   return (
-    <TouchableOpacity onPress={deleteMode ? updatedDeleteChecked : () => {}}>
+    <TouchableOpacity onPress={callback}>
       <View
         style={[
           styles.item_wrapper,
@@ -54,17 +61,15 @@ const NoticeItem = ({
         ]}
       >
         <View style={styles.left}>
-          {iconName === "user-check" || iconName === "user-times" ? (
-            <FontAwesome5 name={iconName} size={28} color={textColor} />
-          ) : (
-            <FontAwesome name={iconName} size={28} color={textColor} />
-          )}
+          <SvgImg url={message} width={35} height={35} />
         </View>
         <View style={styles.center}>
           <MonoText style={styles.item_title}>{content}</MonoText>
-          <MonoText style={styles.item_time}>{time}</MonoText>
+          <MonoText style={styles.item_time}>
+            {moment(time).format("YYYY-MM-DD HH:mm:ss")}
+          </MonoText>
         </View>
-        <View style={styles.right}>{rightChildRender()}</View>
+        {/* <View style={styles.right}>{rightChildRender()}</View> */}
       </View>
     </TouchableOpacity>
   );
@@ -115,10 +120,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
     lineHeight: 22,
+    color: colors.Whiteyello,
   },
   item_time: {
-    fontSize: 8,
-    color: "#D9D9D9",
+    fontSize: 10,
+    color: colors.Whiteyello,
+    marginTop: 3,
   },
   right: {
     width: 60,
