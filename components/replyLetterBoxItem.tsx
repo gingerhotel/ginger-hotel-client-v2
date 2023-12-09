@@ -65,23 +65,24 @@ const ReplyLetterBoxItem = (data: any) => {
             <FirstLetter letter={data.letter} />
             <FlatList
                 data={data.replies}
-                renderItem={({ item }) =>
-                    <LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
+                renderItem={({ item }) => {
+                    const date = new Date(item.date)
+                    return (<LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                         <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                             {!item.isMe ? (
-                                !item.isOpen ? (
+                                item.isOpen ? (
                                     <LetterBlurTextView>
-                                        <LetterBlurText>12월 {windowDate}일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                                        <LetterBlurText>12일 {date.getDate().toString().replace(/^0/, '')} 일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
                                     </LetterBlurTextView>
                                 ) : (null)
                             ) :
                                 (null)
                             }
-                            <LetterInnerInfoView blur={!item.isMe ? (item.isOpen ? ('0') : ('3')) : (undefined)}>
+                            <LetterInnerInfoView blur={!item.isMe ? (!item.isOpen ? ('0') : ('3')) : (undefined)}>
                                 <LetterInnerTitieView border_color="#4A4A4E">
                                     {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
-                                <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-                              </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
+                            <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
+                          </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
                                     <View />
                                     <LetterInnerTitieTextView>
                                         <LetterInnerSendText f_color={item.isMe ? ("#4A4A4E") : ("#77C7B9")}>{item.isMe ? ("나의 편지") : ("보내는 이")}</LetterInnerSendText>
@@ -112,7 +113,8 @@ const ReplyLetterBoxItem = (data: any) => {
                                 </LetterInnerTextBox>
                             </LetterInnerInfoView>
                         </LetterInnerContainer>
-                    </LetterOuterContainer>
+                    </LetterOuterContainer>)
+                }
                 }
                 keyExtractor={item => item.id.toString()}
 
