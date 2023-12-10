@@ -20,6 +20,8 @@ import { typography } from "../constants/Typo";
 import { SvgImg } from "../components/svgImg";
 import { useQuery } from "react-query";
 import { myNotifications } from "../api/pushApi";
+import { useRecoilState } from "recoil";
+import { windowDateState } from "../atom/letterAtom";
 const arrow = require("../assets/icon/i_arrow_back.svg");
 
 export default function Push() {
@@ -106,18 +108,21 @@ export default function Push() {
   const handleGoBack = () => {
     router.back();
   };
+  const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
 
   const clickNotiItem = (item: any) => {
-    console.log(item);
     switch (item.type) {
       case "LETTER":
-        console.log("새로운 편지");
+        setLetterCheck(new Date(item?.typeData?.date).getDate());
+        router.push(`/mailbox/${item?.typeData?.hotelId}`);
         break;
       case "WINDOW_OPEN":
-        console.log("창문열기");
+        setLetterCheck(new Date(item?.typeData?.date).getDate());
+        router.push(`/mailbox/${item?.typeData?.hotelId}`);
         break;
       case "REPLY":
-        console.log("답장");
+        // setLetterCheck(new Date(item?.typeData?.date).getDate());
+        // router.push(`/mailbox/${item?.typeData?.hotelId}`);
         break;
     }
   };
