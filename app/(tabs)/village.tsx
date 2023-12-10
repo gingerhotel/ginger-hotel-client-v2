@@ -132,6 +132,7 @@ export default function Village() {
   };
 
   const clickRightIcon = () => {
+    setErrorMsg("");
     setAddModal(true);
   };
 
@@ -157,8 +158,6 @@ export default function Village() {
       const obj = ErrorMessageConverter.convert(error.response.data.errorCode);
       setErrorMsg(obj[0]);
       return;
-    } finally {
-      setErrorMsg("");
     }
   };
 
