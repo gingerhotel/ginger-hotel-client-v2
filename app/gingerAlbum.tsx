@@ -34,6 +34,8 @@ const bellboy17 = require("../assets/gingerman/Modal_Ginger/modal_good.png");
 const bellboy18 = require("../assets/gingerman/Album_Ginger/album_good.png");
 const bellboy19 = require("../assets/gingerman/Modal_Ginger/modal_explore.png");
 const bellboy20 = require("../assets/gingerman/Album_Ginger/album_explore.png");
+const bellboy21 = require("../assets/gingerman/Modal_Ginger/modal_smell.png");
+const bellboy22 = require("../assets/gingerman/Album_Ginger/album_smell.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -183,11 +185,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-10`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="조향사 진저맨"
               date="12/11"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy22}
+              pngImage2={bellboy21}
+              desc={`세상의 모든 것은 향기를 가지고 있어요.\n우리 모두에게도 향기가 배여있죠.\n당신의 향기는 무엇인가요?`}
               isOpened={info[`2023-12-11`]?.isOpen}
             />
             <GingermanCard
