@@ -3,8 +3,8 @@
   "displayName": "gingerhotel",
   "expo": {
     "name": "진저호텔 2023",
-    "slug": "ginger-hotel-client-v2",
-    "version": "2.2.2",
+    "slug": "gingerhotel2023",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "com.teamginger.gingerhotel",
@@ -35,7 +35,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.teamginger1.gingerhotelclientv2"
+      "package": "com.teamginger1.gingerhotelclientv2",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
