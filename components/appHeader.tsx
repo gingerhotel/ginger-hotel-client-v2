@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import React from "react";
+import { Pressable } from "react-native";
 import {
   View,
   Text,
@@ -13,7 +14,12 @@ import { MonoText } from "./styledText";
 import { SvgImg } from "./svgImg";
 const arrow = require("../assets/icon/i_arrow_back.svg");
 
-export default function Header({ title, disabledIcon }: any) {
+export default function Header({
+  title,
+  disabledIcon,
+  rightIcon,
+  clickRightIcon,
+}: any) {
   return (
     <SafeAreaView style={{ backgroundColor: colors.greyblack }}>
       <View style={styles.container}>
@@ -31,7 +37,18 @@ export default function Header({ title, disabledIcon }: any) {
         )}
 
         <MonoText style={[styles.title, typography.soyo]}>{title}</MonoText>
-        <View style={styles.empty}></View>
+        {!rightIcon ? (
+          <View style={styles.empty}></View>
+        ) : (
+          <Pressable onPress={clickRightIcon}>
+            <SvgImg
+              url={rightIcon}
+              width={30}
+              height={30}
+              style={{ marginRight: 20 }}
+            />
+          </Pressable>
+        )}
       </View>
     </SafeAreaView>
   );

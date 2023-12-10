@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     borderColor: colors.grey600,
     borderRadius: 12,
     color: colors.Whiteyello,
-    outlineStyle: "none",
+    // outlineStyle: "none",
     fontFamily: "NanumSquareNeo-Variable",
     lineHeight: 18,
   },

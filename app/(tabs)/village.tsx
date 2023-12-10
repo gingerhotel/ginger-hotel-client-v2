@@ -16,7 +16,11 @@ import LoginModal from "../../components/Modal/loginModal";
 import { useEffect, useState } from "react";
 import { Link, router, useNavigation, useSegments } from "expo-router";
 import { useQuery } from "react-query";
-import { deleteVillage, myVillage } from "../../api/villageApi";
+import {
+  addVillageWithCode,
+  deleteVillage,
+  myVillage,
+} from "../../api/villageApi";
 import CustomSmallHotel from "../../components/customSmallHotel";
 import { colors } from "../../constants/Colors";
 import { typography } from "../../constants/Typo";
@@ -31,9 +35,12 @@ import axios from "axios";
 import { AUTH_URL, ORIGIN_URL } from "../../api/url";
 import ErrorModal from "../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
+import CenterInputModal from "../../components/centerInputModal";
+import Buttons from "../../components/buttons";
 const more = require("../../assets/icon/i_delete_2.svg");
 const bellboy = require("../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const building = require("../../assets/images/building.png");
+const icon = require("../../assets/icon/i_person_add.svg");
 
 export default function Village() {
   const navigation = useNavigation();
@@ -52,6 +59,7 @@ export default function Village() {
     }
   );
   const [deleteModal, setDeleteModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
   const [selected, setSelected] = useState("");
   const handelModal = (id: string) => {
     setDeleteModal(true);
@@ -123,9 +131,45 @@ export default function Village() {
     }
   };
 
+  const clickRightIcon = () => {
+    setAddModal(true);
+  };
+
+  const [errorMsg, setErrorMsg] = useState("");
+  const handelAddCode = async (code: string) => {
+    if (code.length > 0 && code.length < 7) {
+      setErrorMsg("잘못된 친구 코드입니다.");
+      return;
+    }
+    try {
+      const res = await addVillageWithCode(code);
+      if (res?.success) {
+        setErrorMsg("");
+        setAddModal(false);
+        Toast.show({
+          type: "iconToast",
+          text1: "내 빌리지에 추가되었습니다!",
+          position: "bottom",
+        });
+        await refetch();
+      }
+    } catch (error: any) {
+      const obj = ErrorMessageConverter.convert(error.response.data.errorCode);
+      setErrorMsg(obj[0]);
+      return;
+    } finally {
+      setErrorMsg("");
+    }
+  };
+
   return (
     <>
-      <Header title="진저빌리지" disabledIcon={true} />
+      <Header
+        title="진저빌리지"
+        disabledIcon={true}
+        rightIcon={icon}
+        clickRightIcon={clickRightIcon}
+      />
 
       <View
         style={{
@@ -275,6 +319,14 @@ export default function Village() {
                     <MonoText style={styles.text}>
                       내 빌리지에 친구를 추가해보세요!
                     </MonoText>
+                    <View style={{ height: 50, marginTop: 30 }}>
+                      <Buttons
+                        title="친구 추가하기"
+                        color="green"
+                        width={288}
+                        callback={clickRightIcon}
+                      />
+                    </View>
                   </View>
                 ))}
             </View>
@@ -289,6 +341,16 @@ export default function Village() {
           btn_text="삭제하기"
           callback={handelDeleteVillage}
         />
+        <CenterInputModal
+          onClose={() => setAddModal(false)}
+          height={250}
+          visible={addModal}
+          title="내 빌리지에 친구호텔 추가하기"
+          desc={errorMsg}
+          btn_text={"추가하기"}
+          callback={handelAddCode}
+        />
+
         <LoginModal
           height={350}
           visible={loginModalVisible}

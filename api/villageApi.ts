@@ -42,3 +42,15 @@ export const deleteVillage = async (hotelId: string) => {
   }
 };
 
+
+export const addVillageWithCode = async (code: string) => {
+  try {
+    const accessToken = await AsyncStorage.getItem("accessToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    axios.defaults.headers.common["Origin"] = ORIGIN_URL;
+    const response = await axios.post(`${VILLAGE_URL}/member/${code}`);
+    return response.data;
+  } catch (e: any) {
+    throw e;
+  }
+};
