@@ -3,7 +3,7 @@
   "displayName": "gingerhotel",
   "expo": {
     "name": "진저호텔 2023",
-    "slug": "gingerhotel2023",
+    "slug": "ginger-hotel-client-v2",
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
