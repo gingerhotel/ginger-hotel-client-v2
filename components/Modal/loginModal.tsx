@@ -317,7 +317,22 @@ const LoginModal = ({
               </MonoText>
             </View>
           </Pressable>
-          
+          <View>
+            <Pressable
+              style={[styles(height).button, styles(height).google]}
+              onPress={() => setModalVisible()}
+            >
+              <Image source={googleLogo} style={{ width: 30, height: 30 }} />
+              <MonoText
+                style={[
+                  styles(height).textStyle,
+                  styles(height).textStyle_google,
+                ]}
+              >
+                구글 계정으로 로그인
+              </MonoText>
+            </Pressable>
+          </View>
 
           <AppleAuthentication.AppleAuthenticationButton
             buttonType={
