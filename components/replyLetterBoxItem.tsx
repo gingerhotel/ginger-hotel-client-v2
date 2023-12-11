@@ -8,9 +8,12 @@ import {
     ScrollView,
 } from "react-native";
 import {
+    LetterBlurText,
+    LetterBlurTextView,
     LetterInnerContainer,
     LetterInnerInfoView,
     LetterInnerSendText,
+    LetterInnerText,
     LetterInnerTextBox,
     LetterInnerTitieTextView,
     LetterInnerTitieView,
@@ -20,16 +23,17 @@ import {
     LetterReplyButtonView
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import Buttons from "./buttons";
 import { FlatList } from "react-native-gesture-handler";
 import { BottemSheetBorderView } from "../style/bottemSheetStyled";
 import { ReplyArrayProps } from "../api/interface";
-import { letterTypeState, replyNameState } from "../atom/letterAtom";
+import { letterTypeState, replyNameState, windowDateState } from "../atom/letterAtom";
 const iconMore = require("../assets/icon/i_more_vert_grey.svg");
 const iconGlassesQuestionMark = require("../assets/icon/i_glasses_question_mark.svg");
 import BottemSheet from "./bottemSheet";
 import FirstLetter from "./firstLetter";
+import { MonoText } from "./styledText";
 type Props = {
     from: string; contents: string;
     is_active: boolean;
@@ -43,6 +47,7 @@ const ReplyLetterBoxItem = (data: any) => {
     const setLetterType = useSetRecoilState(letterTypeState);
     const [letterId, setLetterId] = useState(0);
     const [replyId, setReplyId] = useState(0);
+    const windowDate = useRecoilValue(windowDateState);
     const toggleModal = (props: ReplyArrayProps) => {
         setLetterType(false);
         setBottomSheetVisible(true);
@@ -60,25 +65,35 @@ const ReplyLetterBoxItem = (data: any) => {
             <FirstLetter letter={data.letter} />
             <FlatList
                 data={data.replies}
-                renderItem={({ item }) =>
-                    <LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
+                renderItem={({ item }) => {
+                    const date = new Date(item.date)
+                    return (<LetterOuterContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
                         <LetterInnerContainer b_color={item.isMe ? ("#FFFDF0") : ("#36363B")}>
-                            <LetterInnerInfoView>
+                            {!item.isMe ? (
+                                !item.isOpen ? (
+                                    <LetterBlurTextView>
+                                        <LetterBlurText>12일 {date.getDate().toString().replace(/^0/, '')} 일 창문을 열어야 확인할 수 있습니다!</LetterBlurText>
+                                    </LetterBlurTextView>
+                                ) : (null)
+                            ) :
+                                (null)
+                            }
+                            <LetterInnerInfoView blur={!item.isMe ? (item.isOpen ? ('0') : ('3')) : (undefined)}>
                                 <LetterInnerTitieView border_color="#4A4A4E">
                                     {/* <TouchableOpacity onPress={() => toggleModal(item.id)}>
-                                <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
-                              </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
+                            <SvgImg url={iconGlassesQuestionMark} width={30} height={30} />
+                          </TouchableOpacity> */} {/*엿보기 기능이 추가되면 다시 활성화*/}
                                     <View />
                                     <LetterInnerTitieTextView>
                                         <LetterInnerSendText f_color={item.isMe ? ("#4A4A4E") : ("#77C7B9")}>{item.isMe ? ("나의 편지") : ("보내는 이")}</LetterInnerSendText>
                                         <LetterInnerUserText f_color={item.isMe ? ("#25796B") : ("#FFFDF0")} >{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
                                     {item.isMe ? (null) :
-                                        (<View style={{ position: 'absolute', left: '98%' }}>
+                                        (<View style={{ position: 'absolute', left: '98%', top: '14%' }}>
                                             <SvgImg
                                                 url={iconMore}
-                                                width={30}
-                                                height={30}
+                                                width={24}
+                                                height={26}
                                                 onPress={() => toggleModal(item)}
                                             />
                                         </View>)}
@@ -91,21 +106,17 @@ const ReplyLetterBoxItem = (data: any) => {
                                         />
                                     ) : (<View />)}
                                 </LetterInnerTitieView>
+                                <LetterInnerTextBox>
+                                    <LetterInnerText f_color={item.isMe ? ("#36363B") : ("#FFFDF0")} >
+                                        {item?.content}
+                                    </LetterInnerText>
+                                </LetterInnerTextBox>
                             </LetterInnerInfoView>
-                            <LetterInnerTextBox f_color={item.isMe ? ("#36363B") : ("#FFFDF0")} >
-                                {item?.content}
-                            </LetterInnerTextBox>
                         </LetterInnerContainer>
-                    </LetterOuterContainer>
-                }
-                keyExtractor={item => {
-                    // if (item.isMe) {
-                    //     setLetterId(item.id);
-                    // }
-
-                    return item.id.toString()
+                    </LetterOuterContainer>)
                 }
                 }
+                keyExtractor={item => item.id.toString()}
 
             />
 

@@ -14,6 +14,7 @@ import {
   LetterInnerContainer,
   LetterInnerInfoView,
   LetterInnerSendText,
+  LetterInnerText,
   LetterInnerTextBox,
   LetterInnerTitieTextView,
   LetterInnerTitieView,
@@ -67,11 +68,11 @@ export const NewLetterItem = ({ letters }: any) => {
                     <LetterInnerSendText f_color="#4A4A4E">보내는 이</LetterInnerSendText>
                     <LetterInnerUserText f_color="#25796B">{item.senderNickname}</LetterInnerUserText>
                   </LetterInnerTitieTextView>
-                  <View style={{ position: 'absolute', left: '98%' }}>
+                  <View style={{ position: 'absolute', left: '98%', top: '14%' }}>
                     <SvgImg
                       url={iconMore}
-                      width={30}
-                      height={30}
+                      width={24}
+                      height={26}
                       onPress={() => toggleModal(item)}
                     />
                   </View>
@@ -84,10 +85,12 @@ export const NewLetterItem = ({ letters }: any) => {
                     />
                   ) : (<View />)}
                 </LetterInnerTitieView>
+                <LetterInnerTextBox>
+                  <LetterInnerText f_color="#36363B">
+                    {item?.content}
+                  </LetterInnerText>
+                </LetterInnerTextBox>
               </LetterInnerInfoView>
-              <LetterInnerTextBox f_color="#36363B">
-                {item.content}
-              </LetterInnerTextBox>
             </LetterInnerContainer>
           </LetterOuterContainer>
         }

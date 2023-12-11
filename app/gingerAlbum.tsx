@@ -20,6 +20,22 @@ const bellboy4 = require("../assets/gingerman/Album_Ginger/g_2_nutcracker.png");
 const bellboy3 = require("../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 const bellboy5 = require("../assets/gingerman/Modal_Ginger/g_painter.png");
 const bellboy6 = require("../assets/gingerman/Album_Ginger/a_painter.png");
+const bellboy7 = require("../assets/gingerman/Modal_Ginger/quarterback.png");
+const bellboy8 = require("../assets/gingerman/Album_Ginger/a_quarterback.png");
+const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy10 = require("../assets/gingerman/Album_Ginger/album_topgun.png");
+const bellboy11 = require("../assets/gingerman/Modal_Ginger/modal_diva.png");
+const bellboy12 = require("../assets/gingerman/Album_Ginger/album_diva.png");
+const bellboy13 = require("../assets/gingerman/Modal_Ginger/modal_ch.png");
+const bellboy14 = require("../assets/gingerman/Album_Ginger/album_ch.png");
+const bellboy15 = require("../assets/gingerman/Modal_Ginger/modal_stu.png");
+const bellboy16 = require("../assets/gingerman/Album_Ginger/album_stu.png");
+const bellboy17 = require("../assets/gingerman/Modal_Ginger/modal_good.png");
+const bellboy18 = require("../assets/gingerman/Album_Ginger/album_good.png");
+const bellboy19 = require("../assets/gingerman/Modal_Ginger/modal_explore.png");
+const bellboy20 = require("../assets/gingerman/Album_Ginger/album_explore.png");
+const bellboy21 = require("../assets/gingerman/Modal_Ginger/modal_smell.png");
+const bellboy22 = require("../assets/gingerman/Album_Ginger/album_smell.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -113,67 +129,67 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-03`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="쿼터백 진저맨"
               date="12/04"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy8}
+              pngImage2={bellboy7}
+              desc={`올해도 우리 진저하이스쿨이 무조건 1등이지!!\n왜냐고? 우리 팀은 최고니까!\n 우우우-! 하나 둘 셋 화이팅-!`}
               isOpened={info[`2023-12-04`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="파일럿 진저맨"
               date="12/05"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy10}
+              pngImage2={bellboy9}
+              desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
               isOpened={info[`2023-12-05`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="디바 진저맨"
               date="12/06"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy12}
+              pngImage2={bellboy11}
+              desc={`안녕! 나는 디바 진저맨~\n내 공연은 언제나 매진이지~\n언제 한번 내 노래 들으러 오라구~`}
               isOpened={info[`2023-12-06`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="철학자 진저맨"
               date="12/07"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy14}
+              pngImage2={bellboy13}
+              desc={`어이 자네~\n이따 아고라 광장에서 만나기로 했지?\n오늘은 아르케에 대해 논하니 기대하고 와도 좋아!`}
               isOpened={info[`2023-12-07`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="모범생 진저맨"
               date="12/08"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy16}
+              pngImage2={bellboy15}
+              desc={`내가 제일 좋아하는 건\n나무 그늘 아래서 커피와 독서를 즐기는 거야.\n너는 어때?`}
               isOpened={info[`2023-12-08`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="멋쟁이 진저맨"
               date="12/09"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy18}
+              pngImage2={bellboy17}
+              desc={`하~이 날 보러 진저호텔에 온 거야?\n후훗 보는 눈은 있어가지고~\n눈부신 내 멋짐에 반해버리면 안된다구~`}
               isOpened={info[`2023-12-09`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="탐험가 진저맨"
               date="12/10"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy20}
+              pngImage2={bellboy19}
+              desc={`흠~ 거의 다 온 것 같네!\n조금만 더 가면 내가 찾는 보물이 있어.\n지도와 배낭만 있다면 어디든 탐험 가능이지!`}
               isOpened={info[`2023-12-10`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="조향사 진저맨"
               date="12/11"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy22}
+              pngImage2={bellboy21}
+              desc={`세상의 모든 것은 향기를 가지고 있어요.\n우리 모두에게도 향기가 배여있죠.\n당신의 향기는 무엇인가요?`}
               isOpened={info[`2023-12-11`]?.isOpen}
             />
             <GingermanCard

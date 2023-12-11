@@ -39,6 +39,14 @@ const key = require("../../../assets/icon/i_key_big.svg");
 const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
 const g_2_nutcracker = require("../../../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 const g_painter = require("../../../assets/gingerman/Modal_Ginger/g_painter.png");
+const bellboy7 = require("../../../assets/gingerman/Modal_Ginger/quarterback.png");
+const bellboy9 = require("../../../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy11 = require("../../../assets/gingerman/Modal_Ginger/modal_diva.png");
+const bellboy13 = require("../../../assets/gingerman/Modal_Ginger/modal_ch.png");
+const bellboy15 = require("../../../assets/gingerman/Modal_Ginger/modal_stu.png");
+const bellboy17 = require("../../../assets/gingerman/Modal_Ginger/modal_good.png");
+const bellboy19 = require("../../../assets/gingerman/Modal_Ginger/modal_explore.png");
+const bellboy21 = require("../../../assets/gingerman/Modal_Ginger/modal_smell.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -416,9 +424,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="화가 진저맨"
-          desc={`흠흠흠~ 진저호텔의 아름다운 외관에 놀랐다고?\n바로 이 몸의 작품이지~ 흠흠흠~\n크리에이티브 아티스트, 그게 바로 나야! `}
-          img={g_painter}
+          name="조향사 진저맨"
+          desc={`세상의 모든 것은 향기를 가지고 있어요.\n우리 모두에게도 향기가 배여있죠.\n당신의 향기는 무엇인가요?`}
+          img={bellboy21}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
