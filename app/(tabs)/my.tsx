@@ -165,7 +165,7 @@ export default function TabThreeScreen() {
   return (
     <View style={[styles.container, { backgroundColor: colors.greyblack }]}>
       <View style={styles.header}>
-        <Text style={styles.header_text}>마이페이지</Text>
+        {/* <Text style={styles.header_text}>마이페이지</Text> */}
       </View>
       <View style={styles.profileContainer}>
         <View style={styles.user_info_box}>
@@ -629,7 +629,7 @@ const styles = StyleSheet.create({
 
   linksContainer: {
     marginTop: 40,
-    marginBottom: 100,
+    marginBottom: 80,
     backgroundColor: "transparent",
     display: "flex",
     flexDirection: "column",
