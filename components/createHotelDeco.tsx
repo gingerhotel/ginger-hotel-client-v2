@@ -10,6 +10,9 @@ const buildingDeco03 = require(`../assets/images/buildingDeco03.svg`);
 const gardenDeco01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDeco02 = require(`../assets/decorations/gardenDeco02.svg`);
 const gardenDeco03 = require(`../assets/decorations/gardenDeco03.svg`);
+const gardenDeco04 = require(`../assets/decorations/gardenDeco04.svg`);
+const gardenDeco05 = require(`../assets/decorations/gardenDeco05.svg`);
+const gardenDeco06 = require(`../assets/decorations/gardenDeco06.svg`);
 
 const background01 = require(`../assets/decorations/background01.svg`);
 const background02 = require(`../assets/decorations/background02.svg`);
@@ -26,6 +29,9 @@ const CreateHotelDeco = ({ item, active, activeTitle }: any) => {
     gardenDeco01: gardenDeco01,
     gardenDeco02: gardenDeco02,
     gardenDeco03: gardenDeco03,
+    gardenDeco04: gardenDeco04,
+    gardenDeco05: gardenDeco05,
+    gardenDeco06: gardenDeco06,
   };
 
   const bg: any = {
