@@ -62,7 +62,6 @@ export default function CustomMediumHotel({
     windowDeco01: windowImg01,
     windowDeco02: windowImg02,
   };
-
   return (
     <View
       style={{
