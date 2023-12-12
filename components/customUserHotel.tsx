@@ -298,7 +298,7 @@ export default function CustomUserHotel({
               gardenDecorator === "gardenDeco02" ||
               gardenDecorator === "gardenDeco03"
                 ? 150
-                : 100,
+                : 110,
             height:
               gardenDecorator === "gardenDeco01" ||
               gardenDecorator === "gardenDeco02" ||
