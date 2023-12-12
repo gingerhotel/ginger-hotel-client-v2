@@ -13,6 +13,9 @@ const frontBg = require("../assets/images/frontBg_ios.png");
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
 const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+const gardenDecoImg04 = require(`../assets/decorations/gardenDeco04.svg`);
+const gardenDecoImg05 = require(`../assets/decorations/gardenDeco05.svg`);
+const gardenDecoImg06 = require(`../assets/decorations/gardenDeco06.svg`);
 
 const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
 const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
@@ -29,6 +32,9 @@ const gardenDeco: any = {
   gardenDeco01: gardenDecoImg01,
   gardenDeco02: gardenDecoImg02,
   gardenDeco03: gardenDecoImg03,
+  gardenDeco04: gardenDecoImg04,
+  gardenDeco05: gardenDecoImg05,
+  gardenDeco06: gardenDecoImg06,
 };
 
 const buildingDeco: any = {
@@ -286,8 +292,20 @@ export default function CustomUserHotel({
       >
         <SvgImg
           url={gardenDeco[gardenDecorator]}
-          width={135}
-          height={125}
+          width={
+            gardenDecorator === "gardenDeco01" ||
+            gardenDecorator === "gardenDeco02" ||
+            gardenDecorator === "gardenDeco03"
+              ? 135
+              : 120
+          }
+          height={
+            gardenDecorator === "gardenDeco01" ||
+            gardenDecorator === "gardenDeco02" ||
+            gardenDecorator === "gardenDeco03"
+              ? 125
+              : 160
+          }
           style={{
             marginTop: 20,
             zIndex: 3,

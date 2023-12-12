@@ -62,7 +62,14 @@ export default function UpdateHotel() {
   const titleList = ["벽면", "뼈대", "건물장식", "마당장식", "창문", "뒷배경"];
   const buildingList = ["buildingDeco01", "buildingDeco02", "buildingDeco03"];
   const windowList = ["windowDeco01", "windowDeco02"];
-  const gardenList = ["gardenDeco01", "gardenDeco02", "gardenDeco03"];
+  const gardenList = [
+    "gardenDeco04",
+    "gardenDeco05",
+    "gardenDeco06",
+    "gardenDeco01",
+    "gardenDeco02",
+    "gardenDeco03",
+  ];
   const backgroundList = ["background01", "background02", "background03"];
 
   return (
@@ -281,10 +288,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    flexWrap: "wrap",
+    flexWrap: "nowrap",
+    overflowX: "scroll",
     justifyContent: "space-between",
     marginTop: 0,
-    gap: 3,
+    gap: 10,
   },
   hotel_info: {
     color: colors.grey500,
