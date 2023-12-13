@@ -40,6 +40,8 @@ const bellboy23 = require("../assets/gingerman/Modal_Ginger/modal_boss.png");
 const bellboy24 = require("../assets/gingerman/Album_Ginger/album_boss.png");
 const bellboy25 = require("../assets/gingerman/Modal_Ginger/modal_drawing.png");
 const bellboy26 = require("../assets/gingerman/Album_Ginger/album_drawing.png");
+const bellboy27 = require("../assets/gingerman/Modal_Ginger/modal_developer.png");
+const bellboy28 = require("../assets/gingerman/Album_Ginger/album_developer.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -213,11 +215,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-13`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="개발자 진저맨"
               date="12/14"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy28}
+              pngImage2={bellboy27}
+              desc={`흠! 이 정도면 문제없지!\n난 모든 걸 구현해 내는 개발자니까.\n결과물이 벌써 기대되는걸?`}
               isOpened={info[`2023-12-14`]?.isOpen}
             />
             <GingermanCard
