@@ -156,9 +156,6 @@ export default function Push() {
         break;
       case "REPLY":
         const hotel = await getHotel(myHotelId as string);
-        const { letter } = await repliesLetterData(
-          item?.typeData?.letterId as string
-        );
         // 창문이 열려있는지 체크
         const checkOpenWindow2 =
           hotel?.hotelWindows[moment(item?.createdAt).format("YYYY-MM-DD")];
@@ -175,7 +172,7 @@ export default function Push() {
           });
           return;
         }
-        setLetterCheck(new Date(letter?.date).getDate());
+        setLetterCheck(new Date(item?.createdAt).getDate());
         router.push(`/mailbox/${myHotelId}`);
         break;
     }
