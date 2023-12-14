@@ -43,7 +43,7 @@ const bellboy26 = require("../assets/gingerman/Album_Ginger/album_drawing.png");
 const bellboy27 = require("../assets/gingerman/Modal_Ginger/modal_developer.png");
 const bellboy28 = require("../assets/gingerman/Album_Ginger/album_developer.png");
 const bellboy29 = require("../assets/gingerman/Modal_Ginger/modal_science.png");
-const bellboy30 = require("../assets/gingerman/Album_Ginger/album_developer.png");
+const bellboy30 = require("../assets/gingerman/Album_Ginger/album_science.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
