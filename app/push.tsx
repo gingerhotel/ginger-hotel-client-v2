@@ -20,9 +20,14 @@ import { typography } from "../constants/Typo";
 import { SvgImg } from "../components/svgImg";
 import { useQuery } from "react-query";
 import { myNotifications } from "../api/pushApi";
-import { useRecoilState } from "recoil";
-import { windowDateState } from "../atom/letterAtom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { hotelIdState, windowDateState } from "../atom/letterAtom";
+import { getHotel } from "../api/hotelApi";
+import moment from "moment";
+import Toast from "react-native-toast-message";
+import { repliesLetterData } from "../api/letterApi";
 const arrow = require("../assets/icon/i_arrow_back.svg");
+const icon: any = require("../assets/icon/i_no_check.svg");
 
 export default function Push() {
   const navigation = useNavigation();
@@ -109,22 +114,74 @@ export default function Push() {
     router.back();
   };
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+  const [keyModal, setKeyModal] = useState<boolean>(false);
+  const myHotelId = useRecoilValue(hotelIdState);
 
-  const clickNotiItem = (item: any) => {
+  const clickNotiItem = async (item: any) => {
+    const hotel = await getHotel(item?.typeData?.hotelId as string);
+    // 창문이 열려있는지 체크
+    const checkOpenWindow =
+      hotel?.hotelWindows[moment(item?.typeData?.date).format("YYYY-MM-DD")];
+
     switch (item.type) {
       case "LETTER":
+        if (!checkOpenWindow?.isOpen) {
+          Toast.show({
+            type: "iconToast",
+            text1: "당일 창문을 열어야 볼 수 있어요!",
+            visibilityTime: 3000,
+            autoHide: true,
+            props: { icon },
+            position: "bottom",
+          });
+          return;
+        }
         setLetterCheck(new Date(item?.typeData?.date).getDate());
         router.push(`/mailbox/${item?.typeData?.hotelId}`);
         break;
       case "WINDOW_OPEN":
+        if (!checkOpenWindow?.isOpen) {
+          Toast.show({
+            type: "iconToast",
+            text1: "당일 창문을 열어야 볼 수 있어요!",
+            visibilityTime: 3000,
+            autoHide: true,
+            props: { icon },
+            position: "bottom",
+          });
+          return;
+        }
         setLetterCheck(new Date(item?.typeData?.date).getDate());
         router.push(`/mailbox/${item?.typeData?.hotelId}`);
         break;
       case "REPLY":
-        // setLetterCheck(new Date(item?.typeData?.date).getDate());
-        // router.push(`/mailbox/${item?.typeData?.hotelId}`);
+        const hotel = await getHotel(myHotelId as string);
+        const { letter } = await repliesLetterData(
+          item?.typeData?.letterId as string
+        );
+        // 창문이 열려있는지 체크
+        const checkOpenWindow2 =
+          hotel?.hotelWindows[moment(letter?.date).format("YYYY-MM-DD")];
+
+        if (!checkOpenWindow2?.isOpen) {
+          Toast.show({
+            type: "iconToast",
+            text1: "당일 창문을 열어야 볼 수 있어요!",
+            visibilityTime: 3000,
+            autoHide: true,
+            props: { icon },
+            position: "bottom",
+          });
+          return;
+        }
+        setLetterCheck(new Date(letter?.date).getDate());
+        router.push(`/mailbox/${myHotelId}`);
         break;
     }
+  };
+
+  const handelToHome = () => {
+    console.log("홈으로 가서 열게 하기");
   };
 
   {
@@ -196,6 +253,15 @@ export default function Push() {
               callback={onFetchUpdateAsync}
             />
           </View>
+          <CenterModal
+            height={350}
+            visible={keyModal}
+            onClose={() => setKeyModal(false)}
+            title="아직 확인할 수 없어요!"
+            desc="오늘의 편지 수가 부족하여 창문을 못 열어요! 열쇠를 사용해서 창문을 열어주거나 편지를 더 모아보세요!"
+            btn_text="창문열기"
+            callback={handelToHome}
+          />
         </SafeAreaView>
       ) : null}
     </>

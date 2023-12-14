@@ -66,10 +66,7 @@ export const letterUnBlock = async (letterId: number) => {
   }
 };
 
-export const repliesLetterData = async (
-  letterId: string | string[] | undefined
-) => {
-  console.error(letterId);
+export const repliesLetterData = async (letterId: string | string[] | undefined) => {
   try {
     axios.defaults.headers.common["Origin"] = ORIGIN_URL;
     const response = await axios.get(
