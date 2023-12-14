@@ -223,11 +223,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-14`]?.isOpen}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="과학자 진저맨"
               date="12/15"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy30}
+              pngImage2={bellboy29}
+              desc={`여기서 이 색깔이 나오면 안 되는데..\n용액이 부족했나? 잘못 넣은 건가?\n알쏭달쏭하네..`}
               isOpened={info[`2023-12-15`]?.isOpen}
             />
             <GingermanCard
