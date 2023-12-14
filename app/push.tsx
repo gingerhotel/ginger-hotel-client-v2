@@ -161,8 +161,9 @@ export default function Push() {
         );
         // 창문이 열려있는지 체크
         const checkOpenWindow2 =
-          hotel?.hotelWindows[moment(letter?.date).format("YYYY-MM-DD")];
+          hotel?.hotelWindows[moment(item?.createdAt).format("YYYY-MM-DD")];
 
+        console.log(checkOpenWindow2);
         if (!checkOpenWindow2?.isOpen) {
           Toast.show({
             type: "iconToast",
