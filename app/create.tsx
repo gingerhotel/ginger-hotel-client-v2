@@ -123,23 +123,25 @@ export default function CreateHotel() {
                 ))}
             </View>
 
-            <View style={styles.building_wrapper}>
-              {activeTitle === "마당장식" &&
-                gardenList?.map((url, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => setGardenDeco(url)}
-                  >
-                    <CreateHotelDeco
-                      activeTitle={activeTitle}
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View style={styles.building_wrapper}>
+                {activeTitle === "마당장식" &&
+                  gardenList?.map((url, index) => (
+                    <TouchableOpacity
                       key={index}
-                      item={url}
-                      index={index}
-                      active={gardenDecorator}
-                    ></CreateHotelDeco>
-                  </TouchableOpacity>
-                ))}
-            </View>
+                      onPress={() => setGardenDeco(url)}
+                    >
+                      <CreateHotelDeco
+                        activeTitle={activeTitle}
+                        key={index}
+                        item={url}
+                        index={index}
+                        active={gardenDecorator}
+                      ></CreateHotelDeco>
+                    </TouchableOpacity>
+                  ))}
+              </View>
+            </ScrollView>
             <View style={styles.building_wrapper}>
               {activeTitle === "뒷배경" &&
                 backgroundList?.map((url, index) => (
