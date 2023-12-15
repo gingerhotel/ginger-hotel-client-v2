@@ -30,7 +30,7 @@ export default function _layout() {
 
 
   useEffect(() => {
-    onFetchUpdateAsync();
+    // onFetchUpdateAsync();
   }, []);
   const queryClient = new QueryClient();
   const [fontsLoaded] = useFonts({
