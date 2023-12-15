@@ -62,6 +62,7 @@ export default function CustomMediumHotel({
     windowDeco01: windowImg01,
     windowDeco02: windowImg02,
   };
+
   return (
     <View
       style={{
@@ -147,7 +148,7 @@ export default function CustomMediumHotel({
               gardenDecorator === "gardenDeco02" ||
               gardenDecorator === "gardenDeco03"
                 ? 100
-                : 70,
+                : 76,
             height:
               gardenDecorator === "gardenDeco01" ||
               gardenDecorator === "gardenDeco02" ||
