@@ -44,6 +44,8 @@ const bellboy27 = require("../assets/gingerman/Modal_Ginger/modal_developer.png"
 const bellboy28 = require("../assets/gingerman/Album_Ginger/album_developer.png");
 const bellboy29 = require("../assets/gingerman/Modal_Ginger/modal_science.png");
 const bellboy30 = require("../assets/gingerman/Album_Ginger/album_science.png");
+const bellboy31 = require("../assets/gingerman/Modal_Ginger/modal_princess.png");
+const bellboy32 = require("../assets/gingerman/Album_Ginger/album_princess.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -233,12 +235,12 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-15`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="공주 진저맨"
               date="12/16"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-16`]?.hasCookie}
+              pngImage={bellboy32}
+              pngImage2={bellboy31}
+              desc={`오호홋,, 나는 진저왕국의 공주~\n진저호텔은 아주 탐나는 곳이야.\n공주인 나도 오기 힘든 곳이라구-!`}
+              isOpened={info[`2023-12-16`]?.isOpen}
             />
             <GingermanCard
               name="벨보이 진저맨"
