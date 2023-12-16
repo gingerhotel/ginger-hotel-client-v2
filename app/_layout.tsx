@@ -1,4 +1,4 @@
-import { View, Text, Button, SafeAreaView } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import React, { useEffect, useCallback, useState } from 'react'
 import { Stack, useRouter } from 'expo-router'
 import * as Font from 'expo-font';
@@ -9,7 +9,6 @@ import Toast from "react-native-toast-message";
 import { toastConfig } from "../components/toast";
 
 import * as Updates from 'expo-updates';
-import SafeViewAndroid from '../components/SafeViewAndroid';
 
 export default function _layout() {
 
@@ -43,44 +42,41 @@ export default function _layout() {
   }
 
   return (
-    <SafeAreaView style={SafeViewAndroid.AndroidSafeArea}>
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <Stack
-            screenOptions={
-              {
-                // headerStyle: {
-                //     backgroundColor: 'black'
-                // },
-                // headerTintColor: 'white'
-              }
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <Stack
+          screenOptions={
+            {
+              // headerStyle: {
+              //     backgroundColor: 'black'
+              // },
+              // headerTintColor: 'white'
             }
-          >
-            <Stack.Screen
-              name="index"
-              options={{
-                title: "Home",
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
-              name="(tabs)"
-              options={{
-                headerShown: false,
-              }}
-            />
-            {/* <Stack.Screen
-              name="[missing]"
-              options={{
-                title: "404",
-              }}
-            /> */}
-          </Stack>
+          }
+        >
+          <Stack.Screen
+            name="index"
+            options={{
+              title: "Home",
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              headerShown: false,
+            }}
+          />
+          {/* <Stack.Screen
+            name="[missing]"
+            options={{
+              title: "404",
+            }}
+          /> */}
+        </Stack>
 
-          <Toast config={toastConfig} />
-        </RecoilRoot>
-      </QueryClientProvider>
-    </SafeAreaView>
-
+        <Toast config={toastConfig} />
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
