@@ -40,6 +40,9 @@ const window_main_open: any = require("../assets/images/window_main_open.svg");
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
 const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+const gardenDecoImg04 = require(`../assets/decorations/gardenDeco04.svg`);
+const gardenDecoImg05 = require(`../assets/decorations/gardenDeco05.svg`);
+const gardenDecoImg06 = require(`../assets/decorations/gardenDeco06.svg`);
 
 const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
 const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
@@ -75,7 +78,7 @@ export default function CustomCompleteUserHotel({
   const myHotelId = useRecoilValue(hotelIdState);
   const [isNotMineModal, setIsNotMineModal] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
-  
+
   const setModalVisible = () => {
     onClose();
   };
@@ -85,13 +88,11 @@ export default function CustomCompleteUserHotel({
   const handleOwner = async (itemNo: number) => {
     const isLogin = await AsyncStorage.getItem("accessToken");
     if (isLogin) {
-
       if (isMy) {
-        if (window[`2023-12-${itemNo.toString().padStart(2, '0')}`]?.isOpen) {
+        if (window[`2023-12-${itemNo.toString().padStart(2, "0")}`]?.isOpen) {
           setLetterCheck(itemNo);
           router.push(`/mailbox/${myHotelId}`);
         } else {
-
         }
       } else {
         setIsNotMineModal(true);
@@ -379,6 +380,9 @@ export default function CustomCompleteUserHotel({
     gardenDeco01: gardenDecoImg01,
     gardenDeco02: gardenDecoImg02,
     gardenDeco03: gardenDecoImg03,
+    gardenDeco04: gardenDecoImg04,
+    gardenDeco05: gardenDecoImg05,
+    gardenDeco06: gardenDecoImg06,
   };
 
   const buildingDeco: any = {
@@ -516,7 +520,7 @@ export default function CustomCompleteUserHotel({
       </View>
       <View
         style={{
-          zIndex: 5,
+          zIndex: 6,
           position: "absolute",
         }}
       >
@@ -525,12 +529,32 @@ export default function CustomCompleteUserHotel({
           width={150}
           height={140}
           style={{
-            width: 150,
-            height: 140,
+            width:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 150
+                : 130,
+            height:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 140
+                : 120,
             marginTop: 20,
             zIndex: 5,
-            top: 370,
-            left: 24,
+            top:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 370
+                : 380,
+            left:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 18
+                : 50,
             position: "absolute",
           }}
         />

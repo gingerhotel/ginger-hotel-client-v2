@@ -40,7 +40,18 @@ const bellboy2 = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png")
 const g_2_nutcracker = require("../../../assets/gingerman/Modal_Ginger/g_2_nutcracker.png");
 const g_painter = require("../../../assets/gingerman/Modal_Ginger/g_painter.png");
 const bellboy7 = require("../../../assets/gingerman/Modal_Ginger/quarterback.png");
-const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy9 = require("../../../assets/gingerman/Modal_Ginger/modal_topgun.png");
+const bellboy11 = require("../../../assets/gingerman/Modal_Ginger/modal_diva.png");
+const bellboy13 = require("../../../assets/gingerman/Modal_Ginger/modal_ch.png");
+const bellboy15 = require("../../../assets/gingerman/Modal_Ginger/modal_stu.png");
+const bellboy17 = require("../../../assets/gingerman/Modal_Ginger/modal_good.png");
+const bellboy19 = require("../../../assets/gingerman/Modal_Ginger/modal_explore.png");
+const bellboy21 = require("../../../assets/gingerman/Modal_Ginger/modal_smell.png");
+const bellboy23 = require("../../../assets/gingerman/Modal_Ginger/modal_boss.png");
+const bellboy25 = require("../../../assets/gingerman/Modal_Ginger/modal_drawing.png");
+const bellboy27 = require("../../../assets/gingerman/Modal_Ginger/modal_developer.png");
+const bellboy29 = require("../../../assets/gingerman/Modal_Ginger/modal_science.png");
+const bellboy31 = require("../../../assets/gingerman/Modal_Ginger/modal_princess.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -418,9 +429,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="파일럿 진저맨"
-          desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
-          img={bellboy9}
+          name="공주 진저맨"
+          desc={`오호홋,, 나는 진저왕국의 공주~\n진저호텔은 아주 탐나는 곳이야.\n공주인 나도 오기 힘든 곳이라구-!`}
+          img={bellboy31}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />

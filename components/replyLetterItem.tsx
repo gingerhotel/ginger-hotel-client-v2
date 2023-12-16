@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import {
     StyleSheet,
     View,
-    Image,
     TouchableOpacity,
-    TouchableHighlight,
 } from "react-native";
 import {
     LetterInnerContainer,
     LetterInnerInfoView,
     LetterInnerSendText,
+    LetterInnerText,
     LetterInnerTextBox,
     LetterInnerTitieTextView,
     LetterInnerTitieView,
     LetterInnerUserText,
     LetterOuterContainer,
-    LetterReplyButtonText,
     LetterReplyButtonView
 } from "../style/letterItemStyled";
 import { SvgImg } from "./svgImg";
@@ -71,7 +69,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         <LetterInnerSendText f_color="#77C7B9">보내는 이</LetterInnerSendText>
                                         <LetterInnerUserText f_color="#FFFDF0">{item?.senderNickname}</LetterInnerUserText>
                                     </LetterInnerTitieTextView>
-                                    <View style={{ position: 'absolute', left: '98%' }}>
+                                    <View style={{ position: 'absolute', left: '98%', top: '14%' }}>
                                         <SvgImg
                                             url={iconMore}
                                             width={30}
@@ -88,11 +86,13 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         />
                                     ) : (<View />)}
                                 </LetterInnerTitieView>
+                                <LetterInnerTextBox>
+                                    <LetterInnerText f_color="#fff">
+                                        {item?.content}
+                                    </LetterInnerText>
+                                </LetterInnerTextBox>
                             </LetterInnerInfoView>
-                            <LetterInnerTextBox f_color="#fff">
-                                {item?.content}
-                            </LetterInnerTextBox>
-                            {/* <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
+                            <TouchableOpacity style={{ alignItems: 'center', padding: 15 }}>
                                 <LetterReplyButtonView>
                                     <Buttons
                                         title="답장 모아보기"
@@ -101,7 +101,7 @@ const ReplyLetterItem = ({ replies }: any) => {
                                         url={`replybox/${item.letterId}`}
                                     />
                                 </LetterReplyButtonView>
-                            </TouchableOpacity> */}
+                            </TouchableOpacity>
                         </LetterInnerContainer>
                     </LetterOuterContainer>}
                 keyExtractor={item => item.id.toString()} />

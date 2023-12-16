@@ -10,6 +10,9 @@ const Hotel1 = require("../assets/images/Hotel1.svg");
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
 const gardenDecoImg03 = require(`../assets/decorations/gardenDeco03.svg`);
+const gardenDecoImg04 = require(`../assets/decorations/gardenDeco04.svg`);
+const gardenDecoImg05 = require(`../assets/decorations/gardenDeco05.svg`);
+const gardenDecoImg06 = require(`../assets/decorations/gardenDeco06.svg`);
 
 const buildingDecoImg01 = require(`../assets/decorations/buildingDeco01.svg`);
 const buildingDecoImg02 = require(`../assets/decorations/buildingDeco02.svg`);
@@ -38,6 +41,9 @@ export default function CustomMediumHotel({
     gardenDeco01: gardenDecoImg01,
     gardenDeco02: gardenDecoImg02,
     gardenDeco03: gardenDecoImg03,
+    gardenDeco04: gardenDecoImg04,
+    gardenDeco05: gardenDecoImg05,
+    gardenDeco06: gardenDecoImg06,
   };
 
   const buildingDeco: any = {
@@ -137,11 +143,26 @@ export default function CustomMediumHotel({
         <SvgImg
           url={gardenDeco[gardenDecorator]}
           style={{
-            width: 100,
-            height: 90,
+            width:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 100
+                : 76,
+            height:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 90
+                : 70,
             marginTop: 20,
             zIndex: 5,
-            top: 230,
+            top:
+              gardenDecorator === "gardenDeco01" ||
+              gardenDecorator === "gardenDeco02" ||
+              gardenDecorator === "gardenDeco03"
+                ? 230
+                : 250,
             left: 24,
             position: "absolute",
           }}

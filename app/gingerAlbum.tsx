@@ -24,6 +24,28 @@ const bellboy7 = require("../assets/gingerman/Modal_Ginger/quarterback.png");
 const bellboy8 = require("../assets/gingerman/Album_Ginger/a_quarterback.png");
 const bellboy9 = require("../assets/gingerman/Modal_Ginger/modal_topgun.png");
 const bellboy10 = require("../assets/gingerman/Album_Ginger/album_topgun.png");
+const bellboy11 = require("../assets/gingerman/Modal_Ginger/modal_diva.png");
+const bellboy12 = require("../assets/gingerman/Album_Ginger/album_diva.png");
+const bellboy13 = require("../assets/gingerman/Modal_Ginger/modal_ch.png");
+const bellboy14 = require("../assets/gingerman/Album_Ginger/album_ch.png");
+const bellboy15 = require("../assets/gingerman/Modal_Ginger/modal_stu.png");
+const bellboy16 = require("../assets/gingerman/Album_Ginger/album_stu.png");
+const bellboy17 = require("../assets/gingerman/Modal_Ginger/modal_good.png");
+const bellboy18 = require("../assets/gingerman/Album_Ginger/album_good.png");
+const bellboy19 = require("../assets/gingerman/Modal_Ginger/modal_explore.png");
+const bellboy20 = require("../assets/gingerman/Album_Ginger/album_explore.png");
+const bellboy21 = require("../assets/gingerman/Modal_Ginger/modal_smell.png");
+const bellboy22 = require("../assets/gingerman/Album_Ginger/album_smell.png");
+const bellboy23 = require("../assets/gingerman/Modal_Ginger/modal_boss.png");
+const bellboy24 = require("../assets/gingerman/Album_Ginger/album_boss.png");
+const bellboy25 = require("../assets/gingerman/Modal_Ginger/modal_drawing.png");
+const bellboy26 = require("../assets/gingerman/Album_Ginger/album_drawing.png");
+const bellboy27 = require("../assets/gingerman/Modal_Ginger/modal_developer.png");
+const bellboy28 = require("../assets/gingerman/Album_Ginger/album_developer.png");
+const bellboy29 = require("../assets/gingerman/Modal_Ginger/modal_science.png");
+const bellboy30 = require("../assets/gingerman/Album_Ginger/album_science.png");
+const bellboy31 = require("../assets/gingerman/Modal_Ginger/modal_princess.png");
+const bellboy32 = require("../assets/gingerman/Album_Ginger/album_princess.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -98,7 +120,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={`올해도 진저호텔을 찾아왔네?\n호텔에서의 추억 만큼은 확실히 책임지겠어!\n리모델링된 진저호텔 좀 구경하라구~`}
-              isOpened={info[`2023-12-01`]?.isOpen}
+              isOpened={info[`2023-12-01`]?.hasCookie}
             />
             <GingermanCard
               name="병정 진저맨"
@@ -106,7 +128,7 @@ const GingerAlbum = () => {
               pngImage={bellboy4}
               pngImage2={bellboy3}
               desc={`하하하, 2일차는 내가 장식하겠네!\n 호텔의 경비는 내가 보고 있을 테니\n 안심하고 휴가를 보내도록 하게! `}
-              isOpened={info[`2023-12-02`]?.isOpen}
+              isOpened={info[`2023-12-02`]?.hasCookie}
             />
             <GingermanCard
               name="화가 진저맨"
@@ -114,7 +136,7 @@ const GingerAlbum = () => {
               pngImage={bellboy6}
               pngImage2={bellboy5}
               desc={`흠흠흠~ 진저호텔의 아름다운 외관에 놀랐다고?\n바로 이 몸의 작품이지~ 흠흠흠~\n크리에이티브 아티스트, 그게 바로 나야! `}
-              isOpened={info[`2023-12-03`]?.isOpen}
+              isOpened={info[`2023-12-03`]?.hasCookie}
             />
             <GingermanCard
               name="쿼터백 진저맨"
@@ -122,7 +144,7 @@ const GingerAlbum = () => {
               pngImage={bellboy8}
               pngImage2={bellboy7}
               desc={`올해도 우리 진저하이스쿨이 무조건 1등이지!!\n왜냐고? 우리 팀은 최고니까!\n 우우우-! 하나 둘 셋 화이팅-!`}
-              isOpened={info[`2023-12-04`]?.isOpen}
+              isOpened={info[`2023-12-04`]?.hasCookie}
             />
             <GingermanCard
               name="파일럿 진저맨"
@@ -130,94 +152,94 @@ const GingerAlbum = () => {
               pngImage={bellboy10}
               pngImage2={bellboy9}
               desc={`고공을 가르는 비행이란 참으로 매력적이지.\n마하의 속도를 느껴봤나?\n언제 한번 내 전투기를 구경시켜주지, 훗.`}
-              isOpened={info[`2023-12-05`]?.isOpen}
+              isOpened={info[`2023-12-05`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="디바 진저맨"
               date="12/06"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-06`]?.isOpen}
+              pngImage={bellboy12}
+              pngImage2={bellboy11}
+              desc={`안녕! 나는 디바 진저맨~\n내 공연은 언제나 매진이지~\n언제 한번 내 노래 들으러 오라구~`}
+              isOpened={info[`2023-12-06`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="철학자 진저맨"
               date="12/07"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-07`]?.isOpen}
+              pngImage={bellboy14}
+              pngImage2={bellboy13}
+              desc={`어이 자네~\n이따 아고라 광장에서 만나기로 했지?\n오늘은 아르케에 대해 논하니 기대하고 와도 좋아!`}
+              isOpened={info[`2023-12-07`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="모범생 진저맨"
               date="12/08"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-08`]?.isOpen}
+              pngImage={bellboy16}
+              pngImage2={bellboy15}
+              desc={`내가 제일 좋아하는 건\n나무 그늘 아래서 커피와 독서를 즐기는 거야.\n너는 어때?`}
+              isOpened={info[`2023-12-08`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="멋쟁이 진저맨"
               date="12/09"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-09`]?.isOpen}
+              pngImage={bellboy18}
+              pngImage2={bellboy17}
+              desc={`하~이 날 보러 진저호텔에 온 거야?\n후훗 보는 눈은 있어가지고~\n눈부신 내 멋짐에 반해버리면 안된다구~`}
+              isOpened={info[`2023-12-09`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="탐험가 진저맨"
               date="12/10"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-10`]?.isOpen}
+              pngImage={bellboy20}
+              pngImage2={bellboy19}
+              desc={`흠~ 거의 다 온 것 같네!\n조금만 더 가면 내가 찾는 보물이 있어.\n지도와 배낭만 있다면 어디든 탐험 가능이지!`}
+              isOpened={info[`2023-12-10`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="조향사 진저맨"
               date="12/11"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-11`]?.isOpen}
+              pngImage={bellboy22}
+              pngImage2={bellboy21}
+              desc={`세상의 모든 것은 향기를 가지고 있어요.\n우리 모두에게도 향기가 배여있죠.\n당신의 향기는 무엇인가요?`}
+              isOpened={info[`2023-12-11`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="보스 진저맨"
               date="12/12"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-12`]?.isOpen}
+              pngImage={bellboy24}
+              pngImage2={bellboy23}
+              desc={`최고가 되기 위해선 매일 달려야 해.\n그래야 정상에 머물 수 있어.\n성공은 내가 만드는 거야.`}
+              isOpened={info[`2023-12-12`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="낙서 진저맨"
               date="12/13"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-13`]?.isOpen}
+              pngImage={bellboy26}
+              pngImage2={bellboy25}
+              desc={`안녕? 나는 벨보이 진저맨이야.\n첫번째 날에 나온 녀석은 가짜라구-!\n내가 더 멋있지 않아? 키키`}
+              isOpened={info[`2023-12-13`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="개발자 진저맨"
               date="12/14"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-14`]?.isOpen}
+              pngImage={bellboy28}
+              pngImage2={bellboy27}
+              desc={`흠! 이 정도면 문제없지!\n난 모든 걸 구현해 내는 개발자니까.\n결과물이 벌써 기대되는걸?`}
+              isOpened={info[`2023-12-14`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="과학자 진저맨"
               date="12/15"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
-              isOpened={info[`2023-12-15`]?.isOpen}
+              pngImage={bellboy30}
+              pngImage2={bellboy29}
+              desc={`여기서 이 색깔이 나오면 안 되는데..\n용액이 부족했나? 잘못 넣은 건가?\n알쏭달쏭하네..`}
+              isOpened={info[`2023-12-15`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="공주 진저맨"
               date="12/16"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy32}
+              pngImage2={bellboy31}
+              desc={`오호홋,, 나는 진저왕국의 공주~\n진저호텔은 아주 탐나는 곳이야.\n공주인 나도 오기 힘든 곳이라구-!`}
               isOpened={info[`2023-12-16`]?.isOpen}
             />
             <GingermanCard
@@ -226,7 +248,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-17`]?.isOpen}
+              isOpened={info[`2023-12-17`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -234,7 +256,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-18`]?.isOpen}
+              isOpened={info[`2023-12-18`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -242,7 +264,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-19`]?.isOpen}
+              isOpened={info[`2023-12-19`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -250,7 +272,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-20`]?.isOpen}
+              isOpened={info[`2023-12-20`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -258,7 +280,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-21`]?.isOpen}
+              isOpened={info[`2023-12-21`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -266,7 +288,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-22`]?.isOpen}
+              isOpened={info[`2023-12-22`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -274,7 +296,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-23`]?.isOpen}
+              isOpened={info[`2023-12-23`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -282,7 +304,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-24`]?.isOpen}
+              isOpened={info[`2023-12-24`]?.hasCookie}
             />
             <GingermanCard
               name="벨보이 진저맨"
@@ -290,7 +312,7 @@ const GingerAlbum = () => {
               pngImage={bellboy}
               pngImage2={bellboy2}
               desc={``}
-              isOpened={info[`2023-12-25`]?.isOpen}
+              isOpened={info[`2023-12-25`]?.hasCookie}
             />
           </View>
         </View>
