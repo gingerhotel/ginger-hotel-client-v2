@@ -9,6 +9,9 @@ import { deleteUser } from "../api/myApi";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Header from "../components/appHeader";
 import { MonoText } from "../components/styledText";
+import axios from "axios";
+import { AUTH_URL } from "../api/url";
+import LoginModal from "../components/Modal/\bloginModal";
 
 const DeleteAccountTwo = () => {
   const navigation = useNavigation();
@@ -16,6 +19,27 @@ const DeleteAccountTwo = () => {
     navigation.setOptions({ headerShown: false });
   }, [navigation]);
 
+  const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
+
+  const closeLoginModal = () => {
+    setLoginModalVisible(false);
+  };
+
+  const checkLogin = async () => {
+    try {
+      const accessToken = await AsyncStorage.getItem("accessToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      const response = await axios.get(`${AUTH_URL}`);
+      return response.data;
+    } catch (err: any) {
+      setLoginModalVisible(true);
+      return;
+    }
+  };
+
+  useEffect(() => {
+      checkLogin();
+  }, []);
   const [checked, setChecked] = useState(false);
 
   const mutation = useMutation(
@@ -23,7 +47,7 @@ const DeleteAccountTwo = () => {
     {
       onSuccess: (data) => {
         AsyncStorage.removeItem("accessToken");
-        router.push("/deleteCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
+        router.replace("/deleteCompleted"); // 성공한 경우에 response 데이터를 사용할 수 있습니다.
       },
     }
   );
@@ -87,6 +111,14 @@ const DeleteAccountTwo = () => {
           />
         </View>
       </View>
+      <LoginModal
+        height={350}
+        visible={loginModalVisible}
+        onClose={closeLoginModal}
+        name="로그인"
+        desc=""
+        closeDisable={true}
+      />
     </View>
   );
 };
