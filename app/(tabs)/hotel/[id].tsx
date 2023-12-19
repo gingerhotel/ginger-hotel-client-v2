@@ -53,8 +53,7 @@ const bellboy27 = require("../../../assets/gingerman/Modal_Ginger/modal_develope
 const bellboy29 = require("../../../assets/gingerman/Modal_Ginger/modal_science.png");
 const bellboy31 = require("../../../assets/gingerman/Modal_Ginger/modal_princess.png");
 const bellboy33 = require("../../../assets/gingerman/Modal_Ginger/modal_health.png");
-const bellboy35 = require("../../../assets/gingerman/Modal_Ginger/modal_climer.png");
-const bellboy37 = require("../../../assets/gingerman/Modal_Ginger/modal_coconut.png");
+const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_photo.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -269,8 +268,6 @@ export default function HotelComp() {
     }
   }, [data]);
 
-  // console.log(data);
-
   if (status === "loading") {
     return <Text>Loading...</Text>;
   } else {
@@ -432,9 +429,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="바캉스 진저맨"
-          desc={`후후~\n겨울도 여름처럼 즐길 수 있지~\n진저호텔은 따뜻하니까-!`}
-          img={bellboy37}
+          name="사진가 진저맨"
+          desc={`찰칵!\n내가 담는 건 찰나의 아름다움.\n일상의 순간도 작품이 될 수 있어.`}
+          img={bellboy34}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
