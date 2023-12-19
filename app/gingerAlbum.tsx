@@ -52,8 +52,8 @@ const bellboy35 = require("../assets/gingerman/Modal_Ginger/modal_climer.png");
 const bellboy36 = require("../assets/gingerman/Album_Ginger/album_climer.png");
 const bellboy37 = require("../assets/gingerman/Modal_Ginger/modal_coconut.png");
 const bellboy38 = require("../assets/gingerman/Album_Ginger/album_coconut.png");
-const bellboy39 = require("../assets/gingerman/Modal_Ginger/modal_photo.png");
-const bellboy40 = require("../assets/gingerman/Album_Ginger/album_photo.png");
+const bellboy39 = require("../assets/gingerman/Modal_Ginger/modal_camera.png");
+const bellboy40 = require("../assets/gingerman/Album_Ginger/modal_camera.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();

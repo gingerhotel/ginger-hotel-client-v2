@@ -53,7 +53,7 @@ const bellboy27 = require("../../../assets/gingerman/Modal_Ginger/modal_develope
 const bellboy29 = require("../../../assets/gingerman/Modal_Ginger/modal_science.png");
 const bellboy31 = require("../../../assets/gingerman/Modal_Ginger/modal_princess.png");
 const bellboy33 = require("../../../assets/gingerman/Modal_Ginger/modal_health.png");
-const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_photo.png");
+const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_camera.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
