@@ -54,6 +54,8 @@ const bellboy37 = require("../assets/gingerman/Modal_Ginger/modal_coconut.png");
 const bellboy38 = require("../assets/gingerman/Album_Ginger/album_coconut.png");
 const bellboy39 = require("../assets/gingerman/Modal_Ginger/modal_camera.png");
 const bellboy40 = require("../assets/gingerman/Album_Ginger/modal_camera.png");
+const bellboy41 = require("../assets/gingerman/Modal_Ginger/modal_flower.png");
+const bellboy42 = require("../assets/gingerman/Album_Ginger/album_flower.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -283,11 +285,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-20`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="원예가 진저맨"
               date="12/21"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy42}
+              pngImage2={bellboy41}
+              desc={`음~ 아름다운 꽃향기~\n식물을 가꾸면 자연과 가까워질 수 있어.\n물과 햇볕도 내 친구가 될 수 있지!`}
               isOpened={info[`2023-12-21`]?.hasCookie}
             />
             <GingermanCard
