@@ -56,6 +56,8 @@ const bellboy39 = require("../assets/gingerman/Modal_Ginger/modal_camera.png");
 const bellboy40 = require("../assets/gingerman/Album_Ginger/modal_camera.png");
 const bellboy41 = require("../assets/gingerman/Modal_Ginger/modal_flower.png");
 const bellboy42 = require("../assets/gingerman/Album_Ginger/album_flower.png");
+const bellboy43 = require("../assets/gingerman/Modal_Ginger/modal_ghost.png");
+const bellboy44 = require("../assets/gingerman/Album_Ginger/album_ghost.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -293,11 +295,11 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-21`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="유령 진저맨"
               date="12/22"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy44}
+              pngImage2={bellboy43}
+              desc={`우우우~ 내가 무서워?\n진저호텔에서 날 봤다는 진저맨들이 있어..\n깜짝 놀래켜줘야지! 키키~`}
               isOpened={info[`2023-12-22`]?.hasCookie}
             />
             <GingermanCard
