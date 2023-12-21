@@ -45,6 +45,7 @@ const bellboy27 = require("../../../assets/gingerman/Modal_Ginger/modal_develope
 const bellboy29 = require("../../../assets/gingerman/Modal_Ginger/modal_science.png");
 
 const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_camera.png");
+const bellboy35 = require("../../../assets/gingerman/Modal_Ginger/modal_flower.png");
 
 
 import { myDate } from "../../../api/myApi";
@@ -450,9 +451,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="사진가 진저맨"
-          desc={`찰칵!\n내가 담는 건 찰나의 아름다움.\n일상의 순간도 작품이 될 수 있어.`}
-          img={bellboy34}
+          name="원예가 진저맨"
+          desc={`음~ 아름다운 꽃향기~\n식물을 가꾸면 자연과 가까워질 수 있어.\n물과 햇볕도 내 친구가 될 수 있지!`}
+          img={bellboy35}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
