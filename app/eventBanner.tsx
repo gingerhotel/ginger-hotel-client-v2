@@ -41,7 +41,7 @@ export default function EventBanner() {
               <TouchableOpacity onPress={()=> {
                 WebBrowser.openBrowserAsync(data.url)
               }}>
-                <Image source={data.img}/>
+                <Image source={data.img} style={{height: 60}} resizeMode="contain"/>
               </TouchableOpacity>
             </View>
           ))
