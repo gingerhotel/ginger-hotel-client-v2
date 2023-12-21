@@ -55,6 +55,7 @@ const bellboy31 = require("../../../assets/gingerman/Modal_Ginger/modal_princess
 const bellboy33 = require("../../../assets/gingerman/Modal_Ginger/modal_health.png");
 const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_camera.png");
 const bellboy35 = require("../../../assets/gingerman/Modal_Ginger/modal_flower.png");
+const bellboy36 = require("../../../assets/gingerman/Modal_Ginger/modal_ghost.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -284,7 +285,7 @@ export default function HotelComp() {
           <Snowfall color="white" snowflakeCount={50} />
         </SnowfallContainer>
         <SafeAreaView>
-          <EventBanner/>
+          <EventBanner />
         </SafeAreaView>
         <Header
           isOwner={data.isOwner}
@@ -433,9 +434,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="원예가 진저맨"
-          desc={`음~ 아름다운 꽃향기~\n식물을 가꾸면 자연과 가까워질 수 있어.\n물과 햇볕도 내 친구가 될 수 있지!`}
-          img={bellboy35}
+          name="유령 진저맨"
+          desc={`우우우~ 내가 무서워?\n진저호텔에서 날 봤다는 진저맨들이 있어..\n깜짝 놀래켜줘야지! 키키~`}
+          img={bellboy36}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
