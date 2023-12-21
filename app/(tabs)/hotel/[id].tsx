@@ -71,6 +71,7 @@ import BottemShareSheet from "../../../components/bottemShareSheet";
 import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import EventBanner from "../../eventBanner";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -291,6 +292,9 @@ export default function HotelComp() {
   return (
     <ScrollView style={{ backgroundColor: colors.greyblack }}>
       <View style={{ backgroundColor: colors.greyblack }}>
+        <SafeAreaView>
+          <EventBanner/>
+        </SafeAreaView>
         <Header
           isOwner={data?.isOwner}
           keyCount={data?.keyCount}
