@@ -80,6 +80,7 @@ import KeyModal from "../../../components/Modal/keyModal";
 import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import EventBanner from "../../eventBanner";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -282,7 +283,9 @@ export default function HotelComp() {
         <SnowfallContainer>
           <Snowfall color="white" snowflakeCount={50} />
         </SnowfallContainer>
-        <KakaoAdFit />
+        <SafeAreaView>
+          <EventBanner/>
+        </SafeAreaView>
         <Header
           isOwner={data.isOwner}
           keyCount={data?.keyCount}
