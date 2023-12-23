@@ -47,6 +47,7 @@ const bellboy29 = require("../../../assets/gingerman/Modal_Ginger/modal_science.
 const bellboy34 = require("../../../assets/gingerman/Modal_Ginger/modal_camera.png");
 const bellboy35 = require("../../../assets/gingerman/Modal_Ginger/modal_flower.png");
 const bellboy36 = require("../../../assets/gingerman/Modal_Ginger/modal_ghost.png");
+const bellboy38 = require("../../../assets/gingerman/Modal_Ginger/modal_ice.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -451,9 +452,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="유령 진저맨"
-          desc={`우우우~ 내가 무서워?\n진저호텔에서 날 봤다는 진저맨들이 있어..\n깜짝 놀래켜줘야지! 키키~`}
-          img={bellboy36}
+          name="동장군 진저맨"
+          desc={`안녕! 나는 겨울의 동장군이야.\n내가 나타나면 추운 건 어쩔 수 없으니..\n따뜻하게 입고 다녀야 해-!`}
+          img={bellboy38}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />

@@ -58,6 +58,10 @@ const bellboy41 = require("../assets/gingerman/Modal_Ginger/modal_flower.png");
 const bellboy42 = require("../assets/gingerman/Album_Ginger/album_flower.png");
 const bellboy43 = require("../assets/gingerman/Modal_Ginger/modal_ghost.png");
 const bellboy44 = require("../assets/gingerman/Album_Ginger/album_ghost.png");
+const bellboy45 = require("../assets/gingerman/Modal_Ginger/modal_spy.png");
+const bellboy46 = require("../assets/gingerman/Album_Ginger/album_spy.png");
+const bellboy47 = require("../assets/gingerman/Modal_Ginger/modal_ice.png");
+const bellboy48 = require("../assets/gingerman/Album_Ginger/album_ice.png");
 
 const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
@@ -303,19 +307,19 @@ const GingerAlbum = () => {
               isOpened={info[`2023-12-22`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="스파이 진저맨"
               date="12/23"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy46}
+              pngImage2={bellboy45}
+              desc={`내가 누군지 알아?\n앗, 맞다 나 스파이지..\n나 본 거 비밀로 해줘야 돼!`}
               isOpened={info[`2023-12-23`]?.hasCookie}
             />
             <GingermanCard
-              name="벨보이 진저맨"
+              name="동장군 진저맨"
               date="12/24"
-              pngImage={bellboy}
-              pngImage2={bellboy2}
-              desc={``}
+              pngImage={bellboy48}
+              pngImage2={bellboy47}
+              desc={`안녕! 나는 겨울의 동장군이야.\n내가 나타나면 추운 건 어쩔 수 없으니..\n따뜻하게 입고 다녀야 해-!`}
               isOpened={info[`2023-12-24`]?.hasCookie}
             />
             <GingermanCard
