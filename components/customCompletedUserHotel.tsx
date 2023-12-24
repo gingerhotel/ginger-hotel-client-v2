@@ -19,23 +19,33 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { hotelIdState, windowDateState } from "../atom/letterAtom";
 import { typography } from "../constants/Typo";
 import { isEmpty } from "./Modal/\bloginModal";
+import { getCurrentDate } from "../data/data";
 const Hotel1 = require("../assets/images/Hotel1.svg");
 const frontBg = require("../assets/images/front_bg.svg");
 const building1 = require("../assets/decorations/buildingDeco01.svg");
 const window_v1: any = require("../assets/images/window_v1.svg");
+const window_v1_none: any = require("../assets/images/window_v1_none.svg");
 const window_v1_open: any = require("../assets/images/window_v1_open.svg");
 const window_v1_rec: any = require("../assets/images/window_v1_rec.svg");
+
+const window_v1_rec_none: any = require("../assets/images/window_v1_rec1_none.svg");
+
 const window_v1_rec2: any = require("../assets/images/window_v1_rec2.svg");
 const window_v1_rec_open: any = require("../assets/images/window_v1_rec1_open.svg");
+const window_v1_rec2_none: any = require("../assets/images/window_v1_rec2_none.svg");
 const window_v1_rec2_open: any = require("../assets/images/window_v1_rec2_open.svg");
 const window_v2: any = require("../assets/images/window_v2.svg");
+const window_v2_none: any = require("../assets/images/window_v2_none.svg");
 const window_v2_rec: any = require("../assets/images/window_v2_rec.svg");
 const window_v2_rec2: any = require("../assets/images/window_v2_rec2.svg");
+const window_v2_rec_none: any = require("../assets/images/window_v2_rec1_none.svg");
 const window_v2_rec_open: any = require("../assets/images/window_v2_rec1_open.svg");
 const window_v2_rec2_open: any = require("../assets/images/window_v2_rec2_open.svg");
+const window_v2_rec2_none: any = require("../assets/images/window_v2_rec2_none.svg");
 const window_v2_open: any = require("../assets/images/window_v2_open.svg");
 const window_main: any = require("../assets/images/25.svg");
 const window_main_open: any = require("../assets/images/window_main_open.svg");
+const window_main_none: any = require("../assets/images/window_main_none.svg");
 
 const gardenDecoImg01 = require(`../assets/decorations/gardenDeco01.svg`);
 const gardenDecoImg02 = require(`../assets/decorations/gardenDeco02.svg`);
@@ -102,6 +112,9 @@ export default function CustomCompleteUserHotel({
       setIsNotMineModal(true);
     }
   };
+
+  const currentDate = getCurrentDate();
+  const isDayOver25 = +currentDate.split("-")[2] >= 25;
 
   const windows = [
     {
@@ -357,22 +370,30 @@ export default function CustomCompleteUserHotel({
   const window_design: any = {
     windowDeco01: {
       default: window_v1,
+      default_none: window_v1_none,
       open: window_v1_open,
       rec: window_v1_rec,
+      rec_none: window_v1_rec_none,
       rec_open: window_v1_rec_open,
       rec2: window_v1_rec2,
       rec2_open: window_v1_rec2_open,
+      rec2_none: window_v1_rec2_none,
       main: window_main,
+      mainNone: window_main_none,
       mainOpen: window_main_open,
     },
     windowDeco02: {
       default: window_v2,
+      default_none: window_v2_none,
       open: window_v2_open,
       rec: window_v2_rec,
+      rec_none: window_v2_rec_none,
       rec_open: window_v2_rec_open,
       rec2: window_v2_rec2,
       rec2_open: window_v2_rec2_open,
+      rec2_none: window_v2_rec2_none,
       main: window_main,
+      mainNone: window_main_none,
       mainOpen: window_main_open,
     },
   };
@@ -583,7 +604,7 @@ export default function CustomCompleteUserHotel({
 
       <View
         style={{
-          zIndex: 5,
+          zIndex: 6,
           position: "absolute",
         }}
       >
@@ -599,7 +620,12 @@ export default function CustomCompleteUserHotel({
               style={{
                 width: item.width,
                 height: item.height,
-                zIndex: 4,
+                zIndex:
+                  item.num === 25 &&
+                  window[`2023-12-${item.num < 10 ? "0" + item.num : item.num}`]
+                    ?.isOpen
+                    ? 3
+                    : 5,
                 top: item.top,
                 left: item.left,
                 position: "absolute",
@@ -612,23 +638,31 @@ export default function CustomCompleteUserHotel({
                         `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].rec_open
+                      : isDayOver25
+                      ? window_design[window_v].rec_none
                       : window_design[window_v].rec
                     : item.num === 18
                     ? window[
                         `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].rec2_open
+                      : isDayOver25
+                      ? window_design[window_v].rec2_none
                       : window_design[window_v].rec2
                     : item.num === 25
                     ? window[
                         `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                       ? window_design[window_v].mainOpen
+                      : isDayOver25
+                      ? window_design[window_v].mainNone
                       : window_design[window_v].main
                     : window[
                         `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                       ]?.isOpen
                     ? window_design[window_v].open
+                    : isDayOver25
+                    ? window_design[window_v].default_none
                     : window_design[window_v].default
                 }
                 style={{
@@ -638,6 +672,8 @@ export default function CustomCompleteUserHotel({
                       `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? 50
+                      : isDayOver25 && item.num === 25
+                      ? 52
                       : item.width,
                   height:
                     item.num === 25 &&
@@ -645,6 +681,8 @@ export default function CustomCompleteUserHotel({
                       `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? 72
+                      : isDayOver25 && item.num === 25
+                      ? 74
                       : item.height,
                   top:
                     item.num === 25 &&
@@ -652,19 +690,25 @@ export default function CustomCompleteUserHotel({
                       `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
                       ? -32
-                      : item.num === 25
-                      ? 4
+                      : isDayOver25 && item.num === 25
+                      ? -36
                       : 0,
                   left:
                     item.num === 25 &&
                     window[
                       `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
                     ]?.isOpen
-                      ? -14
-                      : item.num === 25
-                      ? 2
+                      ? -12
+                      : isDayOver25 && item.num === 25
+                      ? -15
                       : 0,
-                  zIndex: 4,
+                  zIndex:
+                    item.num === 25 &&
+                    window[
+                      `2023-12-${item.num < 10 ? "0" + item.num : item.num}`
+                    ]?.isOpen
+                      ? 3
+                      : 4,
                   position: "absolute",
                 }}
               />
@@ -678,7 +722,7 @@ export default function CustomCompleteUserHotel({
                       left: item.font_left,
                       textAlign: "center",
                       position: "absolute",
-                      color: colors.Whiteyello,
+                      color: isDayOver25 ? colors.greyblack : colors.Whiteyello,
                       fontSize: 12,
                       fontWeight: "bold",
                     }}
