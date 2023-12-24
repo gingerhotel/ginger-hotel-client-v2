@@ -27,6 +27,7 @@ import {
   useSegments,
 } from "expo-router";
 import moment from "moment";
+import { getCurrentDate } from "../../../data/data";
 
 const album = require("../../../assets/icon/i_album.svg");
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
@@ -58,6 +59,7 @@ const bellboy35 = require("../../../assets/gingerman/Modal_Ginger/modal_flower.p
 const bellboy36 = require("../../../assets/gingerman/Modal_Ginger/modal_ghost.png");
 const bellboy37 = require("../../../assets/gingerman/Modal_Ginger/modal_spy.png");
 const bellboy38 = require("../../../assets/gingerman/Modal_Ginger/modal_ice.png");
+const bellboy39 = require("../../../assets/gingerman/Modal_Ginger/modal_santa.png");
 
 import { myDate } from "../../../api/myApi";
 import { useRecoilState, useSetRecoilState } from "recoil";
@@ -105,6 +107,8 @@ export default function HotelComp() {
     useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+  const currentDate = getCurrentDate();
+  const isDayOver26 = +currentDate.split("-")[2] >= 26;
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -387,6 +391,7 @@ export default function HotelComp() {
                       !data?.isLoginMember ? setLoginModalVisible(true) : {}
                     }
                     auth={data?.isLoginMember}
+                    is_disable={isDayOver26}
                   />
 
                   {data?.isFriend ? (
@@ -436,9 +441,9 @@ export default function HotelComp() {
           height={530}
           visible={modalVisible}
           onClose={closeModal}
-          name="동장군 진저맨"
-          desc={`안녕! 나는 겨울의 동장군이야.\n내가 나타나면 추운 건 어쩔 수 없으니..\n따뜻하게 입고 다녀야 해-!`}
-          img={bellboy38}
+          name="산타 진저맨"
+          desc={`히히! 나는야 산타 진저맨!\n진저호텔에서 보낸 시간들, 행복했어? 내 선물이야!\n오늘 크리스마스도 즐겁게 보내라구-!`}
+          img={bellboy39}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
         />
