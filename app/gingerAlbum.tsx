@@ -329,7 +329,7 @@ const GingerAlbum = () => {
               date="12/25"
               pngImage={bellboy50}
               pngImage2={bellboy49}
-              desc={`히히! 나는야 산타 진저맨!\n진저호텔에서 보낸 시간들, 행복했어? 내 선물이야!\n오늘 크리스마스도 즐겁게 보내라구-!`}
+              desc={`히히! 나는야 산타 진저맨!\n진저호텔에서 보낸 시간들, 행복했어?\n내 선물이야! 크리스마스도 즐겁게 보내라구-!`}
               isOpened={info[`2023-12-25`]?.hasCookie}
             />
           </View>

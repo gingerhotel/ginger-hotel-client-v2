@@ -442,7 +442,7 @@ export default function HotelComp() {
           visible={modalVisible}
           onClose={closeModal}
           name="산타 진저맨"
-          desc={`히히! 나는야 산타 진저맨!\n진저호텔에서 보낸 시간들, 행복했어? 내 선물이야!\n오늘 크리스마스도 즐겁게 보내라구-!`}
+          desc={`히히! 나는야 산타 진저맨!\n진저호텔에서 보낸 시간들, 행복했어?\n내 선물이야! 크리스마스도 즐겁게 보내라구-!`}
           img={bellboy39}
           callback={handelTodayLetters}
           btnText={"오늘의 편지 보러가기"}
