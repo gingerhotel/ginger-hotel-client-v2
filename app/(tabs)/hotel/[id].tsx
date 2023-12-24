@@ -27,6 +27,7 @@ import {
   useSegments,
 } from "expo-router";
 import moment from "moment";
+import { getCurrentDate } from "../../../data/data";
 
 const album = require("../../../assets/icon/i_album.svg");
 const ginger = require("../../../assets/gingerman/Modal_Ginger/g_bellboy.png");
@@ -97,6 +98,8 @@ export default function HotelComp() {
     useRecoilState(newLetterCountState);
   const [isOpen, setIsOpen] = useState(false);
   const [letterCheck, setLetterCheck] = useRecoilState(windowDateState);
+  const currentDate = getCurrentDate();
+  const isDayOver26 = +currentDate.split("-")[2] >= 26;
 
   useEffect(() => {
     navigation.setOptions({ headerShown: false });
@@ -397,6 +400,7 @@ export default function HotelComp() {
                       !data?.isLoginMember ? setLoginModalVisible(true) : {}
                     }
                     auth={data?.isLoginMember}
+                    is_disable={isDayOver26}
                   />
 
                   {data?.isFriend ? (
