@@ -1,19 +1,27 @@
 // BottomSheet.tsx
 
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import Modal from 'react-native-modal';
-import { SvgImg } from './svgImg';
-import { BottemSheetBorderView, BottemSheetContentView, BottemSheetDraeView, BottemSheetElementView, BottemSheetView } from '../style/bottemSheetStyled';
-import { MonoText } from './styledText';
-import DeleteModal from './Modal/deleteModal';
-import { BottomSheetDeleteProps, BottomSheetProps } from '../api/interface';
-import BlockModal from './Modal/blockModal';
-import UnBlockModal from './Modal/unBlockModal';
-import ReplyModal from './Modal/replyModal';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import Modal from "react-native-modal";
+import { SvgImg } from "./svgImg";
+import {
+  BottemSheetBorderView,
+  BottemSheetContentView,
+  BottemSheetDraeView,
+  BottemSheetElementView,
+  BottemSheetView,
+} from "../style/bottemSheetStyled";
+import { MonoText } from "./styledText";
+import DeleteModal from "./Modal/deleteModal";
+import { BottomSheetDeleteProps, BottomSheetProps } from "../api/interface";
+import BlockModal from "./Modal/blockModal";
+import UnBlockModal from "./Modal/unBlockModal";
+import ReplyModal from "./Modal/replyModal";
+import DisabledModal from "./Modal/disabledModal";
 import { colors } from "../constants/Colors";
-import { useRecoilValue } from 'recoil';
-import { letterTypeState } from '../atom/letterAtom';
+import { useRecoilValue } from "recoil";
+import { letterTypeState } from "../atom/letterAtom";
+import { getCurrentDate } from "../data/data";
 
 const i_drag = require("../assets/icon/i_drag_handle.svg");
 const i_incognito = require("../assets/icon/i_incognito.svg");
@@ -26,12 +34,17 @@ const BottomSheet = ({
   onClose,
   letterId,
   blocked,
-  replyId
+  replyId,
 }: BottomSheetDeleteProps) => {
   const [letterDelete, setLetterDelete] = useState(false);
   const [letterBlock, setLetterBlock] = useState(false);
   const [letterUnBlock, setLetterUnBlock] = useState(false);
   const [letterReply, setLetterReply] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const currentDate = getCurrentDate();
+  const isDayOver26 = +currentDate.split("-")[2] >= 26;
+
   const letterType = useRecoilValue(letterTypeState);
   const handleSwipeMove = (gestureState: any) => {
     console.log(gestureState.dy);
@@ -49,7 +62,11 @@ const BottomSheet = ({
     onClose();
   };
   const handleReply = () => {
-    setLetterReply(true);
+    if (isDayOver26) {
+      setIsDisabled(true);
+    } else {
+      setLetterReply(true);
+    }
     onClose();
   };
   const closeModal = () => {
@@ -57,6 +74,7 @@ const BottomSheet = ({
     setLetterBlock(false);
     setLetterUnBlock(false);
     setLetterReply(false);
+    setIsDisabled(false);
   };
 
   const onBackButtonPress = () => {
@@ -143,6 +161,13 @@ const BottomSheet = ({
       />
       <ReplyModal
         isVisible={letterReply}
+        onClose={closeModal}
+        letterId={letterId}
+        letterType={letterType}
+        replyId={replyId}
+      />
+      <DisabledModal
+        isVisible={isDisabled}
         onClose={closeModal}
         letterId={letterId}
         letterType={letterType}
