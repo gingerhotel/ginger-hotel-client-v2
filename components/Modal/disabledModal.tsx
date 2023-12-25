@@ -56,7 +56,7 @@ const DisabledModal = ({
           <DeleteModalButtonView>
             {/* <SvgImg url={i_no} width={141} height={46} onPress={onClose} /> */}
             <Buttons
-              title="취소하기"
+              title="확인"
               width={141}
               color="gray_700"
               callback={onClose}
