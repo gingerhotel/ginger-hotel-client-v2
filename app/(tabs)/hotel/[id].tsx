@@ -86,6 +86,7 @@ import ErrorModal from "../../../components/Modal/errorModal";
 import { ErrorMessageConverter } from "../../../data/error-message-converter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import EventBanner from "../../eventBanner";
+import DisabledModal from "../../../components/Modal/disabledModal";
 
 export default function HotelComp() {
   // const { data, isLoading } = useQuery("myInfo", async () => await myInfo());
@@ -102,6 +103,7 @@ export default function HotelComp() {
   const [myHotelModal, setMyHotelModal] = useState<boolean>(false);
   const [keyModal, setKeyModal] = useState<boolean>(false);
   const [noKeyModal, setNoKeyModal] = useState<boolean>(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const [newLetterCount, setNewLetterCount] =
     useRecoilState(newLetterCountState);
@@ -384,14 +386,17 @@ export default function HotelComp() {
                 <View style={styles.hotel_today}>
                   <Buttons
                     title="편지 보내기"
-                    url={`letter/${id}`}
+                    url={isDayOver26 ? `hotel/${id}` : `letter/${id}`}
                     color="green"
                     width={288}
-                    callback={() =>
-                      !data?.isLoginMember ? setLoginModalVisible(true) : {}
-                    }
+                    callback={() => {
+                      if (isDayOver26) {
+                        setIsDisabled(true);
+                      } else {
+                        !data?.isLoginMember ? setLoginModalVisible(true) : {};
+                      }
+                    }}
                     auth={data?.isLoginMember}
-                    is_disable={isDayOver26}
                   />
 
                   {data?.isFriend ? (
@@ -511,6 +516,15 @@ export default function HotelComp() {
           desc={errorMessage}
           buttonMessage={errorButtonMessage}
           url={`hotel/${id}`}
+        />
+        <CenterModal
+          height={180}
+          visible={isDisabled}
+          onClose={() => setIsDisabled(false)}
+          title="서비스 종료 안내"
+          desc={`2023년 12월 26일부터는 편지 보내기가 불가하며\n이전에 받았던 편지 읽기만 가능합니다.`}
+          btn_text="내 호텔로 가기"
+          callback={handleGoMyHotel}
         />
       </View>
     </ScrollView>
