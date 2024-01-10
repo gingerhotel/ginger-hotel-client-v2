@@ -118,11 +118,17 @@ export default function UpdateHotelName() {
                 width: "100%",
               }}
             >
+
+
+  <View style={{ marginTop: 8 }}></View>
+              
               <Input
                 value={newNickname}
+                multiline={5}
                 onChange={(text: string) => setNickname(text)}
                 placeholder="내 닉네임 (최대 8글자)"
                 maxLength={8}
+                height={50}
               />
               <View style={{ marginTop: 8 }}></View>
               <Input
