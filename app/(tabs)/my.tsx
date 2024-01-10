@@ -21,7 +21,7 @@ import PeekModal from "../../components/Modal/peekModal";
 import { SvgImg } from "../../components/svgImg";
 import { useQuery } from "react-query";
 import { checkAuth } from "../../api/authApi";
-import { AUTH_URL, ORIGIN_URL } from "../../api/url";
+import { AUTH_URL, BASE_URL, ORIGIN_URL } from "../../api/url";
 import Toast from "react-native-toast-message";
 import { ErrorMessageConverter } from "../../data/error-message-converter";
 import ErrorModal from "../../components/Modal/errorModal";
@@ -62,7 +62,6 @@ interface UserApiResponse {
   user: User;
   hotel: Hotel;
 }
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 export default function TabThreeScreen() {
   const segments = useSegments();
   useEffect(() => {

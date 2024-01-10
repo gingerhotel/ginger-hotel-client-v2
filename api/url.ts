@@ -1,7 +1,7 @@
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
+export const BASE_URL = 'https://gingerhotel-server.site'
 //const BASE_URL = "http://127.0.0.1:8080"
 
-export const ORIGIN_URL = process.env.EXPO_PUBLIC_ORIGIN_URL;
+export const ORIGIN_URL = 'https://www.ginger-hotel.site'
 export const MEMBER_URL = `${BASE_URL}/members`;
 export const LETTERS_HOTEL_URL = `${BASE_URL}/letters/hotel`;
 export const LETTERS_URL = `${BASE_URL}/letters`;

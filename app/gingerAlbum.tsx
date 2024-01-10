@@ -11,7 +11,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Text } from "../components/themed";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AUTH_URL } from "../api/url";
+import { AUTH_URL, BASE_URL } from "../api/url";
 import LoginModal from "../components/Modal/loginModal";
 
 const bellboy = require("../assets/gingerman/Album_Ginger/a_bellboy.png");
@@ -69,7 +69,6 @@ const GingerAlbum = () => {
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
   const [hotelId, setHotelId] = useRecoilState<string | string[]>(hotelIdState);
-  const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
   const [info, setInfo] = useState<any>([]);
 
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
