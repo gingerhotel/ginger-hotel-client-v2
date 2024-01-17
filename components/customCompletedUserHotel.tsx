@@ -603,9 +603,6 @@ export default function CustomCompleteUserHotel({
         {windows?.map((item) => (
           <TouchableOpacity
             key={item.num}
-            onPress={() => {
-              handleOwner(item.num);
-            }}
           >
             <View
               key={item.num}
@@ -624,6 +621,10 @@ export default function CustomCompleteUserHotel({
               }}
             >
               <SvgImg
+                onPress={() => {
+                    handleOwner(item.num);
+                  }
+                }
                 width={
                   item.num === 25 &&
                   window[`2023-12-${item.num < 10 ? "0" + item.num : item.num}`]
