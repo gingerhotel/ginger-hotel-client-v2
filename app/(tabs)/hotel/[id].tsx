@@ -394,14 +394,15 @@ export default function HotelComp() {
                 <View style={styles.hotel_today}>
                   <Buttons
                     title="편지 보내기"
-                    url={isDayOver26 ? `hotel/${id}` : `letter/${id}`}
+                    // url={isDayOver26 ? `hotel/${id}` : `letter/${id}`}
                     color="green"
                     width={288}
                     callback={() => {
                       if (isDayOver26) {
                         setIsDisabled(true);
                       } else {
-                        !data?.isLoginMember ? setLoginModalVisible(true) : {};
+                        setIsDisabled(true);
+                        // !data?.isLoginMember ? setLoginModalVisible(true) : {};
                       }
                     }}
                     auth={data?.isLoginMember}
